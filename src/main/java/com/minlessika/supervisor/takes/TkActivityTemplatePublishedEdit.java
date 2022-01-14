@@ -1,0 +1,70 @@
+package com.minlessika.supervisor.takes;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.takes.Request;
+import org.takes.rq.RqHref;
+import org.takes.rq.form.RqFormSmart;
+import org.takes.rs.xe.XeAppend;
+import org.takes.rs.xe.XeSource;
+import org.xembly.Directive;
+
+import com.minlessika.membership.domain.impl.PxProfiles;
+import com.minlessika.membership.xe.XeProfile;
+import com.minlessika.sdk.datasource.Base;
+import com.minlessika.sdk.takes.TkForm;
+import com.minlessika.supervisor.domain.ActivityTemplate;
+import com.minlessika.supervisor.domain.ActivityTemplatePublished;
+import com.minlessika.supervisor.domain.Supervisor;
+import com.minlessika.supervisor.domain.impl.PxSupervisor;
+import com.minlessika.supervisor.xe.XeActivityTemplatePublished;
+import com.minlessika.supervisor.xe.XeSupervisor;
+
+public final class TkActivityTemplatePublishedEdit extends TkForm {
+
+	public TkActivityTemplatePublishedEdit(final Base base) {
+		super(base);
+	}
+
+	@Override
+	protected String xslFormPath() {
+		return "/com/supervisor/xsl/activity_template_published_edit.xsl";
+	}
+
+	@Override
+	protected Iterable<XeSource> contentToShow(final Request req, final XeSource itemToShow) throws IOException {
+		final Supervisor module = new PxSupervisor(base, req);
+		Long templateId = Long.parseLong(new RqHref.Smart(req).single("template", "0"));
+		ActivityTemplate template = module.activityTemplates().get(templateId);
+		
+		List<XeSource> content = new ArrayList<>();
+		content.add(new XeAppend("menu", "activities"));
+		content.add(new XeAppend("template_name", template.name()));
+		content.add(new XeAppend("template_id", templateId.toString()));
+		content.add(new XeProfile(new PxProfiles(base, Supervisor.NAME)));
+		content.add(new XeSupervisor(module));
+		content.add(itemToShow);
+		
+		return content;
+	}
+
+	@Override
+	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+		final Supervisor module = new PxSupervisor(base, req);
+		final ActivityTemplatePublished item = module.activityTemplatesPublished().get(id);
+		
+		return new XeActivityTemplatePublished("item", item);
+	}
+
+	@Override
+	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+		return new XeActivityTemplatePublished(dir); 
+	}	
+	
+	@Override
+	protected XeSource newItemToShow(Request req) throws IOException {
+		return XeSource.EMPTY;
+	}
+}

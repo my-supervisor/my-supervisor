@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<data>
+	<record>
+		<module>supervisor</module>
+		<user_id entity="membership_user" fk="id" tag="ADMIN"/>
+		<profile_id entity="membership_profile" fk="id" tag="ADMIN_SUPERVISOR" />
+		<tag>ADMIN_SUPERVISOR</tag>		
+	</record>
+</data>

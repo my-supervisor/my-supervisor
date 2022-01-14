@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<data>
+    <record>
+	    <code>NEW_ACTIVITY</code>
+		<name>Créer une activité</name>	
+		<module>supervisor</module>	
+		<tag>NEW_ACTIVITY</tag>
+	</record>
+	<record>
+	    <code>INTERACTE_ACTIVITIES</code>
+		<name>Mettre des activités en interaction</name>	
+		<module>supervisor</module>	
+		<tag>INTERACTE_ACTIVITIES</tag>
+	</record>
+	<record>
+	    <code>NEW_ACTIVITY_TEMPLATE</code>
+		<name>Créer un modèle d'activité</name>		
+		<module>supervisor</module>
+		<tag>NEW_ACTIVITY_TEMPLATE</tag>
+	</record>
+	<record>
+	    <code>NEW_INDICATOR</code>
+		<name>Créer un indicateur</name>
+		<module>supervisor</module>		
+		<tag>NEW_INDICATOR</tag>
+	</record>
+	<record>
+	    <code>NEW_INDICATOR_TEMPLATE</code>
+		<name>Créer un modèle d'indicateur</name>	
+		<module>supervisor</module>	
+		<tag>NEW_INDICATOR_TEMPLATE</tag>
+	</record>
+	<record>
+	    <code>SHARE_ACTIVITY</code>
+		<name>Partager une activité</name>	
+		<module>supervisor</module>	
+		<tag>SHARE_ACTIVITY</tag>
+	</record>
+	<record>
+	    <code>ONE_UNSUBSCRIBE_ACTIVITY</code>
+		<name>Se désabonner d'une activité</name>	
+		<module>supervisor</module>	
+		<tag>ONE_UNSUBSCRIBE_ACTIVITY</tag>
+	</record>
+	<record>
+	    <code>NEW_DATA_SHEET_MODEL</code>
+		<name>Créer un modèle de feuille de données</name>	
+		<module>supervisor</module>	
+		<tag>NEW_DATA_SHEET_MODEL</tag>
+	</record>
+	<record>
+	    <code>SHARE_DATA_SHEET_MODEL</code>
+		<name>Partager un modèle de feuille de données</name>
+		<module>supervisor</module>		
+		<tag>SHARE_DATA_SHEET_MODEL</tag>
+	</record>
+	<record>
+	    <code>ONE_UNSUBSCRIBE_DATA_SHEET_MODEL</code>
+		<name>Se désabonner d'un modèle de feuille de données</name>
+		<module>supervisor</module>		
+		<tag>ONE_UNSUBSCRIBE_DATA_SHEET_MODEL</tag>
+	</record>
+	<record>
+	    <code>NEW_DATA_FIELD</code>
+		<name>Créer un champ de données</name>		
+		<module>supervisor</module>
+		<tag>NEW_DATA_FIELD</tag>
+	</record>
+	<record>
+	    <code>NEW_DATA_SHEET</code>
+		<name>Créer une feuille de données</name>	
+		<module>supervisor</module>	
+		<tag>NEW_DATA_SHEET</tag>
+	</record>
+	<record>
+	    <code>NEW_DATA_FIELD_TABLE</code>
+		<name>Créer un champ de données table</name>	
+		<module>supervisor</module>	
+		<tag>NEW_DATA_FIELD_TABLE</tag>
+	</record>
+</data>

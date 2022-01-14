@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<data>
+    <record>
+	    <code>ADMIN_SUPERVISOR</code>
+		<name>Administrateur</name>
+		<module>supervisor</module>		
+		<tag>ADMIN_SUPERVISOR</tag>
+	</record>
+	<record>
+	    <code>ANONYMOUS_SUPERVISOR</code>
+		<name>Anonyme</name>		
+		<module>supervisor</module>
+		<tag>ANONYMOUS_SUPERVISOR</tag>
+	</record>
+	<record>
+	    <code>USER_SUPERVISOR</code>
+		<name>Utilisateur</name>
+		<module>supervisor</module>		
+		<tag>USER_SUPERVISOR</tag>
+	</record>
+</data>

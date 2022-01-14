@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<data>
+	<record>
+		<release_date>2019-12-08</release_date>
+		<revision>1.1.1.0085</revision>
+		<product_range>SAAS</product_range>
+		<notes>Supervisor module</notes>
+		<tag>SUPERVISOR_VERSION</tag>
+	</record>
+</data>
