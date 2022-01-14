@@ -1,0 +1,269 @@
+package com.minlessika.membership.domain.impl;
+
+import com.minlessika.membership.billing.BillingAddress;
+import com.minlessika.membership.billing.PlannedTasks;
+import com.minlessika.membership.billing.UserPaymentRequests;
+import com.minlessika.membership.domain.Address;
+import com.minlessika.membership.domain.Application;
+import com.minlessika.membership.domain.Applications;
+import com.minlessika.membership.domain.Currency;
+import com.minlessika.membership.domain.Language;
+import com.minlessika.membership.domain.PlanSubscriptionContracts;
+import com.minlessika.membership.domain.Profile;
+import com.minlessika.membership.domain.User;
+import com.minlessika.sdk.datasource.Base;
+import com.minlessika.sdk.datasource.RecordSet;
+import com.minlessika.sdk.datasource.Recordable;
+import com.minlessika.sdk.time.TimePrinter;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.FormatStyle;
+import java.util.Locale;
+import java.util.TimeZone;
+import java.util.UUID;
+
+public class UserWrap implements User {
+
+	private final User origin;
+	
+	public UserWrap(final User origin) {
+		this.origin = origin;
+	}
+	
+	@Override
+	public String name() throws IOException {
+		return origin.name();
+	}
+
+	@Override
+	public boolean isCompany() throws IOException {
+		return origin.isCompany();
+	}
+
+	@Override
+	public UUID guid() throws IOException {
+		return origin.guid();
+	}
+
+	@Override
+	public LocalDateTime creationDate() throws IOException {
+		return origin.creationDate();
+	}
+
+	@Override
+	public Long creatorId() throws IOException {
+		return origin.creatorId();
+	}
+
+	@Override
+	public LocalDateTime lastModificationDate() throws IOException {
+		return origin.lastModificationDate();
+	}
+
+	@Override
+	public Long lastModifierId() throws IOException {
+		return origin.lastModifierId();
+	}
+
+	@Override
+	public Long ownerId() throws IOException {
+		return origin.ownerId();
+	}
+
+	@Override
+	public String tag() throws IOException {
+		return origin.tag();
+	}
+
+	@Override
+	public Long id() {
+		return origin.id();
+	}
+
+	@Override
+	public String password() throws IOException {
+		return origin.password();
+	}
+
+	@Override
+	public String salt() throws IOException {
+		return origin.salt();
+	}
+
+	@Override
+	public boolean active() throws IOException {
+		return origin.active();
+	}
+
+	@Override
+	public void activate(boolean active) throws IOException {
+		origin.activate(active);
+	}
+
+	@Override
+	public boolean own(Object item) throws IOException {
+		return origin.own(item);
+	}
+
+	@Override
+	public boolean notOwn(Object item) throws IOException {
+		return origin.notOwn(item);
+	}
+
+	@Override
+	public void changePassword(String currentPwd, String newPwd, String newConfirmedPwd) throws IOException {
+		origin.changePassword(currentPwd, newPwd, newConfirmedPwd);
+	}
+
+	@Override
+	public Base base() {
+		return origin.base();
+	}
+
+	@Override
+	public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz) throws IOException {
+		return origin.listOf(clazz);
+	}
+
+	@Override
+	public String photo() throws IOException {
+		return origin.photo();
+	}
+
+	@Override
+	public TimeZone timeZone() throws IOException {
+		return origin.timeZone();
+	}
+
+	@Override
+	public void changeTimeZone(TimeZone timeZone) throws IOException {
+		origin.changeTimeZone(timeZone); 
+	}
+	
+	@Override
+	public Language preferredLanguage() throws IOException {
+		return origin.preferredLanguage();
+	}
+
+	@Override
+	public String timeZoneId() throws IOException {
+		return origin.timeZoneId();
+	}
+	
+	@Override
+	public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
+		return origin.listOf(clazz, viewScript);
+	}
+
+	@Override
+	public Locale locale() throws IOException {
+		return origin.locale();
+	}
+
+	@Override
+	public PlanSubscriptionContracts contracts() throws IOException {
+		return origin.contracts();
+	}
+
+	@Override
+	public TimePrinter humanDateOf(LocalDate date) throws IOException {
+		return origin.humanDateOf(date);
+	}
+
+	@Override
+	public TimePrinter humanDateOf(LocalDateTime date) throws IOException {
+		return origin.humanDateOf(date);
+	}
+
+	@Override
+	public TimePrinter humanDateOf(LocalDate date, FormatStyle style) throws IOException {
+		return origin.humanDateOf(date, style);
+	}
+
+	@Override
+	public TimePrinter humanDateOf(LocalDateTime date, FormatStyle style) throws IOException {
+		return origin.humanDateOf(date, style);
+	}
+
+	@Override
+	public TimePrinter prettyTimeOf(LocalDateTime date) throws IOException {
+		return origin.prettyTimeOf(date);
+	}
+
+	@Override
+	public Applications applications() throws IOException {
+		return origin.applications(); 
+	}
+
+	@Override
+	public Address address() throws IOException {
+		return origin.address();
+	}
+
+	@Override
+	public BillingAddress billingAddress() throws IOException {
+		return origin.billingAddress();
+	}
+
+	@Override
+	public Currency preferredCurrency() throws IOException {
+		return origin.preferredCurrency();
+	}
+
+	@Override
+	public void update(String name, String photo, boolean isCompany) throws IOException {
+		origin.update(name, photo, isCompany);
+	}
+
+	@Override
+	public void changePreferredCurrency(Currency currency) throws IOException {
+		origin.changePreferredCurrency(currency);
+	}
+
+	@Override
+	public void changePreferredLanguage(Language language) throws IOException {
+		origin.changePreferredLanguage(language); 
+	}
+
+	@Override
+	public PlannedTasks plannedTasks() throws IOException {
+		return origin.plannedTasks();
+	}
+
+	@Override
+	public UserPaymentRequests paymentRequests() throws IOException {
+		return origin.paymentRequests();
+	}
+
+	@Override
+	public Application currentApp() throws IOException {
+		return origin.currentApp();
+	}
+
+	@Override
+	public Profile currentProfile() throws IOException {
+		return origin.currentProfile();
+	}
+
+	@Override
+	public boolean isAnonymous() throws IOException {
+		return origin.isAnonymous();
+	}
+
+	@Override
+	public boolean isAdmin() throws IOException {
+		return origin.isAdmin();
+	}
+
+	@Override
+	public void changeProfile(Profile newProfile) throws IOException {
+		origin.changeProfile(newProfile);
+	}
+
+	@Override
+	public Profile profileOf(String module) throws IOException {
+		return origin.profileOf(module);
+	}
+}

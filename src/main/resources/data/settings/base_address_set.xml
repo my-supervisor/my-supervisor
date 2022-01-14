@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<data>
+	<record>
+		<email>admin@minlessika.com</email>
+	    <address_line1>ABOBO BAOULE LOT 451 ILOT 68 APPT. 5G.</address_line1>
+		<phone1>07622999</phone1>
+		<city>Abidjan</city>
+		<state_or_province>Côte d'Ivoire</state_or_province>
+		<country_id entity="base_country" fk="id" tag="CI"/>
+		<tag>ADMIN</tag>		
+	</record>
+	<record>
+		<email>anonymous@minlessika.com</email>
+		<address_line1>ABOBO BAOULE LOT 451 ILOT 68 APPT. 5G.</address_line1>
+		<phone1>07622999</phone1>
+		<city>Abidjan</city>
+		<state_or_province>Côte d'Ivoire</state_or_province>
+		<country_id entity="base_country" fk="id" tag="CI"/>
+		<tag>ANONYMOUS</tag>
+	</record>
+	<record>
+		<email>info@mtn.ci</email>
+		<country_id entity="base_country" fk="id" tag="CI"/>
+		<tag>MTN</tag>
+	</record>
+	<record>
+		<email>info@ocit.ci</email>
+		<country_id entity="base_country" fk="id" tag="CI"/>
+		<tag>ORANGE</tag>
+	</record>
+	<record>
+		<email>info@moov.ci</email>
+		<country_id entity="base_country" fk="id" tag="CI"/>
+		<tag>MOOV</tag>
+	</record>
+	<record>
+		<email>info@orabank.ci</email>
+		<country_id entity="base_country" fk="id" tag="CI"/>
+		<tag>ORABANK</tag>
+	</record>
+	<record>
+		<email>info@bankonline.ci</email>
+		<country_id entity="base_country" fk="id" tag="FR"/>
+		<tag>BANKONLINE</tag>
+	</record>
+	<record>
+		<email>commercial.ci@hub2.io</email>
+		<country_id entity="base_country" fk="id" tag="CI"/>
+		<tag>CONNEKT4</tag>
+	</record>
+	<record>
+		<email>infos@cinetpay.com</email>
+		<country_id entity="base_country" fk="id" tag="CI"/>
+		<tag>CINETPAY</tag>
+	</record>
+</data>

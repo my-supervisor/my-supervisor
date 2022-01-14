@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<data>
+	<record>
+		<currency_id entity="base_currency" fk="id" tag="EUR" />
+		<tag>PRICING</tag>
+	</record>
+</data>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<data>
+	<record>
+		<code>CI</code>
+		<name>Côte d'Ivoire</name>
+		<currency_id entity="base_currency" fk="id" tag="XOF" />
+		<phone_code>225</phone_code>
+		<tag>CI</tag>		
+	</record>
+	<record>
+		<code>BF</code>
+		<name>Burkina Faso</name>
+		<currency_id entity="base_currency" fk="id" tag="XOF" />
+		<phone_code>226</phone_code>
+		<tag>BF</tag>		
+	</record>
+	<record>
+		<code>FR</code>
+		<name>France</name>
+		<currency_id entity="base_currency" fk="id" tag="EUR" />
+		<phone_code>33</phone_code>
+		<tag>FR</tag>		
+	</record>
+	<record>
+		<code>US</code>
+		<name>United States</name>
+		<currency_id entity="base_currency" fk="id" tag="EUR" />
+		<phone_code>1</phone_code>
+		<tag>US</tag>		
+	</record>
+	<record>
+		<code>IE</code>
+		<name>Ireland</name>
+		<currency_id entity="base_currency" fk="id" tag="EUR" />
+		<phone_code>354</phone_code>
+		<tag>IE</tag>		
+	</record>
+</data>

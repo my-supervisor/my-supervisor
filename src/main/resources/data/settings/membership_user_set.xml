@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<data>
+	<record>
+		<id entity="base_person" fk="id" tag="ADMIN" />		
+		<password>bLHHYH9H9uYbHSc4eNIz/XpJj/1ieARJf1taeqMpdxA=</password>
+		<salt>EqdmPh53c9x33EygXpTpcoJvc4VXLK</salt>
+		<active>true</active>
+		<tag>ADMIN</tag>
+	</record>
+	<record>
+		<id entity="base_person" fk="id" tag="ANONYMOUS" />
+		<password>bLHHYH9H9uYbHSc4eNIz/XpJj/1ieARJf1taeqMpdxD=</password>
+		<salt>EqdmPh53c9x33EygXpTpcoJvc4VXLK</salt>
+		<active>true</active>
+		<tag>ANONYMOUS</tag>
+	</record>
+</data>

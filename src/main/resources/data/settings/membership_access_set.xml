@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <data>
+	<record>
+		<code>NEW_CONTACT_MSG</code>
+		<name>Créer un message de contact</name>
+		<module>membership</module>
+		<tag>NEW_CONTACT_MSG</tag>
+	</record>
+	<record>
+		<code>ONE_REGISTER</code>
+		<name>S'inscrire</name>
+		<module>membership</module>
+		<tag>ONE_REGISTER</tag>
+	</record>
+	<record>
+		<code>CHANGE_FORGOTTEN_PASSWORD</code>
+		<name>Changer mot de passe oublié</name>
+		<module>membership</module>
+		<tag>CHANGE_FORGOTTEN_PASSWORD</tag>
+	</record>
     <record>
 	    <code>NEW_ACTIVITY</code>
 		<name>Créer une activité</name>	

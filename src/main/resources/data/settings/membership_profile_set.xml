@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <data>
+	<record>
+		<code>ADMIN_MEMBERSHIP</code>
+		<name>Administrateur</name>
+		<module>membership</module>
+		<tag>ADMIN_MEMBERSHIP</tag>
+	</record>
+	<record>
+		<code>ANONYMOUS_MEMBERSHIP</code>
+		<name>Anonyme</name>
+		<module>membership</module>
+		<tag>ANONYMOUS_MEMBERSHIP</tag>
+	</record>
+	<record>
+		<code>USER_MEMBERSHIP</code>
+		<name>Utilisateur</name>
+		<module>membership</module>
+		<tag>USER_MEMBERSHIP</tag>
+	</record>
     <record>
 	    <code>ADMIN_SUPERVISOR</code>
 		<name>Administrateur</name>

@@ -1,0 +1,67 @@
+package com.minlessika.membership.takes;
+
+import com.minlessika.membership.domain.Membership;
+import com.minlessika.membership.domain.PlanFeature;
+import com.minlessika.membership.domain.PlanFeatures;
+import com.minlessika.membership.domain.Plans;
+import com.minlessika.membership.domain.impl.DmMembership;
+import com.minlessika.sdk.datasource.Base;
+import com.minlessika.sdk.takes.TkBaseWrap;
+import org.takes.facets.flash.RsFlash;
+import org.takes.facets.forward.RsForward;
+import org.takes.rq.RqGreedy;
+import org.takes.rq.RqHref;
+import org.takes.rq.form.RqFormSmart;
+
+import java.util.logging.Level;
+
+public final class TkPlanFeatureSave extends TkBaseWrap {
+
+	public TkPlanFeatureSave(Base base) {
+		super(
+				base,
+				req -> {
+					new RqAdminAuth(base, req);
+					
+					final Membership module = new DmMembership(base, req);
+					final Plans plans = module.plans();
+					
+					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
+					
+					Long planId = Long.parseLong(form.single("plan_id"));
+					final PlanFeatures features = plans.get(planId).features();
+					
+					Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));		
+					
+					final String name = form.single("name");
+					final String description = form.single("description");
+					final int order = Integer.parseInt(form.single("order"));
+					final boolean basic = Boolean.parseBoolean(form.single("basic"));
+					final boolean enabled = Boolean.parseBoolean(form.single("enabled"));		
+					
+					final PlanFeature item;
+					final String msg;
+					if(id > 0) {	
+						item = features.get(id);			
+						msg = String.format("La fonctionnalité %s a été modifiée avec succès !", item.name());
+					}else {
+						item = features.add(name);
+						
+						msg = String.format("La fonctionnalité %s a été créée avec succès !", item.name());
+					}
+					
+					item.update(name, enabled, basic);
+					item.describe(description); 
+					item.organize(order);
+					
+					return new RsForward(
+			            	new RsFlash(
+				                msg,
+				                Level.FINE
+				            ),
+				            "/admin/plan/edit?id=" + planId
+					    );
+				}
+		);
+	}
+}

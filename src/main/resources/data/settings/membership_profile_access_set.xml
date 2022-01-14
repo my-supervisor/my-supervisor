@@ -3,6 +3,21 @@
     <!-- Droit d'accès du profil Administrateur -->	
 	
 	<!-- Droit d'accès du profil Anonyme -->
+	<record>
+		<profile_id entity="membership_profile" fk="id" tag="ANONYMOUS_MEMBERSHIP"/>
+		<access_inherited_id entity="membership_access" fk="id" tag="NEW_CONTACT_MSG" />
+		<tag>ANONYMOUS_NEW_CONTACT_MSG</tag>
+	</record>
+	<record>
+		<profile_id entity="membership_profile" fk="id" tag="ANONYMOUS_MEMBERSHIP"/>
+		<access_inherited_id entity="membership_access" fk="id" tag="ONE_REGISTER" />
+		<tag>ANONYMOUS_ONE_REGISTER</tag>
+	</record>
+	<record>
+		<profile_id entity="membership_profile" fk="id" tag="ANONYMOUS_MEMBERSHIP"/>
+		<access_inherited_id entity="membership_access" fk="id" tag="CHANGE_FORGOTTEN_PASSWORD" />
+		<tag>ANONYMOUS_CHANGE_FORGOTTEN_PASSWORD</tag>
+	</record>
 	
 	<!-- Droit d'accès du profil Utilisateur -->
 	<record>

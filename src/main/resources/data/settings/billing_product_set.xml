@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<data>
+	<record>		
+		<name>Software engineering service</name>
+		<catalog_id entity="billing_product_catalog" fk="id" tag="SOFT_ENG_CATALOG"/>
+		<reference>SOFT_ENG_SERVICE</reference>
+		<price>0</price>
+		<enabled>1</enabled>
+		<description>Software engineering service</description>
+		<tag>SOFT_ENG_SERVICE</tag>		
+	</record>
+	
+	<!-- 
+	<record>		
+		<name>Financial transaction</name>
+		<catalog_id entity="billing_product_catalog" fk="id" tag="FIN_CATALOG"/>
+		<reference>FIN_TRANSACT</reference>
+		<price>0</price>
+		<enabled>1</enabled>
+		<description>Financial transaction</description>
+		<tag>FIN_TRANSACT</tag>		
+	</record>
+	 -->
+	
+</data>
