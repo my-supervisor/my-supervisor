@@ -1,0 +1,275 @@
+package com.minlessika.sdk.pgsql;
+
+import com.minlessika.sdk.app.info.AppInfo;
+import com.minlessika.sdk.app.info.DefaultAppInfo;
+import com.minlessika.sdk.datasource.Base;
+import com.minlessika.sdk.datasource.BaseScheme;
+import com.minlessika.sdk.datasource.BaseStatementQueryable;
+import com.minlessika.sdk.datasource.Record;
+import com.minlessika.sdk.datasource.RecordSet;
+import com.minlessika.sdk.datasource.Recordable;
+import com.minlessika.sdk.datasource.ResultStatement;
+import com.minlessika.sdk.datasource.TableImpl;
+import com.minlessika.sdk.metadata.FieldMetadata;
+import com.minlessika.sdk.pgsql.statement.PgColumnExistsStatement;
+import com.minlessika.sdk.pgsql.statement.PgCreateColumnStatement;
+import com.minlessika.sdk.pgsql.statement.PgStatementUpdatable;
+import com.minlessika.sdk.pgsql.statement.PgTableExistsStatement;
+import com.minlessika.sdk.pgsql.statement.PgUpdateSchemaStatement;
+import com.minlessika.sdk.utils.logging.Logger;
+import com.minlessika.sdk.utils.logging.MLogger;
+import com.minlessika.sdk.websockets.WebSocketServer;
+import org.takes.Request;
+import org.takes.facets.auth.Identity;
+import org.takes.facets.auth.RqAuth;
+
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public final class PgBase implements Base {
+	
+	private static final Logger logger = new MLogger(PgBase.class);
+	
+	private final DataSource source;
+	private final List<Class<? extends Recordable>> clazzsRegistered;
+	private final BaseScheme scheme;
+	private final AppInfo appInfo;
+	private final WebSocketServer wsServer;
+	private static final ThreadLocal<Connection> connectionContext = new ThreadLocal<>();
+	private static final ThreadLocal<Long> userIdContext = new ThreadLocal<>();
+	private static final ThreadLocal<Boolean> inTransactionContext = new ThreadLocal<>();
+	
+	public PgBase(final DataSource source) {
+		this(source, new DefaultAppInfo(), null);
+	}
+	
+	public PgBase(final DataSource source, final AppInfo appInfo) {
+		this(source, appInfo, null);
+	}
+	
+	public PgBase(final DataSource source, final AppInfo appInfo, final WebSocketServer wsServer) {
+		this.source = source;
+		this.clazzsRegistered = new ArrayList<>();
+		this.scheme = new PgBaseScheme();
+		this.appInfo = appInfo;
+		this.wsServer = wsServer;
+	}
+	
+	@Override
+	public void start(boolean inTransaction, Request request) throws IOException {
+		
+		final long userId;
+        
+		final Identity identity = new RqAuth(request).identity();
+        if (identity.equals(Identity.ANONYMOUS)) {
+        	userId = 2L;
+        }else {
+        	Map<String, String> props = identity.properties();
+        	userId = Long.parseLong(props.get("id"));      	
+        }
+
+        start(inTransaction, userId);
+	}
+	
+	@Override
+	public void start(boolean inTransaction, long currentUserId) throws IOException {
+		
+		changeUser(currentUserId);
+		inTransactionContext.set(inTransaction);	
+		
+		if(inTransaction) {
+			
+			if(connectionContext.get() != null)
+				throw new IllegalArgumentException("New database transaction : an connection is currently opened for this thread !");
+			
+			newConnection();
+			
+			String msg = String.format("------------------------------ Start new transaction ID thread (%d) ---------------------------------", Thread.currentThread().getId());
+			logger.debug(msg);
+		}		
+	}
+	
+	private void newConnection() throws IOException {
+		try {
+			Connection connection = source.getConnection();
+			
+			if(withinTransaction()) {
+				connection.setAutoCommit(false);
+			}
+			
+			connectionContext.set(connection);			
+		} catch (SQLException e) {
+			logger.error(e); 
+			throw new IOException("Le temps de réponse maximum a anormalement été dépassé. Veuillez ressayer dans quelques instants SVP.");
+		}
+	}
+
+	@Override
+	public <A1 extends Recordable> void createSchemeOf(final Class<A1> clazz) throws IOException {
+		
+		final String domainName = scheme.nameOf(clazz); 
+	    
+		if(PgBaseScheme.isPartial(clazz)) {
+	    	Class<?> coClazz = PgBaseScheme.comodel(clazz);
+	    	if(! new PgTableExistsStatement(this, domainName).exists()) { 
+				// 1 - Générer la table
+				new PgUpdateSchemaStatement(this, scheme.scriptOf(coClazz)).execute();					
+			}
+	    	
+	    	List<FieldMetadata> fields = scheme.ownFieldsOf(clazz);
+			for (FieldMetadata f : fields) {
+				if(! new PgColumnExistsStatement(this, f).exists()) {
+					// 1 - Créer la colonne
+					new PgCreateColumnStatement(this, f).execute();
+				}				
+			}
+	    } else
+	    {
+	    	if(! new PgTableExistsStatement(this, domainName).exists()) {
+				// 1 - Générer la table
+				new PgUpdateSchemaStatement(this, scheme.scriptOf(clazz)).execute();					
+			}
+	    	
+			// 2 - Générer les données de configuration
+			new SettingData(scheme, clazz, this).execute();
+			
+			// 3 - Générer les données de demonstration
+			new DemoData(scheme, clazz, this).execute();
+	    }		
+	}
+	
+	@Override
+	public void commit() throws IOException {
+		
+		if(!withinTransaction())
+			throw new IllegalArgumentException("Commit : you are not in transaction !");
+			
+		try {
+			Connection connection = connection();				
+			connection.commit();
+		} catch (SQLException e) {
+			throw new IOException(e);
+		}
+	}
+
+	@Override
+	public void createScheme() throws IOException {
+		for (Class<? extends Recordable> clazz : clazzsRegistered) {
+			createSchemeOf(clazz);
+		}
+		
+		clazzsRegistered.clear();
+	}
+
+	@Override
+	public <A1 extends Recordable> void register(final Class<A1> clazz) throws IOException {
+		clazzsRegistered.add(clazz);	
+	}
+
+	@Override
+	public <A1 extends Recordable> RecordSet<A1> select(Class<A1> clazz) throws IOException {
+		return select(clazz, new TableImpl(clazz).name()); 
+	}
+
+	@Override
+	public <A1 extends Recordable> Record<A1> select(Class<A1> clazz, Long id) throws IOException {
+		return new PgRecord<>(this, scheme, clazz, id);
+	}
+
+	@Override
+	public List<ResultStatement> query(String statement, List<Object> parameters) throws IOException {
+		return new BaseStatementQueryable(this, statement, parameters).execute();
+	}
+
+	@Override
+	public <A1 extends Recordable> RecordSet<A1> select(Class<A1> clazz, String viewScript) throws IOException {
+		return new PgRecordSet<>(this, scheme, clazz, new TableImpl(viewScript));
+	}
+
+	@Override
+	public AppInfo appInfo() {
+		return appInfo;
+	}
+
+	@Override
+	public WebSocketServer wsServer() {
+		return wsServer;
+	}
+
+	@Override
+	public void update(String statement, List<Object> parameters) throws IOException {
+		new PgStatementUpdatable(this, statement, parameters).execute();
+	}
+
+	@Override
+	public Connection connection() throws IOException {		
+			
+		if(connectionContext.get() == null) {
+			if(withinTransaction())
+				throw new IllegalArgumentException("Connection has been closed !");
+			else {
+				newConnection();
+			}
+		}
+
+		return connectionContext.get();
+	}
+
+	@Override
+	public void rollback() throws IOException {
+		
+		if(!withinTransaction())
+			throw new IllegalArgumentException("Rollback : you are not in transaction !");
+		
+		try {
+			Connection connection = connection();
+			connection.rollback();
+		} catch (SQLException e) {
+			throw new IOException(e);
+		}
+	}
+
+	@Override
+	public void close() throws IOException {
+		try {
+			connection().close();		
+			connectionContext.remove();	
+			inTransactionContext.remove();
+			String msg = String.format("------------------------------ Close transaction ID thread (%d) ---------------------------------", Thread.currentThread().getId());
+			logger.debug(msg);			
+		} catch (SQLException e) {
+			throw new IOException(e);
+		}
+	}
+
+	@Override
+	public long currentUserId() {
+		if(userIdContext.get() == null)
+			throw new IllegalArgumentException("Current user Id must be started before get it !");
+		
+		return userIdContext.get();
+	}
+	
+	@Override
+	public boolean withinTransaction() {
+		if(inTransactionContext.get() == null )
+			return false;
+		
+		return inTransactionContext.get();
+	}
+
+	@Override
+	public void start(boolean inTransaction) throws IOException {
+		start(inTransaction, 2L);
+	}
+
+	@Override
+	public void changeUser(long userId) throws IOException {
+		userIdContext.set(userId);
+	}
+}
