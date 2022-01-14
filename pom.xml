@@ -16,21 +16,6 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>com.minlessika.module</groupId>
-      <artifactId>minlessika</artifactId>
-      <version>0.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.minlessika.core</groupId>
-      <artifactId>minlessika-core</artifactId>
-      <version>0.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.minlessika.sdk</groupId>
-      <artifactId>minlessika-sdk</artifactId>
-      <version>0.2.0</version>
-    </dependency>
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
