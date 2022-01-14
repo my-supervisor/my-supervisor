@@ -44,6 +44,17 @@
       <artifactId>commons-collections</artifactId>
       <version>3.2.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity</artifactId>
+      <version>1.7</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.minlessika</groupId>
+      <artifactId>takes-utils</artifactId>
+      <version>0.0.1</version>
+    </dependency>
   </dependencies>
   <profiles>
     <profile>

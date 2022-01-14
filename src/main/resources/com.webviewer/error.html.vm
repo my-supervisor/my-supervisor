@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Internal application error</title>
+    </head>
+    <body>
+        <pre>${err}</pre>
+    </body>
+</html>

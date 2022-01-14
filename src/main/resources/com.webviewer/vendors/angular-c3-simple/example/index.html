@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="angularDemo">
+<head>
+  <title>Angular C3 Simple Demo</title>
+  <link rel="stylesheet" href="../bower_components/c3/c3.min.css">
+</head>
+<body>
+
+<h2 ng-hide="true">for this demo to work, you have to install dependencies with bower.</h2>
+
+<div ng-controller="DemoCtrl">
+  <h1>Time Series Demo</h1>
+  <c3-simple ng-attr-id="{{dynamicChartId}}" config="chart"></c3-simple>
+  <button type="button" name="button" ng-click="generateData('chart')">Generate Random Data</button>
+  <button type="button" name="button" ng-click="toggleLegend('chart')">Toggle Leegend</button>
+  <br />
+  <h2>transform data1</h2>
+  <select ng-model="chartType.data1" ng-options="item.value as item.name for item in filterOptions" ng-change="transform('chart', 'data1')"></select>
+  <h2>transform data2</h2>
+  <select ng-model="chartType.data2" ng-options="item.value as item.name for item in filterOptions" ng-change="transform('chart', 'data2')"></select>
+</div>
+
+<!-- AngularJS -->
+<script src="../bower_components/angular/angular.min.js"></script>
+
+<!-- D3 -->
+<script src="../bower_components/d3/d3.min.js"></script>
+
+<!-- C3.js -->
+<script src="../bower_components/c3/c3.min.js"></script>
+
+<!-- angular C3 simple -->
+<script src="../dist/angular_c3_simple.min.js"></script>
+
+<!-- angular app -->
+<script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+    "name": "angular-guid",
+    "version": "0.1.2",
+    "main": "./guid.js",
+    "keywords": [
+        "uuid",
+        "guid",
+        "angularjs"
+    ],
+    "ignore": [],
+    "_release": "0.1.1"
+}
