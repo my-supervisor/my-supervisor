@@ -29,6 +29,7 @@ import com.minlessika.membership.domain.PlanSubscriptionContract;
 import com.minlessika.membership.domain.RegistrationRequest;
 import com.minlessika.membership.domain.Sequence;
 import com.minlessika.membership.domain.User;
+import com.minlessika.membership.domain.impl.DmMembership;
 import com.minlessika.membership.takes.TkAccess;
 import com.minlessika.membership.takes.TkAccessEdit;
 import com.minlessika.membership.takes.TkAccessSave;
@@ -104,6 +105,7 @@ import com.minlessika.membership.takes.TkUserEdit;
 import com.minlessika.membership.takes.TkUserProfileEdit;
 import com.minlessika.membership.takes.TkUserProfileSave;
 import com.minlessika.membership.takes.TkUserSave;
+import com.minlessika.sdk.datasource.BasicModule;
 import com.minlessika.secure.TkAnonymous;
 import org.takes.facets.auth.TkSecure;
 import org.takes.facets.fork.FkChain;
@@ -118,7 +120,6 @@ import com.minlessika.membership.domain.Profile;
 import com.minlessika.membership.domain.ProfileAccess;
 import com.minlessika.membership.domain.ProfileAccessParam;
 import com.minlessika.sdk.datasource.Base;
-import com.minlessika.sdk.datasource.BasicModule;
 import com.minlessika.sdk.takes.FkModuleMimes;
 import com.minlessika.sdk.takes.FkModule;
 import com.minlessika.supervisor.domain.ActivityTemplateRelease;
@@ -201,7 +202,7 @@ public final class FkMySupervisor extends FkModule {
 		super(
 			base,
 			new FkModuleMimes(
-				  new BasicModule(Supervisor.NAME, base.appInfo()), 
+				  new DmMembership(base),
 				  new FkChain(
 					  new FkRegex(
 							  "/",
@@ -1066,6 +1067,9 @@ public final class FkMySupervisor extends FkModule {
 			ParamArg.class,
 			ExpressionValueArg.class,
 			EditableDataFieldArg.class,
+			ListDataField.class,
+			ListDataFieldSource.class,
+			ListDataFieldSourceShared.class,
 			FormularArg.class,
 			FormularSimpleExpression.class,
 			FormularCaseExpression.class,
@@ -1077,9 +1081,6 @@ public final class FkMySupervisor extends FkModule {
 			WhenCase.class,
 			ModelFilter.class,
 			ModelFilterCondition.class,
-			ListDataField.class,
-			ListDataFieldSource.class,
-			ListDataFieldSourceShared.class,
 			ListDataFieldOfSheet.class,
 			DataLink.class,
 			DataLinkShared.class,	
