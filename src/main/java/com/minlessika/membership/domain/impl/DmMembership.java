@@ -58,7 +58,7 @@ public final class DmMembership extends BasicModule implements Membership {
 	public DmMembership(final Base base) throws IOException {
 		this(
 			base, 
-			new DmUser(base.select(User.class, 2L))
+			new DmUser(base, 2L)
 		);
 	}
 	
@@ -71,7 +71,7 @@ public final class DmMembership extends BasicModule implements Membership {
 		this.base = base;
 		this.base.changeUser(user.id());
 		this.source = this.base.select(User.class);
-		this.user = new DmUser(this.source.get(user.id()));
+		this.user = user;
 	}
 	
 	@Override

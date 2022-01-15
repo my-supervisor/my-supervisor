@@ -41,7 +41,8 @@ public final class DmUser extends DomainRecordable<User> implements User {
 	private final Person origin;
 	
 	public DmUser(final Base base, long userId) throws IOException {
-		this(base.select(User.class).get(userId));
+		super(base.select(User.class, userId));
+		this.origin = new DmPerson(base.select(Person.class, userId));
 	}
 	
 	public DmUser(final Record<User> source) throws IOException {
