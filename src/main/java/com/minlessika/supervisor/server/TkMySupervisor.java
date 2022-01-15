@@ -19,9 +19,9 @@ import com.minlessika.sdk.translation.I18n;
 import com.minlessika.supervisor.domain.Supervisor;
 import com.minlessika.supervisor.domain.impl.PxSupervisor;
 
-public final class TkSupervisor extends TkBaseWrap {
+public final class TkMySupervisor extends TkBaseWrap {
 
-	public TkSupervisor(final Base base, final Take take) {
+	public TkMySupervisor(final Base base, final Take take) {
 		super(
 				base, 
 				req -> 
