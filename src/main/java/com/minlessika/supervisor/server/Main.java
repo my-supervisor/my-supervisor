@@ -20,8 +20,17 @@ import org.takes.facets.fork.TkFork;
 import org.takes.http.Exit;
 import org.takes.http.FtCli;
 
+/**
+ * Entrance.
+ * @since 0.1
+ */
 public final class Main {
-	
+
+	/**
+	 * We start all here.
+	 * @param args Arguments.
+	 * @throws Exception If fails
+	 */
     public static void main(final String... args) throws Exception {
 		final Map<String, String> map = new ConsoleArgs("--", args).asMap();
 		final HikariConfig config = new HikariConfig();
