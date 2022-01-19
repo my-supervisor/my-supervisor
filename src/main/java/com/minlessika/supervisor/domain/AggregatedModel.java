@@ -161,115 +161,115 @@ public interface AggregatedModel extends DataModel, Sharable {
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Activity activity() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public DataModelType type() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public String code() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public String description() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public DataFields fields() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public boolean active() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
 		@Override
 		public void update(String code, String name, String description) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public void activate(boolean active) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public void templating(boolean template) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public EditableDataFields baseFields() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Indicators indicatorsThatDependsOn() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public boolean dependsOn(DataModel model) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
 		@Override
 		public boolean strictDependsOn(DataModel model) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
 		@Override
 		public DataSheetModel coreModel() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public AggregatedModels aggregatedModels() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public boolean interacting() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
 		@Override
 		public Activity coreActivity() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public DataField dateReference() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 	};

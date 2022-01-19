@@ -40,55 +40,55 @@ public interface IndicatorDynamicParam extends IndicatorTypeDynamicParam {
 		
 		@Override
 		public String tag() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long ownerId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long lastModifierId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public LocalDateTime lastModificationDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long id() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public UUID guid() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long creatorId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public LocalDateTime creationDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
@@ -104,49 +104,49 @@ public interface IndicatorDynamicParam extends IndicatorTypeDynamicParam {
 		
 		@Override
 		public int order() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return 0;
 		}
 		
 		@Override
 		public String name() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public IndicatorType indicatorType() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public String code() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public IndicatorTypeParamCategory category() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public void update(AggregateFunc func) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
 		@Override
 		public IndicatorTypeDynamicParam origin() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Indicator indicator() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
@@ -157,7 +157,7 @@ public interface IndicatorDynamicParam extends IndicatorTypeDynamicParam {
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 	};

@@ -189,37 +189,37 @@ public interface ActivityTemplate extends Activity {
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public BasePeriodicity periodicity() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public void periodicity(int number, PeriodicityUnit unit, LocalDate reference, boolean closeInterval) throws IOException {
-			// TODO Auto-generated method stub
+
 			
 		}
 
 		@Override
 		public ActivityTemplateReleases releases() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public String version() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public boolean isUpToDate() throws IOException {
-			// TODO Auto-generated method stub
+
 			return false;
 		}
 
@@ -245,31 +245,31 @@ public interface ActivityTemplate extends Activity {
 
 		@Override
 		public DataModels dataModels() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public AggregatedModels aggregatedModels() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Sharing sharing() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public List<DataSheetModel> primaryForms() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public boolean interactsWith(Activity activity) throws IOException {
-			// TODO Auto-generated method stub
+
 			return false;
 		}
 
@@ -280,7 +280,7 @@ public interface ActivityTemplate extends Activity {
 
 		@Override
 		public void manageBy(Application app) throws IOException {
-			// TODO Auto-generated method stub
+
 			
 		}
 	};

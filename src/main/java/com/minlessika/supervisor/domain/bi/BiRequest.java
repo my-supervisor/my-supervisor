@@ -24,67 +24,67 @@ public interface BiRequest {
 		
 		@Override
 		public BiRequest with(long start, int limit) {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public BiRequest with(String filter) {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public BiRequest to(LocalDate now) {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public long start() {
-			// TODO Auto-generated method stub
+			
 			return 0;
 		}
 		
 		@Override
 		public BiSelects selects() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public BiPeriod period() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Ordering ordering() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public BiRequest of(LocalDate begin, LocalDate end) {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public int limit() {
-			// TODO Auto-generated method stub
+			
 			return 0;
 		}
 		
 		@Override
 		public String filter() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public BiColumns columns() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 	};

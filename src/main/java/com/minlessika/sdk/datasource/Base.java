@@ -104,13 +104,13 @@ public interface Base {
 
 		@Override
 		public void rollback() throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public void close() throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
@@ -121,31 +121,31 @@ public interface Base {
 
 		@Override
 		public void start(boolean inTransaction, long currentUserId) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public void start(boolean inTransaction, Request request) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public boolean withinTransaction() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
 		@Override
 		public void start(boolean inTransaction) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public void changeUser(long userId) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 	};

@@ -156,43 +156,43 @@ public interface Profile extends Recordable {
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Profile parent() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public void changeParent(Profile profile) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public boolean isUpperOrEqualTo(Profile profile) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
 		@Override
 		public String module() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public boolean isAnonymous() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
 		@Override
 		public boolean isSimpleUser() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 	};

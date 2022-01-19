@@ -86,127 +86,127 @@ public interface Activity extends Recordable {
 		
 		@Override
 		public String tag() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long ownerId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long lastModifierId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public LocalDateTime lastModificationDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long id() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public UUID guid() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long creatorId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public LocalDateTime creationDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Base base() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public void update(String name, String description) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
 		@Override
 		public void setDefaultShown() throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
 		@Override
 		public ActivityParams params() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public User owner() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public String name() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public boolean isTemplate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 		
 		@Override
 		public Indicators indicators() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public DataSheetModels formsOf(User user) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public DataSheetModels forms() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public String description() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public boolean defaultShown() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
@@ -217,31 +217,31 @@ public interface Activity extends Recordable {
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public BasePeriodicity periodicity() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public void periodicity(int number, PeriodicityUnit unit, LocalDate reference, boolean closeInterval) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public String version() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public boolean isUpToDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
@@ -262,31 +262,31 @@ public interface Activity extends Recordable {
 
 		@Override
 		public DataModels dataModels() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public AggregatedModels aggregatedModels() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Sharing sharing() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public List<DataSheetModel> primaryForms() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public boolean interactsWith(Activity activity) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
@@ -297,7 +297,7 @@ public interface Activity extends Recordable {
 
 		@Override
 		public void manageBy(Application app) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 	};

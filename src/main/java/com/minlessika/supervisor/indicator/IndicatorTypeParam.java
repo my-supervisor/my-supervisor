@@ -126,7 +126,7 @@ public interface IndicatorTypeParam extends Recordable {
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 	};

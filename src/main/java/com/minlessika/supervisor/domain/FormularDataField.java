@@ -39,159 +39,158 @@ public interface FormularDataField extends DataField {
 
 		@Override
 		public String code() throws IOException {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public String name() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public String description() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public DataFieldType type() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Long id() {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public UUID guid() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public LocalDateTime creationDate() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Long creatorId() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public LocalDateTime lastModificationDate() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Long lastModifierId() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Long ownerId() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public String tag() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Base base() {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public FormularCondition condition() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public void addCondition(ParamDataField param, Comparator comparator, String value, double defaultValue)
 				throws IOException {
-			// TODO Auto-generated method stub
+
 			
 		}
 
 		@Override
 		public void removeCondition() throws IOException {
-			// TODO Auto-generated method stub
+
 			
 		}
 
 		@Override
 		public FormularExpression mainExpression() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public FormularExpressions expressions() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public FormularExpressions previousExpressions(FormularExpression expr) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public DataFieldDependencies dependencies() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public DataFieldStyle style() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public void update(String code, String name, DataFieldType type, DataFieldStyle style, String description)
 				throws IOException {
-			// TODO Auto-generated method stub
+
 			
 		}
 
 		@Override
 		public void update(String code, String name, DataFieldType type) throws IOException {
-			// TODO Auto-generated method stub
+
 			
 		}
 
 		@Override
 		public AggregatedModel model() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 		

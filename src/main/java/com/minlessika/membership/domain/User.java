@@ -193,133 +193,133 @@ public interface User extends Person {
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Locale locale() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public PlanSubscriptionContracts contracts() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public TimePrinter humanDateOf(LocalDate date) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public TimePrinter humanDateOf(LocalDateTime date) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public TimePrinter prettyTimeOf(LocalDateTime date) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public TimePrinter humanDateOf(LocalDate date, FormatStyle style) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public TimePrinter humanDateOf(LocalDateTime date, FormatStyle style) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Applications applications() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Address address() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public BillingAddress billingAddress() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Currency preferredCurrency() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public void changePreferredCurrency(Currency currency) throws IOException {
-			// TODO Auto-generated method stub
+
 			
 		}
 
 		@Override
 		public void changePreferredLanguage(Language language) throws IOException {
-			// TODO Auto-generated method stub
+
 			
 		}
 
 		@Override
 		public PlannedTasks plannedTasks() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public UserPaymentRequests paymentRequests() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Application currentApp() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Profile currentProfile() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public boolean isAnonymous() throws IOException {
-			// TODO Auto-generated method stub
+
 			return false;
 		}
 
 		@Override
 		public boolean isAdmin() throws IOException {
-			// TODO Auto-generated method stub
+
 			return false;
 		}
 
 		@Override
 		public void changeProfile(Profile newProfile) throws IOException {
-			// TODO Auto-generated method stub
+
 			
 		}
 
 		@Override
 		public Profile profileOf(String module) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 	};

@@ -145,7 +145,7 @@ public interface DataLink extends Recordable, Sharable, Interactable {
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
@@ -156,19 +156,19 @@ public interface DataLink extends Recordable, Sharable, Interactable {
 
 		@Override
 		public Activity activity() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public DataDomainDefinition dataDomainDefinition() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public void update(DataDomainDefinition ddf) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 	};

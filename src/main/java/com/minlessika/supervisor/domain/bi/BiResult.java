@@ -24,7 +24,7 @@ public interface BiResult {
 		
 		@Override
 		public BiRow addRow() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 	};

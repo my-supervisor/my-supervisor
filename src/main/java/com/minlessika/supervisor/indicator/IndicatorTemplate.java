@@ -190,25 +190,25 @@ public interface IndicatorTemplate extends Indicator {
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public void removePeriodicity() throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public BasePeriodicity periodicity(Activity activity) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Indicator copyTo(Activity activity) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
@@ -249,7 +249,7 @@ public interface IndicatorTemplate extends Indicator {
 
 		@Override
 		public List<DataModel> dataModels() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 	};
