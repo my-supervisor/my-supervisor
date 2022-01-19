@@ -77,7 +77,7 @@ public final class TkApp extends TkWrap {
 							                  new TkClasspath()
 							              ),
 										  new FkModuleMimes(
-											  new BasicModule("webviewer", base.appInfo()), 
+											  new BasicModule("com/webviewer", base.appInfo()),
 											  fork
 										  )
 										)
