@@ -67,25 +67,25 @@ public interface Period {
 		
 		@Override
 		public long months() {
-			// TODO Auto-generated method stub
+			
 			return 0L;
 		}
 		
 		@Override
 		public LocalDate end() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public long days() {
-			// TODO Auto-generated method stub
+			
 			return 0L;
 		}
 		
 		@Override
 		public LocalDate begin() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 	};

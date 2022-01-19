@@ -23,61 +23,61 @@ public class FkRecordable implements Recordable {
 
 	@Override
 	public UUID guid() throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public LocalDateTime creationDate() throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Long creatorId() throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public LocalDateTime lastModificationDate() throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Long lastModifierId() throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Long ownerId() throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public String tag() throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Base base() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz) throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

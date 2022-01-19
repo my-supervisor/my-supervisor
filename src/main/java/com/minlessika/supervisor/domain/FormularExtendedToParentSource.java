@@ -56,127 +56,127 @@ public interface FormularExtendedToParentSource extends Recordable, Interactable
 		
 		@Override
 		public void update(EditableDataField field) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
 		@Override
 		public EditableDataField field() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public boolean active() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
 		@Override
 		public Long id() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public UUID guid() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public LocalDateTime creationDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Long creatorId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public LocalDateTime lastModificationDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Long lastModifierId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Long ownerId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public String tag() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Base base() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public FormularExtendedToParentExpression expr() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public ListDataFieldSource listSource() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public boolean interacting() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
 		@Override
 		public void activate(boolean active) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public DataModel model() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public boolean isBasedOn(DataModel model) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 
 		@Override
 		public boolean isStrictBasedOn(DataModel model) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 	};

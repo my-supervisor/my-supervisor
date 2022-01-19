@@ -132,7 +132,7 @@ public final class PxActivityTemplatePublished extends DomainRecordable<Activity
 
 	@Override
 	public CommentsScored advices() throws IOException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -203,7 +203,7 @@ public final class PxActivityTemplatePublished extends DomainRecordable<Activity
 
 	@Override
 	public void pay() throws IOException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

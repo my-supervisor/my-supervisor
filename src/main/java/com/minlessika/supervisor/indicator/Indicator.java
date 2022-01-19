@@ -124,181 +124,181 @@ public interface Indicator extends Recordable {
 		
 		@Override
 		public String tag() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long ownerId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long lastModifierId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public LocalDateTime lastModificationDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long id() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public UUID guid() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long creatorId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public LocalDateTime creationDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Base base() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public void update(String code, String singleLabel, String pluralLabel, String description) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
 		@Override
 		public IndicatorType type() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public IndicatorStaticParams staticParams() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public String singleLabel() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public void removePeriodicity() throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
 		@Override
 		public String pluralLabel() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public void periodicity(int number, PeriodicityUnit unit, LocalDate reference, boolean closeInterval) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
 		@Override
 		public BasePeriodicity periodicity(Activity activity) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public BasePeriodicity periodicity() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public String name() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public DataLinks links() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public boolean isTemplate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 		
 		@Override
 		public List<MappedDataField> generateMappedFields() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public IndicatorDynamicParams dynamicParams() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public String description() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Indicator copyTo(Activity activity) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public String code() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public void calculate(LocalDate date, Activity activity) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
 		@Override
 		public void calculate(Activity activity) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
@@ -339,7 +339,7 @@ public interface Indicator extends Recordable {
 
 		@Override
 		public List<DataModel> dataModels() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 	};

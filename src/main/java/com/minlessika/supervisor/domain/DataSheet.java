@@ -134,19 +134,19 @@ public interface DataSheet extends Recordable, Sharable {
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public Activity activity() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 
 		@Override
 		public IndicatorDependencies indicatorsThatDependsOn() throws IOException {
-			// TODO Auto-generated method stub
+
 			return null;
 		}
 	};

@@ -38,211 +38,211 @@ public interface Invoice extends Order {
 		
 		@Override
 		public String tag() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long ownerId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long lastModifierId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public LocalDateTime lastModificationDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long id() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public UUID guid() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Long creatorId() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public LocalDateTime creationDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public Base base() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public void update(LocalDate publishingDate) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
 		@Override
 		public String reference() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public LocalDate publishingDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public String description() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public void describe(String description) throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		
 		@Override
 		public PurchaseOrder purchaseOrder() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public OrderLines lines() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 		
 		@Override
 		public LocalDate dueDate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Person supplier() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Person customer() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public double amount() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return 0;
 		}
 
 		@Override
 		public double vatAmount() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return 0;
 		}
 
 		@Override
 		public double totalAmount() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return 0;
 		}
 
 		@Override
 		public OrderTaxes taxes() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public <T extends Recordable> RecordSet<T> listOf(Class<T> clazz, String viewScript) throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public void calculate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public Currency baseCurrency() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public Currency currency() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public double exchangeRate() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return 0;
 		}
 
 		@Override
 		public InvoiceState state() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public OrderType type() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public PaymentReceipts receipts() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public BillingAddress supplierAddress() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public BillingAddress customerAddress() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
 		@Override
 		public PaymentRequests requests() throws IOException {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 	};

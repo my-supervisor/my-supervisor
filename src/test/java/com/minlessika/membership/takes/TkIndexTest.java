@@ -12,11 +12,12 @@ import org.takes.rs.RsPrint;
  */
 final class TkIndexTest {
 
-    /** @todo #9:30min fix TkIndex and enable this test.
-    *    This test fails because we aren't able to locate xsl file
-     *   {@code /com/membership/xsl/index/page_en_US.xsl}. To fix it,
-     *   we wrote firstly this test to reproduce the bug. Now we should
-     *   fix it and enable this test.
+    /**
+     * @todo #9:30min Fix TkIndex and enable this test.
+     *  This test fails because we aren't able to locate xsl file
+     *  {@code /com/membership/xsl/index/page_en_US.xsl}. To fix it,
+     *  we wrote firstly this test to reproduce the bug. Now we should
+     *  fix it and enable this test.
     **/
     @Test
     @Disabled
