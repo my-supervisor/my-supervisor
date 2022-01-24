@@ -18,7 +18,7 @@ import java.util.TimeZone;
 
 public interface Membership extends Module {
 	
-	public static final String NAME = "com.membership";
+	public static final String NAME = "com/membership";
 	
 	/**
      * Revision.

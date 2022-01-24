@@ -23,7 +23,7 @@ public final class XeModule extends XeWrap {
 	}
 	
 	public XeModule() {
-		this(Arrays.asList("com.membership", "supervisor", "coding", "accounting"));
+		this(Arrays.asList("com/membership", "supervisor", "coding", "accounting"));
 	}
 	
 	public XeModule(final List<String> items) {
