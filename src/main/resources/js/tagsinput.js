@@ -366,7 +366,6 @@
             return false;
           });
 
-          // @TODO Dep: https://github.com/corejavascript/typeahead.js/issues/89
           if (typeaheadjs[index].valueKey) {
             self.add(datum[typeaheadjs[index].valueKey]);
           } else {
