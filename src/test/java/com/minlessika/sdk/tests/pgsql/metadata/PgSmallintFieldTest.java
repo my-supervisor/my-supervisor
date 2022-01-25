@@ -1,6 +1,6 @@
 package com.minlessika.sdk.tests.pgsql.metadata;
 
-import com.minlessika.sdk.pgsql.metadata.PgSmallintField;
+import com.supervisor.sdk.pgsql.metadata.PgSmallintField;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;

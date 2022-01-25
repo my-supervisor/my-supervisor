@@ -1,7 +1,7 @@
 package com.minlessika.membership.domain;
 
-import com.minlessika.sdk.secure.EncryptedWord;
-import com.minlessika.sdk.secure.EncryptedWordImpl;
+import com.supervisor.sdk.secure.EncryptedWord;
+import com.supervisor.sdk.secure.EncryptedWordImpl;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;

@@ -1,8 +1,8 @@
 package com.minlessika.sdk.tests.pgsql.conditions;
 
-import com.minlessika.sdk.datasource.comparators.Matchers;
-import com.minlessika.sdk.datasource.conditions.Condition;
-import com.minlessika.sdk.datasource.conditions.pgsql.PgSimpleCondition;
+import com.supervisor.sdk.datasource.comparators.Matchers;
+import com.supervisor.sdk.datasource.conditions.Condition;
+import com.supervisor.sdk.datasource.conditions.pgsql.PgSimpleCondition;
 import com.minlessika.sdk.tests.metadata.MyDomain;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;

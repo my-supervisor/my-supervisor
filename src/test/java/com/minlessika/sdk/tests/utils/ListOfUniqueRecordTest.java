@@ -1,7 +1,7 @@
 package com.minlessika.sdk.tests.utils;
 
-import com.minlessika.sdk.datasource.Recordable;
-import com.minlessika.sdk.utils.ListOfUniqueRecord;
+import com.supervisor.sdk.datasource.Recordable;
+import com.supervisor.sdk.utils.ListOfUniqueRecord;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package com.minlessika.membership.takes;
 
-import com.minlessika.sdk.app.info.AppInfo;
+import com.supervisor.sdk.app.info.AppInfo;
 import java.util.HashMap;
 import java.util.Map;
 

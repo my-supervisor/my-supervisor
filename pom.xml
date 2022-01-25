@@ -51,12 +51,6 @@ SOFTWARE.
       <version>3.2.2</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.velocity</groupId>
-      <artifactId>velocity</artifactId>
-      <version>1.7</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
       <groupId>com.baudoliver7</groupId>
       <artifactId>takes-utils</artifactId>
       <version>0.2</version>
@@ -236,7 +230,7 @@ SOFTWARE.
               </execution>
             </executions>
             <configuration>
-              <mainClass>com.minlessika.supervisor.server.Main</mainClass>
+              <mainClass>com.supervisor.server.Main</mainClass>
               <!-- your main class -->
               <cleanupDaemonThreads>false</cleanupDaemonThreads>
               <arguments>

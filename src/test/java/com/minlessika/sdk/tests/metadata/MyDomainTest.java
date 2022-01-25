@@ -1,9 +1,9 @@
 package com.minlessika.sdk.tests.metadata;
 
 import com.google.common.base.CaseFormat;
-import com.minlessika.sdk.metadata.Field;
-import com.minlessika.sdk.metadata.MethodReferenceUtils;
-import com.minlessika.sdk.metadata.Recordable;
+import com.supervisor.sdk.metadata.Field;
+import com.supervisor.sdk.metadata.MethodReferenceUtils;
+import com.supervisor.sdk.metadata.Recordable;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;

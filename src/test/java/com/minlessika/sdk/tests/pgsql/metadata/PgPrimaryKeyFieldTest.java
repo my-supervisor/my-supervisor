@@ -1,7 +1,7 @@
 package com.minlessika.sdk.tests.pgsql.metadata;
 
-import com.minlessika.sdk.pgsql.metadata.PgIntegerField;
-import com.minlessika.sdk.pgsql.metadata.PgPrimaryKeyField;
+import com.supervisor.sdk.pgsql.metadata.PgIntegerField;
+import com.supervisor.sdk.pgsql.metadata.PgPrimaryKeyField;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;

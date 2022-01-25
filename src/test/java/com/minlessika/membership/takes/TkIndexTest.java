@@ -16,7 +16,7 @@
  */
 package com.minlessika.membership.takes;
 
-import com.minlessika.supervisor.takes.TkIndex;
+import com.supervisor.takes.TkIndex;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.Test;

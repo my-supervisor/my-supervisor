@@ -1,8 +1,8 @@
 package com.minlessika.sdk.time.tests;
 
-import com.minlessika.sdk.time.Periodicity;
-import com.minlessika.sdk.time.PeriodicityUnit;
-import com.minlessika.sdk.time.SimplePeriodicity;
+import com.supervisor.sdk.time.Periodicity;
+import com.supervisor.sdk.time.PeriodicityUnit;
+import com.supervisor.sdk.time.SimplePeriodicity;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;

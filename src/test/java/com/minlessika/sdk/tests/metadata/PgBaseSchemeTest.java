@@ -1,11 +1,11 @@
 package com.minlessika.sdk.tests.metadata;
 
-import com.minlessika.sdk.datasource.BaseScheme;
-import com.minlessika.sdk.metadata.FieldMetadata;
-import com.minlessika.sdk.pgsql.PgBaseScheme;
-import com.minlessika.sdk.pgsql.metadata.PgFieldOfMethod;
-import com.minlessika.sdk.pgsql.metadata.PgForeignKeyField;
-import com.minlessika.sdk.pgsql.metadata.PgLongField;
+import com.supervisor.sdk.datasource.BaseScheme;
+import com.supervisor.sdk.metadata.FieldMetadata;
+import com.supervisor.sdk.pgsql.PgBaseScheme;
+import com.supervisor.sdk.pgsql.metadata.PgFieldOfMethod;
+import com.supervisor.sdk.pgsql.metadata.PgForeignKeyField;
+import com.supervisor.sdk.pgsql.metadata.PgLongField;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Rule;

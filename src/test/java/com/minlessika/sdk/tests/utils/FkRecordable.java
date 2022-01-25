@@ -1,8 +1,8 @@
 package com.minlessika.sdk.tests.utils;
 
-import com.minlessika.sdk.datasource.Base;
-import com.minlessika.sdk.datasource.RecordSet;
-import com.minlessika.sdk.datasource.Recordable;
+import com.supervisor.sdk.datasource.Base;
+import com.supervisor.sdk.datasource.RecordSet;
+import com.supervisor.sdk.datasource.Recordable;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

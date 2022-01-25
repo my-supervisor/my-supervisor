@@ -1,6 +1,6 @@
 package com.minlessika.sdk.tests.pgsql.metadata;
 
-import com.minlessika.sdk.pgsql.metadata.PgFieldMetadata;
+import com.supervisor.sdk.pgsql.metadata.PgFieldMetadata;
 import com.minlessika.sdk.tests.forks.FakeIntegerType;
 import org.apache.commons.lang.StringUtils;
 import org.hamcrest.MatcherAssert;
