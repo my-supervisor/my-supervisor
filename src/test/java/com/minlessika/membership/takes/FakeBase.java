@@ -1,12 +1,12 @@
 package com.minlessika.membership.takes;
 
-import com.minlessika.sdk.app.info.AppInfo;
-import com.minlessika.sdk.datasource.Base;
-import com.minlessika.sdk.datasource.Record;
-import com.minlessika.sdk.datasource.RecordSet;
-import com.minlessika.sdk.datasource.Recordable;
-import com.minlessika.sdk.datasource.ResultStatement;
-import com.minlessika.sdk.websockets.WebSocketServer;
+import com.supervisor.sdk.app.info.AppInfo;
+import com.supervisor.sdk.datasource.Base;
+import com.supervisor.sdk.datasource.Record;
+import com.supervisor.sdk.datasource.RecordSet;
+import com.supervisor.sdk.datasource.Recordable;
+import com.supervisor.sdk.datasource.ResultStatement;
+import com.supervisor.sdk.websockets.WebSocketServer;
 import org.takes.Request;
 
 import java.io.IOException;

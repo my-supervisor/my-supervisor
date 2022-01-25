@@ -1,6 +1,6 @@
 package com.minlessika.sdk.tests.mailing;
 
-import com.minlessika.sdk.mailing.BasicMailing;
+import com.supervisor.sdk.mailing.BasicMailing;
 import org.hamcrest.MatcherAssert;
 import org.junit.Ignore;
 import org.junit.Test;

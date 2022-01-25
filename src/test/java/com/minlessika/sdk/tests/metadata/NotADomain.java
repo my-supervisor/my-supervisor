@@ -1,6 +1,6 @@
 package com.minlessika.sdk.tests.metadata;
 
-import com.minlessika.sdk.metadata.Field;
+import com.supervisor.sdk.metadata.Field;
 
 public interface NotADomain {
 	

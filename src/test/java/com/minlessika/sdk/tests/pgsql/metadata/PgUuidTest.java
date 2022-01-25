@@ -1,6 +1,6 @@
 package com.minlessika.sdk.tests.pgsql.metadata;
 
-import com.minlessika.sdk.pgsql.metadata.PgUuidField;
+import com.supervisor.sdk.pgsql.metadata.PgUuidField;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package com.minlessika.sdk.tests.forks;
 
-import com.minlessika.sdk.metadata.BaseType;
+import com.supervisor.sdk.metadata.BaseType;
 
 import java.lang.reflect.Type;
 import java.util.Arrays;
