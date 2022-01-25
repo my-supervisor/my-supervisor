@@ -36,7 +36,7 @@ public final class TkInteraction extends TkBaseWrap {
 					XeSource xeInteractions = new XeInteraction(activity.interactions());
 					
 					return new RsPage(
-							"/com/supervisor/xsl/interaction.xsl",
+							"/xsl/interaction.xsl",
 							req, 
 							base,
 							()-> new Sticky<>(

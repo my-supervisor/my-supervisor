@@ -20,7 +20,7 @@ public final class TkContact extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return I18n.localizeXslt("/com/membership/xsl/contacts/page.xsl");
+		return I18n.localizeXslt("/xsl/contacts/page.xsl");
 	}
 
 	@Override

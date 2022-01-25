@@ -26,7 +26,7 @@ public final class TkActivityTemplatePublishedVisualized extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/activity_template_published_visualized.xsl";
+		return "/xsl/activity_template_published_visualized.xsl";
 	}
 
 	@Override

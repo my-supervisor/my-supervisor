@@ -53,7 +53,7 @@ public final class TkSharing extends TkBaseWrap {
 					XeSource xeResource = new XeResource(resource);
 					
 					return new RsPage(
-							"/com/supervisor/xsl/sharing.xsl",
+							"/xsl/sharing.xsl",
 							req,
 							base,
 							()-> new Sticky<>(

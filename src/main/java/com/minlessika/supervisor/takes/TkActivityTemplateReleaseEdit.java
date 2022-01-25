@@ -32,7 +32,7 @@ public final class TkActivityTemplateReleaseEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/activity_template_release_edit.xsl";
+		return "/xsl/activity_template_release_edit.xsl";
 	}
 
 	@Override

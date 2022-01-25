@@ -37,7 +37,7 @@ public final class TkGoalNumberSettingEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/indicators/goal_number_setting_edit.xsl";
+		return "/xsl/indicators/goal_number_setting_edit.xsl";
 	}
 
 	@Override

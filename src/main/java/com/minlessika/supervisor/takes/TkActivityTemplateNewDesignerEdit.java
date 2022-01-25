@@ -26,7 +26,7 @@ public final class TkActivityTemplateNewDesignerEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/new_activity_template_designer_edit.xsl";
+		return "/xsl/new_activity_template_designer_edit.xsl";
 	}
 
 	@Override

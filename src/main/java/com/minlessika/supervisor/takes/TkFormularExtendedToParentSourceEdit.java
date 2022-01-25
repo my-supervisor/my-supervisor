@@ -35,7 +35,7 @@ public final class TkFormularExtendedToParentSourceEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/formular_extended_to_parent_source_edit.xsl";
+		return "/xsl/formular_extended_to_parent_source_edit.xsl";
 	}
 
 	@Override

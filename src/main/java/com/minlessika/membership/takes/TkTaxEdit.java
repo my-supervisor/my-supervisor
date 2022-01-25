@@ -25,7 +25,7 @@ public final class TkTaxEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/tax_edit.xsl";
+		return "/xsl/tax_edit.xsl";
 	}
 
 	@Override

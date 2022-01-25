@@ -23,7 +23,7 @@ public final class TkFeedbackEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/feedback.xsl";
+		return "/xsl/feedback.xsl";
 	}
 
 	@Override

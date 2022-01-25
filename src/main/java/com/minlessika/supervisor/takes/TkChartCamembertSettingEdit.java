@@ -37,7 +37,7 @@ public final class TkChartCamembertSettingEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/indicators/chart_camembert_setting_edit.xsl";
+		return "/xsl/indicators/chart_camembert_setting_edit.xsl";
 	}
 
 	@Override

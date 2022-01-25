@@ -43,7 +43,7 @@ public final class TkPricing extends TkBaseWrap {
 					XeSource xeSupervisor = new XeSupervisor(module);
 					
 					return new RsPage(
-							"/com/supervisor/xsl/pricing.xsl",
+							"/xsl/pricing.xsl",
 							req,
 							base,
 							()-> new Sticky<>(

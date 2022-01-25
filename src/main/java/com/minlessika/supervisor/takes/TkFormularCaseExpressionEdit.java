@@ -32,7 +32,7 @@ public final class TkFormularCaseExpressionEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/formular_case_expression_edit.xsl";
+		return "/xsl/formular_case_expression_edit.xsl";
 	}
 
 	@Override

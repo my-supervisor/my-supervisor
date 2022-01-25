@@ -32,7 +32,7 @@ public final class TkDataSheetModel extends TkBaseWrap {
 					XeSource xeSupervisor = new XeSupervisor(module);
 					
 					return new RsPage(
-							"/com/supervisor/xsl/data_sheet_model.xsl",
+							"/xsl/data_sheet_model.xsl",
 							req, 
 							base,
 							()-> new Sticky<>(

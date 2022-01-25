@@ -32,7 +32,7 @@ public final class TkSharingEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/sharing_edit.xsl";
+		return "/xsl/sharing_edit.xsl";
 	}
 
 	@Override

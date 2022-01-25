@@ -39,7 +39,7 @@ public final class TkGaugeSettingEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/indicators/gauge_setting_edit.xsl";
+		return "/xsl/indicators/gauge_setting_edit.xsl";
 	}
 
 	@Override

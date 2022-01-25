@@ -31,7 +31,7 @@ public final class TkFormularSimpleExpressionEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/formular_simple_expression_edit.xsl";
+		return "/xsl/formular_simple_expression_edit.xsl";
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public final class TkImportDataSheetEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/import_data_sheet_edit.xsl";
+		return "/xsl/import_data_sheet_edit.xsl";
 	}
 
 	@Override

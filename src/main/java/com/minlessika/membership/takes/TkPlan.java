@@ -23,7 +23,7 @@ public final class TkPlan extends TkBaseWrap {
 				    XeSource xePlan = new XePlan(module.plans().items());
 				    
 					return new RsPage(
-							"/com/membership/xsl/plan.xsl",
+                            "/xsl/plan.xsl",
 							req,
 							base,
 							()-> new Sticky<>(

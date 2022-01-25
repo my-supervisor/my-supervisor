@@ -23,7 +23,7 @@ public final class TkAdminChangePasswordEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/admin_change_password_edit.xsl";
+		return "/xsl/admin_change_password_edit.xsl";
 	}
 
 	@Override

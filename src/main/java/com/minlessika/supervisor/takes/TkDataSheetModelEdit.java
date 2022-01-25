@@ -31,7 +31,7 @@ public final class TkDataSheetModelEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/data_sheet_model_edit.xsl";
+		return "/xsl/data_sheet_model_edit.xsl";
 	}
 
 	@Override

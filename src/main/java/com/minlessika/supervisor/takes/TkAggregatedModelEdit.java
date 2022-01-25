@@ -46,7 +46,7 @@ public final class TkAggregatedModelEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/aggregated_model_edit.xsl";
+		return "/xsl/aggregated_model_edit.xsl";
 	}
 
 	@Override

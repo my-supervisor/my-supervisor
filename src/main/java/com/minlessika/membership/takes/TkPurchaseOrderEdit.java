@@ -28,7 +28,7 @@ public final class TkPurchaseOrderEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/purchase_order_edit.xsl";
+		return "/xsl/purchase_order_edit.xsl";
 	}
 
 	@Override

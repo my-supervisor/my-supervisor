@@ -31,7 +31,7 @@ public final class TkFormularExtendedToModelExpressionAggregateEdit extends TkFo
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/formular_extended_to_model_expression_aggregate_edit.xsl";
+		return "/xsl/formular_extended_to_model_expression_aggregate_edit.xsl";
 	}
 
 	@Override

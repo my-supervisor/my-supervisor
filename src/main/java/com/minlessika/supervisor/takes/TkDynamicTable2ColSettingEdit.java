@@ -37,7 +37,7 @@ public final class TkDynamicTable2ColSettingEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/indicators/dynamic_table_2_col_setting_edit.xsl";
+		return "/xsl/indicators/dynamic_table_2_col_setting_edit.xsl";
 	}
 
 	@Override

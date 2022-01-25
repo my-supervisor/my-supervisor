@@ -22,7 +22,7 @@ public final class TkAccess extends TkBaseWrap {
 				    XeSource xeAccesses = new XeAccess(new PxAllAccesses(base).orderBy(Access::name));
 				    
 					return new RsPage(
-							"/com/membership/xsl/access.xsl",
+                            "/xsl/access.xsl",
 							req,
 							base,
 							()-> new Sticky<>(

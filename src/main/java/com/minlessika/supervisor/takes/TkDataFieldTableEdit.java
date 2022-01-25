@@ -33,7 +33,7 @@ public final class TkDataFieldTableEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/data_table_edit.xsl";
+		return "/xsl/data_table_edit.xsl";
 	}
 
 	@Override

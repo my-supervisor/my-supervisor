@@ -23,7 +23,7 @@ public final class TkTax extends TkBaseWrap {
 				    XeSource xeTax = new XeTax(module.taxes().items());
 				    
 					return new RsPage(
-							"/com/membership/xsl/tax.xsl",
+                            "/xsl/tax.xsl",
 							req,
 							base,
 							()-> new Sticky<>(

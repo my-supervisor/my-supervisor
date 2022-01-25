@@ -28,7 +28,7 @@ public final class TkPricingSubscriptionDelayEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/plan_subscription_delay_edit.xsl";
+		return "/xsl/plan_subscription_delay_edit.xsl";
 	}
 
 	@Override

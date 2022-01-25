@@ -39,7 +39,7 @@ public final class TkListDataFieldSourceEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/list_data_field_source_edit.xsl";
+		return "/xsl/list_data_field_source_edit.xsl";
 	}
 
 	@Override

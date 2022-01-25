@@ -143,7 +143,7 @@ public final class TkApp extends TkWrap {
 	                        new RsWithStatus(
 	                    		new RsHtml(
 	                    			new RsVelocity(
-                                        com.minlessika.core.takes.TkApp.class.getResource("/com/webviewer/404.html.vm")
+                                        com.minlessika.core.takes.TkApp.class.getResource("/404.html.vm")
                                     )
 	            			    ),
 	                            HttpURLConnection.HTTP_NOT_FOUND
@@ -208,7 +208,7 @@ public final class TkApp extends TkWrap {
     	logger.fatal(req.throwable());
     	return new RsWithStatus(
 					new RsHtml(
-	        			com.minlessika.core.takes.TkApp.class.getResource("/com/webviewer/500.html.vm")
+	        			com.minlessika.core.takes.TkApp.class.getResource("/500.html.vm")
 				    ),
 				    HttpURLConnection.HTTP_INTERNAL_ERROR
 			   );

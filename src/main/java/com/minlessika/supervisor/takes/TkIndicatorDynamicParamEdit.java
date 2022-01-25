@@ -32,7 +32,7 @@ public final class TkIndicatorDynamicParamEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/indicators/indicator_dynamic_param_edit.xsl";
+		return "/xsl/indicators/indicator_dynamic_param_edit.xsl";
 	}
 
 	@Override
