@@ -28,7 +28,7 @@ public final class TkPlanEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/plan_edit.xsl";
+		return "/xsl/plan_edit.xsl";
 	}
 
 	@Override

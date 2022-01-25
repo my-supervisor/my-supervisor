@@ -32,7 +32,7 @@ public final class TkWhenCaseComparatorEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/when_case_comparison_edit.xsl";
+		return "/xsl/when_case_comparison_edit.xsl";
 	}
 
 	@Override

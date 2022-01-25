@@ -42,7 +42,7 @@ public final class TkDataLinkEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/data_link_edit.xsl";
+		return "/xsl/data_link_edit.xsl";
 	}
 
 	@Override

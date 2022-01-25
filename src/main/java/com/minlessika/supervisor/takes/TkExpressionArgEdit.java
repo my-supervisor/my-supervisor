@@ -51,7 +51,7 @@ public final class TkExpressionArgEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/expression_arg_edit.xsl";
+		return "/xsl/expression_arg_edit.xsl";
 	}
 
 	@Override

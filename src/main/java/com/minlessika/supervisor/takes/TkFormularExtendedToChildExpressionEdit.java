@@ -38,7 +38,7 @@ public final class TkFormularExtendedToChildExpressionEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/formular_extended_to_child_expression_edit.xsl";
+		return "/xsl/formular_extended_to_child_expression_edit.xsl";
 	}
 
 	@Override

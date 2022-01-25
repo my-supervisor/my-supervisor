@@ -22,7 +22,7 @@ public final class TkProfile extends TkBaseWrap {
 				    XeSource xeProfiles = new XeProfile(new PxAllProfiles(base).orderBy(Profile::module, Profile::name));
 				    
 					return new RsPage(
-							"/com/membership/xsl/profile.xsl",
+                            "/xsl/profile.xsl",
 							req,
 							base,
 							()-> new Sticky<>(

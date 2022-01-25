@@ -18,7 +18,7 @@ public final class TkPasswordForgotten extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/password_forgotten.xsl";
+		return "/xsl/password_forgotten.xsl";
 	}
 
 	@Override

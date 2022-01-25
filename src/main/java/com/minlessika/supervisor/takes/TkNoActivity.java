@@ -21,7 +21,7 @@ public final class TkNoActivity extends TkBaseWrap {
 				    XeSource xeSupervisor = new XeSupervisor(module);    
 			   
 					return new RsPage(
-							"/com/supervisor/xsl/no_activity.xsl",
+							"/xsl/no_activity.xsl",
 							req, 
 							base,
 							()-> new Sticky<>(

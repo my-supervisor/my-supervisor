@@ -35,7 +35,7 @@ public final class TkUserEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/user_edit.xsl";
+		return "/xsl/user_edit.xsl";
 	}
 
 	@Override

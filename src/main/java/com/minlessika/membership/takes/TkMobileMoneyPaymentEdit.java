@@ -34,7 +34,7 @@ public final class TkMobileMoneyPaymentEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/mobile_money_payment_edit.xsl";
+		return "/xsl/mobile_money_payment_edit.xsl";
 	}
 
 	@Override

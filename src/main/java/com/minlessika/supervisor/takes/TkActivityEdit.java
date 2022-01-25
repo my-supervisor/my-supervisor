@@ -35,7 +35,7 @@ public final class TkActivityEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/activity_edit.xsl";
+		return "/xsl/activity_edit.xsl";
 	}
 
 	@Override

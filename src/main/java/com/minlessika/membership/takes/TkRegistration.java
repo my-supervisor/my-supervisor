@@ -20,7 +20,7 @@ public final class TkRegistration extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return I18n.localizeXslt("/com/membership/xsl/registration/page.xsl");
+		return I18n.localizeXslt("/xsl/registration/page.xsl");
 	}
 
 	@Override

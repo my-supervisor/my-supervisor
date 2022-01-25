@@ -33,7 +33,7 @@ public final class TkSimpleDataFieldEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/simple_data_field_edit.xsl";
+		return "/xsl/simple_data_field_edit.xsl";
 	}
 
 	@Override

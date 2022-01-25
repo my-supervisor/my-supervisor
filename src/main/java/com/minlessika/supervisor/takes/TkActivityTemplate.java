@@ -34,7 +34,7 @@ public final class TkActivityTemplate extends TkBaseWrap {
 					XeSource xeSupervisor = new XeSupervisor(module);
 					
 					return new RsPage(
-							"/com/supervisor/xsl/activity_template.xsl",
+							"/xsl/activity_template.xsl",
 							req, 
 							base,
 							()-> new Sticky<>(

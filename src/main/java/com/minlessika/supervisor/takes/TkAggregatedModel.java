@@ -32,7 +32,7 @@ public final class TkAggregatedModel extends TkBaseWrap {
 					XeSource xeSupervisor = new XeSupervisor(module);
 					
 					return new RsPage(
-							"/com/supervisor/xsl/aggregated_model.xsl",
+							"/xsl/aggregated_model.xsl",
 							req, 
 							base,
 							()-> new Sticky<>(

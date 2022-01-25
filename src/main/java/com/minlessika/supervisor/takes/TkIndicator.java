@@ -36,7 +36,7 @@ public final class TkIndicator extends TkBaseWrap {
 					XeSource xeSupervisor = new XeSupervisor(module);
 					
 					return new RsPage(
-							"/com/supervisor/xsl/indicator.xsl",
+							"/xsl/indicator.xsl",
 							req,
 							base,
 							()-> new Sticky<>(

@@ -23,7 +23,7 @@ public final class TkPasswordEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/password_edit.xsl";
+		return "/xsl/password_edit.xsl";
 	}
 
 	@Override

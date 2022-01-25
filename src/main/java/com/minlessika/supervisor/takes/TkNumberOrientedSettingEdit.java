@@ -36,7 +36,7 @@ public final class TkNumberOrientedSettingEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/indicators/number_oriented_setting_edit.xsl";
+		return "/xsl/indicators/number_oriented_setting_edit.xsl";
 	}
 
 	@Override

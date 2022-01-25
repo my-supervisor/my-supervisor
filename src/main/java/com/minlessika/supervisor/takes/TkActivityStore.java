@@ -21,7 +21,7 @@ public final class TkActivityStore extends TkBaseWrap {
 					XeSource xeSupervisor = new XeSupervisor(module);
 					
 					return new RsPage(
-							"/com/supervisor/xsl/activity_store.xsl",
+							"/xsl/activity_store.xsl",
 							req,
 							base,
 							()-> new Sticky<>(

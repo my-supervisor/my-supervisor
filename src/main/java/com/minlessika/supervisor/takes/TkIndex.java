@@ -1,13 +1,11 @@
 package com.minlessika.supervisor.takes;
-import org.cactoos.iterable.Sticky;
-import org.takes.facets.forward.RsForward;
 
-import com.minlessika.membership.domain.User;
-import com.minlessika.membership.takes.RqUser;
 import com.minlessika.sdk.datasource.Base;
 import com.minlessika.sdk.takes.RsPage;
 import com.minlessika.sdk.takes.TkBaseWrap;
-import com.minlessika.supervisor.domain.Supervisor;
+import com.minlessika.sdk.translation.I18n;
+import org.cactoos.iterable.Sticky;
+import org.takes.rs.xe.XeAppend;
 
 public final class TkIndex extends TkBaseWrap {
 
@@ -15,20 +13,15 @@ public final class TkIndex extends TkBaseWrap {
 		super(
 				base,
 				req -> {
-					final User user = new RqUser(base, req);
-					
-					if(user.applications().has(Supervisor.NAME)) {
-						// show directly home page
-						return new RsForward("/home");
-					} else {
-						// it is the first time
-						return new RsPage(
-								"/com/supervisor/xsl/index.xsl",
-								req, 
-								base,
-								()-> new Sticky<>()
-						);
-					}					
+
+					return new RsPage(
+							I18n.localizeXslt("/xsl/index/page.xsl"),
+							req, 
+							base,
+							()-> new Sticky<>(
+								new XeAppend("menu", "home")
+							)
+					);
 				}
 		);
 	}	

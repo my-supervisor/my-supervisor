@@ -29,7 +29,7 @@ public final class TkPaymentRequestEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/payment_request_edit.xsl";
+		return "/xsl/payment_request_edit.xsl";
 	}
 
 	@Override

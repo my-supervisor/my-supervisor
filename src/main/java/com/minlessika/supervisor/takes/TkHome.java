@@ -81,7 +81,7 @@ public final class TkHome extends TkBaseWrap {
 					    XeSource wsBare = new XeAppend("ws_bare", base.wsServer().bare(req)); 					    
 					    
 					    return new RsPage(
-								"/com/supervisor/xsl/home.xsl",
+								"/xsl/home.xsl",
 								req, 
 								base,
 								()-> new Sticky<>(

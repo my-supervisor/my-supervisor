@@ -25,7 +25,7 @@ public final class TkProfileAccessNotAdded extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/membership/xsl/profile_access_add.xsl";
+		return "/xsl/profile_access_add.xsl";
 	}
 
 	@Override

@@ -36,7 +36,7 @@ public final class TkIndicatorType extends TkBaseWrap {
 					XeSource xeSource = new XeAppend("source", new RqHref.Smart(req).single("source"));
 					
 					return new RsPage(
-							"/com/supervisor/xsl/indicators/indicator_type.xsl",
+							"/xsl/indicators/indicator_type.xsl",
 							req,
 							base,
 							()-> new Sticky<>(

@@ -42,7 +42,7 @@ public final class TkHome extends TkBaseWrap {
 					}
 					
 					return new RsPage(
-								"/com/membership/xsl/home.xsl",
+                            "/xsl/home.xsl",
 								req, 
 								base,
 								()-> new Sticky<>(

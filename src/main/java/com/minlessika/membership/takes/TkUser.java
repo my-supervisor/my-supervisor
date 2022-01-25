@@ -24,7 +24,7 @@ public final class TkUser extends TkBaseWrap {
 				    XeSource xeUsers = new XeUserProfile(module.users().orderBy(User::name));
 				    
 					return new RsPage(
-							"/com/membership/xsl/user.xsl",
+                            "/xsl/user.xsl",
 							req,
 							base,
 							()-> new Sticky<>(

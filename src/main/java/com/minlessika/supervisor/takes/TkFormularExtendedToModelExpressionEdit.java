@@ -32,7 +32,7 @@ public final class TkFormularExtendedToModelExpressionEdit extends TkForm {
 
 	@Override
 	protected String xslFormPath() {
-		return "/com/supervisor/xsl/formular_extended_to_model_expression_edit.xsl";
+		return "/xsl/formular_extended_to_model_expression_edit.xsl";
 	}
 
 	@Override

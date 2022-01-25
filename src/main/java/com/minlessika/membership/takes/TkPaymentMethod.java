@@ -23,7 +23,7 @@ public final class TkPaymentMethod extends TkBaseWrap {
 				    XeSource xeMethods = new XePaymentMethod(module.paymentMethods().items());
 				    
 					return new RsPage(
-							"/com/membership/xsl/payment_method.xsl",
+                            "/xsl/payment_method.xsl",
 							req,
 							base,
 							()-> new Sticky<>(
