@@ -18,7 +18,7 @@
 	   		<xsl:comment>Toastr CSS</xsl:comment>
 	   		<link rel="stylesheet" href="/css/toastr.min.css" />
 	   		
-	   		<link rel="stylesheet" href="/css/flag-icon.min.css" />
+	   		<link rel="stylesheet" href="/css/flag-icon.css" />
 	   		
 	   		<link rel="icon" href="/img/favicon.ico" type="image/x-icon"/>
     		<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
