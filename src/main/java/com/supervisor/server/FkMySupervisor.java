@@ -136,10 +136,6 @@ public final class FkMySupervisor extends FkWrap {
 					new TkWithType(new TkClasspath(), "image/*")
 				),
 				new FkRegex(
-					"/flags/.+",
-					new TkWithType(new TkClasspath(), "image/*")
-				),
-				new FkRegex(
 					"/font/.+\\.ttf",
 					new TkWithType(new TkClasspath(), "application/octet-stream")
 				),
