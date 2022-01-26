@@ -1,4 +1,4 @@
-<img src="src/main/resources/images/logo.png" width="64px" height="64px" alt="MySupervisor logo"/>
+<img src="src/main/resources/img/logo.png" width="64px" height="64px" alt="MySupervisor logo"/>
 
 ## What does it do ?
 [MySupervisor](https://www.my-supervisor.xyz) is your ally in the efficient use of your resources.
