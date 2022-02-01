@@ -1,12 +1,9 @@
-package com.supervisor.sdk.takes;
+package com.supervisor.takes;
 
 import com.supervisor.sdk.datasource.Base;
 import org.takes.Request;
 import org.takes.Response;
 import org.takes.Scalar;
-import org.takes.facets.auth.Identity;
-import org.takes.facets.auth.RqAuth;
-import org.takes.facets.auth.XeLogoutLink;
 import org.takes.facets.flash.XeFlash;
 import org.takes.facets.fork.FkTypes;
 import org.takes.facets.fork.RsFork;
@@ -25,67 +22,44 @@ import org.takes.rs.xe.XeMillis;
 import org.takes.rs.xe.XeSla;
 import org.takes.rs.xe.XeSource;
 import org.takes.rs.xe.XeStylesheet;
-import org.takes.rs.xe.XeWhen;
 
 import java.io.IOException;
 import java.util.Collections;
 
 /**
- * Index resource, front page of the website.
+ * Front page of anonymous pages.
  *
  * @since 1.0
  * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)
  */
-public class RsPage extends RsWrap {
+final class RsAnonymousPage extends RsWrap {
 
     /**
      * Ctor.
      * @param xsl XSL
      * @param req Request
-     * @param base Base
+     * @param src XeSource
      * @throws IOException If fails
      */
-    public RsPage(final String xsl, final Request req, final Base base) throws IOException {
-        super(RsPage.make(xsl, req, base, Collections::emptyList));
-    }
-
-    /**
-     * Ctor.
-     * @param xsl XSL
-     * @param req Request
-     * @param src Source
-     * @throws IOException If fails
-     */
-    public RsPage(
-    		final String xsl, 
-    		final Request req, 
-    		final Base base,
-    		final Scalar<Iterable<XeSource>> src
-    ) throws IOException {
-        super(RsPage.make(xsl, req, base, src));
+    public RsAnonymousPage(final String xsl, final Request req, final XeSource src) {
+        super(RsAnonymousPage.make(xsl, req, src));
     }
     
     /**
      * Make it.
      * @param xsl XSL
      * @param req Request
-     * @param src Source
+     * @param src XeSource
      * @return Response
      * @throws IOException If fails
      */
-    private static Response make(
-    		final String xsl, 
-    		final Request req, 
-    		final Base base,
-    		final Scalar<Iterable<XeSource>> src
-    ) throws IOException {
- 	
+    private static Response make(final String xsl, final Request req, final XeSource src) {
         final Response raw = new RsXembly(
             new XeStylesheet(xsl),
             new XeAppend(
                 "page",
                 new XeMillis(false),
-                new XeChain(src),
+                src,
                 new XeMemory(),
                 new XeLinkHome(req),
                 new XeLinkSelf(req),

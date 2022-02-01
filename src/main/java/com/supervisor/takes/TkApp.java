@@ -63,37 +63,26 @@ public final class TkApp extends TkWrap {
      * @throws IOException If fails
      */
     private static Take app(final Fork fork, final Base base) {
-    	return new TkWithCookieDomain(
-			new TkWithHeaders(
-				new TkFlash(
-				    new TkCachedFiles(
-						auth(
-							safe(
-								new TkForward(
-			    					new TkGzip(
-										new TkFork(
-										  new FkRegex(
-							                  "/org/takes/.+\\.xsl",
-							                  new TkClasspath()
-							              ),
-										  new FkModuleMimes(
-											  new BasicModule("com/webviewer", base.appInfo()),
-											  fork
-										  )
-										)
-			    					)
-				        		)
-							),
-							base
+    	return new TkWithHeaders(
+			new TkFlash(
+				new TkCachedFiles(
+					auth(
+						safe(
+							new TkForward(
+								new TkGzip(
+									new TkFork(fork)
+								)
+							)
 						),
-						3600, // 1 heure
-                        "js", "css", "svg", "png", "jpg", "jpeg", "gif", "eot", "ttf", "woff", "woff2", "ico"
-                    )
-		        ),
-				"Vary: Cookie"
-		    ),
-			base.appInfo().sharedDomain()
-    	);
+						base
+					),
+					3600, // 1 heure
+					"js", "css", "svg", "png", "jpg", "jpeg",
+					"gif", "eot", "ttf", "woff", "woff2", "ico"
+				)
+			),
+			"Vary: Cookie"
+		);
     }
 
     /**

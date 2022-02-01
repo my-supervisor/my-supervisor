@@ -113,15 +113,15 @@ public final class FkMySupervisor extends FkWrap {
 		super(
 			new FkChain(
 				new FkRegex(
+					"/org/takes/.+\\.xsl",
+					new TkClasspath()
+				),
+				new FkRegex(
 					"/html/.+",
 					new TkWithType(new TkClasspath(), "text/html")
 				),
 				new FkRegex(
-					"/xsl/.+",
-					new TkWithType(new TkClasspath(), "text/xsl")
-				),
-				new FkRegex(
-					"/xsl/.+",
+					"/xls/.+",
 					new TkWithType(new TkClasspath(), "application/vnd.ms-excel")
 				),
 				new FkRegex(
@@ -194,7 +194,7 @@ public final class FkMySupervisor extends FkWrap {
 					new TkAnonymous(new TkRegister(base))
 				),
 				new FkRegex("/login",
-					new TkAnonymous(new TkLogin(base))
+					new TkAnonymous(new TkLogin())
 				),
 				new FkRegex("/signin",
 					new TkAnonymous(new TkSignin(base))

@@ -73,10 +73,10 @@
 		  	<div class="footer-copyright text-center py-2">
 		  	    <xsl:choose>
                		<xsl:when test="lang='fr'">
-               			Copyright © 2018 <a href="/">Minlessika</a>. Tous droits réservés.
+               			Copyright © 2018-2022 <a href="/">Minlessika</a>. Tous droits réservés.
                		</xsl:when>
                		<xsl:otherwise>
-               			Copyright © 2018 <a href="/">Minlessika</a>. All rights reserved.
+               			Copyright © 2018-2022 <a href="/">Minlessika</a>. All rights reserved.
                		</xsl:otherwise>
                	</xsl:choose>		  		
 		  	</div>

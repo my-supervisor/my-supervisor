@@ -230,8 +230,7 @@ SOFTWARE.
               </execution>
             </executions>
             <configuration>
-              <mainClass>com.supervisor.server.Main</mainClass>
-              <!-- your main class -->
+              <mainClass>com.supervisor.server.Main</mainClass><!-- your main class -->
               <cleanupDaemonThreads>false</cleanupDaemonThreads>
               <arguments>
                 <argument>--port=${port}</argument>
@@ -241,10 +240,7 @@ SOFTWARE.
                 <argument>--db-password=${db-password}</argument>
                 <argument>--db-host=${db-host}</argument>
                 <argument>--db-port=${db-port}</argument>
-                <argument>--link-minlessika=http://localhost:9090</argument>
-                <argument>--link-coding=http://localhost:9080</argument>
-                <argument>--link-accounting=http://localhost:9067</argument>
-                <argument>--shared-domain=localhost</argument>
+                <argument>--hit-refresh</argument>
               </arguments>
             </configuration>
           </plugin>

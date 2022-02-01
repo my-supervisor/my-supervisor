@@ -1,40 +1,27 @@
 package com.supervisor.takes;
 
 import com.supervisor.sdk.datasource.Base;
-import com.supervisor.sdk.takes.TkForm;
-import com.supervisor.sdk.takes.XeRecaptcha;
+import com.supervisor.sdk.takes.RsPage;
 import com.supervisor.sdk.translation.I18n;
-import org.takes.Request;
-import org.takes.rs.xe.XeAppend;
-import org.takes.rs.xe.XeSource;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import org.cactoos.iterable.IterableOf;
+import org.takes.Request;
+import org.takes.Response;
+import org.takes.Take;
+import org.takes.rs.xe.XeAppend;
+import org.takes.rs.xe.XeChain;
 
-public final class TkLogin extends TkForm {
-
-	public TkLogin(final Base base) {
-		super(base);
-	}
-
-	@Override
-	protected String xslFormPath() {
-		return I18n.localizeXslt("/xsl/login/page.xsl");
-	}
+public final class TkLogin implements Take {
 
 	@Override
-	protected Iterable<XeSource> contentToShow(Request req, XeSource itemToShow) throws IOException {
-		List<XeSource> content = new ArrayList<>();
-		content.add(itemToShow);
-		content.add(new XeAppend("menu", "login"));
-		content.add(new XeRecaptcha(base.appInfo()));
-		
-		return content;
-	}
-
-	@Override
-	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
-		return XeSource.EMPTY;
+	public Response act(final Request req) throws IOException {
+		return new RsAnonymousPage(
+			I18n.localizeXslt("/xsl/login/page.xsl"),
+			req,
+			new XeChain(
+				new XeAppend("menu", "login"),
+				new XeAppend("lang", I18n.locale().getLanguage())
+			)
+		);
 	}
 }
