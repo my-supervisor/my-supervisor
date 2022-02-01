@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright (c) 2018-2022 Minlessika
 
@@ -230,7 +230,8 @@ SOFTWARE.
               </execution>
             </executions>
             <configuration>
-              <mainClass>com.supervisor.server.Main</mainClass><!-- your main class -->
+              <mainClass>com.supervisor.server.Main</mainClass>
+              <!-- your main class -->
               <cleanupDaemonThreads>false</cleanupDaemonThreads>
               <arguments>
                 <argument>--port=${port}</argument>

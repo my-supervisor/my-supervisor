@@ -1,35 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-	xmlns:interactive="http://www.minlessika.com/DynamicTable2Col"
-	version="2.0">
-	
-	<xsl:template name="dynamic_table_2_col">
-   		<script type="text/ng-template" id="dynamicTable2Col.html">
-   			<div class="card" style="height: 100%; margin-bottom:0; min-height: 285px;">
-   			    <div class="card-header">
-                	<h3 class="card-title">{{item.label}}</h3>
-                	<div class="card-options">		                 
-	            		<div class="text-right">
-			                <xsl:call-template name="indicator_options">
-			                	<xsl:with-param name="identity" select="identity"/>
-			                	<xsl:with-param name="activity_selected" select="activity_selected"/>
-			                	<xsl:with-param name="shortname" select="'dynamic-table-2-col'"/>
-			                </xsl:call-template>
-		                </div>			                
-         			</div>
-                </div>	     	                        	            
-                <div class="card-body p-0" style="height: 15rem">
-                	<div class="dimmer" ng-class="active">
-	              		<div class="loader"></div>
-	              		<div class="dimmer-content">
+<!--
+Copyright (c) 2018-2022 Minlessika
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to read
+the Software only. Permissions is hereby NOT GRANTED to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:interactive="http://www.minlessika.com/DynamicTable2Col" version="2.0">
+  <xsl:template name="dynamic_table_2_col">
+    <script type="text/ng-template" id="dynamicTable2Col.html">
+      <div class="card" style="height: 100%; margin-bottom:0; min-height: 285px;">
+        <div class="card-header">
+          <h3 class="card-title">{{item.label}}</h3>
+          <div class="card-options">
+            <div class="text-right">
+              <xsl:call-template name="indicator_options">
+                <xsl:with-param name="identity" select="identity"/>
+                <xsl:with-param name="activity_selected" select="activity_selected"/>
+                <xsl:with-param name="shortname" select="'dynamic-table-2-col'"/>
+              </xsl:call-template>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0" style="height: 15rem">
+          <div class="dimmer" ng-class="active">
+            <div class="loader"/>
+            <div class="dimmer-content">
 	              			
 	              		</div>
-	                </div>
-	                <table class="table card-table">
-	                    <tr ng-repeat="post in posts">
-	                      <td class="text-left px-1">
-	                      	<![CDATA[
+          </div>
+          <table class="table card-table">
+            <tr ng-repeat="post in posts">
+              <td class="text-left px-1"><![CDATA[
 			              	   <div class="text-orange" ng-if="item.manageEvolutionPercent && post.increaseInPercent == -77700">
 				                 &infin;                     
 				               </div>
@@ -41,17 +52,17 @@
 				                 {{post.increaseInPercent}}%
 				                 <i class="fe fe-chevron-up"></i>	                      
 				               </div>  
-				             ]]>	    
-	                      </td>
-	                      <td class="text-left">{{post.name}}</td>
-	                      <td class="text-right"><span class="text-muted">{{numberOf(post)}}</span></td>
-	                    </tr>
-	               </table>
-                </div>                           
-	          </div>
-   		</script>
-   		<script type="text/javascript">
-        	<![CDATA[
+				             ]]></td>
+              <td class="text-left">{{post.name}}</td>
+              <td class="text-right">
+                <span class="text-muted">{{numberOf(post)}}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </script>
+    <script type="text/javascript"><![CDATA[
 	    			(function(app, d3){
 						    						
 						    app.directive('dynamicTable2Col', dynamicTable2Col);
@@ -135,7 +146,6 @@
 						    }
 						
 						})(angular.module("app"), d3);    		    					
-				]]>
-      	</script>	
-	</xsl:template>
+				]]></script>
+  </xsl:template>
 </xsl:stylesheet>

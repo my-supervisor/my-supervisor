@@ -1,13 +1,23 @@
 <?xml version="1.0"?>
-<xsl:stylesheet 
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-	xmlns:layout="http://www.minlessika.com/Utilities"
-	exclude-result-prefixes="layout"
-	version="2.0">
-	
-	<xsl:template name='some-features-to-initialize'>
-		<script type="text/javascript">
-	    	<![CDATA[
+<!--
+Copyright (c) 2018-2022 Minlessika
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to read
+the Software only. Permissions is hereby NOT GRANTED to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:layout="http://www.minlessika.com/Utilities" exclude-result-prefixes="layout" version="2.0">
+  <xsl:template name="some-features-to-initialize">
+    <script type="text/javascript"><![CDATA[
 	    		Array.prototype.swap = function(a, b) {
 				  var temp = this[a];
 				  this[a] = this[b];
@@ -49,11 +59,8 @@
 				  
 				  }() );
 				}
-	    	]]>
-	    </script>
-	    
-	    <script type="text/javascript">
-	    	<![CDATA[			
+	    	]]></script>
+    <script type="text/javascript"><![CDATA[			
 	    		$(document).ready(function () {
                     $('#input-tags').selectize({
                         delimiter: '|',
@@ -78,31 +85,21 @@
 				        }
 				    })
 				});
-			]]>
-	    </script>	    
-	</xsl:template>
-	
-	<xsl:template name="toast">
-	   		<xsl:if test="flash">   		
-   			<script type="text/javascript">
-   			     <xsl:choose>
-		   			<xsl:when test="lang='fr'">
-		   			<![CDATA[
+			]]></script>
+  </xsl:template>
+  <xsl:template name="toast">
+    <xsl:if test="flash">
+      <script type="text/javascript"><xsl:choose><xsl:when test="lang='fr'"><![CDATA[
 		   				var successTitle = 'Succès';
 		   				var informationTitle = 'Information';
 		   				var warningTitle = 'Avertissement';
 		   				var errorTitle = 'Erreur';
-		   			]]>
-		   			</xsl:when>
-		   			<xsl:otherwise>
-		   			<![CDATA[
+		   			]]></xsl:when><xsl:otherwise><![CDATA[
 		   				var successTitle = 'Success';
 		   				var informationTitle = 'Information';
 		   				var warningTitle = 'Warning';
 		   				var errorTitle = 'Error';
-		   			]]>
-		   			</xsl:otherwise>
-		   		</xsl:choose>
+		   			]]></xsl:otherwise></xsl:choose>
 	   		
 				 $(function() {
 				 	 toastr.options = {
@@ -122,22 +119,17 @@
 						  "showMethod": "fadeIn",
 						  "hideMethod": "fadeOut"
 						};
-					 <xsl:choose>
-					 	<xsl:when test="flash/level = 'FINE'">
+					 <xsl:choose><xsl:when test="flash/level = 'FINE'">
 					 		toastr.success("<xsl:value-of select="flash/message"/>", successTitle);
-					 	</xsl:when>
-					 	<xsl:when test="flash/level = 'INFO'">
+					 	</xsl:when><xsl:when test="flash/level = 'INFO'">
 					 		toastr.info("<xsl:value-of select="flash/message"/>", informationTitle);
-					 	</xsl:when>
-					 	<xsl:when test="flash/level = 'WARNING'">
+					 	</xsl:when><xsl:when test="flash/level = 'WARNING'">
 					 		toastr.warning("<xsl:value-of select="flash/message"/>", warningTitle);
-					 	</xsl:when>
-					 	<xsl:otherwise>
+					 	</xsl:when><xsl:otherwise>
 					 		toastr.error("<xsl:value-of select="flash/message"/>", errorTitle);
-					 	</xsl:otherwise>
-					 </xsl:choose>
+					 	</xsl:otherwise></xsl:choose>
 				});
 			</script>
-   		</xsl:if>   		 		
-	</xsl:template>
+    </xsl:if>
+  </xsl:template>
 </xsl:stylesheet>

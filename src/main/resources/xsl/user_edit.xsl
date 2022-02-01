@@ -1,305 +1,311 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-                version="2.0">
-	<xsl:output method="html" cdata-section-elements="script style" include-content-type="no" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
-  	<xsl:strip-space elements="*"/>
-  	<xsl:include href="/xsl/admin_layout.xsl"/>
-  	<xsl:template match="page" mode="head">
-	    <title>
-	      <xsl:text>Administration - Minlessika - Editer un utilisateur</xsl:text>
-	    </title>
-	</xsl:template>
-	<xsl:template match="page" mode="body">
-		<form action="/admin/user/save" method="post" ng-controller="AppCtrl as vm">
-		    <xsl:if test="item and item/id">
-	            <xsl:attribute name="action">
-	              <xsl:text>/admin/user/save?id=</xsl:text><xsl:value-of select="item/id"/>
-	            </xsl:attribute>
-	        </xsl:if>
-			<div class="p-lg-6">
-	           <h2 class="mt-0 mb-4">Editer un utilisateur</h2>           
-			   <div class="row">
-			   		<div class="col-md-6 order-md-2 mb-4">
-						<div class="col-md-12">
-							<img ng-src="{{{{vm.photoPublished}}}}" class="img-thumbnail mb-3" alt="Photo de profil"/>
-							<input type="text" hidden="hidden" name="photo" ng-model="vm.photoPublished" />
-							<div class="row">
-								<div class="col-sm-4 col-md-4">
-									<label class="btn btn-primary btn-file btn-block ml-auto">
+<!--
+Copyright (c) 2018-2022 Minlessika
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to read
+the Software only. Permissions is hereby NOT GRANTED to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+  <xsl:output method="html" cdata-section-elements="script style" include-content-type="no" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
+  <xsl:strip-space elements="*"/>
+  <xsl:include href="/xsl/admin_layout.xsl"/>
+  <xsl:template match="page" mode="head">
+    <title>
+      <xsl:text>Administration - Minlessika - Editer un utilisateur</xsl:text>
+    </title>
+  </xsl:template>
+  <xsl:template match="page" mode="body">
+    <form action="/admin/user/save" method="post" ng-controller="AppCtrl as vm">
+      <xsl:if test="item and item/id">
+        <xsl:attribute name="action">
+          <xsl:text>/admin/user/save?id=</xsl:text>
+          <xsl:value-of select="item/id"/>
+        </xsl:attribute>
+      </xsl:if>
+      <div class="p-lg-6">
+        <h2 class="mt-0 mb-4">Editer un utilisateur</h2>
+        <div class="row">
+          <div class="col-md-6 order-md-2 mb-4">
+            <div class="col-md-12">
+              <img ng-src="{{{{vm.photoPublished}}}}" class="img-thumbnail mb-3" alt="Photo de profil"/>
+              <input type="text" hidden="hidden" name="photo" ng-model="vm.photoPublished"/>
+              <div class="row">
+                <div class="col-sm-4 col-md-4">
+                  <label class="btn btn-primary btn-file btn-block ml-auto">
 								    Editer <input type="file" image="vm.photo" accept="image/*" resize-max-height="100" resize-max-width="100" resize-quality="0.7" resize-type="image/jpeg" ng-image-compress=""/>
 								</label>
-								</div> 
-							</div>
-						</div>
-						<div class="col-md-12 mt-5">
-							<h4 class="mb-4">Applications</h4>           
-					   		<div class="table-responsive">
-					   			<div class="card">
-						         <table class="table table-sm table-vcenter text-nowrap">
-						           <thead>
-						             <tr>
-						               <th class="w-1">N°</th>
-						               <th>Application</th>   
-						               <th>Profil</th>                
-						               <th>
-						               		<a href="/admin/user/app/edit?user={item/id}" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i> Ajouter</a>
-						               </th>
-						             </tr>
-						           </thead>
-						           <tbody>
-						           	<xsl:for-each select="applications/application">
-						              	<tr>
-						                <td><span class="text-muted"><xsl:value-of select="position()"/></span></td>
-						                <td>
-						                  <xsl:value-of select="module"/>
-						                </td>
-						                <td>
-						                  <xsl:value-of select="profile"/>
-						                </td>
-						                <td>
-						                  <a class="icon" href="/admin/user/app/edit?id={id}">
-						                    <i class="fe fe-edit"></i>
-						                  </a>
-						                </td>
-						              </tr>
-						              </xsl:for-each>                   
-						           </tbody>
-						         </table>
-						        </div>
-					      </div>
-						</div>
-					</div>
-					<div class="col-md-6 order-md-1">
-					   <div class="col-md-12">
-	                      <div class="form-group">
-	                        <label class="form-label">Nom <span class="form-required">*</span></label>
-	                        <input name="name" type="text" class="form-control" placeholder="Saisir un nom" required="">
-	                        	<xsl:attribute name="value">
-					              <xsl:value-of select="item/name"/>
-					            </xsl:attribute>
-	                        </input>
-	                      </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                      <div class="form-group">
-	                        <label class="form-label">E-mail <span class="form-required">*</span></label>
-	                        <input name="email" type="email" class="form-control" placeholder="Saisir une adresse mail" required="">
-	                        	<xsl:attribute name="value">
-					              <xsl:value-of select="item/email"/>
-					            </xsl:attribute>
-	                        </input>
-	                      </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                     <div class="form-group">
-	                       <label class="form-label">Profil <span class="form-required">*</span></label>
-	                       <select name="profile_id" class="form-control" required="">                         
-	                         <xsl:variable name="user" select="item" />
-	                         <xsl:for-each select="profiles/profile">                             	                     
-	                         	<option>
-	                         		<xsl:if test="$user and id = $user/profile_id"> 
-										<xsl:attribute name="selected">selected</xsl:attribute> 
-									</xsl:if>
-	                         		<xsl:attribute name="value">
-	                         			<xsl:value-of select="id"/>
-	                         		</xsl:attribute>
-	                         		<xsl:value-of select="name"/>                         		                       	
-	                         	</option>
-	                         </xsl:for-each>                         
-	                       </select>
-	                     </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                      <div class="form-group">
-	                        <label class="form-label">Address line 1 <span class="form-required">*</span></label>
-	                        <input name="address_line1" type="text" class="form-control" placeholder="Enter an address" required="">
-	                        	<xsl:attribute name="value">
-					              <xsl:value-of select="item/address_line1"/>
-					            </xsl:attribute>
-	                        </input>
-	                      </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                      <div class="form-group">
-	                        <label class="form-label">Address line 2 </label>
-	                        <input name="address_line2" type="text" class="form-control" placeholder="Enter an address">
-	                        	<xsl:attribute name="value">
-					              <xsl:value-of select="item/address_line2"/>
-					            </xsl:attribute>
-	                        </input>
-	                      </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                      <div class="form-group">
-	                        <label class="form-label">City <span class="form-required">*</span></label>
-	                        <input name="city" type="text" class="form-control" placeholder="Enter a city" required="">
-	                        	<xsl:attribute name="value">
-					              <xsl:value-of select="item/city"/>
-					            </xsl:attribute>
-	                        </input>
-	                      </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                      <div class="form-group">
-	                        <label class="form-label">State / Province <span class="form-required">*</span></label>
-	                        <input name="state_or_province" type="text" class="form-control" placeholder="Enter an location" required="">
-	                        	<xsl:attribute name="value">
-					              <xsl:value-of select="item/state_or_province"/>
-					            </xsl:attribute>
-	                        </input>
-	                      </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                      <div class="form-group">
-	                        <label class="form-label">Company </label>
-	                        <input name="company" type="text" class="form-control" placeholder="Enter your company">
-	                        	<xsl:attribute name="value">
-					              <xsl:value-of select="item/company"/>
-					            </xsl:attribute>
-	                        </input>
-	                      </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                     <div class="form-group">
-	                       <label class="form-label">Country <span class="form-required">*</span></label>
-	                       <select name="country_id" class="form-control" required="">                         
-	                         <xsl:variable name="user" select="item" />
-	                         <xsl:for-each select="countries/country">                             	                     
-	                         	<option>
-	                         		<xsl:if test="id = $user/country_id"> 
-										<xsl:attribute name="selected">selected</xsl:attribute> 
-									</xsl:if>
-	                         		<xsl:attribute name="value">
-	                         			<xsl:value-of select="id"/>
-	                         		</xsl:attribute>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mt-5">
+              <h4 class="mb-4">Applications</h4>
+              <div class="table-responsive">
+                <div class="card">
+                  <table class="table table-sm table-vcenter text-nowrap">
+                    <thead>
+                      <tr>
+                        <th class="w-1">N°</th>
+                        <th>Application</th>
+                        <th>Profil</th>
+                        <th>
+                          <a href="/admin/user/app/edit?user={item/id}" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"/> Ajouter</a>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <xsl:for-each select="applications/application">
+                        <tr>
+                          <td>
+                            <span class="text-muted">
+                              <xsl:value-of select="position()"/>
+                            </span>
+                          </td>
+                          <td>
+                            <xsl:value-of select="module"/>
+                          </td>
+                          <td>
+                            <xsl:value-of select="profile"/>
+                          </td>
+                          <td>
+                            <a class="icon" href="/admin/user/app/edit?id={id}">
+                              <i class="fe fe-edit"/>
+                            </a>
+                          </td>
+                        </tr>
+                      </xsl:for-each>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 order-md-1">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Nom <span class="form-required">*</span></label>
+                <input name="name" type="text" class="form-control" placeholder="Saisir un nom" required="">
+                  <xsl:attribute name="value">
+                    <xsl:value-of select="item/name"/>
+                  </xsl:attribute>
+                </input>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">E-mail <span class="form-required">*</span></label>
+                <input name="email" type="email" class="form-control" placeholder="Saisir une adresse mail" required="">
+                  <xsl:attribute name="value">
+                    <xsl:value-of select="item/email"/>
+                  </xsl:attribute>
+                </input>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Profil <span class="form-required">*</span></label>
+                <select name="profile_id" class="form-control" required="">
+                  <xsl:variable name="user" select="item"/>
+                  <xsl:for-each select="profiles/profile">
+                    <option>
+                      <xsl:if test="$user and id = $user/profile_id">
+                        <xsl:attribute name="selected">selected</xsl:attribute>
+                      </xsl:if>
+                      <xsl:attribute name="value">
+                        <xsl:value-of select="id"/>
+                      </xsl:attribute>
+                      <xsl:value-of select="name"/>
+                    </option>
+                  </xsl:for-each>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Address line 1 <span class="form-required">*</span></label>
+                <input name="address_line1" type="text" class="form-control" placeholder="Enter an address" required="">
+                  <xsl:attribute name="value">
+                    <xsl:value-of select="item/address_line1"/>
+                  </xsl:attribute>
+                </input>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Address line 2 </label>
+                <input name="address_line2" type="text" class="form-control" placeholder="Enter an address">
+                  <xsl:attribute name="value">
+                    <xsl:value-of select="item/address_line2"/>
+                  </xsl:attribute>
+                </input>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">City <span class="form-required">*</span></label>
+                <input name="city" type="text" class="form-control" placeholder="Enter a city" required="">
+                  <xsl:attribute name="value">
+                    <xsl:value-of select="item/city"/>
+                  </xsl:attribute>
+                </input>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">State / Province <span class="form-required">*</span></label>
+                <input name="state_or_province" type="text" class="form-control" placeholder="Enter an location" required="">
+                  <xsl:attribute name="value">
+                    <xsl:value-of select="item/state_or_province"/>
+                  </xsl:attribute>
+                </input>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Company </label>
+                <input name="company" type="text" class="form-control" placeholder="Enter your company">
+                  <xsl:attribute name="value">
+                    <xsl:value-of select="item/company"/>
+                  </xsl:attribute>
+                </input>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Country <span class="form-required">*</span></label>
+                <select name="country_id" class="form-control" required="">
+                  <xsl:variable name="user" select="item"/>
+                  <xsl:for-each select="countries/country">
+                    <option><xsl:if test="id = $user/country_id"><xsl:attribute name="selected">selected</xsl:attribute></xsl:if><xsl:attribute name="value"><xsl:value-of select="id"/></xsl:attribute>
 	                         		(+<xsl:value-of select="phone_code"/>) <xsl:value-of select="name"/>                         		                       	
 	                         	</option>
-	                         </xsl:for-each>                         
-	                       </select>
-	                     </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                      <div class="form-group">
-	                        <label class="form-label">Phone 1 <span class="form-required">*</span></label>
-	                        <input name="phone1" type="text" class="form-control" placeholder="Phone without phone code" required="">
-	                        	<xsl:attribute name="value">
-					              <xsl:value-of select="item/phone1"/>
-					            </xsl:attribute>
-	                        </input>
-	                      </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                      <div class="form-group">
-	                        <label class="form-label">Phone 2 </label>
-	                        <input name="phone2" type="text" class="form-control" placeholder="Phone without phone code">
-	                        	<xsl:attribute name="value">
-					              <xsl:value-of select="item/phone2"/>
-					            </xsl:attribute>
-	                        </input>
-	                      </div>
-	                   </div>	                   
-	                   <div class="col-md-12">
-	                     <div class="form-group">
-	                       <label class="form-label">Preferred language <span class="form-required">*</span></label>
-	                       <select name="preferred_language_id" class="form-control" required="">                         
-	                         <xsl:variable name="user" select="item" />
-	                         <xsl:for-each select="languages/language">                             	                     
-	                         	<option>
-	                         		<xsl:if test="id = $user/preferred_language_id"> 
-										<xsl:attribute name="selected">selected</xsl:attribute> 
-									</xsl:if>
-	                         		<xsl:attribute name="value">
-	                         			<xsl:value-of select="id"/>
-	                         		</xsl:attribute>
-	                         		<xsl:value-of select="name"/>                         		                       	
-	                         	</option>
-	                         </xsl:for-each>                         
-	                       </select>
-	                     </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                     <div class="form-group">
-	                       <label class="form-label">Time zone <span class="form-required">*</span></label>
-	                       <select name="time_zone_id" class="form-control" required="">                         
-	                         <xsl:variable name="user" select="item" />
-	                         <xsl:for-each select="time_zones/time_zone">                             	                     
-	                         	<option>
-	                         		<xsl:if test="id = $user/time_zone_id"> 
-										<xsl:attribute name="selected">selected</xsl:attribute> 
-									</xsl:if>
-	                         		<xsl:attribute name="value">
-	                         			<xsl:value-of select="id"/>
-	                         		</xsl:attribute>
-	                         		<xsl:value-of select="id"/>                         		                       	
-	                         	</option>
-	                         </xsl:for-each>                         
-	                       </select>
-	                     </div>
-	                   </div>
-	                   <div class="col-md-12">
-	                     <div class="form-group">
-	                       <label class="form-label">Preferred currency <span class="form-required">*</span></label>
-	                       <select name="preferred_currency_id" class="form-control" required="">                         
-	                         <xsl:variable name="user" select="item" />
-	                         <xsl:for-each select="currencies/currency">                             	                     
-	                         	<option>
-	                         		<xsl:if test="id = $user/preferred_currency_id"> 
-										<xsl:attribute name="selected">selected</xsl:attribute> 
-									</xsl:if>
-	                         		<xsl:attribute name="value">
-	                         			<xsl:value-of select="id"/>
-	                         		</xsl:attribute>
-	                         		<xsl:value-of select="name"/> (<xsl:value-of select="code"/>)                 		                       	
-	                         	</option>
-	                         </xsl:for-each>                         
-	                       </select>
-	                     </div>
-	                   </div>
-	                   <div class="col-md-12 mb-0">
-                    		<div class="form-group">
-			                      <label class="custom-switch">
-					                     <input name="is_company" type="checkbox" class="custom-switch-input">
-					                     	<xsl:if test="item/is_company='true'"> 
-												<xsl:attribute name="checked">checked</xsl:attribute> 
-											</xsl:if>
-					                     </input>
-				                     	<span class="custom-switch-indicator"></span>
-				                    	<span class="custom-switch-description">I am a company</span>
-				                   </label>
-		                     </div>
-	                   </div>
-                       <div class="col-md-12 mb-0">
-                    		<div class="form-group">
-			                      <label class="custom-switch">
-					                     <input name="is_submitted_to_vat" type="checkbox" class="custom-switch-input">
-					                     	<xsl:if test="item/is_submitted_to_vat='true'"> 
-												<xsl:attribute name="checked">checked</xsl:attribute> 
-											</xsl:if>
-					                     </input>
-				                     	<span class="custom-switch-indicator"></span>
-				                    	<span class="custom-switch-description">I am submitted to VAT</span>
-				                   </label>
-		                     </div>
-	                   </div>
-	                </div>
-			   </div>       
-	        </div>
-	        <div class="card-footer text-right">
-	          <a href="/admin/user" class="btn btn-link">Annuler</a>
-	          <xsl:if test="item/active = 'false'">
-	          	<a href="/admin/user/activate?id={item/id}&amp;active=true" class="btn btn-primary mr-1" onclick="return confirm('Voulez-vous activer cet utilisateur ?');">Activer</a>
-	          </xsl:if>
-	          <xsl:if test="item/active = 'true'">
-	          	<a href="/admin/user/activate?id={item/id}&amp;active=false" class="btn btn-primary mr-1" onclick="return confirm('Voulez-vous désactiver cet utilisateur ?');">Désactiver</a>
-	          	<a href="/admin/user/change-password/edit?user={item/id}" class="btn btn-primary mr-1">Changer mot de passe</a>
-	          </xsl:if>
-              <button type="submit" class="btn btn-primary">Enregistrer</button>
+                  </xsl:for-each>
+                </select>
+              </div>
             </div>
-		</form>		
-	</xsl:template>  	
-	<xsl:template match="page" mode="customScript">
-		<script type="text/javascript">
-        <![CDATA[		
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Phone 1 <span class="form-required">*</span></label>
+                <input name="phone1" type="text" class="form-control" placeholder="Phone without phone code" required="">
+                  <xsl:attribute name="value">
+                    <xsl:value-of select="item/phone1"/>
+                  </xsl:attribute>
+                </input>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Phone 2 </label>
+                <input name="phone2" type="text" class="form-control" placeholder="Phone without phone code">
+                  <xsl:attribute name="value">
+                    <xsl:value-of select="item/phone2"/>
+                  </xsl:attribute>
+                </input>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Preferred language <span class="form-required">*</span></label>
+                <select name="preferred_language_id" class="form-control" required="">
+                  <xsl:variable name="user" select="item"/>
+                  <xsl:for-each select="languages/language">
+                    <option>
+                      <xsl:if test="id = $user/preferred_language_id">
+                        <xsl:attribute name="selected">selected</xsl:attribute>
+                      </xsl:if>
+                      <xsl:attribute name="value">
+                        <xsl:value-of select="id"/>
+                      </xsl:attribute>
+                      <xsl:value-of select="name"/>
+                    </option>
+                  </xsl:for-each>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Time zone <span class="form-required">*</span></label>
+                <select name="time_zone_id" class="form-control" required="">
+                  <xsl:variable name="user" select="item"/>
+                  <xsl:for-each select="time_zones/time_zone">
+                    <option>
+                      <xsl:if test="id = $user/time_zone_id">
+                        <xsl:attribute name="selected">selected</xsl:attribute>
+                      </xsl:if>
+                      <xsl:attribute name="value">
+                        <xsl:value-of select="id"/>
+                      </xsl:attribute>
+                      <xsl:value-of select="id"/>
+                    </option>
+                  </xsl:for-each>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label">Preferred currency <span class="form-required">*</span></label>
+                <select name="preferred_currency_id" class="form-control" required="">
+                  <xsl:variable name="user" select="item"/>
+                  <xsl:for-each select="currencies/currency">
+                    <option><xsl:if test="id = $user/preferred_currency_id"><xsl:attribute name="selected">selected</xsl:attribute></xsl:if><xsl:attribute name="value"><xsl:value-of select="id"/></xsl:attribute><xsl:value-of select="name"/> (<xsl:value-of select="code"/>)                 		                       	
+	                         	</option>
+                  </xsl:for-each>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12 mb-0">
+              <div class="form-group">
+                <label class="custom-switch">
+                  <input name="is_company" type="checkbox" class="custom-switch-input">
+                    <xsl:if test="item/is_company='true'">
+                      <xsl:attribute name="checked">checked</xsl:attribute>
+                    </xsl:if>
+                  </input>
+                  <span class="custom-switch-indicator"/>
+                  <span class="custom-switch-description">I am a company</span>
+                </label>
+              </div>
+            </div>
+            <div class="col-md-12 mb-0">
+              <div class="form-group">
+                <label class="custom-switch">
+                  <input name="is_submitted_to_vat" type="checkbox" class="custom-switch-input">
+                    <xsl:if test="item/is_submitted_to_vat='true'">
+                      <xsl:attribute name="checked">checked</xsl:attribute>
+                    </xsl:if>
+                  </input>
+                  <span class="custom-switch-indicator"/>
+                  <span class="custom-switch-description">I am submitted to VAT</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-right">
+        <a href="/admin/user" class="btn btn-link">Annuler</a>
+        <xsl:if test="item/active = 'false'">
+          <a href="/admin/user/activate?id={item/id}&amp;active=true" class="btn btn-primary mr-1" onclick="return confirm('Voulez-vous activer cet utilisateur ?');">Activer</a>
+        </xsl:if>
+        <xsl:if test="item/active = 'true'">
+          <a href="/admin/user/activate?id={item/id}&amp;active=false" class="btn btn-primary mr-1" onclick="return confirm('Voulez-vous désactiver cet utilisateur ?');">Désactiver</a>
+          <a href="/admin/user/change-password/edit?user={item/id}" class="btn btn-primary mr-1">Changer mot de passe</a>
+        </xsl:if>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </div>
+    </form>
+  </xsl:template>
+  <xsl:template match="page" mode="customScript">
+    <script type="text/javascript"><![CDATA[		
             var app = angular.module("app", ['ngImageCompress']);			
 	
 			app.controller("AppCtrl", ["$scope", function ($scope) {
@@ -323,7 +329,6 @@
 		    }]);	
 			
 			angular.bootstrap(document, ['app']);			
-        ]]>
-        </script>
-	</xsl:template>	
+        ]]></script>
+  </xsl:template>
 </xsl:stylesheet>

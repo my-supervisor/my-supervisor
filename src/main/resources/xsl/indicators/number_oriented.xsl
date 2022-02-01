@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-	xmlns:interactive="http://www.minlessika.com/NumberOriented"
-	version="2.0">
-	
-	<xsl:template name="number_oriented">
-   		<script type="text/ng-template" id="numberOriented.html">
-   			<div class="card" style="height: 100%; margin-bottom:0; min-height: 135px;">	                
-	            <div class="card-body d-flex align-items-center justify-content-center text-center" style="padding:0; margin: 10px">	                    	        
-	              <div class="dimmer" ng-class="active" style="width: 100%; height: 100%; position:absolute;">
-	              		<div class="loader"></div>
-	              		<div class="dimmer-content" style="width: 100%; height: 100%; position:absolute;">
-	              			<div class="d-flex align-items-center" style="height: 20%">
-				              	   <![CDATA[
+<!--
+Copyright (c) 2018-2022 Minlessika
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to read
+the Software only. Permissions is hereby NOT GRANTED to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:interactive="http://www.minlessika.com/NumberOriented" version="2.0">
+  <xsl:template name="number_oriented">
+    <script type="text/ng-template" id="numberOriented.html">
+      <div class="card" style="height: 100%; margin-bottom:0; min-height: 135px;">
+        <div class="card-body d-flex align-items-center justify-content-center text-center" style="padding:0; margin: 10px">
+          <div class="dimmer" ng-class="active" style="width: 100%; height: 100%; position:absolute;">
+            <div class="loader"/>
+            <div class="dimmer-content" style="width: 100%; height: 100%; position:absolute;"><div class="d-flex align-items-center" style="height: 20%"><![CDATA[
 				              	   <div class="col-9 text-left text-orange" ng-if="item.manageEvolutionPercent && item.increaseInPercent == -77700">
 					                 &infin;                     
 					               </div>
@@ -24,34 +34,18 @@
 					                 {{item.increaseInPercent}} %
 					                 <i class="fe fe-chevron-up"></i>	                      
 					               </div>  
-					               ]]>	    
-					               <![CDATA[         
+					                        
 					               <div ng-class="{'col-3': item.manageEvolutionPercent, 'col-12': !item.manageEvolutionPercent}" class="text-right">
-					               ]]>
-							       <xsl:call-template name="indicator_options">
-					                	<xsl:with-param name="identity" select="identity"/>
-					                	<xsl:with-param name="activity_selected" select="activity_selected"/>
-					                	<xsl:with-param name="shortname" select="'number-oriented'"/>
-					               </xsl:call-template>			                 
-						      </div>	
-						      <![CDATA[  					                	                    	                   		                    
+					               ]]><xsl:call-template name="indicator_options"><xsl:with-param name="identity" select="identity"/><xsl:with-param name="activity_selected" select="activity_selected"/><xsl:with-param name="shortname" select="'number-oriented'"/></xsl:call-template></div><![CDATA[  					                	                    	                   		                    
 				              </div>  
-				              ]]>
-				              <div class="d-flex d-flex align-items-center justify-content-center" style="height: 80%">
-				                    <div style="height: 50%">
-				                    	<div class="h1 m-0">
+				              ]]><div class="d-flex d-flex align-items-center justify-content-center" style="height: 80%"><div style="height: 50%"><div class="h1 m-0">
 						              		{{numberOf(item)}}              	
-						                </div>
-						                <div class="text-muted mb-4">{{item.label}}</div>
-				                    </div>				                     					              
-				              </div>    				                   				             
-	              		</div>
-	              </div>
-	            </div>
-	          </div>
-   		</script>
-   		<script type="text/javascript">
-        	<![CDATA[		    		    	    		 
+						                </div><div class="text-muted mb-4">{{item.label}}</div></div></div></div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script type="text/javascript"><![CDATA[		    		    	    		 
 	    			(function(app){
 					   'use strict';						
 						
@@ -120,7 +114,6 @@
 					    }
 					
 					})(angular.module("app"));						
-				]]>
-      	</script>	
-	</xsl:template>
+				]]></script>
+  </xsl:template>
 </xsl:stylesheet>

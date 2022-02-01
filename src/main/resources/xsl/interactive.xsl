@@ -1,19 +1,28 @@
 <?xml version="1.0"?>
-<xsl:stylesheet 
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-	xmlns:interactive="http://www.minlessika.com/Interactive"
-	exclude-result-prefixes="interactive"
-	version="2.0">
-	
-	<xsl:template name="iform">
-		<xsl:param name="action"/>	
-		<xsl:param name="canRoute"/>
-		<xsl:param name="targetUrl"/>	
-   		<script src="/js/toastr.min.js"></script>
-   		<script src="/js/angular.min.js"></script>
-   		
-   		<script type="text/javascript">
-   		<![CDATA[
+<!--
+Copyright (c) 2018-2022 Minlessika
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to read
+the Software only. Permissions is hereby NOT GRANTED to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:interactive="http://www.minlessika.com/Interactive" exclude-result-prefixes="interactive" version="2.0">
+  <xsl:template name="iform">
+    <xsl:param name="action"/>
+    <xsl:param name="canRoute"/>
+    <xsl:param name="targetUrl"/>
+    <script src="/js/toastr.min.js"/>
+    <script src="/js/angular.min.js"/>
+    <script type="text/javascript"><![CDATA[
    			toastr.options = {
 			  "closeButton": true,
 			  "debug": false,
@@ -88,22 +97,14 @@
 				    });
 															
 				    request.then(function( success ) {
-				    		]]>
-				    		<xsl:if test="$canRoute = 1">
-				    			<![CDATA[
+				    		]]><xsl:if test="$canRoute = 1"><![CDATA[
 				    				$window.location.href=']]><xsl:value-of select="$targetUrl"/><![CDATA[';
-				    			]]>
-				    		</xsl:if>
-				    		
-				    		<xsl:if test="$canRoute = 0">
-				    			<![CDATA[
+				    			]]></xsl:if><xsl:if test="$canRoute = 0"><![CDATA[
 				    				toastr.success(success.data);
 						    		vm.formData = {};
 						    		
 						    		vm.requesting = false;
-				    			]]>
-				    		</xsl:if>
-				    		<![CDATA[
+				    			]]></xsl:if><![CDATA[
 				        }, function( error ) {
 				        	if(error.status == 400)
 				        		toastr.warning(error.data);
@@ -114,9 +115,6 @@
 				        });
 				}
 			
-			});]]>
-   			
-   		</script>
-   		 		
-	</xsl:template>
+			});]]></script>
+  </xsl:template>
 </xsl:stylesheet>
