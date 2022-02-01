@@ -12,35 +12,18 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <link rel="icon" href="/com/webviewer/img/logo.svg" type="image/x-icon"/>
-    <link rel="shortcut icon" type="image/x-icon" href="/com/webviewer/img/logo.svg" />
+    <link rel="icon" href="/img/logo.svg" type="image/x-icon"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.svg" />
     <!-- Generated: 2018-04-16 09:29:05 +0200 -->
-    <title>Page 505 - Minlessika</title>
+    <title>Page 505 - MySupervisor</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-    <script src="/com/webviewer/vendors/tabler/js/require.min.js"></script>
-    <script>
-      requirejs.config({
-          baseUrl: '/com/webviewer/vendors/tabler'
-      });
-    </script>
-    <!-- Dashboard Core -->
-    <link href="/com/webviewer/vendors/tabler/css/dashboard.css" rel="stylesheet" />
-    <script src="/com/webviewer/vendors/tabler/js/dashboard.js"></script>
-    <!-- c3.js Charts Plugin -->
-    <link href="/com/webviewer/vendors/tabler/plugins/charts-c3/plugin.css" rel="stylesheet" />
-    <script src="/com/webviewer/vendors/tabler/plugins/charts-c3/plugin.js"></script>
-    <!-- Google Maps Plugin -->
-    <link href="/com/webviewer/vendors/tabler/plugins/maps-google/plugin.css" rel="stylesheet" />
-    <script src="/com/webviewer/vendors/tabler/plugins/maps-google/plugin.js"></script>
-    <!-- Input Mask Plugin -->
-    <script src="/com/webviewer/vendors/tabler/plugins/input-mask/plugin.js"></script>
   </head>
   <body class="">
     <div class="page">
       <div class="page-content">
         <div class="container text-center">
-          <h1 class="h2">Minlessika</h1>
+          <h1 class="h2">MySupervisor</h1>
           <div class="display-1 text-muted mb-5"><i class="si si-exclamation"></i> 500</div>
           <h1 class="h2 mb-3">Oops... Nous avons trouvé une erreur de page...</h1>
           <p class="h4 text-muted font-weight-normal mb-7">Nous sommes désolé mais nous ne pouvons donner suite à votre requête.</p>

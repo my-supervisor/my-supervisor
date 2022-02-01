@@ -28,46 +28,20 @@ public final class TkMySupervisor extends TkBaseWrap {
 
 	public TkMySupervisor(final Base base, final Take take) {
 		super(
-				base, 
-				req -> 
-					new SqlTxn(base, req)
-						.call((final Base myBase) -> {
-							
-							final Supervisor module = new PxSupervisor(myBase, req);
+			base,
+			req ->
+				new SqlTxn(base, req)
+					.call(
+						(final Base myBase) -> {
 							final User user = new RqUser(myBase, req);
-							
-							if(user.isAnonymous()) {
+							if(new RqUser(myBase, req).isAnonymous()) {
 								I18n.register(req);
 							} else {
 								I18n.register(user.locale());
-								if(user.applications().has(Supervisor.NAME)) {									
-									// 1 - perform tasks
-									final PlannedTasks tasks = user.plannedTasks().tasksToExecute(LocalDateTime.now());
-									
-									for (PlannedTask task : tasks.items()) {
-										
-										if(task.metadata().containsKey(PurchaseOrder.class.getSimpleName())) {
-											final Map<String, String> metadata = task.metadata();
-											// perform subscriptions tasks
-											// envoi du bon de commande, de la facture et du reçu au client
-											
-											// création de l'abonnement
-											Long purchaseId = Long.parseLong(metadata.get(PurchaseOrder.class.getSimpleName()));
-											PurchaseOrder order = module.membership().purchaseOrders().get(purchaseId);
-											PlanSubscriptionContract contract = user.contracts().subscribe(order);
-											Profile profile = contract.plan().profile();
-						    				if(!profile.equals(user.currentProfile())) {
-						    					user.changeProfile(profile);
-						    				}
-										}
-										
-										task.execute();
-									}
-								}
-							}								
-											
+							}
 							return take.act(req);
-						})
+						}
+					)
 		);
 	}
 

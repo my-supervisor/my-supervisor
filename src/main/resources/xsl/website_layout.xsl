@@ -14,7 +14,8 @@
 				<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
 					<div class="container">
 				      <a class="navbar-brand" href="/">
-				        <strong>Minlessika</strong>
+					    <span style="margin-right: 2px"><img src="/img/favicon.ico" width="50px"/></span>
+				        <strong>MySupervisor</strong>
 				      </a>
 				      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
 				        <span class="navbar-toggler-icon"></span>

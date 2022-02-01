@@ -15,7 +15,7 @@
 	                <!--Header-->
 	                <div class="text-center">
 	                  <h3 class="dark-grey-text">
-	                    <i class="fa fa-user grey-text"></i> <xsl:value-of select="$lang.formTitle"/>
+	                    <i class="fa fa-user grey-text"></i> <xsl:value-of select="$i18n.formTitle"/>
 	                  </h3>
 	                  <hr class="mt-2 mb-2"/>
 	                </div>
@@ -29,20 +29,20 @@
 				            </xsl:attribute>
 				        </xsl:if>
 	                  </input>
-	                  <label for="form2" class="active"><xsl:value-of select="$lang.yourEmailAddress"/></label>
+	                  <label for="form2" class="active"><xsl:value-of select="$i18n.yourEmailAddress"/></label>
 	                </div>
 	                <div class="md-form">
 	                  <i class="fa fa-lock prefix grey-text active"></i>
 	                  <input name="password" type="password" id="form4" class="form-control" required=""/>
-	                  <label for="form4"><xsl:value-of select="$lang.yourPassword"/></label>
+	                  <label for="form4"><xsl:value-of select="$i18n.yourPassword"/></label>
 	                </div>
 	                <div class="text-center mt-4">                  
 	                  <xsl:choose>
 	                  	<xsl:when test="recaptcha/active = 'true'">
-	                  		<button id="submitter" class="btn btn-indigo"><xsl:value-of select="$lang.submitText"/></button>
+	                  		<button id="submitter" class="btn btn-indigo"><xsl:value-of select="$i18n.submitText"/></button>
 	                  	</xsl:when>
 	                  	<xsl:otherwise>
-	                  		<button type="submit" class="btn btn-indigo"><xsl:value-of select="$lang.submitText"/></button>
+	                  		<button type="submit" class="btn btn-indigo"><xsl:value-of select="$i18n.submitText"/></button>
 	                  	</xsl:otherwise>
 	                  </xsl:choose>          
 	                </div>	
@@ -51,8 +51,8 @@
 	              <!--Footer-->
 			      <div class="modal-footer">
 				        <div class="options">
-				            <p><xsl:value-of select="$lang.notAMember"/> <a href="/registration"><xsl:value-of select="$lang.registerForFree"/></a></p>
-				            <p><xsl:value-of select="$lang.password"/> <a href="/password/forgotten"><xsl:value-of select="$lang.forgotten"/></a></p>
+				            <p><xsl:value-of select="$i18n.notAMember"/> <a href="/registration"><xsl:value-of select="$i18n.registerForFree"/></a></p>
+				            <p><xsl:value-of select="$i18n.password"/> <a href="/password/forgotten"><xsl:value-of select="$i18n.forgotten"/></a></p>
 				        </div>
 			      </div>
               </div>
