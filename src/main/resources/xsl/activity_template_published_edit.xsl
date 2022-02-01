@@ -1,101 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-                version="2.0">
-	<xsl:output method="html" cdata-section-elements="script style" include-content-type="no" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
-  	<xsl:strip-space elements="*"/>
-  	<xsl:include href="/xsl/layout.xsl"/>
-  	<xsl:template match="page" mode="head">
-	    <title>
-	      <xsl:text>Supervisor - Minlessika - Publier un modèle d'activité</xsl:text>
-	    </title>	 
-	</xsl:template>
-	<xsl:template match="page" mode="body">
-		<div class="col-12" ng-controller="AppCtrl as vm">
-           <form class="card" action="/activity/template/publish/save" method="post">
-               <xsl:if test="item and item/id">
-		            <xsl:attribute name="action">
-		              <xsl:text>/activity/template/publish/save?id=</xsl:text><xsl:value-of select="item/id"/>
-		            </xsl:attribute>
-		        </xsl:if>
-		       <div class="card-header">
-		       		<h3 class="card-title">Publier - <xsl:value-of select="template_name"/> - <xsl:value-of select="item/state"/></h3>
-		       		<div class="card-options">
-	                	<div class="card-options">
-	                	<xsl:if test="item/id">
-	                		<xsl:choose>
-		                	  	<xsl:when test="item/state_id = 'OBSOLETE'">
-		                	  		<a role="button" class="btn btn-primary" href="/activity/template/published/available?id={item/id}" onclick="return confirm('Voulez-vous rendre disponible ce modèle ?');">
-					                  	<i class="fa fa-check"></i> Rendre disponible
+<!--
+Copyright (c) 2018-2022 Minlessika
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to read
+the Software only. Permissions is hereby NOT GRANTED to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+  <xsl:output method="html" cdata-section-elements="script style" include-content-type="no" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
+  <xsl:strip-space elements="*"/>
+  <xsl:include href="/xsl/layout.xsl"/>
+  <xsl:template match="page" mode="head">
+    <title>
+      <xsl:text>Supervisor - Minlessika - Publier un modèle d'activité</xsl:text>
+    </title>
+  </xsl:template>
+  <xsl:template match="page" mode="body">
+    <div class="col-12" ng-controller="AppCtrl as vm">
+      <form class="card" action="/activity/template/publish/save" method="post">
+        <xsl:if test="item and item/id">
+          <xsl:attribute name="action">
+            <xsl:text>/activity/template/publish/save?id=</xsl:text>
+            <xsl:value-of select="item/id"/>
+          </xsl:attribute>
+        </xsl:if>
+        <div class="card-header">
+          <h3 class="card-title">Publier - <xsl:value-of select="template_name"/> - <xsl:value-of select="item/state"/></h3>
+          <div class="card-options">
+            <div class="card-options">
+              <xsl:if test="item/id">
+                <xsl:choose>
+                  <xsl:when test="item/state_id = 'OBSOLETE'">
+                    <a role="button" class="btn btn-primary" href="/activity/template/published/available?id={item/id}" onclick="return confirm('Voulez-vous rendre disponible ce modèle ?');"><i class="fa fa-check"/> Rendre disponible
 					                </a>
-		                	  	</xsl:when>
-		                	  	<xsl:otherwise>
-		                	  		<a role="button" class="btn btn-primary" href="/activity/template/published/obsolete?id={item/id}" onclick="return confirm('Voulez-vous rendre obsolète ce modèle ?');">
-					                  	<i class="fa fa-trash"></i> Rendre obsolète
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <a role="button" class="btn btn-primary" href="/activity/template/published/obsolete?id={item/id}" onclick="return confirm('Voulez-vous rendre obsolète ce modèle ?');"><i class="fa fa-trash"/> Rendre obsolète
 					                </a>
-		                	  	</xsl:otherwise>
-		                	  </xsl:choose>
-	                	</xsl:if>	                	  		                 
-		                </div>
-	                </div>		        
-		       </div>
-               <div class="card-body"> 
-                    <input type="text" hidden="hidden" name="template_id" value="{template_id}"/>
- 					<div class="row">
- 						<div class="col-md-4 order-md-2 mb-4">
- 							<img ng-src="{{{{vm.photoPublished}}}}" class="img-thumbnail mb-3" alt="Image activité"/>
- 							<input type="text" hidden="hidden" name="icon" ng-model="vm.photoPublished" />
- 							<div class="row">
- 								<div class="col-sm-4 col-md-4">
-	 								<label class="btn btn-primary btn-file btn-block ml-auto">
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:if>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <input type="text" hidden="hidden" name="template_id" value="{template_id}"/>
+          <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+              <img ng-src="{{{{vm.photoPublished}}}}" class="img-thumbnail mb-3" alt="Image activité"/>
+              <input type="text" hidden="hidden" name="icon" ng-model="vm.photoPublished"/>
+              <div class="row">
+                <div class="col-sm-4 col-md-4">
+                  <label class="btn btn-primary btn-file btn-block ml-auto">
 									    Editer <input type="file" image="vm.photo" accept="image/*" resize-max-height="200" resize-max-width="300" resize-quality="0.7" resize-type="image/jpeg" ng-image-compress=""/>
 									</label>
-	 							</div> 
- 							</div>
- 						</div>
- 						<div class="col-md-8 order-md-1">
- 							<h4 class="mb-3">Informations</h4>
- 							<div class="row">
-			                   <div class="col-md-12">
-			                      <div class="form-group">
-			                        <label class="form-label">Version</label>
-			                        <input type="text" class="form-control" disabled="" value="{item/version}"/>
-			                      </div>
-			                   </div>
-			                   <div class="col-md-6">
-			                      <div class="form-group">
-			                        <label class="form-label">Profil <span class="form-required">*</span></label>
-			                        <select name="profile_id" class="form-control" required="">                         			                         
-			                         <xsl:variable name="activity" select="item" />
-			                         <xsl:for-each select="profiles/profile">      
-			                            <option>
-			                         		<xsl:if test="id = $activity/profile_id"> 
-												<xsl:attribute name="selected">selected</xsl:attribute> 
-											</xsl:if>
-			                         		<xsl:attribute name="value">
-			                         			<xsl:value-of select="id"/>
-			                         		</xsl:attribute>
-			                         		<xsl:value-of select="name"/>                         		                       	
-			                         	</option>                       	                     	                         	
-			                         </xsl:for-each>                         
-			                       </select>
-			                      </div>
-			                   </div>
-		                   </div>
- 						</div>
- 					</div>
-               </div>
-               <div class="card-footer text-right">
-                 <div class="d-flex">
-                    <a href="/activity/template" class="btn btn-link">Annuler</a>
-                    <button type="submit" class="btn btn-primary ml-auto">Publier</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 order-md-1">
+              <h4 class="mb-3">Informations</h4>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-label">Version</label>
+                    <input type="text" class="form-control" disabled="" value="{item/version}"/>
                   </div>
-               </div>
-             </form>
-        </div>                     
-	</xsl:template>  		
-	<xsl:template match="page" mode="customScript">
-		<script type="text/javascript">
-        <![CDATA[		
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label">Profil <span class="form-required">*</span></label>
+                    <select name="profile_id" class="form-control" required="">
+                      <xsl:variable name="activity" select="item"/>
+                      <xsl:for-each select="profiles/profile">
+                        <option>
+                          <xsl:if test="id = $activity/profile_id">
+                            <xsl:attribute name="selected">selected</xsl:attribute>
+                          </xsl:if>
+                          <xsl:attribute name="value">
+                            <xsl:value-of select="id"/>
+                          </xsl:attribute>
+                          <xsl:value-of select="name"/>
+                        </option>
+                      </xsl:for-each>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-right">
+          <div class="d-flex">
+            <a href="/activity/template" class="btn btn-link">Annuler</a>
+            <button type="submit" class="btn btn-primary ml-auto">Publier</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </xsl:template>
+  <xsl:template match="page" mode="customScript">
+    <script type="text/javascript"><![CDATA[		
             var app = angular.module("app", ['ngImageCompress']);			
 	
 			app.controller("AppCtrl", ["$scope", function ($scope) {
@@ -114,7 +127,6 @@
 		    }]);	
 			
 			angular.bootstrap(document, ['app']);			
-        ]]>
-        </script>
-	</xsl:template>
+        ]]></script>
+  </xsl:template>
 </xsl:stylesheet>

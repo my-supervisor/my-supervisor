@@ -1,81 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2018-2022 Minlessika
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to read
+the Software only. Permissions is hereby NOT GRANTED to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
 <!DOCTYPE castlist [
-<!ENTITY nbsp '&#160;'>
+<!ENTITY nbsp "&#160;">
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-                version="2.0">
-	<xsl:output method="html" cdata-section-elements="script style" include-content-type="no" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
-  	<xsl:strip-space elements="*"/>
-  	<xsl:include href="/xsl/layout.xsl"/>
-  	<xsl:include href="/xslicator_options.xsl"/>
-  	<xsl:include href="/xslber_oriented.xsl"/>
-  	<xsl:include href="/xsll_number.xsl"/>
-  	<xsl:include href="/xslrt_camembert.xsl"/>
-  	<xsl:include href="/xslge.xsl"/>
-  	<xsl:include href="/xslamic_table_2_col.xsl"/>
-  	<xsl:template match="page" mode="head">  	
-  		<link rel="stylesheet" href="/com/webviewer/vendors/angular-gridster/dist/angular-gridster.min.css"/>    
-	    <title>
-	      <xsl:text>Supervisor - Minlessika - Utiliser de manière efficiente vos ressources</xsl:text>
-	    </title>
-	</xsl:template>
-	<xsl:template match="page" mode="body">
-		<xsl:if test="activity_selected">
-			<div ng-controller="AppCtrl as vm">
-				 <div class="page-header">
-				    <div class="col-md-12 px-md-0">
-				 		<div class="dropdown pull-left">	
-				 		  <a href="javascript:void(0)" data-toggle="dropdown">
-			           		<h1 class="page-title"><xsl:value-of select="activity_selected/name" />&nbsp;<span ng-if="vm.online" class="badge badge-success" style="font-size: small">Online</span><span ng-if="!vm.online" class="badge badge-danger" style="font-size: small">Offline</span></h1>				           		           
-			          	  </a>				          	  		          	 			                                      	
-			              <div class="dropdown-menu dropdown-menu-left">
-			              	<a href="javascript:void(0)" ng-click="vm.refresh()" class="dropdown-item pull-left">
-			       		  		<i class="dropdown-icon fa fa-refresh"></i> Actualiser
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+  <xsl:output method="html" cdata-section-elements="script style" include-content-type="no" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
+  <xsl:strip-space elements="*"/>
+  <xsl:include href="/xsl/layout.xsl"/>
+  <xsl:include href="/xslicator_options.xsl"/>
+  <xsl:include href="/xslber_oriented.xsl"/>
+  <xsl:include href="/xsll_number.xsl"/>
+  <xsl:include href="/xslrt_camembert.xsl"/>
+  <xsl:include href="/xslge.xsl"/>
+  <xsl:include href="/xslamic_table_2_col.xsl"/>
+  <xsl:template match="page" mode="head">
+    <link rel="stylesheet" href="/com/webviewer/vendors/angular-gridster/dist/angular-gridster.min.css"/>
+    <title>
+      <xsl:text>Supervisor - Minlessika - Utiliser de manière efficiente vos ressources</xsl:text>
+    </title>
+  </xsl:template>
+  <xsl:template match="page" mode="body">
+    <xsl:if test="activity_selected">
+      <div ng-controller="AppCtrl as vm">
+        <div class="page-header">
+          <div class="col-md-12 px-md-0">
+            <div class="dropdown pull-left">
+              <a href="javascript:void(0)" data-toggle="dropdown">
+                <h1 class="page-title"><xsl:value-of select="activity_selected/name"/>&nbsp;<span ng-if="vm.online" class="badge badge-success" style="font-size: small">Online</span><span ng-if="!vm.online" class="badge badge-danger" style="font-size: small">Offline</span></h1>
+              </a>
+              <div class="dropdown-menu dropdown-menu-left">
+                <a href="javascript:void(0)" ng-click="vm.refresh()" class="dropdown-item pull-left"><i class="dropdown-icon fa fa-refresh"/> Actualiser
 			       		  	</a>
-			       		  	<xsl:if test="not(identity/id = activity_selected/owner_id)">
-			       		  		<a href="/sharing/subscriber/unshare?type=ACTIVITY&amp;resource={activity_selected/id}" onclick="return confirm('Voulez-vous vous désabonner de cette activité ?');" class="dropdown-item">
-				       		  		<i class="dropdown-icon fa fa-share-alt"></i> Se désabonner
+                <xsl:if test="not(identity/id = activity_selected/owner_id)">
+                  <a href="/sharing/subscriber/unshare?type=ACTIVITY&amp;resource={activity_selected/id}" onclick="return confirm('Voulez-vous vous désabonner de cette activité ?');" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"/> Se désabonner
 				       		  	</a>
-			       		  	</xsl:if>
-			       		  	<xsl:if test="identity/id = activity_selected/owner_id">
-			       		  	
-			       		  	    <xsl:if test="(not(activity_selected/designer_id) or identity/id = activity_selected/designer_id) and activity_selected/can_create_indicator = 'true'">
-			       		  	    	<a href="/indicator/type?activity={activity_selected/id}&amp;source=activity{activity_selected/id}" class="dropdown-item">
-					       		  		<i class="dropdown-icon fa fa-plus"></i> Créer un indicateur
-					       		  	</a> 
-			       		  	    </xsl:if>
-			       		  	    
-			       		  		<xsl:if test="not(activity_selected/designer_id) and activity_selected/can_create_template = 'true'">
-			       		  	    	<a ng-href="/activity/template/generate?activity={activity_selected/id}" class="dropdown-item" onclick="return confirm('Souhaitez-vous créer un modèle à partir de cette activité ?');">
-			         		  			<i class="dropdown-icon fa fa-file"></i> Créer un modèle
-			         		  		</a>
-			       		  	    </xsl:if>		
-			       		  	    <xsl:if test="identity/id = activity_selected/designer_id and activity_selected/template_src_id > 0">
-			       		  	    	<a ng-href="/activity/template/release/edit?template={activity_selected/template_src_id}&amp;activity={activity_selected/id}" class="dropdown-item">
-			         		  			<i class="dropdown-icon fa fa-refresh"></i> Mettre à jour le modèle
-			         		  		</a>
-			       		  	    </xsl:if>		       		  	
-				       		  	<a href="javascript:void(0)" ng-click="vm.organize()" class="dropdown-item" ng-if="!vm.inOrganizeMode">
-		         		  			<i class="dropdown-icon fa fa-first-order"></i> Organiser
-		         		  		</a> 
-		         		  		<a href="javascript:void(0)" ng-click="vm.saveOrganization()" class="dropdown-item" ng-if="vm.inOrganizeMode">
-		         		  			<i class="dropdown-icon fa fa-save"></i> Sauvegarder organisation
-		         		  		</a> 
-				       		  	<xsl:if test="activity_selected/default_shown = 'false'">
-				       		  		<a href="/activity/default?id={activity_selected/id}" class="dropdown-item">
-					       		  		<i class="dropdown-icon fa fa-eye"></i> Afficher par défaut
+                </xsl:if>
+                <xsl:if test="identity/id = activity_selected/owner_id">
+                  <xsl:if test="(not(activity_selected/designer_id) or identity/id = activity_selected/designer_id) and activity_selected/can_create_indicator = 'true'">
+                    <a href="/indicator/type?activity={activity_selected/id}&amp;source=activity{activity_selected/id}" class="dropdown-item"><i class="dropdown-icon fa fa-plus"/> Créer un indicateur
 					       		  	</a>
-				       		  	</xsl:if>   
-				       		  	<a href="/sharing?type=ACTIVITY&amp;resource={activity_selected/id}" class="dropdown-item">
-				       		  		<i class="dropdown-icon fa fa-share-alt"></i> Partager
-				       		  	</a>  
-				       		  	<xsl:if test="activity_selected/can_interacte_activities = 'true' and total_interactions > 0">
-				       		  		<a href="/activity/interaction?activity={activity_selected/id}" class="dropdown-item">
-					       		  		<i class="dropdown-icon fa fa-share-alt"></i> Interagir avec des activités <span class="tag tag-rounded tag-blue"><xsl:value-of select="active_interactions" /> / <xsl:value-of select="total_interactions" /></span>
+                  </xsl:if>
+                  <xsl:if test="not(activity_selected/designer_id) and activity_selected/can_create_template = 'true'">
+                    <a ng-href="/activity/template/generate?activity={activity_selected/id}" class="dropdown-item" onclick="return confirm('Souhaitez-vous créer un modèle à partir de cette activité ?');"><i class="dropdown-icon fa fa-file"/> Créer un modèle
+			         		  		</a>
+                  </xsl:if>
+                  <xsl:if test="identity/id = activity_selected/designer_id and activity_selected/template_src_id &gt; 0">
+                    <a ng-href="/activity/template/release/edit?template={activity_selected/template_src_id}&amp;activity={activity_selected/id}" class="dropdown-item"><i class="dropdown-icon fa fa-refresh"/> Mettre à jour le modèle
+			         		  		</a>
+                  </xsl:if>
+                  <a href="javascript:void(0)" ng-click="vm.organize()" class="dropdown-item" ng-if="!vm.inOrganizeMode"><i class="dropdown-icon fa fa-first-order"/> Organiser
+		         		  		</a>
+                  <a href="javascript:void(0)" ng-click="vm.saveOrganization()" class="dropdown-item" ng-if="vm.inOrganizeMode"><i class="dropdown-icon fa fa-save"/> Sauvegarder organisation
+		         		  		</a>
+                  <xsl:if test="activity_selected/default_shown = 'false'">
+                    <a href="/activity/default?id={activity_selected/id}" class="dropdown-item"><i class="dropdown-icon fa fa-eye"/> Afficher par défaut
 					       		  	</a>
-				       		  	</xsl:if>				       		  	
-				       		</xsl:if>
-				       		<!-- 
+                  </xsl:if>
+                  <a href="/sharing?type=ACTIVITY&amp;resource={activity_selected/id}" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"/> Partager
+				       		  	</a>
+                  <xsl:if test="activity_selected/can_interacte_activities = 'true' and total_interactions &gt; 0">
+                    <a href="/activity/interaction?activity={activity_selected/id}" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"/> Interagir avec des activités <span class="tag tag-rounded tag-blue"><xsl:value-of select="active_interactions"/> / <xsl:value-of select="total_interactions"/></span>
+					       		  	</a>
+                  </xsl:if>
+                </xsl:if>
+                <!-- 
 				       		<div class="dropdown-divider"></div>
 				       		<a ng-href="#" ng-click="vm.goToDate()" class="dropdown-item">
 			       		  		<i class="dropdown-icon fa fa-calendar"></i> Aller à la date
@@ -86,94 +89,98 @@
 			       		  	<a ng-href="#" class="dropdown-item">
 			       		  		<i class="dropdown-icon fa fa-calendar"></i> Aller à la période suivante
 			       		  	</a>
-				       		 -->				       		
-				       		<xsl:if test="identity/id = activity_selected/owner_id">		       		  	    		  	
-				       		  	<div class="dropdown-divider"></div>
-				       		  	<a href="/activity?id={activity_selected/id}" class="dropdown-item">
-				                	<i class="dropdown-icon fa fa-building"></i> Propriétés
+				       		 -->
+                <xsl:if test="identity/id = activity_selected/owner_id">
+                  <div class="dropdown-divider"/>
+                  <a href="/activity?id={activity_selected/id}" class="dropdown-item"><i class="dropdown-icon fa fa-building"/> Propriétés
 				                </a>
-				                <xsl:if test="activity_selected/app_owner_name = 'supervisor'">
-				                <a href="/activity/delete?id={activity_selected/id}" class="dropdown-item" onclick="return confirm('Voulez-vous supprimer cette activité ? Toutes les données liées seront irrévocablement supprimées !');">
-				       		  		<i class="dropdown-icon fe fe-trash"></i> Supprimer
+                  <xsl:if test="activity_selected/app_owner_name = 'supervisor'">
+                    <a href="/activity/delete?id={activity_selected/id}" class="dropdown-item" onclick="return confirm('Voulez-vous supprimer cette activité ? Toutes les données liées seront irrévocablement supprimées !');"><i class="dropdown-icon fe fe-trash"/> Supprimer
 				       		  	</a>
-				                </xsl:if>				       		  				               
-			       		  	</xsl:if>       		  		              	
-			              </div>			              		                            
-			           </div>				           
-			           	<div class="dropdown pull-right">
-			           	      <xsl:if test="identity/id = activity_selected/owner_id and activity_selected/is_up_to_date = 'false'">
-				           	      <a href="/activity/update/edit?id={activity_selected/id}" class="btn btn-sm mr-1" style="background:orange; color:white">
-							    	<i class="fa fa-exclamation-circle" aria-hidden="true"></i> Mise à jour disponible
-							      </a>	
-						      </xsl:if>
-			           	      <div class="btn-group btn-group-sm mr-1">
-								  <button type="button" class="btn btn-primary" ng-click="vm.goToPreviousDate()" ng-disabled="vm.periodSeeking"><i class="fa fa-angle-double-left"></i></button>
-								  <button type="button" class="btn btn-info" ng-click="vm.goToDate()" ng-disabled="vm.periodSeeking">{{vm.period.begin}} à {{vm.dateAnalysis ? vm.period.end : "Aujourd'hui"}}</button>
-								  <button type="button" class="btn btn-success" ng-click="vm.goToRealTime()" ng-show="vm.dateAnalysis" ng-disabled="vm.periodSeeking">Passer en temps réel</button>
-								  <button type="button" class="btn btn-primary" ng-click="vm.goToNextDate()" ng-disabled="vm.periodSeeking"><i class="fa fa-angle-double-right"></i></button>
-							  </div>							  			           	     
-						      <xsl:if test="count(data_sheet_models/data_sheet_model) > 0 and activity_selected/app_owner_name = 'supervisor'">
-								  <div class="dropdown">
-								  	  <button type="button" class="btn btn-sm btn-primary dropdown-toggle mr-1" data-toggle="dropdown">
+                  </xsl:if>
+                </xsl:if>
+              </div>
+            </div>
+            <div class="dropdown pull-right">
+              <xsl:if test="identity/id = activity_selected/owner_id and activity_selected/is_up_to_date = 'false'">
+                <a href="/activity/update/edit?id={activity_selected/id}" class="btn btn-sm mr-1" style="background:orange; color:white"><i class="fa fa-exclamation-circle" aria-hidden="true"/> Mise à jour disponible
+							      </a>
+              </xsl:if>
+              <div class="btn-group btn-group-sm mr-1">
+                <button type="button" class="btn btn-primary" ng-click="vm.goToPreviousDate()" ng-disabled="vm.periodSeeking">
+                  <i class="fa fa-angle-double-left"/>
+                </button>
+                <button type="button" class="btn btn-info" ng-click="vm.goToDate()" ng-disabled="vm.periodSeeking">{{vm.period.begin}} à {{vm.dateAnalysis ? vm.period.end : "Aujourd'hui"}}</button>
+                <button type="button" class="btn btn-success" ng-click="vm.goToRealTime()" ng-show="vm.dateAnalysis" ng-disabled="vm.periodSeeking">Passer en temps réel</button>
+                <button type="button" class="btn btn-primary" ng-click="vm.goToNextDate()" ng-disabled="vm.periodSeeking">
+                  <i class="fa fa-angle-double-right"/>
+                </button>
+              </div>
+              <xsl:if test="count(data_sheet_models/data_sheet_model) &gt; 0 and activity_selected/app_owner_name = 'supervisor'">
+                <div class="dropdown">
+                  <button type="button" class="btn btn-sm btn-primary dropdown-toggle mr-1" data-toggle="dropdown">
 									    Mes formulaires
 									  </button>
-									  <div class="dropdown-menu dropdown-menu-right">
-									    <xsl:for-each select="data_sheet_models/data_sheet_model">
-									    	<a target="_blank" class="dropdown-item" href="/collect/sheet/edit?model={id}"><xsl:value-of select="name"/></a>
-									    </xsl:for-each>							    
-									  </div>
-								  </div>								  
-							  </xsl:if>
-							  <xsl:if test="count(activities_linked/activity) > 0">
-								  <div class="dropdown">
-								  	  <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <xsl:for-each select="data_sheet_models/data_sheet_model">
+                      <a target="_blank" class="dropdown-item" href="/collect/sheet/edit?model={id}">
+                        <xsl:value-of select="name"/>
+                      </a>
+                    </xsl:for-each>
+                  </div>
+                </div>
+              </xsl:if>
+              <xsl:if test="count(activities_linked/activity) &gt; 0">
+                <div class="dropdown">
+                  <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
 									    Mes activités liées
 									  </button>
-									  <div class="dropdown-menu dropdown-menu-right">
-									    <xsl:for-each select="activities_linked/activity">
-									    	<a target="_blank" class="dropdown-item" href="/home?activity={id}"><xsl:value-of select="name"/></a>
-									    </xsl:for-each>							    
-									  </div>
-								  </div>								  
-							  </xsl:if>
-						</div>			           				       
-				   </div>				 	
-				 </div>	         
-		         <div gridster="vm.gridsterConfig">
-		         	<ul>
-				        <li gridster-item="item" ng-repeat="item in vm.indicators" bind-html-compile="item.template"></li>
-				    </ul>
-		         </div>	
-	         </div>	         		       	                 
-	         <script type="text/ng-template" id="goToDate.html">
-			 	<form ng-submit="vm.takeDate(vm.date, vm.goToRealtime)">
-			 		<div class="modal-header">
-						<h4 class="modal-title">Aller à la date</h4>
-					</div>
-					<div class="modal-body">
-			             <div class="form-group" ng-if="!vm.goToRealtime">
-			               <label for="type">Date <span class="form-required">*</span></label>
-			               <input type="date" class="form-control" ng-model="vm.date" placeholder="Saisir une date" required=""/>
-			             </div>		
-			             <div class="form-group">
-	                         <label class="custom-control custom-checkbox">
-	                            <input type="checkbox" class="custom-control-input" ng-model="vm.goToRealtime" />
-	                            <span class="custom-control-label">Revenir au temps réel ?</span>
-	                          </label>
-	                      </div>	
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary">Choisir</button>
-						<button type="button" class="btn btn-danger" ng-click="vm.cancelEdit()">Annuler</button>
-					</div>
-			 	</form>
-			</script>				         
-		</xsl:if>
-	</xsl:template>  	
-	<xsl:template match="page" mode="customScript">
-		<xsl:if test="activity_selected">
-			<script type="text/javascript">
-	         	<![CDATA[
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <xsl:for-each select="activities_linked/activity">
+                      <a target="_blank" class="dropdown-item" href="/home?activity={id}">
+                        <xsl:value-of select="name"/>
+                      </a>
+                    </xsl:for-each>
+                  </div>
+                </div>
+              </xsl:if>
+            </div>
+          </div>
+        </div>
+        <div gridster="vm.gridsterConfig">
+          <ul>
+            <li gridster-item="item" ng-repeat="item in vm.indicators" bind-html-compile="item.template"/>
+          </ul>
+        </div>
+      </div>
+      <script type="text/ng-template" id="goToDate.html">
+        <form ng-submit="vm.takeDate(vm.date, vm.goToRealtime)">
+          <div class="modal-header">
+            <h4 class="modal-title">Aller à la date</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group" ng-if="!vm.goToRealtime">
+              <label for="type">Date <span class="form-required">*</span></label>
+              <input type="date" class="form-control" ng-model="vm.date" placeholder="Saisir une date" required=""/>
+            </div>
+            <div class="form-group">
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" ng-model="vm.goToRealtime"/>
+                <span class="custom-control-label">Revenir au temps réel ?</span>
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Choisir</button>
+            <button type="button" class="btn btn-danger" ng-click="vm.cancelEdit()">Annuler</button>
+          </div>
+        </form>
+      </script>
+    </xsl:if>
+  </xsl:template>
+  <xsl:template match="page" mode="customScript">
+    <xsl:if test="activity_selected">
+      <script type="text/javascript"><![CDATA[
 	         	
 				if (!Date.prototype.toISODate) {
 				  Date.prototype.toISODate = function() {
@@ -199,16 +206,13 @@
 							            return $delegate;
 							        });
 				                 }]);
-	         	]]>
-	         </script>	 
-	         
-	         <xsl:call-template name="number_oriented"/>	
-	         <xsl:call-template name="goal_number"/>
-	         <xsl:call-template name="chart_camembert"/>
-	         <xsl:call-template name="gauge"/>    
-	         <xsl:call-template name="dynamic_table_2_col"/>     
-	         <script type="text/javascript">
-	         	<![CDATA[
+	         	]]></script>
+      <xsl:call-template name="number_oriented"/>
+      <xsl:call-template name="goal_number"/>
+      <xsl:call-template name="chart_camembert"/>
+      <xsl:call-template name="gauge"/>
+      <xsl:call-template name="dynamic_table_2_col"/>
+      <script type="text/javascript"><![CDATA[
 			            app.controller('goToDateCtrl', ['data', '$uibModalInstance', 
 						function (data, $uibModalInstance, Guid){
 							var vm = this;							
@@ -313,7 +317,7 @@
 						               		vm.dateAnalysis = config.date;						               								               	
 						               }
 						               
-						               var url = '/activity/period?activity=' + ]]><xsl:value-of select="activity_selected/id" /><![CDATA[;
+						               var url = '/activity/period?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[;
 						               if(vm.dateAnalysis)
 						               		url += "&date=" + vm.dateAnalysis.toISODate();
 						               		
@@ -338,7 +342,7 @@
 							}
 							
 							function goToPreviousDate(){
-								var url = '/activity/period/previous?activity=' + ]]><xsl:value-of select="activity_selected/id" /><![CDATA[;
+								var url = '/activity/period/previous?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[;
 						               if(vm.dateAnalysis)
 						               		url += "&date=" + vm.dateAnalysis.toISODate();
 						               		
@@ -359,7 +363,7 @@
 							}
 							
 							function goToNextDate(){
-								var url = '/activity/period/next?activity=' + ]]><xsl:value-of select="activity_selected/id" /><![CDATA[;
+								var url = '/activity/period/next?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[;
 						               if(vm.dateAnalysis)
 						               		url += "&date=" + vm.dateAnalysis.toISODate();
 						               		
@@ -380,7 +384,7 @@
 							}
 							
 							function goToRealTime(){
-								var url = '/activity/period?activity=' + ]]><xsl:value-of select="activity_selected/id" /><![CDATA[;
+								var url = '/activity/period?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[;
 						               		
 				               vm.periodSeeking = true;
 				               $http.get(url, null)
@@ -420,7 +424,7 @@
 							    	locations.push(loc);
 							    });
 							    
-							    $http.post('/activity/organize?activity=' + ]]><xsl:value-of select="activity_selected/id" /><![CDATA[, locations)
+							    $http.post('/activity/organize?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[, locations)
 							         .then(
 								         function(success){
 								         	vm.inOrganizeMode = false;
@@ -455,7 +459,7 @@
 							});
 								
 							// We are now ready to cut the request
-						    var request = { url: ']]><xsl:value-of select="ws_bare" /><![CDATA[/ws/activity',
+						    var request = { url: ']]><xsl:value-of select="ws_bare"/><![CDATA[/ws/activity',
 						        contentType : "application/json",
 						        logLevel : 'info',
 						        transport : transport ,
@@ -464,7 +468,7 @@
 						        maxReconnectOnClose: 5,
 						        attachHeadersAsQueryString: true,
 						        headers: {
-						        	activity:]]><xsl:value-of select="activity_selected/id" /><![CDATA[
+						        	activity:]]><xsl:value-of select="activity_selected/id"/><![CDATA[
 						        }
 						    };
 						    
@@ -591,8 +595,7 @@
 	
 							this.$onInit = function(){
 								vm.dateAnalysisName = "Aujourd'hui";
-								var indicators = []]> 
-					   				<xsl:for-each select="indicators/indicator">                             	                     
+								var indicators = []]><xsl:for-each select="indicators/indicator">                             	                     
 				                       	{	'id': <xsl:value-of select="id"/>, 
 				                       		'name': "<xsl:value-of select="name"/>",
 				                       		'type': "<xsl:value-of select="type"/>",
@@ -604,8 +607,7 @@
 				                       		'row': <xsl:value-of select="row"/>,
 				                       		'col': <xsl:value-of select="col"/>
 				                       	},
-				                   	</xsl:for-each>
-					   			<![CDATA[];
+				                   	</xsl:for-each><![CDATA[];
 					   			
 					   			for(var i = 0; i < indicators.length; i++) {
 					   				adaptIndicator(indicators[i]);
@@ -616,7 +618,7 @@
 								subSocket = socket.subscribe(request);
 								
 								vm.periodSeeking = true;
-								$http.get('/activity/period?activity=' + ]]><xsl:value-of select="activity_selected/id" /><![CDATA[, null)
+								$http.get('/activity/period?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[, null)
 							         .then(
 								         function(success){
 								         	vm.period = success.data;
@@ -631,8 +633,7 @@
 					 }]);
 					
 					angular.bootstrap(document, ['app']);					
-				]]>
-	         </script>
-		</xsl:if>
-	</xsl:template>
+				]]></script>
+    </xsl:if>
+  </xsl:template>
 </xsl:stylesheet>
