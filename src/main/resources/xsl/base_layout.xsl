@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright (c) 2018-2022 Minlessika
 
@@ -80,10 +80,10 @@ SOFTWARE.
       <div class="footer-copyright text-center py-2">
         <xsl:choose>
           <xsl:when test="lang='fr'">
-               			Copyright &#xA9; 2018-2022 <a href="/">Minlessika</a>. Tous droits r&#xE9;serv&#xE9;s.
+               			Copyright &#xA9; 2018-2022 Minlessika. Tous droits réservés.
                		</xsl:when>
           <xsl:otherwise>
-               			Copyright &#xA9; 2018-2022 <a href="/">Minlessika</a>. All rights reserved.
+               			Copyright &#xA9; 2018-2022 Minlessika. All rights reserved.
                		</xsl:otherwise>
         </xsl:choose>
       </div>

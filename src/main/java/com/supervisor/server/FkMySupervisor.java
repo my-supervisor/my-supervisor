@@ -188,7 +188,7 @@ public final class FkMySupervisor extends FkWrap {
 					new TkAnonymous(new TkSendContact(base))
 				),
 				new FkRegex("/registration",
-					new TkAnonymous(new TkRegistration(base))
+					new TkAnonymous(new TkRegistration())
 				),
 				new FkRegex("/register",
 					new TkAnonymous(new TkRegister(base))

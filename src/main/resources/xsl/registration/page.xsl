@@ -24,11 +24,11 @@ SOFTWARE.
       <!--Grid column-->
       <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
         <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">
-          <xsl:value-of select="$lang.registerForFree"/>
+          <xsl:value-of select="$i18n.registerForFree"/>
         </h1>
         <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s"/>
         <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">
-          <xsl:value-of select="$lang.createASingleAccountForAllServices"/>
+          <xsl:value-of select="$i18n.createASingleAccountForAllServices"/>
         </h6>
       </div>
       <!--Grid column-->
@@ -42,7 +42,7 @@ SOFTWARE.
               <div class="text-center">
                 <h3 class="dark-grey-text">
                   <i class="fa fa-user grey-text"/>
-                  <xsl:value-of select="$lang.formTitle"/>
+                  <xsl:value-of select="$i18n.formTitle"/>
                 </h3>
                 <hr class="mt-2 mb-2"/>
               </div>
@@ -57,7 +57,7 @@ SOFTWARE.
                   </xsl:if>
                 </input>
                 <label for="form3" class="active">
-                  <xsl:value-of select="$lang.yourName"/>
+                  <xsl:value-of select="$i18n.yourName"/>
                 </label>
               </div>
               <div class="md-form">
@@ -70,33 +70,33 @@ SOFTWARE.
                   </xsl:if>
                 </input>
                 <label for="form2" class="active">
-                  <xsl:value-of select="$lang.yourEmailAddress"/>
+                  <xsl:value-of select="$i18n.yourEmailAddress"/>
                 </label>
               </div>
               <div class="md-form">
                 <i class="fa fa-lock prefix grey-text active"/>
                 <input name="password" type="password" id="form4" class="form-control" required=""/>
                 <label for="form4">
-                  <xsl:value-of select="$lang.yourPassword"/>
+                  <xsl:value-of select="$i18n.yourPassword"/>
                 </label>
               </div>
               <div class="md-form">
                 <i class="fa fa-lock prefix grey-text active"/>
                 <input name="confirmedPassword" type="password" id="form5" class="form-control" required=""/>
                 <label for="form5">
-                  <xsl:value-of select="$lang.yourConfirmedPassword"/>
+                  <xsl:value-of select="$i18n.yourConfirmedPassword"/>
                 </label>
               </div>
               <div class="text-center mt-4">
                 <xsl:choose>
                   <xsl:when test="recaptcha/active = 'true'">
                     <button id="submitter" class="btn btn-indigo">
-                      <xsl:value-of select="$lang.signUp"/>
+                      <xsl:value-of select="$i18n.signUp"/>
                     </button>
                   </xsl:when>
                   <xsl:otherwise>
                     <button type="submit" class="btn btn-indigo">
-                      <xsl:value-of select="$lang.signUp"/>
+                      <xsl:value-of select="$i18n.signUp"/>
                     </button>
                   </xsl:otherwise>
                 </xsl:choose>
@@ -106,9 +106,9 @@ SOFTWARE.
             <div class="modal-footer">
               <div class="options">
                 <p>
-                  <xsl:value-of select="$lang.alreadyMember"/>
+                  <xsl:value-of select="$i18n.alreadyMember"/>
                   <a href="/login">
-                    <xsl:value-of select="$lang.logIn"/>
+                    <xsl:value-of select="$i18n.logIn"/>
                   </a>
                 </p>
               </div>
