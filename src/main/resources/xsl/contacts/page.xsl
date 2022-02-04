@@ -24,11 +24,11 @@ SOFTWARE.
       <!--Grid column-->
       <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
         <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">
-          <xsl:value-of select="$lang.contactUs"/>
+          <xsl:value-of select="$i18n.contactUs"/>
         </h1>
         <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s"/>
         <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">
-          <xsl:value-of select="$lang.weAreListeningToYou"/>
+          <xsl:value-of select="$i18n.weAreListeningToYou"/>
         </h6>
       </div>
       <!--Grid column-->
@@ -42,7 +42,7 @@ SOFTWARE.
               <div class="text-center">
                 <h3 class="dark-grey-text">
                   <i class="fa fa-pencil-alt grey-text">
-                    <xsl:value-of select="$lang.formTitle"/>
+                    <xsl:value-of select="$i18n.formTitle"/>
                   </i>
                 </h3>
                 <hr class="mt-2 mb-2"/>
@@ -52,14 +52,14 @@ SOFTWARE.
                 <i class="fa fa-user prefix grey-text"/>
                 <input name="name" type="text" id="form3" class="form-control" required=""/>
                 <label for="form3">
-                  <xsl:value-of select="$lang.yourName"/>
+                  <xsl:value-of select="$i18n.yourName"/>
                 </label>
               </div>
               <div class="md-form">
                 <i class="fa fa-envelope prefix grey-text"/>
                 <input name="email" type="text" id="form2" class="form-control" required=""/>
                 <label for="form2">
-                  <xsl:value-of select="$lang.yourEmailAddress"/>
+                  <xsl:value-of select="$i18n.yourEmailAddress"/>
                 </label>
               </div>
               <!--Textarea with icon prefix-->
@@ -67,19 +67,19 @@ SOFTWARE.
                 <i class="fa fa-pencil-alt prefix grey-text"/>
                 <textarea name="message" type="text" id="form8" class="md-textarea form-control" rows="3" required=""/>
                 <label for="form8">
-                  <xsl:value-of select="$lang.yourMessage"/>
+                  <xsl:value-of select="$i18n.yourMessage"/>
                 </label>
               </div>
               <div class="text-center mt-3">
                 <xsl:choose>
                   <xsl:when test="recaptcha/active = 'true'">
                     <button id="submitter" class="btn btn-indigo">
-                      <xsl:value-of select="$lang.submitText"/>
+                      <xsl:value-of select="$i18n.submitText"/>
                     </button>
                   </xsl:when>
                   <xsl:otherwise>
                     <button type="submit" class="btn btn-indigo">
-                      <xsl:value-of select="$lang.submitText"/>
+                      <xsl:value-of select="$i18n.submitText"/>
                     </button>
                   </xsl:otherwise>
                 </xsl:choose>
