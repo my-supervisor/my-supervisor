@@ -97,9 +97,6 @@ SOFTWARE.
                               <a href="/store" class="nav-link" style="padding:0"><xsl:if test="menu = 'store'"><xsl:attribute name="class"><xsl:text>nav-link active</xsl:text></xsl:attribute></xsl:if><i class="fa fa-cloud"/> Store
 			                    </a>
                             </li>
-                            <li class="nav-item">
-                              <a target="_blank" href="https://blog.minlessika.com" class="nav-link" style="padding:0"><i class="fa fa-question-circle"/> Aide</a>
-                            </li>
                             <xsl:if test="identity/is_simple_user = 'true'">
                               <li class="nav-item">
                                 <a href="/pricing" class="btn btn-sm btn-outline-primary">Upgrade from 0.5 EURO</a>

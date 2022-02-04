@@ -136,27 +136,27 @@ public final class FkMySupervisor extends FkWrap {
 					new TkWithType(new TkClasspath(), "image/*")
 				),
 				new FkRegex(
-					"/font/.+\\.ttf",
+					"/fonts/.+\\.svg",
+					new TkWithType(new TkClasspath(), "image/svg+xml")
+				),
+				new FkRegex(
+					"/fonts/.+\\.otf",
+					new TkWithType(new TkClasspath(), "application/vnd.ms-outlook")
+				),
+				new FkRegex(
+					"/fonts/.+\\.eot",
+					new TkWithType(new TkClasspath(), "application/vnd.ms-fontobject")
+				),
+				new FkRegex(
+                    "/fonts/.+\\.ttf",
 					new TkWithType(new TkClasspath(), "application/octet-stream")
 				),
 				new FkRegex(
-					"/font/.+\\.woff",
+                    "/fonts/.+\\.woff",
 					new TkWithType(new TkClasspath(), "application/font-woff")
 				),
 				new FkRegex(
-					"/font/.+\\.woff2",
-					new TkWithType(new TkClasspath(), "application/font-woff")
-				),
-				new FkRegex(
-					"/webfonts/.+\\.ttf",
-					new TkWithType(new TkClasspath(), "application/octet-stream")
-				),
-				new FkRegex(
-					"/webfonts/.+\\.woff",
-					new TkWithType(new TkClasspath(), "application/font-woff")
-				),
-				new FkRegex(
-					"/webfonts/.+\\.woff2",
+                    "/fonts/.+\\.woff2",
 					new TkWithType(new TkClasspath(), "application/font-woff")
 				),
 				new FkRegex(
