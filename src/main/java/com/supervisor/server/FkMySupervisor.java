@@ -181,7 +181,7 @@ public final class FkMySupervisor extends FkWrap {
 				),
 				new FkRegex(
 					"/contacts",
-					new TkAnonymous(new TkContact(base))
+					new TkAnonymous(new TkContact())
 				),
 				new FkRegex(
 					"/contacts/send",

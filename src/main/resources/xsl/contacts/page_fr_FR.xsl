@@ -17,12 +17,12 @@ SOFTWARE.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
   <xsl:output method="html" encoding="UTF-8"/>
-  <xsl:variable name="lang.contactUs" select="'Contactez-nous !'"/>
-  <xsl:variable name="lang.weAreListeningToYou" select="'Nous sommes à votre écoute.'"/>
-  <xsl:variable name="lang.formTitle" select="' Ecrivez-nous'"/>
-  <xsl:variable name="lang.yourName" select="'Votre nom'"/>
-  <xsl:variable name="lang.yourEmailAddress" select="'Votre adresse mail'"/>
-  <xsl:variable name="lang.yourMessage" select="'Votre message'"/>
-  <xsl:variable name="lang.submitText" select="'Envoyer'"/>
-  <xsl:include href="/xslxsl"/>
+  <xsl:variable name="i18n.contactUs" select="'Contactez-nous !'"/>
+  <xsl:variable name="i18n.weAreListeningToYou" select="'Nous sommes à votre écoute.'"/>
+  <xsl:variable name="i18n.formTitle" select="' Ecrivez-nous'"/>
+  <xsl:variable name="i18n.yourName" select="'Votre nom'"/>
+  <xsl:variable name="i18n.yourEmailAddress" select="'Votre adresse mail'"/>
+  <xsl:variable name="i18n.yourMessage" select="'Votre message'"/>
+  <xsl:variable name="i18n.submitText" select="'Envoyer'"/>
+  <xsl:include href="/xsl/contacts/page.xsl"/>
 </xsl:stylesheet>
