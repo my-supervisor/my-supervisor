@@ -88,11 +88,6 @@ SOFTWARE.
                       </li>
                     </xsl:if>
                   </xsl:for-each>
-                  <li class="nav-item">
-                    <a target="_blank" class="nav-link" href="https://blog.minlessika.com">
-                      <xsl:text>Blog</xsl:text>
-                    </a>
-                  </li>
                   <xsl:if test="not(identity)">
                     <li class="nav-item">
                       <xsl:if test="menu = 'contact'">

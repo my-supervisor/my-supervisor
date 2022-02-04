@@ -12,8 +12,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <link rel="icon" href="/img/logo.svg" type="image/x-icon"/>
-    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.svg" />
+    <link rel="icon" href="/img/logo.png" type="image/x-icon"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.png" />
     <!-- Generated: 2018-04-16 09:29:05 +0200 -->
     <title>Page 404 - MySupervisor</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,10 +25,10 @@
         <div class="container text-center">
           <h1 class="h2">MySupervisor</h1>
           <div class="display-1 text-muted mb-5"><i class="si si-exclamation"></i> 404</div>
-          <h1 class="h2 mb-3">Oops... Nous n'avons pas trouvé la page demandée...</h1>
-          <p class="h4 text-muted font-weight-normal mb-7">Nous sommes désolé mais cette page n'est pas disponible.</p>
+          <h1 class="h2 mb-3">Oops... We couldn't find the requested page...</h1>
+          <p class="h4 text-muted font-weight-normal mb-7">We are sorry but this page is not available.</p>
           <a class="btn btn-primary" href="javascript:history.back()">
-            <i class="fe fe-arrow-left mr-2"></i>Retour
+            <i class="fe fe-arrow-left mr-2"></i>Return
           </a>
         </div>
       </div>

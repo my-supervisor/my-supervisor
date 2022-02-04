@@ -12,8 +12,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <link rel="icon" href="/img/logo.svg" type="image/x-icon"/>
-    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.svg" />
+    <link rel="icon" href="/img/logo.png" type="image/x-icon"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.png" />
     <!-- Generated: 2018-04-16 09:29:05 +0200 -->
     <title>Page 505 - MySupervisor</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,10 +25,10 @@
         <div class="container text-center">
           <h1 class="h2">MySupervisor</h1>
           <div class="display-1 text-muted mb-5"><i class="si si-exclamation"></i> 500</div>
-          <h1 class="h2 mb-3">Oops... Nous avons trouvé une erreur de page...</h1>
-          <p class="h4 text-muted font-weight-normal mb-7">Nous sommes désolé mais nous ne pouvons donner suite à votre requête.</p>
+          <h1 class="h2 mb-3">Oops... We found an internal server error...</h1>
+          <p class="h4 text-muted font-weight-normal mb-7">We are sorry but we cannot respond to your request.</p>
           <a class="btn btn-primary" href="javascript:history.back()">
-            <i class="fe fe-arrow-left mr-2"></i>Retour
+            <i class="fe fe-arrow-left mr-2"></i>Return
           </a>
         </div>
       </div>
