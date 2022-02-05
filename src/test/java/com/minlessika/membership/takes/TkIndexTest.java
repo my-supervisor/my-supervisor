@@ -33,7 +33,7 @@ final class TkIndexTest {
     void returnsHttpResponse() throws Exception {
         MatcherAssert.assertThat(
             new RsPrint(
-                new TkIndex(new FakeBase()).act(new RqFake("GET", "/"))
+                new TkIndex().act(new RqFake("GET", "/"))
             ).printBody(),
             new StringContains("Home")
         );

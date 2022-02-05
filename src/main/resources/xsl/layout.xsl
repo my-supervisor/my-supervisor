@@ -51,8 +51,9 @@ SOFTWARE.
             <div class="header py-4 fixed-top">
               <div class="container">
                 <div class="d-flex">
-                  <a class="header-brand" href="{module_links/minlessika}">
-                    <img src="/com/supervisor/img/logo_supervisor_name_min.png" class="header-brand-img" alt="supervisor logo"/>
+                  <a class="header-brand" href="/home">
+                    <img src="/img/logo.png" class="header-brand-img" alt="MySupervisor logo"/>
+                    <span><strong>MySupervisor</strong></span>
                   </a>
                   <div class="collapse d-lg-flex p-0" id="headerMenuCollapse">
                     <div class="container">
