@@ -1,28 +1,22 @@
 package com.supervisor.takes;
 
-import com.supervisor.sdk.datasource.Base;
-import com.supervisor.sdk.takes.RsPage;
-import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.translation.I18n;
-import org.cactoos.iterable.Sticky;
+import org.takes.Request;
+import org.takes.Response;
+import org.takes.Take;
 import org.takes.rs.xe.XeAppend;
+import org.takes.rs.xe.XeChain;
 
-public final class TkIndex extends TkBaseWrap {
+public final class TkIndex implements Take {
 
-	public TkIndex(final Base base) {
-		super(
-				base,
-				req -> {
-
-					return new RsPage(
-							I18n.localizeXslt("/xsl/index/page.xsl"),
-							req, 
-							base,
-							()-> new Sticky<>(
-								new XeAppend("menu", "home")
-							)
-					);
-				}
+	@Override
+	public Response act(Request req) throws Exception {
+		return new RsAnonymousPage(
+			I18n.localizeXslt("/xsl/index/page.xsl"),
+			req,
+			new XeChain(
+				new XeAppend("menu", "home")
+			)
 		);
-	}	
+	}
 }
