@@ -21,14 +21,14 @@ SOFTWARE.
   <xsl:include href="/xsl/layout.xsl"/>
   <xsl:template match="page" mode="head">
     <title>
-      <xsl:text>Supervisor - Minlessika - Importer données</xsl:text>
+      <xsl:text>MySupervisor - Importer données</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">
     <div class="col-12" app="app">
       <form class="card" action="/collect/model/data/import/save" method="post">
         <div class="card-header">
-          <h3 class="card-title">Importer données dans Modèle <xsl:value-of select="item/code"/>-<xsl:value-of select="item/name"/></h3>
+          <h3 class="card-title">MySupervisor - Importer données dans Modèle <xsl:value-of select="item/code"/>-<xsl:value-of select="item/name"/></h3>
         </div>
         <div class="card-body">
           <div class="row">

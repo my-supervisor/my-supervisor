@@ -11,6 +11,7 @@ import com.supervisor.sdk.secure.GRecaptcha;
 import com.supervisor.sdk.secure.Recaptcha;
 import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.translation.I18n;
+import com.supervisor.server.TkApp;
 import org.takes.facets.auth.Identity;
 import org.takes.facets.auth.PsCookie;
 import org.takes.facets.flash.RsFlash;

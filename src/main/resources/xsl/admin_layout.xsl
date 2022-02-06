@@ -49,7 +49,7 @@ SOFTWARE.
           <div class="page-main">
             <div class="container">
               <div class="page-header">
-                <h1 class="page-title">Administration</h1>
+                <h1 class="page-title">MySupervisor - Administration</h1>
               </div>
               <div class="row">
                 <div class="col-lg-3 order-lg-1 mb-4">

@@ -897,7 +897,7 @@ public final class FkMySupervisor extends FkWrap {
 				),
 				new FkRegex(
 					"/store",
-					new TkSecure(new TkActivityStore(base))
+					new TkSecure(new TkStore(base))
 				),
 				new FkRegex(
 					"/activity/template/publish/edit",

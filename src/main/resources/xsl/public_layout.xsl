@@ -33,7 +33,7 @@ SOFTWARE.
         <link rel="icon" href="/img/favicon.ico" type="image/x-icon"/>
         <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico"/>
         <title>
-          <xsl:text>Supervisor</xsl:text>
+          <xsl:text>MySupervisor</xsl:text>
         </title>
       </head>
       <body class="text-center">

@@ -21,7 +21,7 @@ SOFTWARE.
   <xsl:include href="/xsl/layout.xsl"/>
   <xsl:template match="page" mode="head">
     <title>
-      <xsl:text>Minlessika - Edit my profile</xsl:text>
+      <xsl:text>MySupervisor - Edit my profile</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">

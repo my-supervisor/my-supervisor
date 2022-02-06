@@ -21,7 +21,7 @@ SOFTWARE.
   <xsl:include href="/xsl/layout.xsl"/>
   <xsl:template match="page" mode="head">
     <title>
-      <xsl:text>Supervisor - Minlessika - Durée d'un abonnement</xsl:text>
+      <xsl:text>MySupervisor - Durée d'un abonnement</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">

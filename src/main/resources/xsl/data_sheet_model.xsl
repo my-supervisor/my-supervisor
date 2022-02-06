@@ -21,7 +21,7 @@ SOFTWARE.
   <xsl:include href="/xsl/layout.xsl"/>
   <xsl:template match="page" mode="head">
     <title>
-      <xsl:text>Supervisor - Minlessika - Configurer les modèles de feuille de données</xsl:text>
+      <xsl:text>MySupervisor - Configurer les modèles de feuille de données</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">

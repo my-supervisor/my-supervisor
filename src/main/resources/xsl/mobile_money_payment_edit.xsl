@@ -21,7 +21,7 @@ SOFTWARE.
   <xsl:include href="/xsl/layout.xsl"/>
   <xsl:template match="page" mode="head">
     <title>
-      <xsl:text>Minlessika - Mobile payment</xsl:text>
+      <xsl:text>MySupervisor - Mobile payment</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">

@@ -21,7 +21,7 @@ SOFTWARE.
   <xsl:include href="/xsl/layout.xsl"/>
   <xsl:template match="page" mode="head">
     <title>
-      <xsl:text>Supervisor - Minlessika - Activity Store</xsl:text>
+      <xsl:text>MySupervisor - Store</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">
