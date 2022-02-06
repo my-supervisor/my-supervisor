@@ -21,7 +21,7 @@ SOFTWARE.
   <xsl:include href="/xsl/layout.xsl"/>
   <xsl:template match="page" mode="head">
     <title>
-      <xsl:text>Supervisor - Minlessika - Configurer une expression étendue à un modèle</xsl:text>
+      <xsl:text>MySupervisor - Configurer une expression étendue à un modèle</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">

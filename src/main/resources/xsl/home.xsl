@@ -22,16 +22,16 @@ SOFTWARE.
   <xsl:output method="html" cdata-section-elements="script style" include-content-type="no" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
   <xsl:strip-space elements="*"/>
   <xsl:include href="/xsl/layout.xsl"/>
-  <xsl:include href="/xslicator_options.xsl"/>
-  <xsl:include href="/xslber_oriented.xsl"/>
-  <xsl:include href="/xsll_number.xsl"/>
-  <xsl:include href="/xslrt_camembert.xsl"/>
-  <xsl:include href="/xslge.xsl"/>
-  <xsl:include href="/xslamic_table_2_col.xsl"/>
+  <xsl:include href="/xsl/indicators/indicator_options.xsl"/>
+  <xsl:include href="/xsl/indicators/number_oriented.xsl"/>
+  <xsl:include href="/xsl/indicators/goal_number.xsl"/>
+  <xsl:include href="/xsl/indicators/chart_camembert.xsl"/>
+  <xsl:include href="/xsl/indicators/gauge.xsl"/>
+  <xsl:include href="/xsl/indicators/dynamic_table_2_col.xsl"/>
   <xsl:template match="page" mode="head">
-    <link rel="stylesheet" href="/com/webviewer/vendors/angular-gridster/dist/angular-gridster.min.css"/>
+    <link rel="stylesheet" href="/css/angular-gridster.min.css"/>
     <title>
-      <xsl:text>Supervisor - Minlessika - Utiliser de manière efficiente vos ressources</xsl:text>
+      <xsl:text>MySupervisor - Utiliser de manière efficiente vos ressources</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">
@@ -78,18 +78,6 @@ SOFTWARE.
 					       		  	</a>
                   </xsl:if>
                 </xsl:if>
-                <!-- 
-				       		<div class="dropdown-divider"></div>
-				       		<a ng-href="#" ng-click="vm.goToDate()" class="dropdown-item">
-			       		  		<i class="dropdown-icon fa fa-calendar"></i> Aller à la date
-			       		  	</a>
-			       		  	<a ng-href="#" class="dropdown-item">
-			       		  		<i class="dropdown-icon fa fa-calendar"></i> Aller à la période précédente
-			       		  	</a>
-			       		  	<a ng-href="#" class="dropdown-item">
-			       		  		<i class="dropdown-icon fa fa-calendar"></i> Aller à la période suivante
-			       		  	</a>
-				       		 -->
                 <xsl:if test="identity/id = activity_selected/owner_id">
                   <div class="dropdown-divider"/>
                   <a href="/activity?id={activity_selected/id}" class="dropdown-item"><i class="dropdown-icon fa fa-building"/> Propriétés

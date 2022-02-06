@@ -21,7 +21,7 @@ SOFTWARE.
   <xsl:include href="/xsl/admin_layout.xsl"/>
   <xsl:template match="page" mode="head">
     <title>
-      <xsl:text>Administration - Minlessika - Editer une taxe</xsl:text>
+      <xsl:text>MySupervisor - Editer une taxe</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">

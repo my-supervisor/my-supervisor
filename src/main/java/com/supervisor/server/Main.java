@@ -16,7 +16,6 @@
  */
 package com.supervisor.server;
 
-import com.supervisor.takes.TkApp;
 import com.supervisor.sdk.app.info.AppInfoImpl;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.pgsql.PgBase;

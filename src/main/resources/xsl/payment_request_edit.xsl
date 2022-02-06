@@ -29,7 +29,7 @@ SOFTWARE.
       <link rel="stylesheet" href="https://static.hub2.io/v1/api.css"/>
     </xsl:if>
     <title>
-      <xsl:text>Minlessika - Edit a payment request</xsl:text>
+      <xsl:text>MySupervisor - Edit a payment request</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">

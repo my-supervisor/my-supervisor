@@ -21,7 +21,7 @@ SOFTWARE.
   <xsl:include href="/xsl/admin_layout.xsl"/>
   <xsl:template match="page" mode="head">
     <title>
-      <xsl:text>Administration - Minlessika - Profils</xsl:text>
+      <xsl:text>MySupervisor - Profils</xsl:text>
     </title>
   </xsl:template>
   <xsl:template match="page" mode="body">
