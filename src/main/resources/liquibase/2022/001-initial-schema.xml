@@ -46,28 +46,6 @@ SOFTWARE.
       ALTER SEQUENCE public.base_address_id_seq OWNED BY public.base_address.id;
     </sql>
     <sql>
-      CREATE TABLE public.base_application (
-        id bigint NOT NULL,
-        guid uuid NOT NULL,
-        profile_id bigint NOT NULL,
-        module character varying NOT NULL,
-        user_id bigint NOT NULL,
-        creation_date timestamp without time zone NOT NULL,
-        creator_id bigint NOT NULL,
-        last_modification_date timestamp without time zone NOT NULL,
-        last_modifier_id bigint NOT NULL,
-        owner_id bigint NOT NULL,
-        tag character varying
-      );
-      CREATE SEQUENCE public.base_application_id_seq
-        START WITH 1
-        INCREMENT BY 1
-        NO MINVALUE
-        NO MAXVALUE
-        CACHE 1;
-      ALTER SEQUENCE public.base_application_id_seq OWNED BY public.base_application.id;
-    </sql>
-    <sql>
       CREATE TABLE public.base_country (
         id bigint NOT NULL,
         guid uuid NOT NULL,
@@ -196,7 +174,6 @@ SOFTWARE.
         status character varying NOT NULL,
         type character varying NOT NULL,
         start_date timestamp without time zone NOT NULL,
-        application_id bigint NOT NULL,
         creation_date timestamp without time zone NOT NULL,
         creator_id bigint NOT NULL,
         last_modification_date timestamp without time zone NOT NULL,
@@ -237,29 +214,6 @@ SOFTWARE.
         NO MAXVALUE
         CACHE 1;
       ALTER SEQUENCE public.base_sequence_id_seq OWNED BY public.base_sequence.id;
-    </sql>
-    <sql>
-      CREATE TABLE public.base_version (
-        id bigint NOT NULL,
-        guid uuid NOT NULL,
-        revision character varying NOT NULL,
-        release_date character varying NOT NULL,
-        product_range character varying NOT NULL,
-        notes character varying NOT NULL,
-        creation_date timestamp without time zone NOT NULL,
-        creator_id bigint NOT NULL,
-        last_modification_date timestamp without time zone NOT NULL,
-        last_modifier_id bigint NOT NULL,
-        owner_id bigint NOT NULL,
-        tag character varying
-      );
-      CREATE SEQUENCE public.base_version_id_seq
-        START WITH 1
-        INCREMENT BY 1
-        NO MINVALUE
-        NO MAXVALUE
-        CACHE 1;
-      ALTER SEQUENCE public.base_version_id_seq OWNED BY public.base_version.id;
     </sql>
     <sql>
       CREATE TABLE public.billing_address (
@@ -435,7 +389,6 @@ SOFTWARE.
       CREATE TABLE public.billing_payment_request (
         id bigint NOT NULL,
         guid uuid NOT NULL,
-        application_id bigint NOT NULL,
         amount double precision NOT NULL,
         metadata character varying NOT NULL,
         reference character varying NOT NULL,
@@ -582,7 +535,6 @@ SOFTWARE.
       CREATE TABLE public.membership_access (
         id bigint NOT NULL,
         guid uuid NOT NULL,
-        module character varying NOT NULL,
         name character varying NOT NULL,
         code character varying NOT NULL,
         creation_date timestamp without time zone NOT NULL,
@@ -684,7 +636,6 @@ SOFTWARE.
         id bigint NOT NULL,
         guid uuid NOT NULL,
         name character varying NOT NULL,
-        module character varying NOT NULL,
         code character varying NOT NULL,
         parent_id bigint,
         creation_date timestamp without time zone NOT NULL,
@@ -776,6 +727,7 @@ SOFTWARE.
       CREATE TABLE public.membership_user (
         id bigint NOT NULL,
         guid uuid NOT NULL,
+        profile_id bigint NOT NULL,
         active boolean NOT NULL,
         salt character varying NOT NULL,
         password character varying NOT NULL,
@@ -1805,7 +1757,6 @@ SOFTWARE.
     </sql>
     <sql>
       ALTER TABLE ONLY public.base_address ALTER COLUMN id SET DEFAULT nextval('public.base_address_id_seq'::regclass);
-      ALTER TABLE ONLY public.base_application ALTER COLUMN id SET DEFAULT nextval('public.base_application_id_seq'::regclass);
       ALTER TABLE ONLY public.base_country ALTER COLUMN id SET DEFAULT nextval('public.base_country_id_seq'::regclass);
       ALTER TABLE ONLY public.base_currency ALTER COLUMN id SET DEFAULT nextval('public.base_currency_id_seq'::regclass);
       ALTER TABLE ONLY public.base_event ALTER COLUMN id SET DEFAULT nextval('public.base_event_id_seq'::regclass);
@@ -1813,7 +1764,6 @@ SOFTWARE.
       ALTER TABLE ONLY public.base_person ALTER COLUMN id SET DEFAULT nextval('public.base_person_id_seq'::regclass);
       ALTER TABLE ONLY public.base_planned_task ALTER COLUMN id SET DEFAULT nextval('public.base_planned_task_id_seq'::regclass);
       ALTER TABLE ONLY public.base_sequence ALTER COLUMN id SET DEFAULT nextval('public.base_sequence_id_seq'::regclass);
-      ALTER TABLE ONLY public.base_version ALTER COLUMN id SET DEFAULT nextval('public.base_version_id_seq'::regclass);
       ALTER TABLE ONLY public.billing_order ALTER COLUMN id SET DEFAULT nextval('public.billing_order_id_seq'::regclass);
       ALTER TABLE ONLY public.billing_order_line ALTER COLUMN id SET DEFAULT nextval('public.billing_order_line_id_seq'::regclass);
       ALTER TABLE ONLY public.billing_order_tax ALTER COLUMN id SET DEFAULT nextval('public.billing_order_tax_id_seq'::regclass);
@@ -1871,10 +1821,6 @@ SOFTWARE.
       INSERT INTO public.base_address (id, guid, address_line1, address_line2, company, email, phone1, phone2, state_or_province, city, country_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (9, '45c7d5d2-2db9-428c-a6bf-f3635cb6c018', NULL, NULL, NULL, 'infos@cinetpay.com', NULL, NULL, NULL, NULL, 1, '2022-01-15 18:04:18.358257', 2, '2022-01-15 18:04:18.358257', 2, 2, 'CINETPAY');
     </sql>
     <sql>
-      INSERT INTO public.base_application (id, guid, profile_id, module, user_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, 'a8e84e0d-8b60-4086-abaa-7bb4a5f90803', 1, 'membership', 1, '2022-01-15 18:04:18.609677', 2, '2022-01-15 18:04:18.609677', 2, 2, 'ADMIN_MEMBERSHIP');
-      INSERT INTO public.base_application (id, guid, profile_id, module, user_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (2, '943bfbc0-8283-4701-a087-0b63058cc2fa', 4, 'supervisor', 1, '2022-01-15 18:04:18.612868', 2, '2022-01-15 18:04:18.612868', 2, 2, 'ADMIN_SUPERVISOR');
-    </sql>
-    <sql>
       INSERT INTO public.base_country (id, guid, phone_code, code, name, currency_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '5a953d38-11aa-4781-8216-fcabf7b63fa0', 225, 'CI', 'Côte d''Ivoire', 1, '2022-01-15 18:04:17.839281', 2, '2022-01-15 18:04:17.839281', 2, 2, 'CI');
       INSERT INTO public.base_country (id, guid, phone_code, code, name, currency_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (2, 'e16a45f8-74e0-45c8-b0c9-f5b78c8ea3f7', 226, 'BF', 'Burkina Faso', 1, '2022-01-15 18:04:17.843345', 2, '2022-01-15 18:04:17.843345', 2, 2, 'BF');
       INSERT INTO public.base_country (id, guid, phone_code, code, name, currency_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (3, 'bbf2ce39-ec2c-4a73-8dc0-e3cb7d5a8742', 33, 'FR', 'France', 2, '2022-01-15 18:04:17.845974', 2, '2022-01-15 18:04:17.845974', 2, 2, 'FR');
@@ -1906,10 +1852,6 @@ SOFTWARE.
       INSERT INTO public.base_sequence (id, guid, step, next_number, size, name, prefix, suffix, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (3, '06c545c5-6f45-4d33-b1f1-67bef1937df7', 1, 1, 5, 'Payment', 'PAY/{year}/{month}/', NULL, 'PAY', '2022-01-15 18:04:17.718212', 2, '2022-01-15 18:04:17.718212', 2, 2, 'PAY');
       INSERT INTO public.base_sequence (id, guid, step, next_number, size, name, prefix, suffix, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (4, 'de1f482a-068a-4f29-bb4b-4002ef35ed05', 1, 1, 5, 'Payment request', 'PAYR/{year}/{month}/', NULL, 'PAYR', '2022-01-15 18:04:17.721234', 2, '2022-01-15 18:04:17.721234', 2, 2, 'PAYR');
       INSERT INTO public.base_sequence (id, guid, step, next_number, size, name, prefix, suffix, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (5, '203da52b-6002-426c-9ffb-6969bd9e7dda', 1, 1, 5, 'Transaction MOMO Test', 'MOMO/TEST/{year}/{month}/', NULL, 'MOMO_TEST', '2022-01-15 18:04:17.726081', 2, '2022-01-15 18:04:17.726081', 2, 2, 'MOMO_TEST');
-    </sql>
-    <sql>
-      INSERT INTO public.base_version (id, guid, revision, release_date, product_range, notes, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '7f6ec666-3d7c-4a90-a59c-02591d5473b0', '0.0.1.1040', '2019-12-03', 'SAAS', 'Membership module', '2022-01-15 18:04:17.618563', 2, '2022-01-15 18:04:17.618563', 2, 2, 'MEMBERSHIP_VERSION');
-      INSERT INTO public.base_version (id, guid, revision, release_date, product_range, notes, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (2, 'dde64c96-8f89-4817-a283-2624123baa8f', '1.1.1.0085', '2019-12-08', 'SAAS', 'Supervisor module', '2022-01-15 18:04:17.640533', 2, '2022-01-15 18:04:17.640533', 2, 2, 'SUPERVISOR_VERSION');
     </sql>
     <sql>
       INSERT INTO public.billing_address (id, guid, submitted_to_vat, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, 'f9c113e6-4013-48fb-8050-407582bd6917', true, '2022-01-15 18:04:18.393758', 2, '2022-01-15 18:04:18.393758', 2, 2, 'ADMIN');
@@ -1950,22 +1892,22 @@ SOFTWARE.
       INSERT INTO public.billing_tax (id, guid, short_name, value_type, type, value, name, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '7bb3e50f-7a5f-481e-9d8f-34c0cdb64fb8', 'TVA', 'PERCENT', 'TVA_GROUP', 18, 'TVA', '2022-01-15 18:04:17.916364', 2, '2022-01-15 18:04:17.916364', 2, 2, 'TVA');
     </sql>
     <sql>
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '2630ffb6-b138-4ff8-b99f-7180e02f7b3d', 'membership', 'Créer un message de contact', 'NEW_CONTACT_MSG', '2022-01-15 18:04:18.004918', 2, '2022-01-15 18:04:18.004918', 2, 2, 'NEW_CONTACT_MSG');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (2, 'f328f654-b593-4295-b044-629c5a98eedc', 'membership', 'S''inscrire', 'ONE_REGISTER', '2022-01-15 18:04:18.008287', 2, '2022-01-15 18:04:18.008287', 2, 2, 'ONE_REGISTER');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (3, '56032da5-acaa-4551-93a5-03b6cba02bae', 'membership', 'Changer mot de passe oublié', 'CHANGE_FORGOTTEN_PASSWORD', '2022-01-15 18:04:18.010695', 2, '2022-01-15 18:04:18.010695', 2, 2, 'CHANGE_FORGOTTEN_PASSWORD');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (4, '99be6967-9c05-426b-9324-c0de83f1a4cd', 'supervisor', 'Créer une activité', 'NEW_ACTIVITY', '2022-01-15 18:04:18.013039', 2, '2022-01-15 18:04:18.013039', 2, 2, 'NEW_ACTIVITY');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (5, 'f071f25d-8821-4302-9ed1-926d2f2eb201', 'supervisor', 'Mettre des activités en interaction', 'INTERACTE_ACTIVITIES', '2022-01-15 18:04:18.015326', 2, '2022-01-15 18:04:18.015326', 2, 2, 'INTERACTE_ACTIVITIES');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (6, '3a01f575-b5fb-4a89-a05b-3126e2c17d0a', 'supervisor', 'Créer un modèle d''activité', 'NEW_ACTIVITY_TEMPLATE', '2022-01-15 18:04:18.017304', 2, '2022-01-15 18:04:18.017304', 2, 2, 'NEW_ACTIVITY_TEMPLATE');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (7, 'f6c6286b-38f7-4f7e-8cb9-111287174a0a', 'supervisor', 'Créer un indicateur', 'NEW_INDICATOR', '2022-01-15 18:04:18.019677', 2, '2022-01-15 18:04:18.019677', 2, 2, 'NEW_INDICATOR');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (8, '61891bd0-a417-4cdf-a09b-964943a51345', 'supervisor', 'Créer un modèle d''indicateur', 'NEW_INDICATOR_TEMPLATE', '2022-01-15 18:04:18.022124', 2, '2022-01-15 18:04:18.022124', 2, 2, 'NEW_INDICATOR_TEMPLATE');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (9, '13d04b82-d512-4915-bacc-aaa1356c53e7', 'supervisor', 'Partager une activité', 'SHARE_ACTIVITY', '2022-01-15 18:04:18.024421', 2, '2022-01-15 18:04:18.024421', 2, 2, 'SHARE_ACTIVITY');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (10, '2a73196d-5518-4a0e-bff8-44dc7bd3e473', 'supervisor', 'Se désabonner d''une activité', 'ONE_UNSUBSCRIBE_ACTIVITY', '2022-01-15 18:04:18.026586', 2, '2022-01-15 18:04:18.026586', 2, 2, 'ONE_UNSUBSCRIBE_ACTIVITY');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (11, '90b7cff5-54e8-4908-ab81-1f33a5ba7829', 'supervisor', 'Créer un modèle de feuille de données', 'NEW_DATA_SHEET_MODEL', '2022-01-15 18:04:18.029097', 2, '2022-01-15 18:04:18.029097', 2, 2, 'NEW_DATA_SHEET_MODEL');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (12, '8ff2f8ef-3bfd-4239-94f4-e7fc369e3c31', 'supervisor', 'Partager un modèle de feuille de données', 'SHARE_DATA_SHEET_MODEL', '2022-01-15 18:04:18.031329', 2, '2022-01-15 18:04:18.031329', 2, 2, 'SHARE_DATA_SHEET_MODEL');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (13, '5362b8e5-0a18-46a9-ac0f-36fc71019f06', 'supervisor', 'Se désabonner d''un modèle de feuille de données', 'ONE_UNSUBSCRIBE_DATA_SHEET_MODEL', '2022-01-15 18:04:18.0333', 2, '2022-01-15 18:04:18.0333', 2, 2, 'ONE_UNSUBSCRIBE_DATA_SHEET_MODEL');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (14, '8e3d495b-7f1b-4e66-8f22-3157b86eaa9f', 'supervisor', 'Créer un champ de données', 'NEW_DATA_FIELD', '2022-01-15 18:04:18.035435', 2, '2022-01-15 18:04:18.035435', 2, 2, 'NEW_DATA_FIELD');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (15, 'def3efce-b2c7-47ec-8039-37da66a237f5', 'supervisor', 'Créer une feuille de données', 'NEW_DATA_SHEET', '2022-01-15 18:04:18.037277', 2, '2022-01-15 18:04:18.037277', 2, 2, 'NEW_DATA_SHEET');
-      INSERT INTO public.membership_access (id, guid, module, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (16, '6f8ebc7d-9814-4fad-a804-630d8ed7d658', 'supervisor', 'Créer un champ de données table', 'NEW_DATA_FIELD_TABLE', '2022-01-15 18:04:18.040061', 2, '2022-01-15 18:04:18.040061', 2, 2, 'NEW_DATA_FIELD_TABLE');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '2630ffb6-b138-4ff8-b99f-7180e02f7b3d', 'Créer un message de contact', 'NEW_CONTACT_MSG', '2022-01-15 18:04:18.004918', 2, '2022-01-15 18:04:18.004918', 2, 2, 'NEW_CONTACT_MSG');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (2, 'f328f654-b593-4295-b044-629c5a98eedc', 'S''inscrire', 'ONE_REGISTER', '2022-01-15 18:04:18.008287', 2, '2022-01-15 18:04:18.008287', 2, 2, 'ONE_REGISTER');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (3, '56032da5-acaa-4551-93a5-03b6cba02bae', 'Changer mot de passe oublié', 'CHANGE_FORGOTTEN_PASSWORD', '2022-01-15 18:04:18.010695', 2, '2022-01-15 18:04:18.010695', 2, 2, 'CHANGE_FORGOTTEN_PASSWORD');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (4, '99be6967-9c05-426b-9324-c0de83f1a4cd', 'Créer une activité', 'NEW_ACTIVITY', '2022-01-15 18:04:18.013039', 2, '2022-01-15 18:04:18.013039', 2, 2, 'NEW_ACTIVITY');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (5, 'f071f25d-8821-4302-9ed1-926d2f2eb201', 'Mettre des activités en interaction', 'INTERACTE_ACTIVITIES', '2022-01-15 18:04:18.015326', 2, '2022-01-15 18:04:18.015326', 2, 2, 'INTERACTE_ACTIVITIES');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (6, '3a01f575-b5fb-4a89-a05b-3126e2c17d0a', 'Créer un modèle d''activité', 'NEW_ACTIVITY_TEMPLATE', '2022-01-15 18:04:18.017304', 2, '2022-01-15 18:04:18.017304', 2, 2, 'NEW_ACTIVITY_TEMPLATE');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (7, 'f6c6286b-38f7-4f7e-8cb9-111287174a0a', 'Créer un indicateur', 'NEW_INDICATOR', '2022-01-15 18:04:18.019677', 2, '2022-01-15 18:04:18.019677', 2, 2, 'NEW_INDICATOR');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (8, '61891bd0-a417-4cdf-a09b-964943a51345', 'Créer un modèle d''indicateur', 'NEW_INDICATOR_TEMPLATE', '2022-01-15 18:04:18.022124', 2, '2022-01-15 18:04:18.022124', 2, 2, 'NEW_INDICATOR_TEMPLATE');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (9, '13d04b82-d512-4915-bacc-aaa1356c53e7', 'Partager une activité', 'SHARE_ACTIVITY', '2022-01-15 18:04:18.024421', 2, '2022-01-15 18:04:18.024421', 2, 2, 'SHARE_ACTIVITY');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (10, '2a73196d-5518-4a0e-bff8-44dc7bd3e473', 'Se désabonner d''une activité', 'ONE_UNSUBSCRIBE_ACTIVITY', '2022-01-15 18:04:18.026586', 2, '2022-01-15 18:04:18.026586', 2, 2, 'ONE_UNSUBSCRIBE_ACTIVITY');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (11, '90b7cff5-54e8-4908-ab81-1f33a5ba7829', 'Créer un modèle de feuille de données', 'NEW_DATA_SHEET_MODEL', '2022-01-15 18:04:18.029097', 2, '2022-01-15 18:04:18.029097', 2, 2, 'NEW_DATA_SHEET_MODEL');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (12, '8ff2f8ef-3bfd-4239-94f4-e7fc369e3c31', 'Partager un modèle de feuille de données', 'SHARE_DATA_SHEET_MODEL', '2022-01-15 18:04:18.031329', 2, '2022-01-15 18:04:18.031329', 2, 2, 'SHARE_DATA_SHEET_MODEL');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (13, '5362b8e5-0a18-46a9-ac0f-36fc71019f06', 'Se désabonner d''un modèle de feuille de données', 'ONE_UNSUBSCRIBE_DATA_SHEET_MODEL', '2022-01-15 18:04:18.0333', 2, '2022-01-15 18:04:18.0333', 2, 2, 'ONE_UNSUBSCRIBE_DATA_SHEET_MODEL');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (14, '8e3d495b-7f1b-4e66-8f22-3157b86eaa9f', 'Créer un champ de données', 'NEW_DATA_FIELD', '2022-01-15 18:04:18.035435', 2, '2022-01-15 18:04:18.035435', 2, 2, 'NEW_DATA_FIELD');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (15, 'def3efce-b2c7-47ec-8039-37da66a237f5', 'Créer une feuille de données', 'NEW_DATA_SHEET', '2022-01-15 18:04:18.037277', 2, '2022-01-15 18:04:18.037277', 2, 2, 'NEW_DATA_SHEET');
+      INSERT INTO public.membership_access (id, guid, name, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (16, '6f8ebc7d-9814-4fad-a804-630d8ed7d658', 'Créer un champ de données table', 'NEW_DATA_FIELD_TABLE', '2022-01-15 18:04:18.040061', 2, '2022-01-15 18:04:18.040061', 2, 2, 'NEW_DATA_FIELD_TABLE');
     </sql>
     <sql>
       INSERT INTO public.membership_access_param (id, guid, name, access_id, message, default_value, value_type, quantifier, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '35f72de5-01b0-49f6-854f-fcaffa099bcb', 'Nombre maximal', 4, 'Vous ne pouvez créer que %s activité(s) !', '0', 'NUMBER', 'MAX', 'NEW_ACTIVITY_MAX_NUMBER', '2022-01-15 18:04:18.096692', 2, '2022-01-15 18:04:18.096692', 2, 2, 'NEW_ACTIVITY_MAX_NUMBER');
@@ -1978,27 +1920,24 @@ SOFTWARE.
       INSERT INTO public.membership_access_param (id, guid, name, access_id, message, default_value, value_type, quantifier, code, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (8, '00e874da-44d5-46b9-a609-261b5af6b3cc', 'Nombre maximal', 16, 'Vous ne pouvez créer que %s table(s) !', '0', 'NUMBER', 'MAX', 'NEW_DATA_FIELD_TABLE_MAX_NUMBER', '2022-01-15 18:04:18.118293', 2, '2022-01-15 18:04:18.118293', 2, 2, 'NEW_DATA_FIELD_TABLE_MAX_NUMBER');
     </sql>
     <sql>
-      INSERT INTO public.membership_profile (id, guid, name, module, code, parent_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '83cf82a5-b5d8-447c-b778-e0beb4226f0e', 'Administrateur', 'membership', 'ADMIN_MEMBERSHIP', NULL, '2022-01-15 18:04:17.961075', 2, '2022-01-15 18:04:17.961075', 2, 2, 'ADMIN_MEMBERSHIP');
-      INSERT INTO public.membership_profile (id, guid, name, module, code, parent_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (2, 'fa29b642-b78d-4ee5-abba-cd7cb472d051', 'Anonyme', 'membership', 'ANONYMOUS_MEMBERSHIP', NULL, '2022-01-15 18:04:17.963899', 2, '2022-01-15 18:04:17.963899', 2, 2, 'ANONYMOUS_MEMBERSHIP');
-      INSERT INTO public.membership_profile (id, guid, name, module, code, parent_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (3, 'a97cd0ed-84ae-4037-bd90-76fa1fd951c1', 'Utilisateur', 'membership', 'USER_MEMBERSHIP', NULL, '2022-01-15 18:04:17.9663', 2, '2022-01-15 18:04:17.9663', 2, 2, 'USER_MEMBERSHIP');
-      INSERT INTO public.membership_profile (id, guid, name, module, code, parent_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (4, '4554cff7-fe2a-424e-96e8-ec655e2917d4', 'Administrateur', 'supervisor', 'ADMIN_SUPERVISOR', NULL, '2022-01-15 18:04:17.968789', 2, '2022-01-15 18:04:17.968789', 2, 2, 'ADMIN_SUPERVISOR');
-      INSERT INTO public.membership_profile (id, guid, name, module, code, parent_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (5, '6d9b05c3-d225-4df6-8ac2-bd64db057d38', 'Anonyme', 'supervisor', 'ANONYMOUS_SUPERVISOR', NULL, '2022-01-15 18:04:17.97118', 2, '2022-01-15 18:04:17.97118', 2, 2, 'ANONYMOUS_SUPERVISOR');
-      INSERT INTO public.membership_profile (id, guid, name, module, code, parent_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (6, '70b40dd2-62a1-4c18-bf45-8a9992463638', 'Utilisateur', 'supervisor', 'USER_SUPERVISOR', NULL, '2022-01-15 18:04:17.973336', 2, '2022-01-15 18:04:17.973336', 2, 2, 'USER_SUPERVISOR');
+      INSERT INTO public.membership_profile (id, guid, name, code, parent_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id) VALUES (1, '83cf82a5-b5d8-447c-b778-e0beb4226f0e', 'Administrateur', 'ADMIN', NULL, '2022-01-15 18:04:17.961075', 2, '2022-01-15 18:04:17.961075', 2, 2);
+      INSERT INTO public.membership_profile (id, guid, name, code, parent_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id) VALUES (2, 'fa29b642-b78d-4ee5-abba-cd7cb472d051', 'Anonyme', 'ANONYMOUS', NULL, '2022-01-15 18:04:17.963899', 2, '2022-01-15 18:04:17.963899', 2, 2);
+      INSERT INTO public.membership_profile (id, guid, name, code, parent_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id) VALUES (3, 'a97cd0ed-84ae-4037-bd90-76fa1fd951c1', 'Utilisateur', 'USER', NULL, '2022-01-15 18:04:17.9663', 2, '2022-01-15 18:04:17.9663', 2, 2);
     </sql>
     <sql>
       INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '198840ed-163f-478a-97ce-f898a44dae40', 1, 2, '2022-01-15 18:04:18.180037', 2, '2022-01-15 18:04:18.180037', 2, 2, 'ANONYMOUS_NEW_CONTACT_MSG');
       INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (2, '195fb334-e1e9-47d9-8626-60e021ce757e', 2, 2, '2022-01-15 18:04:18.182867', 2, '2022-01-15 18:04:18.182867', 2, 2, 'ANONYMOUS_ONE_REGISTER');
       INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (3, '35c0026b-a490-4e53-8ede-8fe010d5ff10', 3, 2, '2022-01-15 18:04:18.185872', 2, '2022-01-15 18:04:18.185872', 2, 2, 'ANONYMOUS_CHANGE_FORGOTTEN_PASSWORD');
-      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (4, '763c428b-0299-4db8-95ad-fba0a9d07b6c', 4, 6, '2022-01-15 18:04:18.19225', 2, '2022-01-15 18:04:18.19225', 2, 2, 'FREE_NEW_ACTIVITY');
-      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (5, '055b4561-25ed-4e73-b6c9-3fda9657db09', 7, 6, '2022-01-15 18:04:18.195799', 2, '2022-01-15 18:04:18.195799', 2, 2, 'FREE_NEW_INDICATOR');
-      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (6, 'b762780d-1dc5-40b2-82db-3f240be1e14f', 9, 6, '2022-01-15 18:04:18.201363', 2, '2022-01-15 18:04:18.201363', 2, 2, 'FREE_SHARE_ACTIVITY');
-      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (7, 'f259b9af-fb78-47b4-9dd3-4f0b069fba76', 10, 6, '2022-01-15 18:04:18.204901', 2, '2022-01-15 18:04:18.204901', 2, 2, 'FREE_ONE_UNSUBSCRIBE_ACTIVITY');
-      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (8, '61dabe5a-eb28-4903-858a-b5c0b863b888', 11, 6, '2022-01-15 18:04:18.207091', 2, '2022-01-15 18:04:18.207091', 2, 2, 'FREE_NEW_DATA_SHEET_MODEL');
-      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (9, '79c49d4e-8d34-4a52-8381-690ec5544762', 12, 6, '2022-01-15 18:04:18.209192', 2, '2022-01-15 18:04:18.209192', 2, 2, 'FREE_SHARE_DATA_SHEET_MODEL');
-      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (10, '1d3cf783-02b8-4da2-bb17-3697cad81f00', 13, 6, '2022-01-15 18:04:18.211493', 2, '2022-01-15 18:04:18.211493', 2, 2, 'FREE_ONE_UNSUBSCRIBE_DATA_SHEET_MODEL');
-      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (11, 'f343a0f8-6715-4017-9513-a2c7ec2e981e', 14, 6, '2022-01-15 18:04:18.213768', 2, '2022-01-15 18:04:18.213768', 2, 2, 'FREE_NEW_DATA_FIELD');
-      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (12, '45a856c0-d5a2-4362-bfce-b21109722247', 15, 6, '2022-01-15 18:04:18.215827', 2, '2022-01-15 18:04:18.215827', 2, 2, 'FREE_NEW_DATA_SHEET');
-      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (13, '5d7ccc94-ac0f-4ace-ae62-c4a07f092bba', 16, 6, '2022-01-15 18:04:18.218032', 2, '2022-01-15 18:04:18.218032', 2, 2, 'FREE_NEW_DATA_FIELD_TABLE');
+      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (4, '763c428b-0299-4db8-95ad-fba0a9d07b6c', 4, 3, '2022-01-15 18:04:18.19225', 2, '2022-01-15 18:04:18.19225', 2, 2, 'FREE_NEW_ACTIVITY');
+      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (5, '055b4561-25ed-4e73-b6c9-3fda9657db09', 7, 3, '2022-01-15 18:04:18.195799', 2, '2022-01-15 18:04:18.195799', 2, 2, 'FREE_NEW_INDICATOR');
+      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (6, 'b762780d-1dc5-40b2-82db-3f240be1e14f', 9, 3, '2022-01-15 18:04:18.201363', 2, '2022-01-15 18:04:18.201363', 2, 2, 'FREE_SHARE_ACTIVITY');
+      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (7, 'f259b9af-fb78-47b4-9dd3-4f0b069fba76', 10, 3, '2022-01-15 18:04:18.204901', 2, '2022-01-15 18:04:18.204901', 2, 2, 'FREE_ONE_UNSUBSCRIBE_ACTIVITY');
+      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (8, '61dabe5a-eb28-4903-858a-b5c0b863b888', 11, 3, '2022-01-15 18:04:18.207091', 2, '2022-01-15 18:04:18.207091', 2, 2, 'FREE_NEW_DATA_SHEET_MODEL');
+      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (9, '79c49d4e-8d34-4a52-8381-690ec5544762', 12, 3, '2022-01-15 18:04:18.209192', 2, '2022-01-15 18:04:18.209192', 2, 2, 'FREE_SHARE_DATA_SHEET_MODEL');
+      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (10, '1d3cf783-02b8-4da2-bb17-3697cad81f00', 13, 3, '2022-01-15 18:04:18.211493', 2, '2022-01-15 18:04:18.211493', 2, 2, 'FREE_ONE_UNSUBSCRIBE_DATA_SHEET_MODEL');
+      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (11, 'f343a0f8-6715-4017-9513-a2c7ec2e981e', 14, 3, '2022-01-15 18:04:18.213768', 2, '2022-01-15 18:04:18.213768', 2, 2, 'FREE_NEW_DATA_FIELD');
+      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (12, '45a856c0-d5a2-4362-bfce-b21109722247', 15, 3, '2022-01-15 18:04:18.215827', 2, '2022-01-15 18:04:18.215827', 2, 2, 'FREE_NEW_DATA_SHEET');
+      INSERT INTO public.membership_profile_access (id, guid, access_inherited_id, profile_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (13, '5d7ccc94-ac0f-4ace-ae62-c4a07f092bba', 16, 3, '2022-01-15 18:04:18.218032', 2, '2022-01-15 18:04:18.218032', 2, 2, 'FREE_NEW_DATA_FIELD_TABLE');
     </sql>
     <sql>
       INSERT INTO public.membership_profile_access_param (id, guid, value, param_inherited_id, access_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '955d18de-a8e6-4d98-a619-54b3d70960e3', '1', 1, 4, '2022-01-15 18:04:18.26446', 2, '2022-01-15 18:04:18.26446', 2, 2, 'FREE_NEW_ACTIVITY_MAX_NUMBER');
@@ -2009,8 +1948,8 @@ SOFTWARE.
       INSERT INTO public.membership_profile_access_param (id, guid, value, param_inherited_id, access_id, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (6, '68cc5675-2221-49e3-bb29-e027fe0e66f2', '0', 8, 13, '2022-01-15 18:04:18.278258', 2, '2022-01-15 18:04:18.278258', 2, 2, 'FREE_NEW_DATA_FIELD_TABLE_MAX_NUMBER');
     </sql>
     <sql>
-      INSERT INTO public.membership_user (id, guid, active, salt, password, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '8c996d5d-ed4f-4fc2-8bea-4fcd4c9ef625', true, 'EqdmPh53c9x33EygXpTpcoJvc4VXLK', 'bLHHYH9H9uYbHSc4eNIz/XpJj/1ieARJf1taeqMpdxA=', '2022-01-15 18:04:18.562554', 2, '2022-01-15 18:04:18.562554', 2, 2, 'ADMIN');
-      INSERT INTO public.membership_user (id, guid, active, salt, password, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (2, '337b67c9-7232-436f-8978-30968b969b33', true, 'EqdmPh53c9x33EygXpTpcoJvc4VXLK', 'bLHHYH9H9uYbHSc4eNIz/XpJj/1ieARJf1taeqMpdxD=', '2022-01-15 18:04:18.564807', 2, '2022-01-15 18:04:18.564807', 2, 2, 'ANONYMOUS');
+      INSERT INTO public.membership_user (id, guid, profile_id, active, salt, password, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '8c996d5d-ed4f-4fc2-8bea-4fcd4c9ef625', 1, true, 'EqdmPh53c9x33EygXpTpcoJvc4VXLK', 'bLHHYH9H9uYbHSc4eNIz/XpJj/1ieARJf1taeqMpdxA=', '2022-01-15 18:04:18.562554', 2, '2022-01-15 18:04:18.562554', 2, 2, 'ADMIN');
+      INSERT INTO public.membership_user (id, guid, profile_id, active, salt, password, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (2, '337b67c9-7232-436f-8978-30968b969b33', 2, true, 'EqdmPh53c9x33EygXpTpcoJvc4VXLK', 'bLHHYH9H9uYbHSc4eNIz/XpJj/1ieARJf1taeqMpdxD=', '2022-01-15 18:04:18.564807', 2, '2022-01-15 18:04:18.564807', 2, 2, 'ANONYMOUS');
     </sql>
     <sql>
       INSERT INTO public.supervisor_indicator_type (id, guid, description, name, default_size_x, default_size_y, short_name, creation_date, creator_id, last_modification_date, last_modifier_id, owner_id, tag) VALUES (1, '872cefde-2e72-418d-8d29-fb9a0b6b0844', 'Cet indicateur donne le nombre d''éléments avec le taux d''accroissement sur une période.', 'Chiffre orienté', 1, 1, 'number-oriented', '2022-01-15 18:04:19.296489', 2, '2022-01-15 18:04:19.296489', 2, 2, 'NUMBER_ORIENTED');
@@ -2031,7 +1970,6 @@ SOFTWARE.
     </sql>
     <sql>
       SELECT pg_catalog.setval('public.base_address_id_seq', 9, true);
-      SELECT pg_catalog.setval('public.base_application_id_seq', 2, true);
       SELECT pg_catalog.setval('public.base_country_id_seq', 5, true);
       SELECT pg_catalog.setval('public.base_currency_id_seq', 2, true);
       SELECT pg_catalog.setval('public.base_event_id_seq', 1, false);
@@ -2039,7 +1977,6 @@ SOFTWARE.
       SELECT pg_catalog.setval('public.base_person_id_seq', 9, true);
       SELECT pg_catalog.setval('public.base_planned_task_id_seq', 1, false);
       SELECT pg_catalog.setval('public.base_sequence_id_seq', 5, true);
-      SELECT pg_catalog.setval('public.base_version_id_seq', 2, true);
       SELECT pg_catalog.setval('public.billing_order_id_seq', 1, false);
       SELECT pg_catalog.setval('public.billing_order_line_id_seq', 1, false);
       SELECT pg_catalog.setval('public.billing_order_tax_id_seq', 1, false);
@@ -2088,8 +2025,6 @@ SOFTWARE.
     <sql>
       ALTER TABLE ONLY public.base_address
         ADD CONSTRAINT base_address_pkey PRIMARY KEY (id);
-      ALTER TABLE ONLY public.base_application
-        ADD CONSTRAINT base_application_pkey PRIMARY KEY (id);
       ALTER TABLE ONLY public.base_country
         ADD CONSTRAINT base_country_pkey PRIMARY KEY (id);
       ALTER TABLE ONLY public.base_currency
@@ -2104,8 +2039,6 @@ SOFTWARE.
         ADD CONSTRAINT base_planned_task_pkey PRIMARY KEY (id);
       ALTER TABLE ONLY public.base_sequence
         ADD CONSTRAINT base_sequence_pkey PRIMARY KEY (id);
-      ALTER TABLE ONLY public.base_version
-        ADD CONSTRAINT base_version_pkey PRIMARY KEY (id);
       ALTER TABLE ONLY public.billing_address
         ADD CONSTRAINT billing_address_pkey PRIMARY KEY (id);
       ALTER TABLE ONLY public.billing_invoice
@@ -2258,12 +2191,10 @@ SOFTWARE.
         ADD CONSTRAINT supervisor_value_expression_arg_pkey PRIMARY KEY (id);
       ALTER TABLE ONLY public.supervisor_when_case
         ADD CONSTRAINT supervisor_when_case_pkey PRIMARY KEY (id);
+      ALTER TABLE ONLY public.membership_user
+        ADD CONSTRAINT membership_profile_id_fkey FOREIGN KEY (profile_id) REFERENCES public.membership_profile(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.base_address
         ADD CONSTRAINT base_address_country_id_fkey FOREIGN KEY (country_id) REFERENCES public.base_country(id) ON DELETE CASCADE;
-      ALTER TABLE ONLY public.base_application
-        ADD CONSTRAINT base_application_profile_id_fkey FOREIGN KEY (profile_id) REFERENCES public.membership_profile(id) ON DELETE CASCADE;
-      ALTER TABLE ONLY public.base_application
-        ADD CONSTRAINT base_application_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.membership_user(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.base_country
         ADD CONSTRAINT base_country_currency_id_fkey FOREIGN KEY (currency_id) REFERENCES public.base_currency(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.base_person
@@ -2274,8 +2205,6 @@ SOFTWARE.
         ADD CONSTRAINT base_person_preferred_currency_id_fkey FOREIGN KEY (preferred_currency_id) REFERENCES public.base_currency(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.base_person
         ADD CONSTRAINT base_person_preferred_language_id_fkey FOREIGN KEY (preferred_language_id) REFERENCES public.base_language(id) ON DELETE CASCADE;
-      ALTER TABLE ONLY public.base_planned_task
-        ADD CONSTRAINT base_planned_task_application_id_fkey FOREIGN KEY (application_id) REFERENCES public.base_application(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.billing_address
         ADD CONSTRAINT billing_address_id_fkey FOREIGN KEY (id) REFERENCES public.base_address(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.billing_invoice
@@ -2314,8 +2243,6 @@ SOFTWARE.
         ADD CONSTRAINT billing_payment_receipt_remitter_id_fkey FOREIGN KEY (remitter_id) REFERENCES public.base_person(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.billing_payment_receipt
         ADD CONSTRAINT billing_payment_receipt_request_id_fkey FOREIGN KEY (request_id) REFERENCES public.billing_payment_request(id) ON DELETE CASCADE;
-      ALTER TABLE ONLY public.billing_payment_request
-        ADD CONSTRAINT billing_payment_request_application_id_fkey FOREIGN KEY (application_id) REFERENCES public.base_application(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.billing_payment_request
         ADD CONSTRAINT billing_payment_request_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.billing_order(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.billing_product_catalog
@@ -2360,8 +2287,6 @@ SOFTWARE.
         ADD CONSTRAINT membership_registration_request_preferred_language_id_fkey FOREIGN KEY (preferred_language_id) REFERENCES public.base_language(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.membership_user
         ADD CONSTRAINT membership_user_id_fkey FOREIGN KEY (id) REFERENCES public.base_person(id) ON DELETE CASCADE;
-      ALTER TABLE ONLY public.supervisor_activity
-        ADD CONSTRAINT supervisor_activity_app_owner_id_fkey FOREIGN KEY (app_owner_id) REFERENCES public.base_application(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.supervisor_activity
         ADD CONSTRAINT supervisor_activity_designer_id_fkey FOREIGN KEY (designer_id) REFERENCES public.membership_user(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.supervisor_activity_param

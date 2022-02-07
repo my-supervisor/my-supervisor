@@ -78,7 +78,7 @@ public final class PgActivityTemplatesPublished extends DomainRecordables<Activi
 				 .entryOf(ActivityTemplatePublished::score, 0)
 				 .entryOf(ActivityTemplatePublished::price, 0)
 				 .entryOf(ActivityTemplatePublished::availability, TemplateAvailability.FREE)
-				 .entryOf(ActivityTemplatePublished::profile, new UserOf(this).currentProfile().id())
+				 .entryOf(ActivityTemplatePublished::profile, new UserOf(this).profile().id())
 				 .add();
 
 		Record<ActivityTemplate> recordTpl = record.of(ActivityTemplate.class, record.id());

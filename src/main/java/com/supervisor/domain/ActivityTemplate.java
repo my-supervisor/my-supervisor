@@ -270,15 +270,5 @@ public interface ActivityTemplate extends Activity {
 			return false;
 		}
 
-		@Override
-		public Application appOwner() throws IOException {
-			return Application.EMPTY;
-		}
-
-		@Override
-		public void manageBy(Application app) throws IOException {
-
-			
-		}
 	};
 }

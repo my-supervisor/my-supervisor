@@ -12,7 +12,6 @@ import org.takes.rq.form.RqFormSmart;
 
 import com.supervisor.billing.PaymentRequest;
 import com.supervisor.billing.PurchaseOrder;
-import com.supervisor.domain.Application;
 import com.supervisor.domain.Membership;
 import com.supervisor.domain.Plan;
 import com.supervisor.domain.User;
@@ -42,7 +41,6 @@ public final class TkPlanSubscriptionOrder extends TkBaseWrap {
 					order.calculate();
 					
 					Map<String, String> metadata = new HashMap<>();
-					metadata.put(Application.class.getSimpleName(), user.applications().current().id().toString());
 					metadata.put(PurchaseOrder.class.getSimpleName(), order.id().toString());
 					
 					PaymentRequest request = order.requests()
@@ -54,7 +52,7 @@ public final class TkPlanSubscriptionOrder extends TkBaseWrap {
 												  ); 
 					
 					return new RsForward(
-			            String.format("%s/payment-request/edit?id=%s", base.appInfo().minlessikaDomain(), request.id())
+			            String.format("/payment-request/edit?id=%s", request.id())
 					);
 				}
 		);

@@ -3,11 +3,8 @@ package com.supervisor.billing.impl;
 import com.supervisor.billing.PlannedTask;
 import com.supervisor.billing.PlannedTaskStatus;
 import com.supervisor.billing.PlannedTaskType;
-import com.supervisor.domain.Application;
-import com.supervisor.domain.impl.PxApplication;
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -26,11 +23,6 @@ public final class PxPlannedTask extends DomainRecordable<PlannedTask> implement
 	@Override
 	public LocalDateTime startDate() throws IOException {
 		return record.valueOf(PlannedTask::startDate);
-	}
-
-	@Override
-	public Application application() throws IOException {
-		return new PxApplication(record.of(PlannedTask::application));
 	}
 
 	@Override

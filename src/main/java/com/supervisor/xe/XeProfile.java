@@ -66,7 +66,6 @@ public final class XeProfile extends XeWrap {
 	                    .add("code", item.code())
 	                    .add("parent", item.parent().name())
 	                    .add("parent_id", item.parent().id())
-	                    .add("module", item.module())
 	                    .add("is_admin", item.isAdmin())
 	                    .add("is_simple_user", item.isSimpleUser())
 	                    .add("is_anonymous", item.isAnonymous())    

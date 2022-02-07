@@ -106,22 +106,17 @@ public final class PxProfile extends DomainRecordable<Profile> implements Profil
 	}
 
 	@Override
-	public String module() throws IOException {
-		return record.valueOf(Profile::module);
-	}
-
-	@Override
 	public boolean isAnonymous() throws IOException {
-		return StringUtils.isNotBlank(tag()) && tag().startsWith(ANONYMOUS_TAG);
+		return this.code().startsWith(ANONYMOUS);
 	}
 
 	@Override
 	public boolean isSimpleUser() throws IOException {
-		return StringUtils.isNotBlank(tag()) && tag().startsWith(USER_TAG);
+		return this.code().startsWith(USER);
 	}
 	
 	@Override
 	public boolean isAdmin() throws IOException {
-		return StringUtils.isNotBlank(tag()) && tag().startsWith(ADMIN_TAG);
+		return this.code().startsWith(ADMIN);
 	}
 }

@@ -1,24 +1,10 @@
 package com.supervisor.domain;
 
 import java.io.IOException;
-import java.time.LocalDate;
-
-import com.supervisor.sdk.datasource.Module;
-import org.apache.commons.lang.StringUtils;
 
 import com.supervisor.indicator.IndicatorTypes;
 
-public interface Supervisor extends Module {
-	
-	public static final String NAME = "supervisor";
-	
-	/**
-     * Revision.
-     */
-    public static final String REV = "1.1.1.0085";
-    public static final LocalDate RELEASE_DATE = LocalDate.of(2019, 12, 8);
-    public static final String PRODUCT_RANGE = "SAAS"; 
-    public static final String NOTES = StringUtils.EMPTY;
+public interface Supervisor {
     
 	Membership membership() throws IOException;
 	Profiles profiles() throws IOException;

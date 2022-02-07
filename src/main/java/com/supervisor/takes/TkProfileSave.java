@@ -25,9 +25,8 @@ public final class TkProfileSave extends TkBaseWrap {
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));			
 					final String name = form.single("name");
-					final String module = form.single("module");
 					
-					final Profiles profiles = new PxProfiles(base, module);
+					final Profiles profiles = new PxProfiles(base);
 					
 					final Profile item;
 					

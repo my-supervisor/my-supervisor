@@ -71,7 +71,7 @@ public final class PgActivities extends DomainRecordables<Activity, Activities> 
 		
 		final User owner = new UserOf(this);
 		
-		user.profileOf(Supervisor.NAME).validateAccessibility("NEW_ACTIVITY", String.format("%s", count() + 1));
+		user.profile().validateAccessibility("NEW_ACTIVITY", String.format("%s", count() + 1));
 		
 		source.isRequired(Activity::name, name);		
 		
@@ -87,8 +87,7 @@ public final class PgActivities extends DomainRecordables<Activity, Activities> 
 									    .entryOf(Activity::defaultShown, false)
 									    .entryOf(Activity::isTemplate, false)
 									    .entryOf(Activity::periodicity, periodicity.id())
-									    .entryOf(Activity::version, "1.0.0.0")	
-									    .entryOf(Activity::appOwner, owner.applications().add(Supervisor.NAME).id())
+									    .entryOf(Activity::version, "1.0.0.0")
 									    .add();
 		
 		return domainOf(record);

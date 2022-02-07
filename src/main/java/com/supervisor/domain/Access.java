@@ -2,7 +2,6 @@ package com.supervisor.domain;
 
 import com.supervisor.sdk.datasource.Recordable;
 import com.supervisor.sdk.metadata.Field;
-
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
@@ -15,10 +14,7 @@ public interface Access extends Recordable {
 	String code() throws IOException; 
 	
 	@Field(label="Libellé")
-	String name() throws IOException;	
-	
-	@Field(label="Module")
-	String module() throws IOException;
+	String name() throws IOException;
 	
 	int intParamValueOf(String code) throws IOException;
 	String paramValueOf(String code) throws IOException;

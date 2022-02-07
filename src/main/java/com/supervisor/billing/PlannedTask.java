@@ -1,10 +1,8 @@
 package com.supervisor.billing;
 
-import com.supervisor.domain.Application;
 import com.supervisor.sdk.datasource.Recordable;
 import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -20,12 +18,6 @@ public interface PlannedTask extends Recordable {
 	
 	@Field(label="Planned date")
 	LocalDateTime startDate() throws IOException;
-	
-	@Field(
-		label="Application",
-		rel=Relation.MANY2ONE
-	)
-	Application application() throws IOException;
 	
 	@Field(label="Description")
 	String description() throws IOException;

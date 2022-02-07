@@ -60,11 +60,7 @@ public final class TkUserSave extends TkBaseWrap {
 					} else {
 						Person identity = module.contacts().add(name, email);
 						item = module.users().registerUnSecure(identity, ADMIN, ADMIN);
-						item.activate(true); 
-						
-						// add by default Supervisor application
-						item.applications().add("supervisor");
-						
+						item.activate(true);
 						msg = String.format("L'utilisateur %s a été créé avec succès avec le mot de passe par défaut < %s > !", item.name(), ADMIN);
 					}
 					

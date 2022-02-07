@@ -45,7 +45,7 @@ public final class TkMobileMoneyPaymentFinalize extends TkBaseWrap {
 										"Payment has been successfully performed !",
 						                Level.FINE
 						            ),
-						            String.format("%s/home", base.appInfo().moduleLinks().get(paymentRequest.application().module()))
+						            "/home"
 							    );
 					}else {
 						return new RsForward(

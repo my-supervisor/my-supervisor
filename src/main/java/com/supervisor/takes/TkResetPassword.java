@@ -37,8 +37,8 @@ public final class TkResetPassword extends TkBaseWrap {
 					final String gRecaptchaResponse = form.single("g-recaptcha-response", ""); 
 					System.out.println("gRecaptchaResponse=" + gRecaptchaResponse);
 					
-					Recaptcha recaptcha = new GRecaptcha(base.appInfo());
-					recaptcha.validate(gRecaptchaResponse);
+					// Recaptcha recaptcha = new GRecaptcha(base.appInfo());
+					// recaptcha.validate(gRecaptchaResponse);
 					
 					final String password = form.single("password");
 					final String confirmedPassword = form.single("password_confirmed");

@@ -23,7 +23,7 @@ public final class TkActivityTemplatePublishedDowload extends TkBaseWrap {
 					final Long id = Long.parseLong(new RqHref.Smart(req).single("id"));					
 					ActivityTemplatePublished template = module.activityTemplatesPublished().get(id);
 					
-					if(!new RqUser(base, req).currentProfile().isUpperOrEqualTo(template.profile()))
+					if(!new RqUser(base, req).profile().isUpperOrEqualTo(template.profile()))
 						throw new IllegalArgumentException(String.format("Vous avez besoin d'un profil supérieur ou égal au profil <%s> pour vous abonner à ce modèle !", template.profile().name()));
 					
 					template.subscribe();

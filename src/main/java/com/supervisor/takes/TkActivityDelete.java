@@ -31,10 +31,6 @@ public final class TkActivityDelete extends TkBaseWrap {
 					if(new RqUser(base, req).notOwn(item)) {
 						throw new IllegalArgumentException("Vous ne pouvez pas supprimer une activité partagée !");
 					}
-					
-					if(!item.appOwner().module().equals(Supervisor.NAME))
-						throw new IllegalArgumentException("Vous ne pouvez supprimer cette activité que depuis son application propriétaire !"); 
-					
 					String name = item.name();
 					myActivities.remove(item);
 								

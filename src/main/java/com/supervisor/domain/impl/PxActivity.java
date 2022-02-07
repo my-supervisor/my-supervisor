@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.supervisor.domain.Application;
 import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
@@ -248,16 +246,5 @@ public final class PxActivity extends DomainRecordable<Activity> implements Acti
 		}
 		
 		return false;
-	}
-
-	@Override
-	public Application appOwner() throws IOException {
-		return new PxApplication(record.of(Activity::appOwner));
-	}
-
-	@Override
-	public void manageBy(Application app) throws IOException {
-		record.entryOf(Activity::appOwner, app.id())
-		      .update();		
 	}
 }

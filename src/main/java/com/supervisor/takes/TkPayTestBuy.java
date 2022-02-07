@@ -43,7 +43,7 @@ public final class TkPayTestBuy extends TkBaseWrap {
 									"Payment has been successfully performed !",
 					                Level.FINE
 					            ),
-					            String.format("%s/home", base.appInfo().moduleLinks().get(payRequest.application().module()))
+					            "/home"
 						    );
 				}
 		);

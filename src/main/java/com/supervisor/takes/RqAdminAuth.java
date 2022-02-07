@@ -24,9 +24,7 @@ public final class RqAdminAuth extends UserWrap {
     }
 
 	private static User validateAdminProfile(final User user) throws IOException {
-		
-		final Profile profile = user.applications().get(Membership.NAME).profile();
-		if(!profile.isAdmin())
+		if(!user.profile().isAdmin())
 			throw new IllegalArgumentException("Accès interdit !");
 
         return user;

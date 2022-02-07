@@ -33,7 +33,7 @@ public final class PxDataSheetOfModels extends DomainRecordables<DataSheet, Data
 	@Override
 	public DataSheet add(String reference, LocalDate date) throws IOException {
 		
-		new UserOf(this).currentProfile().validateAccessibility("NEW_DATA_SHEET");
+		new UserOf(this).profile().validateAccessibility("NEW_DATA_SHEET");
 		
 		source.mustCheckThisCondition(
 				model.active(), 

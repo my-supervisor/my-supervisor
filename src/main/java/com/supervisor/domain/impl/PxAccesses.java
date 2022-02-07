@@ -10,23 +10,18 @@ import com.supervisor.sdk.datasource.RecordSet;
 import java.io.IOException;
 
 public final class PxAccesses extends DomainRecordables<Access, Accesses> implements Accesses {
-
-	private final String module;
 	
-	public PxAccesses(final Base base, final String module) throws IOException {
-		this(base.select(Access.class), module);
+	public PxAccesses(final Base base) throws IOException {
+		this(base.select(Access.class));
 	}
 	
-	public PxAccesses(final RecordSet<Access> source, final String module) throws IOException {
+	public PxAccesses(final RecordSet<Access> source) throws IOException {
 		super(PxAccess.class, source);
-		
-		this.module = module;
-		this.source = source.where(Access::module, module);
 	}
 
 	@Override
 	protected Accesses domainSetOf(final RecordSet<Access> source) throws IOException {
-		return new PxAccesses(source, module);
+		return new PxAccesses(source);
 	}
 	
 	@Override
@@ -39,7 +34,6 @@ public final class PxAccesses extends DomainRecordables<Access, Accesses> implem
 		
 		Record<Access> record = source.entryOf(Access::name, name)
 				  					  .entryOf(Access::code, code.toUpperCase())
-				  					  .entryOf(Access::module, module)
 						      		  .add();
 		
 		return domainOf(record);

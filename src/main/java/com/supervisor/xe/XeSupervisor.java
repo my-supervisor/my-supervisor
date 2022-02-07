@@ -29,11 +29,6 @@ public final class XeSupervisor extends XeWrap {
 				.append(
      				new XeActivity(module.activities().where(Activity::isTemplate, false)).toXembly()
          		)
-				.append(
-                     new XeApplication(
-                     		module.user().applications()
-                     ).toXembly() 
-                 )
 		);
 	}
 	

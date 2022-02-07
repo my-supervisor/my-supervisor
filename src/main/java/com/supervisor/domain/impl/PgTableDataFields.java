@@ -95,7 +95,7 @@ public final class PgTableDataFields extends DomainRecordables<TableDataField, T
 		if(model.type() != DataModelType.DATA_SHEET_MODEL)
 			throw new IllegalArgumentException("Vous ne pouvez ajouter une table qu'à un modèle de feuille de données !");
 		
-		new UserOf(this).currentProfile().validateAccessibility("NEW_DATA_FIELD_TABLE", String.format("%s", model.fields().where(DataField::type, DataFieldType.TABLE).count() + 1));
+		new UserOf(this).profile().validateAccessibility("NEW_DATA_FIELD_TABLE", String.format("%s", model.fields().where(DataField::type, DataFieldType.TABLE).count() + 1));
 		
 		final EditableDataField item = new PgEditableDataFields(model).add(code, name, DataFieldType.TABLE, DataFieldStyle.STRUCTURE, UserScope.USER, isMandatory, description);
 		final String structureCode = new BasicCodeGenerator(

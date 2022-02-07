@@ -25,7 +25,7 @@ public final class TkPasswordForgotten extends TkForm {
 	protected Iterable<XeSource> contentToShow(Request req, XeSource itemToShow) throws IOException {
 		List<XeSource> content = new ArrayList<>();
 		content.add(itemToShow);
-		content.add(new XeRecaptcha(base.appInfo()));
+		// content.add(new XeRecaptcha(base.appInfo()));
 		
 		return content;
 	}

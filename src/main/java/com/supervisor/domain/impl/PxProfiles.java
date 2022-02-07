@@ -1,9 +1,7 @@
 package com.supervisor.domain.impl;
 
-import com.supervisor.domain.Application;
 import com.supervisor.domain.Profile;
 import com.supervisor.domain.Profiles;
-import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.datasource.DomainRecordables;
 import com.supervisor.sdk.datasource.Record;
@@ -15,22 +13,17 @@ import java.io.IOException;
 
 public final class PxProfiles extends DomainRecordables<Profile, Profiles> implements Profiles {
 	
-	private final String module;
-	
-	public PxProfiles(final Base base, final String module) throws IOException {
-		this(base.select(Profile.class), module);
+	public PxProfiles(final Base base) throws IOException {
+		this(base.select(Profile.class));
 	}
 	
-	public PxProfiles(final RecordSet<Profile> source, final String module) throws IOException {
+	public PxProfiles(final RecordSet<Profile> source) throws IOException {
 		super(PxProfile.class, source);
-		
-		this.module = module;
-		this.source = source.where(Profile::module, module);
 	}
 
 	@Override
 	protected Profiles domainSetOf(final RecordSet<Profile> source) throws IOException {
-		return new PxProfiles(source, module);
+		return new PxProfiles(source);
 	}
 	
 	@Override
@@ -43,7 +36,6 @@ public final class PxProfiles extends DomainRecordables<Profile, Profiles> imple
 		
 		Record<Profile> record = source.entryOf(Profile::name, name)
 				  					   .entryOf(Profile::code, code.toUpperCase())
-				  					   .entryOf(Profile::module, module)
 						      		   .add();
 		
 		return domainOf(record);
@@ -51,7 +43,7 @@ public final class PxProfiles extends DomainRecordables<Profile, Profiles> imple
 
 	@Override
 	public Profile admin() throws IOException {
-		return where(Profile::tag, Matchers.startsWith(Profile.ADMIN_TAG)).first();
+		return where(Profile::code, Profile.ADMIN).first();
 	}
 	
 	@Override
@@ -63,11 +55,6 @@ public final class PxProfiles extends DomainRecordables<Profile, Profiles> imple
 		// le profil ne doit pas être un profil prédéfini
 		if(StringUtils.isNotBlank(item.tag()))
 			throw new IllegalArgumentException("Vous ne pouvez pas supprimer un profil prédéfini !");
-		
-		// le profil ne doit pas avoir été utilisé
-		final User user = new UserOf(this);
-		if(user.applications().where(Application::profile, item.id()).any())
-			throw new IllegalArgumentException(String.format("Le profil %s est déjà utilisé !", item.name()));
 		
 		super.remove(item);
 	}
@@ -84,11 +71,11 @@ public final class PxProfiles extends DomainRecordables<Profile, Profiles> imple
 
 	@Override
 	public Profile anonymous() throws IOException {
-		return where(Profile::tag, Matchers.startsWith(Profile.ANONYMOUS_TAG)).first();
+		return where(Profile::code, Profile.ANONYMOUS).first();
 	}
 
 	@Override
 	public Profile simpleUser() throws IOException {
-		return where(Profile::tag, Matchers.startsWith(Profile.USER_TAG)).first();
+		return where(Profile::code, Profile.USER).first();
 	}
 }

@@ -51,7 +51,7 @@ public final class TkProfileEdit extends TkForm {
 	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
 		
 		final Profile item = new PxAllProfiles(base).get(id);
-		final Profiles profiles = new PxProfiles(base, item.module());
+		final Profiles profiles = new PxProfiles(base);
 		return new XeChain(
 				new XeProfile("item", item), 
 				new XeProfile(profiles),

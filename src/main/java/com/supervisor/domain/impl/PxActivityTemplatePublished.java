@@ -3,8 +3,6 @@ package com.supervisor.domain.impl;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-
-import com.supervisor.domain.Application;
 import com.supervisor.domain.CommentsScored;
 import com.supervisor.domain.Profile;
 import com.supervisor.domain.User;
@@ -381,13 +379,4 @@ public final class PxActivityTemplatePublished extends DomainRecordable<Activity
 		return origin.interactsWith(activity);
 	}
 
-	@Override
-	public Application appOwner() throws IOException {
-		return origin.appOwner();
-	}
-
-	@Override
-	public void manageBy(Application app) throws IOException {
-		origin.manageBy(app);
-	}
 }

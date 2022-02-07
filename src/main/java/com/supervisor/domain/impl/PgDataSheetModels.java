@@ -88,7 +88,7 @@ public final class PgDataSheetModels extends DomainRecordables<DataSheetModel, D
 		if(activity == Activity.EMPTY)
 			throw new IllegalArgumentException("Vous devez renseigner l'activité !");
 		
-		new UserOf(this).profileOf(Supervisor.NAME).validateAccessibility("NEW_DATA_SHEET_MODEL", String.format("%s", count() + 1));
+		new UserOf(this).profile().validateAccessibility("NEW_DATA_SHEET_MODEL", String.format("%s", count() + 1));
 		
 		final DataModel model = new PgDataModels(activity).add(code, name, DataModelType.DATA_SHEET_MODEL, description);
 		

@@ -46,18 +46,17 @@ public final class TkApp extends TkWrap {
 	private static final Logger logger = new MLogger(TkApp.class);
 	
     public static final String PASS_PHRASE = "My faith is in Jesus-Christ !";
-    		
-	public TkApp(final Fork fork, final Base base) {
-		super(app(fork, base));
+
+	public TkApp(final Fork fork) {
+		super(app(fork));
 	}
-	
+
 	/**
      * Ctor.
-     * @param base Base
      * @return App
      * @throws IOException If fails
      */
-    private static Take app(final Fork fork, final Base base) {
+    private static Take app(final Fork fork) {
     	return new TkWithHeaders(
 			new TkFlash(
 				new TkCachedFiles(
@@ -68,8 +67,7 @@ public final class TkApp extends TkWrap {
 									new TkFork(fork)
 								)
 							)
-						),
-						base
+						)
 					),
 					3600, // 1 heure
 					"js", "css", "svg", "png", "jpg", "jpeg",
@@ -85,13 +83,13 @@ public final class TkApp extends TkWrap {
      * @param take Takes
      * @return Authenticated takes
      */
-    private static Take auth(final Take take, final Base base) {
+    private static Take auth(final Take take) {
         return new TkAuth(        	
         	new TkFork(
                 new FkParams(
                     PsByFlag.class.getSimpleName(),
                     Pattern.compile(".+"),
-                    new TkRedirect(String.format("%s/login", base.appInfo().minlessikaDomain()))
+                    new TkRedirect("/login")
                 ),
                 new FkFixed(take)
             ),        	

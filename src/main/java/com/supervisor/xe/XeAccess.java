@@ -65,8 +65,7 @@ public final class XeAccess extends XeWrap {
 	                	.add("id", item.id())
 	                    .add("code", item.code())
 	                    .add("name", item.name())
-	                    .add("nb_params", item.parameters().count())    
-	                    .add("module", item.module())                   
+	                    .add("nb_params", item.parameters().count())
                 )
                 .up();
 	}

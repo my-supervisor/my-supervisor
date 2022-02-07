@@ -42,7 +42,7 @@ public final class PxSharing extends DomainRecordables<SharedResource, Sharing> 
 					throw new IllegalArgumentException("Le modèle de feuille de données à partager n'existe pas !");
 				
 				count = source.where(SharedResource::type, ResourceType.DATA_SHEET_MODEL).count();
-				follower.profileOf(Supervisor.NAME).validateAccessibility("SHARE_DATA_SHEET_MODEL", String.format("%s", count + 1));
+				follower.profile().validateAccessibility("SHARE_DATA_SHEET_MODEL", String.format("%s", count + 1));
 				
 				break;
 			case ACTIVITY:
@@ -50,7 +50,7 @@ public final class PxSharing extends DomainRecordables<SharedResource, Sharing> 
 					throw new IllegalArgumentException("L'activité à partager n'existe pas !");
 				
 				count = source.where(SharedResource::type, ResourceType.ACTIVITY).count();
-				follower.profileOf(Supervisor.NAME).validateAccessibility("SHARE_ACTIVITY", String.format("%s", count + 1));
+				follower.profile().validateAccessibility("SHARE_ACTIVITY", String.format("%s", count + 1));
 				break;
 			case INDICATOR:
 				if(!res.isPresent())

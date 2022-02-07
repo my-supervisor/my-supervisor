@@ -80,10 +80,10 @@ SOFTWARE.
       <div class="footer-copyright text-center py-2">
         <xsl:choose>
           <xsl:when test="lang='fr'">
-               			Copyright &#xA9; 2018-2022 Minlessika. Tous droits réservés.
+               			Copyright © 2018-2022 Minlessika. Tous droits réservés.
                		</xsl:when>
           <xsl:otherwise>
-               			Copyright &#xA9; 2018-2022 Minlessika. All rights reserved.
+               			Copyright © 2018-2022 Minlessika. All rights reserved.
                		</xsl:otherwise>
         </xsl:choose>
       </div>

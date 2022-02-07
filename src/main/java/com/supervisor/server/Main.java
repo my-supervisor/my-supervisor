@@ -16,14 +16,12 @@
  */
 package com.supervisor.server;
 
-import com.supervisor.sdk.app.info.AppInfoImpl;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.pgsql.PgBase;
 import com.supervisor.sdk.websockets.WebSocketNettosphere;
 import com.supervisor.sdk.websockets.WebSocketServer;
 import com.minlessika.db.BasicDatabase;
 import com.minlessika.db.DatabaseLiquibaseUpdate;
-import com.supervisor.domain.Membership;
 import com.minlessika.utils.ConsoleArgs;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -77,7 +75,6 @@ public final class Main {
 		wss.start();
 		final Base base = new PgBase(
 			source,
-			new AppInfoImpl(Membership.NAME, args),
 			wss
 		);
         new FtCli(
@@ -88,8 +85,7 @@ public final class Main {
 						base,
 						new TkFork(new FkMySupervisor(base))
 					)
-				),
-				base
+				)
 			),
 			args
         ).start(Exit.NEVER);

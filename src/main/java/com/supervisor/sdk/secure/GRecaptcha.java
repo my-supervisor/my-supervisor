@@ -1,10 +1,8 @@
 package com.supervisor.sdk.secure;
 
-import com.supervisor.sdk.app.info.AppInfo;
 import com.supervisor.sdk.utils.logging.Logger;
 import com.supervisor.sdk.utils.logging.MLogger;
 import org.apache.commons.lang.StringUtils;
-
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -20,11 +18,7 @@ public final class GRecaptcha implements Recaptcha {
 	private final String siteKey;
 	private final String secretKey;
 	private final boolean isActive;
-	
-	public GRecaptcha(AppInfo info) {
-		this(info.activeRecaptcha(), info.recaptchaSiteKey(), info.recaptchaSecretKey());
-	}
-	
+
 	public GRecaptcha(final boolean isActive, final String siteKey, final String secretKey) {
 		this.isActive = isActive;
 		this.siteKey = siteKey;

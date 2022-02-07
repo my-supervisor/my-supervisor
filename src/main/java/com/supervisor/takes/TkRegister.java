@@ -52,8 +52,8 @@ public final class TkRegister extends TkWrap {
 				final Membership module = new DmMembership(base);
 				final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 				final String gRecaptchaResponse = form.single("g-recaptcha-response", "");
-				Recaptcha recaptcha = new GRecaptcha(base.appInfo());
-				recaptcha.validate(gRecaptchaResponse);
+				// Recaptcha recaptcha = new GRecaptcha(base.appInfo());
+				// recaptcha.validate(gRecaptchaResponse);
 				final String name = form.single("name");
 				final String email = form.single("email");
 				final String password = form.single("password");

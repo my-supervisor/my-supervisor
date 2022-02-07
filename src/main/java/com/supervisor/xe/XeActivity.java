@@ -94,7 +94,7 @@ public final class XeActivity extends XeWrap {
 	private static Iterable<Directive> transform(final String root, final Activity item) throws IOException {
 		
 		User user = new UserOf(item);
-		Profile profile = user.profileOf(Supervisor.NAME);
+		Profile profile = user.profile();
 		
 		boolean canInteracteActivities = profile.hasAccess("INTERACTE_ACTIVITIES");
 		boolean canCreateIndicator = profile.hasAccess("NEW_INDICATOR", "1");
@@ -126,7 +126,6 @@ public final class XeActivity extends XeWrap {
 	                    .add("can_create_indicator_template", canCreateIndicatorTemplate)
 	                    .add("can_interacte_activities", canInteracteActivities)
 	                    .add("is_up_to_date", item.isUpToDate())
-	                    .add("app_owner_name", item.appOwner().module())         
                 )                
                 .up();
 	}

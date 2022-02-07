@@ -47,47 +47,6 @@ SOFTWARE.
                 </div>
               </div>
             </div>
-            <div class="col-md-12 mt-5">
-              <h4 class="mb-4">Applications</h4>
-              <div class="table-responsive">
-                <div class="card">
-                  <table class="table table-sm table-vcenter text-nowrap">
-                    <thead>
-                      <tr>
-                        <th class="w-1">N°</th>
-                        <th>Application</th>
-                        <th>Profil</th>
-                        <th>
-                          <a href="/admin/user/app/edit?user={item/id}" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"/> Ajouter</a>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <xsl:for-each select="applications/application">
-                        <tr>
-                          <td>
-                            <span class="text-muted">
-                              <xsl:value-of select="position()"/>
-                            </span>
-                          </td>
-                          <td>
-                            <xsl:value-of select="module"/>
-                          </td>
-                          <td>
-                            <xsl:value-of select="profile"/>
-                          </td>
-                          <td>
-                            <a class="icon" href="/admin/user/app/edit?id={id}">
-                              <i class="fe fe-edit"/>
-                            </a>
-                          </td>
-                        </tr>
-                      </xsl:for-each>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="col-md-6 order-md-1">
             <div class="col-md-12">

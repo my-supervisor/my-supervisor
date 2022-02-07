@@ -1,12 +1,10 @@
 package com.supervisor.takes;
 
-import com.supervisor.domain.Application;
 import com.supervisor.domain.Currency;
 import com.supervisor.domain.Membership;
 import com.supervisor.domain.User;
 import com.supervisor.domain.impl.DmMembership;
 import com.supervisor.domain.impl.PxAllProfiles;
-import com.supervisor.xe.XeApplication;
 import com.supervisor.xe.XeCountry;
 import com.supervisor.xe.XeCurrency;
 import com.supervisor.xe.XeLanguage;
@@ -73,11 +71,7 @@ public final class TkUserEdit extends TkForm {
 		final Membership module = new DmMembership(base, req);
 		final User user = module.users().get(id);
 		
-		XeSource xeUser = new XeUserProfile("item", user);
-		return new XeChain(
-				new XeApplication(user.applications().orderBy(Application::module)),
-				xeUser
-		);
+		return new XeUserProfile("item", user);
 	}
 
 	@Override

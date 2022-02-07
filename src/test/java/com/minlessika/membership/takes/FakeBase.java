@@ -1,6 +1,5 @@
 package com.minlessika.membership.takes;
 
-import com.supervisor.sdk.app.info.AppInfo;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.datasource.Record;
 import com.supervisor.sdk.datasource.RecordSet;
@@ -17,12 +16,7 @@ import java.util.List;
  * Fake base.
  * @since 0.1
  */
-class FakeBase implements Base {
-
-    @Override
-    public AppInfo appInfo() {
-        return new FakeAppInfo();
-    }
+final class FakeBase implements Base {
 
     @Override
     public WebSocketServer wsServer() {

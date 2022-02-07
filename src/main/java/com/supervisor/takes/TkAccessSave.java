@@ -28,9 +28,8 @@ public final class TkAccessSave extends TkBaseWrap {
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));			
 					final String name = form.single("name");
-					final String targetmodule = form.single("module");
 					
-					final Accesses accesses = new PxAccesses(base, targetmodule);
+					final Accesses accesses = new PxAccesses(base);
 					Access item = accesses.get(id);	
 					item.update(item.code(), name); 
 

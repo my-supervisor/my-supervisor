@@ -72,7 +72,7 @@ public final class PxIndicators extends DomainRecordables<Indicator, Indicators>
 		
 		// vérifier que l'utilisateur a le droit de créer un nouvel indicateur
 		User user = new UserOf(this);
-		user.profileOf(Supervisor.NAME)
+		user.profile()
 		    .validateAccessibility("NEW_INDICATOR", String.format("%s", count() + 1));
 				
 		source.isRequired(Indicator::code, code);

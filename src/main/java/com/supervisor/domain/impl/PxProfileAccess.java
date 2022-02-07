@@ -53,11 +53,6 @@ public final class PxProfileAccess extends DomainRecordable<ProfileAccess> imple
 	public ProfileAccessParams parameterValues() throws IOException {	
 		return new PgProfileAccessParams(this);
 	}
-
-	@Override
-	public String module() throws IOException {
-		return accessInherited().module();
-	}
 	
 	@Override
 	public int intParamValueOf(String code) throws IOException {

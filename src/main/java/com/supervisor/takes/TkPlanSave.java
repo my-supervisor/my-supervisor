@@ -45,7 +45,7 @@ public final class TkPlanSave extends TkBaseWrap {
 					}else {
 						final String reference = form.single("reference");
 						final Long profileId = Long.parseLong(form.single("profile_id"));
-						final Profile profile = new PxProfiles(base, "supervisor").get(profileId);
+						final Profile profile = new PxProfiles(base).get(profileId);
 						
 						item = plans.add(reference, profile, price);
 						

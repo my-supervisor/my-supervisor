@@ -125,7 +125,7 @@ public final class PgProfileAccesses extends DomainRecordables<ProfileAccess, Pr
 	public void validateAccessibility(String code) throws IOException {
 		
 		if(!hasAccess(code)) {
-			Access access = new PxAccesses(source.of(Access.class), profile.module()).where(Access::code, code).first();
+			Access access = new PxAccesses(source.of(Access.class)).where(Access::code, code).first();
 			throw new IllegalArgumentException(String.format("Vous ne pouvez pas %s !", access.name()));
 		}		
 	}
@@ -157,6 +157,6 @@ public final class PgProfileAccesses extends DomainRecordables<ProfileAccess, Pr
 								table.name()
 							);
 		
-		return new PxAccesses(source.of(Access.class, viewScript), profile.module());
+		return new PxAccesses(source.of(Access.class, viewScript));
 	}	
 }

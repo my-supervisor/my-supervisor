@@ -3,10 +3,7 @@ package com.supervisor.domain.impl;
 import java.io.IOException;
 
 import com.supervisor.sdk.datasource.Base;
-import com.supervisor.sdk.datasource.BasicModule;
 import com.supervisor.sdk.datasource.RecordSet;
-import org.takes.Request;
-
 import com.supervisor.domain.Membership;
 import com.supervisor.domain.Profiles;
 import com.supervisor.domain.User;
@@ -27,8 +24,9 @@ import com.supervisor.domain.UserDataModels;
 import com.supervisor.indicator.IndicatorType;
 import com.supervisor.indicator.IndicatorTypes;
 import com.supervisor.indicator.impl.PxIndicatorTypes;
+import org.takes.Request;
 
-public final class PxSupervisor extends BasicModule implements Supervisor {
+public final class PxSupervisor implements Supervisor {
 
 	private final RecordSet<User> source;
 	private final User user;
@@ -39,7 +37,6 @@ public final class PxSupervisor extends BasicModule implements Supervisor {
 	}
 		
 	public PxSupervisor(final Base base, final User user) throws IOException {
-		super(Supervisor.NAME, base.appInfo());	
 		this.base = base;
 		this.base.changeUser(user.id());
 		this.source = this.base.select(User.class);
@@ -132,6 +129,6 @@ public final class PxSupervisor extends BasicModule implements Supervisor {
 	
 	@Override
 	public Profiles profiles() throws IOException {
-		return new PxProfiles(base, NAME);
+		return new PxProfiles(base);
 	}
 }

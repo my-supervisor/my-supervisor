@@ -36,7 +36,7 @@ public final class TkActivityTemplatePublishedSave extends TkBaseWrap {
 						throw new IllegalArgumentException("Vous ne pouvez pas publier un modèle dont vous n'êtes pas le concepteur !");
 					}
 					
-					Profile profile = new PxProfiles(base, Supervisor.NAME).get(profileId);
+					Profile profile = new PxProfiles(base).get(profileId);
 					ActivityTemplatePublished itemSaved;
 
 					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));

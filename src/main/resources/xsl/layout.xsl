@@ -53,7 +53,9 @@ SOFTWARE.
                 <div class="d-flex">
                   <a class="header-brand" href="/home">
                     <img src="/img/logo.png" class="header-brand-img" alt="MySupervisor logo"/>
-                    <span><strong>MySupervisor</strong></span>
+                    <span>
+                      <strong>MySupervisor</strong>
+                    </span>
                   </a>
                   <div class="collapse d-lg-flex p-0" id="headerMenuCollapse">
                     <div class="container">

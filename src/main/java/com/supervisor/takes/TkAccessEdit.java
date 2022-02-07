@@ -48,9 +48,7 @@ public final class TkAccessEdit extends TkForm {
 	@Override
 	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
 		
-		final String module = new RqHref.Smart(req).single("module");
-		
-		final Access item = new PxAccesses(base, module).get(id);
+		final Access item = new PxAccesses(base).get(id);
 		return new XeChain(
 				new XeAccess("item", item), 
 				new XeAccessParam(item.parameters())

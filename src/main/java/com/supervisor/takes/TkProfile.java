@@ -19,7 +19,7 @@ public final class TkProfile extends TkBaseWrap {
 					
 					new RqAdminAuth(base, req);
 
-				    XeSource xeProfiles = new XeProfile(new PxAllProfiles(base).orderBy(Profile::module, Profile::name));
+				    XeSource xeProfiles = new XeProfile(new PxAllProfiles(base).orderBy(Profile::name));
 				    
 					return new RsPage(
                             "/xsl/profile.xsl",

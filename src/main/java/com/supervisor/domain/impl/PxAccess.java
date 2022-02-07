@@ -46,11 +46,6 @@ public final class PxAccess extends DomainRecordable<Access> implements Access {
 	}
 
 	@Override
-	public String module() throws IOException {
-		return record.valueOf(Access::module);
-	}
-
-	@Override
 	public int intParamValueOf(String code) throws IOException {
 		return Integer.parseInt(paramValueOf(code));
 	}
