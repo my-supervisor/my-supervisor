@@ -33,8 +33,6 @@ public final class TkHome extends TkBaseWrap {
 					
 					final Supervisor module = new PxSupervisor(base, req);
 					final Activities myActivities = module.activities();
-					module.user().applications().add(Supervisor.NAME);
-					
 					if(myActivities.isEmpty()) {
 						return new RsForward("/no-activity");
 					}else {
@@ -85,15 +83,15 @@ public final class TkHome extends TkBaseWrap {
 								req, 
 								base,
 								()-> new Sticky<>(
-										new XeAppend("menu", "home"),
-										wsBare,
-										xeSupervisor,
-										xeActivitiesLinked,
-										xeActivitySelected,
-										xeIndicators,
-										xeModels,
-										xeTotalInteraction,
-										xeActiveInteraction
+									new XeAppend("menu", "home"),
+									wsBare,
+									xeSupervisor,
+									xeActivitiesLinked,
+									xeActivitySelected,
+									xeIndicators,
+									xeModels,
+									xeTotalInteraction,
+									xeActiveInteraction
 								)
 						);
 					}					

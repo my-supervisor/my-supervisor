@@ -43,7 +43,7 @@ public final class TkActivityTemplatePublishedEdit extends TkForm {
 		content.add(new XeAppend("menu", "activities"));
 		content.add(new XeAppend("template_name", template.name()));
 		content.add(new XeAppend("template_id", templateId.toString()));
-		content.add(new XeProfile(new PxProfiles(base, Supervisor.NAME)));
+		content.add(new XeProfile(new PxProfiles(base)));
 		content.add(new XeSupervisor(module));
 		content.add(itemToShow);
 		

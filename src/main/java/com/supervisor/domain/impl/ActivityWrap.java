@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
-import com.supervisor.domain.Application;
 import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.datasource.RecordSet;
@@ -207,13 +205,4 @@ public class ActivityWrap implements Activity {
 		return interactsWith(activity);
 	}
 
-	@Override
-	public Application appOwner() throws IOException {
-		return origin.appOwner();
-	}
-
-	@Override
-	public void manageBy(Application app) throws IOException {
-		origin.manageBy(app);
-	}
 }

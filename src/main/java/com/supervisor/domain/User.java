@@ -7,8 +7,8 @@ import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.datasource.RecordSet;
 import com.supervisor.sdk.datasource.Recordable;
 import com.supervisor.sdk.metadata.Field;
+import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.sdk.time.TimePrinter;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -41,9 +41,7 @@ public interface User extends Person {
 	boolean notOwn(Object item) throws IOException;
 	
 	void changePassword(final String currentPwd, final String newPwd, final String newConfirmedPwd) throws IOException;
-	
-	Applications applications() throws IOException;
-	Application currentApp() throws IOException;
+
 	PlannedTasks plannedTasks() throws IOException;
 	UserPaymentRequests paymentRequests() throws IOException;
 	
@@ -52,9 +50,12 @@ public interface User extends Person {
 	TimePrinter humanDateOf(LocalDate date, FormatStyle style) throws IOException;
 	TimePrinter humanDateOf(LocalDateTime date, FormatStyle style) throws IOException;
 	TimePrinter prettyTimeOf(LocalDateTime date) throws IOException;
-	
-	Profile currentProfile() throws IOException;
-	Profile profileOf(String module) throws IOException;
+
+	@Field(
+		label="Profil",
+		rel= Relation.MANY2ONE
+	)
+	Profile profile() throws IOException;
 	
 	boolean isAnonymous() throws IOException;
 	boolean isAdmin() throws IOException;
@@ -240,12 +241,6 @@ public interface User extends Person {
 		}
 
 		@Override
-		public Applications applications() throws IOException {
-
-			return null;
-		}
-
-		@Override
 		public Address address() throws IOException {
 
 			return null;
@@ -288,18 +283,6 @@ public interface User extends Person {
 		}
 
 		@Override
-		public Application currentApp() throws IOException {
-
-			return null;
-		}
-
-		@Override
-		public Profile currentProfile() throws IOException {
-
-			return null;
-		}
-
-		@Override
 		public boolean isAnonymous() throws IOException {
 
 			return false;
@@ -318,7 +301,7 @@ public interface User extends Person {
 		}
 
 		@Override
-		public Profile profileOf(String module) throws IOException {
+		public Profile profile() throws IOException {
 
 			return null;
 		}

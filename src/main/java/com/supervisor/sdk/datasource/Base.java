@@ -1,16 +1,12 @@
 package com.supervisor.sdk.datasource;
 
-import com.supervisor.sdk.app.info.AppInfo;
 import com.supervisor.sdk.websockets.WebSocketServer;
 import org.takes.Request;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
 public interface Base {
-	
-	AppInfo appInfo();
 	WebSocketServer wsServer();
 	long currentUserId();
 	
@@ -85,11 +81,6 @@ public interface Base {
 		@Override
 		public void commit() throws IOException {
 
-		}
-		
-		@Override
-		public AppInfo appInfo() {
-			return null;
 		}
 
 		@Override

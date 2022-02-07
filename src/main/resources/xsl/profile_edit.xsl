@@ -53,31 +53,6 @@ SOFTWARE.
               <input type="text" name="name" class="form-control" placeholder="Saisir un libellé" value="{item/name}" required=""/>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="form-label">Module <span class="form-required">*</span></label>
-              <xsl:if test="item/id">
-                <input hidden="hidden" type="text" name="module" value="{item/module}"/>
-              </xsl:if>
-              <select name="module" class="form-control" required="">
-                <xsl:if test="item/id">
-                  <xsl:attribute name="disabled">disabled</xsl:attribute>
-                </xsl:if>
-                <xsl:variable name="item" select="item"/>
-                <xsl:for-each select="modules/module">
-                  <option>
-                    <xsl:if test="code = $item/module">
-                      <xsl:attribute name="selected">selected</xsl:attribute>
-                    </xsl:if>
-                    <xsl:attribute name="value">
-                      <xsl:value-of select="code"/>
-                    </xsl:attribute>
-                    <xsl:value-of select="name"/>
-                  </option>
-                </xsl:for-each>
-              </select>
-            </div>
-          </div>
           <xsl:if test="item and item/id and item/is_admin='false'">
             <div class="col-md-6">
               <div class="form-group">

@@ -4,8 +4,6 @@ import com.supervisor.billing.BillingAddress;
 import com.supervisor.billing.PlannedTasks;
 import com.supervisor.billing.UserPaymentRequests;
 import com.supervisor.domain.Address;
-import com.supervisor.domain.Application;
-import com.supervisor.domain.Applications;
 import com.supervisor.domain.Currency;
 import com.supervisor.domain.Language;
 import com.supervisor.domain.PlanSubscriptionContracts;
@@ -193,11 +191,6 @@ public class UserWrap implements User {
 	}
 
 	@Override
-	public Applications applications() throws IOException {
-		return origin.applications(); 
-	}
-
-	@Override
 	public Address address() throws IOException {
 		return origin.address();
 	}
@@ -238,16 +231,6 @@ public class UserWrap implements User {
 	}
 
 	@Override
-	public Application currentApp() throws IOException {
-		return origin.currentApp();
-	}
-
-	@Override
-	public Profile currentProfile() throws IOException {
-		return origin.currentProfile();
-	}
-
-	@Override
 	public boolean isAnonymous() throws IOException {
 		return origin.isAnonymous();
 	}
@@ -263,7 +246,7 @@ public class UserWrap implements User {
 	}
 
 	@Override
-	public Profile profileOf(String module) throws IOException {
-		return origin.profileOf(module);
+	public Profile profile() throws IOException {
+		return origin.profile();
 	}
 }

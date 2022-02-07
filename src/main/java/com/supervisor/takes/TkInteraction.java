@@ -22,7 +22,7 @@ public final class TkInteraction extends TkBaseWrap {
 				base, 
 				req -> {
 					
-					new RqUser(base, req).currentProfile().validateAccessibility("INTERACTE_ACTIVITIES");					
+					new RqUser(base, req).profile().validateAccessibility("INTERACTE_ACTIVITIES");
 					
 					final Supervisor module = new PxSupervisor(base, req);
 					

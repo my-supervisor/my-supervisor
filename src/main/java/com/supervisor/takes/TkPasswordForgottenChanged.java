@@ -43,7 +43,7 @@ public final class TkPasswordForgottenChanged extends TkForm {
 		
 		content.add(itemToShow);
 		content.add(new XeAppend("key", key));
-		content.add(new XeRecaptcha(base.appInfo()));
+		// content.add(new XeRecaptcha(base.appInfo()));
 		
 		return content;
 	}

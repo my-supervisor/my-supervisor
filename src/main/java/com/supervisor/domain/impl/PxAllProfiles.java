@@ -20,20 +20,12 @@ public final class PxAllProfiles extends DomainRecordables<Profile, AllProfiles>
 	
 	@Override
 	public void remove(Profile item) throws IOException {		
-		new PxProfiles(base(), item.module()).remove(item);
+		new PxProfiles(base()).remove(item);
 	}
 
 	@Override
-	public Profile get(String code, String module) throws IOException {
+	public Profile get(String code) throws IOException {
 		return this.where(Profile::code, code)
-				   .where(Profile::module, module)
-				   .first();
-	}
-
-	@Override
-	public Profile getByTag(String tag, String module) throws IOException {
-		return this.where(Profile::tag, tag)
-				   .where(Profile::module, module)
 				   .first();
 	}
 }

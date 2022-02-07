@@ -18,16 +18,12 @@ public final class TkStart extends TkBaseWrap {
 					
 					final User user = new RqUser(base, req);
 			        if (user.isAnonymous()) {
-			        	
-			        	final String loginUri = String.format("%s/login", base.appInfo().minlessikaDomain());
-			        	final String homeUri = String.format("%s/home", new BaseUri(req).toString());
-
 			        	return new RsPrevious(
 		        			new RsForward(
 		        					new RsFlash("Please log in before starting !"), 
-		        					loginUri
+		        					"/login"
 		        			), 
-		        			homeUri
+		        			"/home"
 				        );
 			        } else {
 			        	return new RsForward("/home");

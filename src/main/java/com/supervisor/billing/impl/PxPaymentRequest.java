@@ -3,9 +3,7 @@ package com.supervisor.billing.impl;
 import com.supervisor.billing.Order;
 import com.supervisor.billing.PaymentRequest;
 import com.supervisor.billing.PaymentRequestStatus;
-import com.supervisor.domain.Application;
 import com.supervisor.domain.Currency;
-import com.supervisor.domain.impl.PxApplication;
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
 
@@ -71,11 +69,6 @@ public final class PxPaymentRequest extends DomainRecordable<PaymentRequest> imp
 		
 		record.entryOf(PaymentRequest::status, PaymentRequestStatus.CANCELLED)
 		      .update();
-	}
-
-	@Override
-	public Application application() throws IOException {
-		return new PxApplication(record.of(PaymentRequest::application));
 	}
 
 	@Override

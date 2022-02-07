@@ -86,10 +86,10 @@ public final class XeMIdentity extends XeWrap {
 				String.join(
 					System.lineSeparator(),
 					"select",
-					"prof.id as profile_id, prof.name as profile, prof.tag as profile_tag",
-					"from base_application as app",
-					"left join membership_profile as prof on prof.id = app.profile_id",
-					"where app.user_id=? and app.module = 'supervisor'"
+					"prof.id as profile_id, prof.name as profile, prof.code as profile_tag",
+					"from membership_user as app_user",
+					"left join membership_profile as prof on prof.id = app_user.profile_id",
+					"where app_user.id=?"
 				),
 				Arrays.asList(id)
 			);
@@ -113,9 +113,9 @@ public final class XeMIdentity extends XeWrap {
 					.add(XeMIdentity.PROFILE_TAG).set(
 						profile.get(XeMIdentity.PROFILE_TAG)
 					).up()
-					.add("is_admin").set("ADMIN_SUPERVISOR".equals(profile.get(PROFILE_TAG))).up()
-					.add("is_anonymous").set("ANONYMOUS_SUPERVISOR".equals(profile.get(PROFILE_TAG))).up()
-					.add("is_simple_user").set("USER_SUPERVISOR".equals(profile.get(PROFILE_TAG))).up()
+					.add("is_admin").set("ADMIN".equals(profile.get(PROFILE_TAG))).up()
+					.add("is_anonymous").set("ANONYMOUS".equals(profile.get(PROFILE_TAG))).up()
+					.add("is_simple_user").set("USER".equals(profile.get(PROFILE_TAG))).up()
 					.add("is_company").set(data.get("is_company")).up()
 					.add("photo").set(data.get("photo")).up()
 					.up()

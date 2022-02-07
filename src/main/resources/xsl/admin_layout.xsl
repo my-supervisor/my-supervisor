@@ -31,17 +31,14 @@ SOFTWARE.
         <meta name="mobile-web-app-capable" content="yes"/>
         <meta name="HandheldFriendly" content="True"/>
         <meta name="MobileOptimized" content="320"/>
-        <link rel="icon" href="/com/webviewer/img/favicon.ico" type="image/x-icon"/>
-        <link rel="shortcut icon" type="image/x-icon" href="/com/webviewer/img/favicon.ico"/>
+        <link rel="icon" href="/img/favicon.ico" type="image/x-icon"/>
+        <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico"/>
         <!-- Generated: 2018-04-16 09:29:05 +0200 -->
-        <link rel="stylesheet" href="/com/webviewer/vendors/font-awesome-4.7.0/css/font-awesome.min.css"/>
-        <link rel="stylesheet" href="/com/webviewer/vendors/toastjs/toast.min.css"/>
-        <link rel="stylesheet" href="/com/webviewer/vendors/bootstrap4-tagsinput/tagsinput.css"/>
-        <link rel="stylesheet" href="/com/membership/css/site.css"/>
+        <link rel="stylesheet" href="/css/font-awesome-4.7.0.min.css"/>
+        <link rel="stylesheet" href="/css/tagsinput.css"/>
+        <link rel="stylesheet" href="/css/site.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext"/>
-        <link href="/com/webviewer/vendors/tabler/css/dashboard.css" rel="stylesheet"/>
-        <link href="/com/webviewer/vendors/tabler/plugins/charts-c3/plugin.css" rel="stylesheet"/>
-        <link rel="stylesheet" href="/com/webviewer/vendors/toastrjs/toastr.min.css"/>
+        <link href="/css/dashboard.css" rel="stylesheet"/>
         <xsl:apply-templates select="." mode="head"/>
       </head>
       <body class="">
@@ -95,43 +92,20 @@ SOFTWARE.
                   </div>
                 </div>
                 <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-	              Copyright © 2018 <a href="{module_links/minlessika}">Minlessika</a>. All rights reserved.
+	              Copyright © 2018-2022 <a href="{module_links/minlessika}">Minlessika</a>. All rights reserved.
 	            </div>
               </div>
             </div>
           </footer>
         </div>
-        <script src="/com/webviewer/vendors/tabler/js/vendors/jquery-3.2.1.min.js"/>
-        <script src="/com/webviewer/vendors/javascript-detect-element-resize/jquery.resize.js"/>
-        <script src="/com/webviewer/vendors/angular/angular.min.js"/>
-        <script src="/com/webviewer/vendors/tabler/plugins/charts-c3/js/d3.v3.min.js"/>
-        <script src="/com/webviewer/vendors/tabler/plugins/charts-c3/js/c3.min.js"/>
-        <script src="/com/webviewer/vendors/angular-sanitize/angular-sanitize.min.js"/>
-        <script src="/com/webviewer/vendors/angular-bind-html-compile/angular-bind-html-compile.min.js"/>
-        <script src="/com/webviewer/vendors/toastjs/toast.min.js"/>
-        <script src="/com/webviewer/vendors/angular-gridster/dist/angular-gridster.min.js"/>
-        <script src="/com/webviewer/vendors/atmosphere.js/atmosphere.js"/>
-        <script src="/com/webviewer/vendors/angular-animate/angular-animate.min.js"/>
-        <script src="/com/webviewer/vendors/angular-touch/angular-touch.min.js"/>
-        <script src="/com/webviewer/vendors/angular-guid/guid.min.js"/>
-        <script src="/com/webviewer/vendors/tabler/js/vendors/bootstrap.bundle.min.js"/>
-        <script src="/com/webviewer/vendors/angular-bootstrap/ui-bootstrap-tpls-3.0.4.min.js"/>
-        <script src="/com/webviewer/vendors/bootstrap4-tagsinput/tagsinput.js"/>
-        <script src="/com/webviewer/vendors/angular-c3-simple/dist/angular_c3_simple.js"/>
-        <script src="/com/webviewer/vendors/gauge/gauge.min.js"/>
-        <script src="/com/webviewer/vendors/angular-image-compress/angular-image-compress.js"/>
-        <script src="/com/webviewer/vendors/toastrjs/toastr.min.js"/>
-        <script src="/com/webviewer/vendors/tabler/js/vendors/jquery.sparkline.min.js"/>
-        <script src="/com/webviewer/vendors/tabler/js/vendors/selectize.min.js"/>
-        <script src="/com/webviewer/vendors/tabler/js/vendors/jquery.tablesorter.min.js"/>
-        <script src="/com/webviewer/vendors/tabler/js/vendors/jquery-jvectormap-2.0.3.min.js"/>
-        <script src="/com/webviewer/vendors/tabler/js/vendors/jquery-jvectormap-de-merc.js"/>
-        <script src="/com/webviewer/vendors/tabler/js/vendors/jquery-jvectormap-world-mill.js"/>
-        <script src="/com/webviewer/vendors/tabler/js/vendors/circle-progress.min.js"/>
-        <script src="/com/webviewer/vendors/tabler/plugins/input-mask/js/jquery.mask.min.js"/>
-        <script src="/com/webviewer/vendors/tabler/js/core.js"/>
-        <script src="/com/webviewer/vendors/tabler/js/dashboard.js"/>
-        <script src="/com/webviewer/js/indicator_module.js"/>
+        <script src="/js/jquery-3.2.1.min.js"/>
+        <script src="/js/jquery.resize.js"/>
+          <script src="/js/selectize.min.js"/>
+        <script src="/js/angular.min.js"/>
+        <script src="/js/angular-sanitize.min.js"/>
+        <script src="/js/tagsinput.js"/>
+        <script src="/js/angular-image-compress.js"/>
+        <script src="/js/toastr.min.js"/>
         <script type="text/javascript"><![CDATA[			
 	    			$(document).ready(function () {
                         $('#input-tags').selectize({

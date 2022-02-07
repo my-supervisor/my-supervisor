@@ -1,11 +1,9 @@
 package com.supervisor.billing;
 
-import com.supervisor.domain.Application;
 import com.supervisor.domain.Currency;
 import com.supervisor.sdk.datasource.Recordable;
 import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
-
 import java.io.IOException;
 import java.util.Map;
 
@@ -14,12 +12,6 @@ import java.util.Map;
 		label="Payment request"
 )
 public interface PaymentRequest extends Recordable {
-	
-	@Field(
-		label="Application",
-		rel=Relation.MANY2ONE
-	)
-	Application application() throws IOException;
 	
 	@Field(
 		label="Order",

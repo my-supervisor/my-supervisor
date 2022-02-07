@@ -4,7 +4,6 @@ import com.supervisor.billing.PlannedTask;
 import com.supervisor.billing.PlannedTaskStatus;
 import com.supervisor.billing.PlannedTaskType;
 import com.supervisor.billing.PlannedTasks;
-import com.supervisor.domain.Application;
 import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.DomainRecordables;
 import com.supervisor.sdk.datasource.OrderDirection;
@@ -39,13 +38,7 @@ public final class PxPlannedTasks extends DomainRecordables<PlannedTask, Planned
 	
 	@Override
 	public PlannedTask planDirectTask(Map<String, String> metadata, String description) throws IOException {
-		
-		if(!metadata.containsKey(Application.class.getSimpleName()))
-			throw new IllegalArgumentException("Planned Task : Application ID must be specified in metadata !");
-		
-		final Long applicationId = Long.parseLong(metadata.get(Application.class.getSimpleName()));		
-		Record<PlannedTask> record = source.entryOf(PlannedTask::application, applicationId)
-									       .entryOf(PlannedTask::description, description)
+		Record<PlannedTask> record = source.entryOf(PlannedTask::description, description)
 									       .entryOf(PlannedTask::status, PlannedTaskStatus.PENDING)
 									       .entryOf(PlannedTask::metadata, metadata)
 									       .entryOf(PlannedTask::startDate, LocalDateTime.now())
@@ -57,13 +50,7 @@ public final class PxPlannedTasks extends DomainRecordables<PlannedTask, Planned
 
 	@Override
 	public PlannedTask planDelayedTask(LocalDateTime startDate, Map<String, String> metadata, String description) throws IOException {
-		
-		if(!metadata.containsKey(Application.class.getSimpleName()))
-			throw new IllegalArgumentException("Planned Task : Application ID must be specified in metadata !");
-		
-		final Long applicationId = Long.parseLong(metadata.get(Application.class.getSimpleName()));	
-		Record<PlannedTask> record = source.entryOf(PlannedTask::application, applicationId)
-									       .entryOf(PlannedTask::description, description)
+		Record<PlannedTask> record = source.entryOf(PlannedTask::description, description)
 									       .entryOf(PlannedTask::status, PlannedTaskStatus.PENDING)
 									       .entryOf(PlannedTask::metadata, metadata)
 									       .entryOf(PlannedTask::startDate, startDate)
@@ -76,8 +63,7 @@ public final class PxPlannedTasks extends DomainRecordables<PlannedTask, Planned
 	@Override
 	public PlannedTasks tasksToExecute(LocalDateTime startDate) throws IOException {
 		return this.where(PlannedTask::startDate, Matchers.lessOrEqualsTo(startDate))
-				   .where(PlannedTask::status, PlannedTaskStatus.PENDING)
-				   .where(PlannedTask::application, user.applications().current().id());
+				   .where(PlannedTask::status, PlannedTaskStatus.PENDING);
 	}
 
 }

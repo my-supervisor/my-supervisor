@@ -40,16 +40,14 @@ import com.supervisor.domain.User;
 import com.supervisor.domain.Users;
 import com.supervisor.takes.RqUser;
 import com.supervisor.sdk.datasource.Base;
-import com.supervisor.sdk.datasource.BasicModule;
 import com.supervisor.sdk.datasource.RecordSet;
 import org.takes.Request;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
 
-public final class DmMembership extends BasicModule implements Membership {
+public final class DmMembership implements Membership {
 
 	private final RecordSet<User> source;
 	private final User user;
@@ -67,7 +65,6 @@ public final class DmMembership extends BasicModule implements Membership {
 	}
 	
 	public DmMembership(final Base base, final User user) throws IOException {
-		super(Membership.NAME, base.appInfo());
 		this.base = base;
 		this.base.changeUser(user.id());
 		this.source = this.base.select(User.class);
@@ -88,10 +85,7 @@ public final class DmMembership extends BasicModule implements Membership {
 
 	@Override
 	public Accesses accesses() throws IOException {
-		return new PxAccesses(
-			source.of(Access.class),
-			NAME
-		);
+		return new PxAccesses(source.of(Access.class));
 	}
 
 	@Override
@@ -194,6 +188,6 @@ public final class DmMembership extends BasicModule implements Membership {
 
 	@Override
 	public Profiles profiles() throws IOException {
-		return new PxProfiles(base, NAME);
+		return new PxProfiles(base);
 	}
 }

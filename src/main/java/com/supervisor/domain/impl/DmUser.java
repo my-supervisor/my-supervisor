@@ -6,8 +6,6 @@ import com.supervisor.billing.UserPaymentRequests;
 import com.supervisor.billing.impl.PgUserPaymentRequests;
 import com.supervisor.billing.impl.PxPlannedTasks;
 import com.supervisor.domain.Address;
-import com.supervisor.domain.Application;
-import com.supervisor.domain.Applications;
 import com.supervisor.domain.Currency;
 import com.supervisor.domain.Language;
 import com.supervisor.domain.Person;
@@ -24,7 +22,6 @@ import com.supervisor.sdk.secure.EncryptedWordImpl;
 import com.supervisor.sdk.time.TimePrinter;
 import com.supervisor.sdk.utils.logging.Logger;
 import com.supervisor.sdk.utils.logging.MLogger;
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -204,11 +201,6 @@ public final class DmUser extends DomainRecordable<User> implements User {
 	}
 
 	@Override
-	public Applications applications() throws IOException {
-		return new PxApplications(this);
-	}
-
-	@Override
 	public Address address() throws IOException {
 		return origin.address();
 	}
@@ -233,18 +225,12 @@ public final class DmUser extends DomainRecordable<User> implements User {
 		return new PgUserPaymentRequests(this);
 	}
 
-	@Override
-	public Application currentApp() throws IOException {
-		
-		if(isAnonymous())
-			return new AnonymousUserApplication(base());
-		else
-			return applications().current();
-	}
 
 	@Override
-	public Profile currentProfile() throws IOException {
-		return currentApp().profile();
+	public Profile profile() throws IOException {
+		return new PxProfile(
+			record.of(User::profile)
+		);
 	}
 
 	@Override
@@ -259,14 +245,7 @@ public final class DmUser extends DomainRecordable<User> implements User {
 
 	@Override
 	public void changeProfile(Profile newProfile) throws IOException {
-		currentApp().changeProfile(newProfile);
-	}
-
-	@Override
-	public Profile profileOf(String module) throws IOException {
-		if(!applications().has(module))
-			applications().add(module);
-		
-		return applications().get(module).profile();
+		record.entryOf(User::profile, newProfile.id())
+			.update();
 	}
 }

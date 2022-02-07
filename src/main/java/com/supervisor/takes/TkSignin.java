@@ -34,8 +34,8 @@ public final class TkSignin extends TkBaseWrap {
 
 					final String gRecaptchaResponse = form.single("g-recaptcha-response", "");
 					
-					final Recaptcha recaptcha = new GRecaptcha(base.appInfo());
-					recaptcha.validate(gRecaptchaResponse);
+					//final Recaptcha recaptcha = new GRecaptcha(base.appInfo());
+					// recaptcha.validate(gRecaptchaResponse);
 					
 					final String email = form.single("email");
 					final String password = form.single("password");

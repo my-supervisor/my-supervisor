@@ -34,7 +34,6 @@ SOFTWARE.
               <tr>
                 <th class="w-1">N°</th>
                 <th>Libellé</th>
-                <th>Module</th>
                 <th colspan="2">
                   <a href="/admin/profile/edit" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"/> Ajouter</a>
                 </th>
@@ -50,9 +49,6 @@ SOFTWARE.
                   </td>
                   <td>
                     <xsl:value-of select="name"/>
-                  </td>
-                  <td>
-                    <xsl:value-of select="module"/>
                   </td>
                   <td>
                     <a class="icon" href="/admin/profile/edit?id={id}">

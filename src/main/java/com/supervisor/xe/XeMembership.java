@@ -23,11 +23,7 @@ public final class XeMembership extends XeWrap {
                 		          .where(PaymentRequest::status, PaymentRequestStatus.PENDING)
                 		          .orderBy(PaymentRequest::id, OrderDirection.DESC)
                     ).toXembly() 
-                 ).append(
-                         new XeApplication(
-                         		module.user().applications()
-                         ).toXembly() 
-                      )
+                 )
 		);
 	}
 	

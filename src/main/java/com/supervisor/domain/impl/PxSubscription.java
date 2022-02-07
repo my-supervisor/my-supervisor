@@ -19,7 +19,7 @@ public final class PxSubscription extends DomainRecordables<SharedResource, Subs
 
 	@Override
 	public void unsubscribe(SharedResource resource) throws IOException {		
-		new UserOf(this).currentProfile().validateAccessibility("ONE_UNSUBSCRIBE_DATA_SHEET_MODEL");
+		new UserOf(this).profile().validateAccessibility("ONE_UNSUBSCRIBE_DATA_SHEET_MODEL");
 		remove(resource);
 	}
 

@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.datasource.RecordSet;
 import com.supervisor.sdk.metadata.Field;
@@ -32,12 +31,6 @@ public interface Activity extends com.supervisor.sdk.datasource.Recordable {
 	
 	@Field(label="Version")
 	String version() throws IOException;
-	
-	@Field(
-		label="Application propriétaire", 
-		rel= Relation.MANY2ONE
-	)
-	Application appOwner() throws IOException;
 	
 	@Field(label="Est un modèle ?")
 	boolean isTemplate() throws IOException;
@@ -69,7 +62,6 @@ public interface Activity extends com.supervisor.sdk.datasource.Recordable {
 	List<Activity> actors() throws IOException;
 	List<Activity> receivers() throws IOException;
 	boolean interactsWith(Activity activity) throws IOException;
-	void manageBy(Application app) throws IOException;
 	
 	User owner() throws IOException;
 	
@@ -285,17 +277,6 @@ public interface Activity extends com.supervisor.sdk.datasource.Recordable {
 		public boolean interactsWith(Activity activity) throws IOException {
 			
 			return false;
-		}
-
-		@Override
-		public Application appOwner() throws IOException {
-			return Application.EMPTY;
-		}
-
-		@Override
-		public void manageBy(Application app) throws IOException {
-			
-			
 		}
 	};
 }

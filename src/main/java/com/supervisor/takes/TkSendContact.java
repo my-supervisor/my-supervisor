@@ -45,8 +45,8 @@ public final class TkSendContact extends TkWrap {
 			req -> {
 				final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 				final String gRecaptchaResponse = form.single("g-recaptcha-response", "");
-				final Recaptcha recaptcha = new GRecaptcha(base.appInfo());
-				recaptcha.validate(gRecaptchaResponse);
+				// final Recaptcha recaptcha = new GRecaptcha(base.appInfo());
+				// recaptcha.validate(gRecaptchaResponse);
 				final String name = form.single("name");
 				final String email = form.single("email");
 				final String message = form.single("message");

@@ -1,7 +1,5 @@
 package com.supervisor.sdk.pgsql;
 
-import com.supervisor.sdk.app.info.AppInfo;
-import com.supervisor.sdk.app.info.DefaultAppInfo;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.datasource.BaseScheme;
 import com.supervisor.sdk.datasource.BaseStatementQueryable;
@@ -38,25 +36,15 @@ public final class PgBase implements Base {
 	private final DataSource source;
 	private final List<Class<? extends Recordable>> clazzsRegistered;
 	private final BaseScheme scheme;
-	private final AppInfo appInfo;
 	private final WebSocketServer wsServer;
 	private static final ThreadLocal<Connection> connectionContext = new ThreadLocal<>();
 	private static final ThreadLocal<Long> userIdContext = new ThreadLocal<>();
 	private static final ThreadLocal<Boolean> inTransactionContext = new ThreadLocal<>();
-	
-	public PgBase(final DataSource source) {
-		this(source, new DefaultAppInfo(), null);
-	}
-	
-	public PgBase(final DataSource source, final AppInfo appInfo) {
-		this(source, appInfo, null);
-	}
-	
-	public PgBase(final DataSource source, final AppInfo appInfo, final WebSocketServer wsServer) {
+
+	public PgBase(final DataSource source, final WebSocketServer wsServer) {
 		this.source = source;
 		this.clazzsRegistered = new ArrayList<>();
 		this.scheme = new PgBaseScheme();
-		this.appInfo = appInfo;
 		this.wsServer = wsServer;
 	}
 	
@@ -189,11 +177,6 @@ public final class PgBase implements Base {
 	@Override
 	public <A1 extends Recordable> RecordSet<A1> select(Class<A1> clazz, String viewScript) throws IOException {
 		return new PgRecordSet<>(this, scheme, clazz, new TableImpl(viewScript));
-	}
-
-	@Override
-	public AppInfo appInfo() {
-		return appInfo;
 	}
 
 	@Override

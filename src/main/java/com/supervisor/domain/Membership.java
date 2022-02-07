@@ -8,26 +8,11 @@ import com.supervisor.billing.PurchaseOrders;
 import com.supervisor.billing.Taxes;
 import com.supervisor.billing.UserPaymentReceipts;
 import com.supervisor.billing.UserPaymentRequests;
-import com.supervisor.sdk.datasource.Module;
-import org.apache.commons.lang.StringUtils;
-
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.TimeZone;
+public interface Membership {
 
-public interface Membership extends Module {
-	
-	public static final String NAME = "com/membership";
-	
-	/**
-     * Revision.
-     */
-    public static final String REV = "0.0.1.1040";
-    public static final LocalDate RELEASE_DATE = LocalDate.of(2019, 12, 03);
-    public static final String PRODUCT_RANGE = "SAAS"; 
-    public static final String NOTES = StringUtils.EMPTY;
-    
 	RegistrationRequests registrationRequests() throws IOException;
 	Persons contacts() throws IOException;
 	Users members() throws IOException;

@@ -37,7 +37,7 @@ public final class TkPlanEdit extends TkForm {
 		new RqAdminAuth(base, req);
 		
 		List<XeSource> content = new ArrayList<>();
-		content.add(new XeProfile(new PxProfiles(base, "supervisor")));
+		content.add(new XeProfile(new PxProfiles(base)));
 		content.add(itemToShow);
 		
 		return content;

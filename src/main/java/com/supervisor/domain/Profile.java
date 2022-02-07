@@ -15,13 +15,10 @@ import java.util.UUID;
 	label="Profil"
 )
 public interface Profile extends Recordable {
-	
-	final String ADMIN_TAG = "ADMIN";
-	final String ANONYMOUS_TAG = "ANONYMOUS";
-	final String USER_TAG = "USER";
-	
-	@Field(label="Module")
-	String module() throws IOException;
+
+	final String ADMIN = "ADMIN";
+	final String ANONYMOUS = "ANONYMOUS";
+	final String USER = "USER";
 	
 	@Field(
 		label="Profil parent",
@@ -176,12 +173,6 @@ public interface Profile extends Recordable {
 		public boolean isUpperOrEqualTo(Profile profile) throws IOException {
 			
 			return false;
-		}
-
-		@Override
-		public String module() throws IOException {
-			
-			return null;
 		}
 
 		@Override

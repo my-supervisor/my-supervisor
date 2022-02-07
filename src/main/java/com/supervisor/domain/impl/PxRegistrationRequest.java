@@ -78,9 +78,6 @@ public final class PxRegistrationRequest extends DomainRecordable<RegistrationRe
 		      .entryOf(RegistrationRequest::status, RegistrationRequestStatus.CONFIRMED)
 		      .update();
 		
-		// add by default Supervisor application
-		user.applications().add("supervisor");
-		
 		return user;
 	}
 
