@@ -158,6 +158,10 @@ public final class FkMySupervisor extends FkWrap {
 					)
 				),
 				new FkRegex(
+					"/img/.+\\.svg",
+					new TkWithType(new TkClasspath(), "image/svg+xml")
+				),
+				new FkRegex(
 					"/img/.+",
 					new TkWithType(new TkClasspath(), "image/*")
 				),
