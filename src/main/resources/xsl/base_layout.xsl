@@ -53,7 +53,7 @@ SOFTWARE.
 			    </script>
       </xsl:if>
       <title>
-        <xsl:text>Minlessika</xsl:text>
+        <xsl:text>MySupervisor</xsl:text>
       </title>
       <xsl:if test="mailchimp/active = 'true'">
         <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/3f778d6a05433c5bb2085402f/4b0432e23d38fb5d45e376f64.js");</script>
