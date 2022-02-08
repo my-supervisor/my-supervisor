@@ -3,9 +3,11 @@ package com.supervisor.takes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.collections.IteratorUtils;
 import org.takes.Request;
 import org.takes.rq.RqHref;
@@ -40,7 +42,7 @@ public final class TkSharingEdit extends TkForm {
 		Smart params = new RqHref.Smart(req);
 		
 		ResourceType type = ResourceType.valueOf(params.single("type"));
-		Long resourceId = Long.parseLong(params.single("resource"));
+		UUID resourceId = UUID.fromString(params.single("resource"));
 		Resource resource = module.resources().resource(type, resourceId);
 		
 		if(new RqUser(base, req).notOwn(resource)) {
@@ -59,13 +61,13 @@ public final class TkSharingEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		return XeSource.EMPTY;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XeSubscriber((List<String>)IteratorUtils.toList(form.param("item_email").iterator()));
 	}	
 }

@@ -1,6 +1,7 @@
 package com.supervisor.sharing;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Record;
 import com.supervisor.domain.Activity;
@@ -63,7 +64,7 @@ public abstract class DataSharingBase<T extends Sharable, A extends DataShared<T
 	
 	protected Record<T> concreteRecord() throws IOException {
 		
-		final Long concreteId;
+		final UUID concreteId;
 		if(action == WriterAction.TEMPLATING) {			
 			concreteId = source.id();
 		} else {
@@ -79,7 +80,7 @@ public abstract class DataSharingBase<T extends Sharable, A extends DataShared<T
 	
 	protected Record<T> templateRecord() throws IOException {
 		
-		final Long templateId;
+		final UUID templateId;
 		if(action == WriterAction.TEMPLATING) {
 			templateId = source.listOf(dataSharedClazz)
 			          		   .get(source.id())

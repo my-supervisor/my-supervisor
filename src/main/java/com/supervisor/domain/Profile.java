@@ -72,12 +72,7 @@ public interface Profile extends Recordable {
 		}
 
 		@Override
-		public Long id() {
-			return null;
-		}
-
-		@Override
-		public UUID guid() throws IOException {
+		public UUID id() {
 			return null;
 		}
 
@@ -87,7 +82,7 @@ public interface Profile extends Recordable {
 		}
 
 		@Override
-		public Long creatorId() throws IOException {
+		public UUID creatorId() throws IOException {
 			return null;
 		}
 
@@ -97,12 +92,12 @@ public interface Profile extends Recordable {
 		}
 
 		@Override
-		public Long lastModifierId() throws IOException {
+		public UUID lastModifierId() throws IOException {
 			return null;
 		}
 
 		@Override
-		public Long ownerId() throws IOException {
+		public UUID ownerId() throws IOException {
 			return null;
 		}
 

@@ -1,10 +1,12 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.domain.impl.PxProfiles;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqGreedy;
@@ -27,8 +29,8 @@ public final class TkActivityTemplatePublishedSave extends TkBaseWrap {
 					
 					final Supervisor module = new PxSupervisor(base, req);
 					
-					final Long templateId = Long.parseLong(form.single("template_id"));
-					final Long profileId = Long.parseLong(form.single("profile_id"));
+					final UUID templateId = UUID.fromString(form.single("template_id"));
+					final UUID profileId = UUID.fromString(form.single("profile_id"));
 					final String icon = form.single("icon");
 								
 					ActivityTemplate template = module.activityTemplates().get(templateId);
@@ -39,9 +41,9 @@ public final class TkActivityTemplatePublishedSave extends TkBaseWrap {
 					Profile profile = new PxProfiles(base).get(profileId);
 					ActivityTemplatePublished itemSaved;
 
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
-					if(id > 0) {			
-						itemSaved = module.activityTemplatesPublished().get(id);		
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
+					if(id.isPresent()) {
+						itemSaved = module.activityTemplatesPublished().get(id.value());
 					}else
 					{			
 						itemSaved = module.activityTemplatesPublished().publish(template, icon);
@@ -52,7 +54,7 @@ public final class TkActivityTemplatePublishedSave extends TkBaseWrap {
 					
 					final String msg;
 					
-					if(id > 0)
+					if(id.isPresent())
 						msg = "La publication a été mise à jour avec succès !";			
 					else
 						msg = String.format("Le modèle %s a été publié avec succès !", itemSaved.name());

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -11,6 +12,7 @@ import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.time.PeriodicityUnit;
 import com.supervisor.sdk.utils.BasicCodeGenerator;
 import com.supervisor.sdk.utils.CodeGenerator;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.lang.StringUtils;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
@@ -43,7 +45,7 @@ public final class TkChartCamembertSettingSave extends TkBaseWrap {
 					final String label = form.single("label");
 					final String subLabel = form.single("sub_label", "");
 					final String description = form.single("description");	
-					final Long activityId = Long.parseLong(form.single("activity_id"));
+					final UUID activityId = UUID.fromString(form.single("activity_id"));
 					Activity activity = myActivities.get(activityId);
 					
 					if(new RqUser(base, req).notOwn(activity)) {
@@ -51,10 +53,10 @@ public final class TkChartCamembertSettingSave extends TkBaseWrap {
 					}
 					
 					ChartCamembert itemSaved;
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));		
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 
-					if(id > 0) {			
-						itemSaved = (ChartCamembert)activity.indicators().get(id);
+					if(id.isPresent()) {
+						itemSaved = (ChartCamembert)activity.indicators().get(id.value());
 									
 						final String periodicityState = form.single("periodicity_state", "removed");
 						if(periodicityState.equals("added")) {
@@ -89,7 +91,7 @@ public final class TkChartCamembertSettingSave extends TkBaseWrap {
 					
 					final String msg;
 					
-					if(id > 0)
+					if(id.isPresent())
 						msg = String.format("L'indicateur %s a été modifié avec succès !", itemSaved.code());
 					else
 						msg = String.format("L'indicateur %s a été créé avec succès !", itemSaved.code());

@@ -20,11 +20,11 @@ public final class XeDynamicTable2Col implements RsJson.Source {
 	@Override
 	public JsonStructure toJson() throws IOException {
 		return Json.createObjectBuilder()
-				.add("id", origin.id())
+				.add("id", origin.id().toString())
                 .add("code", origin.code())
                 .add("name", origin.name())
                 .add("type", origin.type().name())
-                .add("type_id", origin.type().id())
+                .add("type_id", origin.type().id().toString())
                 .add("short_name", origin.type().shortName())
                 .add("description", origin.description())
                 .add("label", origin.label())                
@@ -35,7 +35,7 @@ public final class XeDynamicTable2Col implements RsJson.Source {
                 .add("manageEvolutionPercent", origin.manageEvolutionPercent())
 				.add("unitySymbol", origin.unitySymbol())
 				.add("symbolPosition", origin.symbolPosition().name())
-				.add("activity_id", origin.activity().id())
+				.add("activity_id", origin.activity().id().toString())
                 .add("activity", origin.activity().name())
                 .add("sizeX", origin.sizeX())
                 .add("sizeY", origin.sizeY())

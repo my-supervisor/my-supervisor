@@ -2,10 +2,12 @@ package com.supervisor.takes;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.commons.lang.StringUtils;
 import org.takes.facets.flash.RsFlash;
@@ -37,9 +39,9 @@ public final class TkDataLinkSave extends TkBaseWrap {
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					
 					final DataDomainDefinition ddf = DataDomainDefinition.valueOf(form.single("data_domain_definition_id")); 					
-					final Long indicId = Long.parseLong(new RqHref.Smart(req).single("indic"));
+					final UUID indicId = UUID.fromString(new RqHref.Smart(req).single("indic"));
 					final String source = new RqHref.Smart(req).single("source");
-					final Long activityId = Long.parseLong(StringUtils.remove(source, "activity"));
+					final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 					final Activity activity = module.activities().get(activityId);
 					Indicator indic = activity.indicators().get(indicId);
 
@@ -49,16 +51,16 @@ public final class TkDataLinkSave extends TkBaseWrap {
 							
 					DataLink itemSaved;
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					boolean active = Boolean.parseBoolean(form.single("status_id", "true"));
 					String name = form.single("name");
 					
-					if(id > 0) {
-						itemSaved = indic.links().get(id);			
+					if(id.isPresent()) {
+						itemSaved = indic.links().get(id.value());
 						itemSaved.update(name); 
 					} else {
-						final Long modelId = Long.parseLong(form.single("model_id"));
-						DataModel model = module.dataModels().get(modelId);						
+						final UUID modelId = UUID.fromString(form.single("model_id"));
+						DataModel model = module.dataModels().get(modelId);
 						itemSaved = indic.links().add(name, model);
 					}
 					
@@ -70,10 +72,10 @@ public final class TkDataLinkSave extends TkBaseWrap {
 					int nbOfFieldsToTreat = getValuesOfRow("item_param_id", form).size();
 					for (int i = 0; i < nbOfFieldsToTreat; i++) {
 						
-						Long paramId = Long.parseLong(getValuesOfRow("item_param_id", form).get(i));
+						UUID paramId = UUID.fromString(getValuesOfRow("item_param_id", form).get(i));
 						IndicatorDynamicParam param = indic.dynamicParams().get(paramId);
 						
-						Long fieldToUseId = Long.parseLong(getValuesOfRow("item_field_to_use_id", form).get(i));
+						UUID fieldToUseId = UUID.fromString(getValuesOfRow("item_field_to_use_id", form).get(i));
 						DataField fieldToUse = model.fields().get(fieldToUseId);
 						
 						final DataLinkOperator operator = DataLinkOperator.valueOf(getValuesOfRow("operator_id", form).get(i));
@@ -88,7 +90,7 @@ public final class TkDataLinkSave extends TkBaseWrap {
 						String state = getRowValueAt("param_state", form, i);
 						
 						if(state.equals("added")) {
-							Long paramId = Long.parseLong(getValuesOfRow("param_id", form).get(i));
+							UUID paramId = UUID.fromString(getValuesOfRow("param_id", form).get(i));
 							ParamDataField param = model.fields().params().get(paramId);
 							
 							String value = getValuesOfRow("param_value", form).get(i);
@@ -96,20 +98,20 @@ public final class TkDataLinkSave extends TkBaseWrap {
 						}
 						
 						if(state.equals("modified")) {
-							Long paramId = Long.parseLong(getValuesOfRow("param_id", form).get(i));
+							UUID paramId = UUID.fromString(getValuesOfRow("param_id", form).get(i));
 							DataLinkParam param = itemSaved.params().get(paramId);
 							String value = getValuesOfRow("param_value", form).get(i);
 							param.update(value);
 						}
 						
 						if(state.equals("removed")) {
-							Long paramId = Long.parseLong(getValuesOfRow("param_id", form).get(i));
+							UUID paramId = UUID.fromString(getValuesOfRow("param_id", form).get(i));
 							itemSaved.params().remove(paramId);
 						}					
 					}
 					
 					final String msg;
-					if(id > 0)
+					if(id.isPresent())
 						msg = "La liaison a été modifiée avec succès !";
 					else
 						msg = "La liaison a été créée avec succès !";

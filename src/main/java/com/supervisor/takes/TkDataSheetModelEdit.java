@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rq.form.RqFormSmart;
 import org.takes.rs.xe.XeAppend;
@@ -53,10 +54,10 @@ public final class TkDataSheetModelEdit extends TkForm {
 	}
 	
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		final Supervisor module = new PxSupervisor(base, req);
 		DataSheetModels myItems = module.dataSheetModels(); 
-		DataSheetModel item = myItems.get(id);		
+		DataSheetModel item = myItems.get(id.value());
 		return new XeChain(
 				new XeEditableDataField(item.fields().editables()),
 				new XeDataSheetModel("item", item)				
@@ -64,13 +65,13 @@ public final class TkDataSheetModelEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
 		XeSource xeSource = new XeDataSheetModel(dir);
-		if(id > 0) {
+		if(id.isPresent()) {
 			final Supervisor module = new PxSupervisor(base, req);
 			DataSheetModels myItems = module.dataSheetModels(); 
-			DataSheetModel item = myItems.get(id);
+			DataSheetModel item = myItems.get(id.value());
 			
 			xeSource = new XeChain(
 							new XeEditableDataField(item.fields().editables()),

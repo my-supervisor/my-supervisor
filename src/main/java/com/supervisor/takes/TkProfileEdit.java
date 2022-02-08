@@ -4,6 +4,7 @@ import com.supervisor.domain.Profile;
 import com.supervisor.domain.Profiles;
 import com.supervisor.domain.impl.PxAllProfiles;
 import com.supervisor.domain.impl.PxProfiles;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.xe.XeModule;
 import com.supervisor.xe.XeProfile;
 import com.supervisor.xe.XeProfileAccess;
@@ -48,9 +49,9 @@ public final class TkProfileEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
+	protected XeSource preItemDataToShow(OptUUID id, Request req) throws IOException {
 		
-		final Profile item = new PxAllProfiles(base).get(id);
+		final Profile item = new PxAllProfiles(base).get(id.value());
 		final Profiles profiles = new PxProfiles(base);
 		return new XeChain(
 				new XeProfile("item", item), 
@@ -60,7 +61,7 @@ public final class TkProfileEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return preItemDataToShow(id, req);
 	}
 }

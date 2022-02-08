@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rq.form.RqFormSmart;
 import org.takes.rs.xe.XeAppend;
@@ -78,11 +79,11 @@ public final class TkAggregatedModelEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		final UserAggregatedModels items = module.aggregatedModels();
-		final AggregatedModel item = items.get(id);
+		final AggregatedModel item = items.get(id.value());
 
 		return new XeChain(
 			new XeAggregatedModel("item", item),
@@ -105,8 +106,8 @@ public final class TkAggregatedModelEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
-		if(id == 0)
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+		if(id.isEmpty())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

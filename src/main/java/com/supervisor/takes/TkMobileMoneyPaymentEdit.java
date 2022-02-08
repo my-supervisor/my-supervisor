@@ -9,6 +9,7 @@ import com.supervisor.billing.PaymentType;
 import com.supervisor.domain.Membership;
 import com.supervisor.domain.User;
 import com.supervisor.domain.impl.DmMembership;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.xe.XeMembership;
 import com.supervisor.xe.XeMobilePaymentReceipt;
 import com.supervisor.xe.XePaymentMethod;
@@ -25,6 +26,7 @@ import org.xembly.Directive;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class TkMobileMoneyPaymentEdit extends TkForm {
 
@@ -43,11 +45,11 @@ public final class TkMobileMoneyPaymentEdit extends TkForm {
 		final Membership module = new DmMembership(base, req);
 		final User user = module.user();
 		
-		Long requestId = Long.parseLong(new RqHref.Smart(req).single("request"));
+		UUID requestId = UUID.fromString(new RqHref.Smart(req).single("request"));
 		PaymentRequest request = user.paymentRequests().get(requestId);
 		XeSource xePaymentRequest = new XePaymentRequest("request", request);
 		
-		Long methodId = Long.parseLong(new RqHref.Smart(req).single("method"));
+		UUID methodId = UUID.fromString(new RqHref.Smart(req).single("method"));
 		PaymentMethod method = module.paymentMethods()
 			                         .where(PaymentMethod::type, PaymentType.MOBILE_MONEY)
 			                         .get(methodId);
@@ -81,12 +83,12 @@ public final class TkMobileMoneyPaymentEdit extends TkForm {
 	}
 	
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		return XeSource.EMPTY;
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XeDirectives(dir);
 	}	
 }

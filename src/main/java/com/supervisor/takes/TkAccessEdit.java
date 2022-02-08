@@ -4,6 +4,7 @@ import com.supervisor.domain.Access;
 import com.supervisor.domain.Membership;
 import com.supervisor.domain.impl.DmMembership;
 import com.supervisor.domain.impl.PxAccesses;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.xe.XeAccess;
 import com.supervisor.xe.XeAccessParam;
 import com.supervisor.xe.XeMembership;
@@ -46,9 +47,9 @@ public final class TkAccessEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
+	protected XeSource preItemDataToShow(OptUUID id, Request req) throws IOException {
 		
-		final Access item = new PxAccesses(base).get(id);
+		final Access item = new PxAccesses(base).get(id.value());
 		return new XeChain(
 				new XeAccess("item", item), 
 				new XeAccessParam(item.parameters())
@@ -56,7 +57,7 @@ public final class TkAccessEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return preItemDataToShow(id, req);
 	}
 }

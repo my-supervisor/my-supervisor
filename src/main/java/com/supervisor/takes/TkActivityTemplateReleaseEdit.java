@@ -3,9 +3,11 @@ package com.supervisor.takes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -42,7 +44,7 @@ public final class TkActivityTemplateReleaseEdit extends TkForm {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		ActivityTemplates templates = module.activityTemplates();
-		Long templateId = Long.parseLong(href.single("template"));
+		UUID templateId = UUID.fromString(href.single("template"));
 		ActivityTemplate template = templates.get(templateId);
 		
 		List<XeSource> content = new ArrayList<>();
@@ -56,15 +58,15 @@ public final class TkActivityTemplateReleaseEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
+	protected XeSource preItemDataToShow(OptUUID id, Request req) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		ActivityTemplates templates = module.activityTemplates();
 		
-		Long templateId = Long.parseLong(new RqHref.Smart(req).single("template"));
+		UUID templateId = UUID.fromString(new RqHref.Smart(req).single("template"));
 		ActivityTemplate template = templates.get(templateId);
 		
-		ActivityTemplateRelease release = template.releases().get(id);
+		ActivityTemplateRelease release = template.releases().get(id.value());
 		
 		return new XeChain(
 				new XeActivityTemplateRelease("item", release)
@@ -72,9 +74,9 @@ public final class TkActivityTemplateReleaseEdit extends TkForm {
 	}
 	
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id == 0) {
+		if(id.isEmpty()) {
 			final RqHref.Smart href = new RqHref.Smart(req);
 			
 			return new XeChain(

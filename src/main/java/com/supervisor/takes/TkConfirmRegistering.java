@@ -33,7 +33,7 @@ public final class TkConfirmRegistering extends TkBaseWrap {
 											)
 									  );
 					
-					RegistrationRequests myRequests = module.registrationRequests().where(RegistrationRequest::guid, guid);
+					RegistrationRequests myRequests = module.registrationRequests().where(RegistrationRequest::id, guid);
 					
 					if(myRequests.isEmpty())
 						throw new IllegalArgumentException("The link sent is not valid !");

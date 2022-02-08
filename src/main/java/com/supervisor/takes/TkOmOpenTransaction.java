@@ -17,6 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public final class TkOmOpenTransaction extends TkBaseWrap {
 
@@ -28,7 +29,7 @@ public final class TkOmOpenTransaction extends TkBaseWrap {
 					final Membership module = new DmMembership(base, req);
 					final User user = module.user();
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("request"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("request"));
 					
 					final PaymentRequest paymentRequest = user.paymentRequests().get(id);
 					final MobileMoney method = (MobileMoney)module.paymentMethods().where(PaymentMethod::tag, "OM").first();

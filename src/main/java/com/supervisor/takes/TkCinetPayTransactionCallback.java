@@ -31,7 +31,7 @@ public final class TkCinetPayTransactionCallback extends TkBaseWrap {
 				base,
 				req -> {
 					RecordSet<User> source = base.select(User.class);
-					User user = new DmUser(source.get(1L)); // prendre l'utilisateur Minlessika
+					User user = new DmUser(source.get(User.ADMIN_ID)); // prendre l'utilisateur Minlessika
 					
 					final Membership membership = new DmMembership(base, user);
 					

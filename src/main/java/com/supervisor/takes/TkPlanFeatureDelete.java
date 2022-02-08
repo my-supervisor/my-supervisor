@@ -11,6 +11,7 @@ import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqHref;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkPlanFeatureDelete extends TkBaseWrap {
@@ -25,8 +26,8 @@ public final class TkPlanFeatureDelete extends TkBaseWrap {
 					final Membership module = new DmMembership(base, req);			
 					final Plans plans = module.plans();
 					
-					final Long planId = Long.parseLong(new RqHref.Smart(req).single("plan"));
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id"));
+					final UUID planId = UUID.fromString(new RqHref.Smart(req).single("plan"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
 
 					Plan plan = plans.get(planId);
 					PlanFeature item = plan.features().get(id);

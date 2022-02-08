@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -21,11 +22,11 @@ public final class TkDataLinkDelete extends TkBaseWrap {
 				base, 
 				req ->{
 					final Supervisor module = new PxSupervisor(base, req);
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
-					final Long indicId = Long.parseLong(new RqHref.Smart(req).single("indic"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
+					final UUID indicId = UUID.fromString(new RqHref.Smart(req).single("indic"));
 					final String source = new RqHref.Smart(req).single("source");
 					
-					final Long activityId = Long.parseLong(StringUtils.remove(source, "activity"));
+					final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 					final Activity activity = module.activities().get(activityId);
 					Indicator indic = activity.indicators().get(indicId);
 

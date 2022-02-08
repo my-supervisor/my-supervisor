@@ -5,8 +5,8 @@ import com.supervisor.sdk.datasource.conditions.Condition;
 import com.supervisor.sdk.datasource.conditions.Filter;
 import com.supervisor.sdk.metadata.FieldMetadata;
 import com.supervisor.sdk.metadata.MethodReferenceUtils;
-
 import java.io.IOException;
+import java.util.UUID;
 
 public interface RecordSet<A1 extends Recordable> extends EntitySet<Record<A1>> {		
 	
@@ -43,7 +43,7 @@ public interface RecordSet<A1 extends Recordable> extends EntitySet<Record<A1>> 
 	RecordSet<A1> start(Long position) throws IOException;
 	
 	Record<A1> add() throws IOException;
-	Record<A1> addForUser(long uid) throws IOException;
+	Record<A1> addForUser(UUID uid) throws IOException;
 	
 	Object aggregate(String aggScript, String alias) throws IOException;
 	

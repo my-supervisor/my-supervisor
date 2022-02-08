@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.lang.StringUtils;
 import org.takes.Request;
 import org.takes.rq.RqHref;
@@ -65,10 +67,10 @@ public final class TkDataLinkEdit extends TkForm {
 			   );
 		}
 		
-		final Long indicId = Long.parseLong(new RqHref.Smart(req).single("indic"));
+		final UUID indicId = UUID.fromString(new RqHref.Smart(req).single("indic"));
 
 		final String source = new RqHref.Smart(req).single("source");
-		final Long activityId = Long.parseLong(StringUtils.remove(source, "activity"));
+		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
 		final Indicator indic = activity.indicators().get(indicId);
 		
@@ -84,10 +86,10 @@ public final class TkDataLinkEdit extends TkForm {
 	protected Iterable<XeSource> contentToShow(final Request req, final XeSource itemToShow) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
-		final Long indicId = Long.parseLong(new RqHref.Smart(req).single("indic"));
+		final UUID indicId = UUID.fromString(new RqHref.Smart(req).single("indic"));
 
 		final String source = new RqHref.Smart(req).single("source");
-		final Long activityId = Long.parseLong(StringUtils.remove(source, "activity"));
+		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
 		final Indicator indic = activity.indicators().get(indicId);
 
@@ -105,16 +107,16 @@ public final class TkDataLinkEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
-		final Long indicId = Long.parseLong(new RqHref.Smart(req).single("indic"));
+		final UUID indicId = UUID.fromString(new RqHref.Smart(req).single("indic"));
 
 		final String source = new RqHref.Smart(req).single("source");
-		final Long activityId = Long.parseLong(StringUtils.remove(source, "activity"));
+		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
 		Indicator indic = activity.indicators().get(indicId);		
-		DataLink item = indic.links().get(id);
+		DataLink item = indic.links().get(id.value());
 		DataModel model = item.model();
 		
 		return new XeChain(
@@ -128,8 +130,8 @@ public final class TkDataLinkEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
-		if(id == 0)
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+		if(id.isEmpty())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.domain.UserScope;
 import com.supervisor.sdk.datasource.DomainRecordables;
@@ -84,7 +85,7 @@ public final class PgEditableDataFields extends DomainRecordables<EditableDataFi
 	@Override
 	public EditableDataField add(String code, String name, DataFieldType type, DataFieldStyle style, UserScope userScope, boolean isMandatory, String description) throws IOException {
 		
-		final Long fieldId = new PgDataFields(model).add(code, name, type, style, description);
+		final UUID fieldId = new PgDataFields(model).add(code, name, type, style, description);
 		
 		Record<EditableDataField> record0 = source.entryOf(EditableDataField::id, fieldId)
 												  .entryOf(EditableDataField::userScope, userScope)

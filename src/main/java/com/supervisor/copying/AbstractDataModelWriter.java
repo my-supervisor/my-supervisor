@@ -2,6 +2,7 @@ package com.supervisor.copying;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -17,21 +18,21 @@ public abstract class AbstractDataModelWriter implements Writer<DataModel> {
 	protected final Activity targetActivity;
 	protected final DataModel source;
 	protected final DataModel target;
-	protected final Map<Long, DataModel> dataModelMappings;
+	protected final Map<UUID, DataModel> dataModelMappings;
 	
-	public AbstractDataModelWriter(final String code, final Activity targetActivity, final DataModel source, final Map<Long, DataModel> dataModelMappings) {
+	public AbstractDataModelWriter(final String code, final Activity targetActivity, final DataModel source, final Map<UUID, DataModel> dataModelMappings) {
 		this(code, targetActivity, source, DataModel.EMPTY, dataModelMappings);
 	}
 	
-	public AbstractDataModelWriter(final Activity targetActivity, final DataModel source, final Map<Long, DataModel> dataModelMappings) {
+	public AbstractDataModelWriter(final Activity targetActivity, final DataModel source, final Map<UUID, DataModel> dataModelMappings) {
 		this(StringUtils.EMPTY, targetActivity, source, DataModel.EMPTY, dataModelMappings);
 	}
 	
-	public AbstractDataModelWriter(final DataModel source, final DataModel target, final Map<Long, DataModel> dataModelMappings) {
+	public AbstractDataModelWriter(final DataModel source, final DataModel target, final Map<UUID, DataModel> dataModelMappings) {
 		this(StringUtils.EMPTY, Activity.EMPTY, source, target, dataModelMappings);
 	}
 	
-	private AbstractDataModelWriter(final String code, final Activity targetActivity, final DataModel source, final DataModel target, final Map<Long, DataModel> dataModelMappings) {
+	private AbstractDataModelWriter(final String code, final Activity targetActivity, final DataModel source, final DataModel target, final Map<UUID, DataModel> dataModelMappings) {
 		this.code = code;
 		this.targetActivity = targetActivity;
 		this.source = source;

@@ -1,9 +1,10 @@
 package com.supervisor.indicator;
 
 import java.util.Map;
+import java.util.UUID;
 
 public interface ReplacingOfModel {
-	Long ruleId();
-	Long replacingModelId();
+	UUID ruleId();
+	UUID replacingModelId();
 	Map<String, String> fieldMappings();
 }

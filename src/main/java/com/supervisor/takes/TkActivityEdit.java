@@ -7,6 +7,7 @@ import java.util.List;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
 import com.supervisor.sdk.utils.ListOfUniqueRecord;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rq.form.RqFormSmart;
 import org.takes.rs.xe.XeAppend;
@@ -53,11 +54,11 @@ public final class TkActivityEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
+	protected XeSource preItemDataToShow(OptUUID id, Request req) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		Activities myActivities = module.activities();
-		Activity act = myActivities.get(id);
+		Activity act = myActivities.get(id.value());
 		
 		if(new RqUser(base, req).notOwn(act)) {
 			throw new IllegalArgumentException("Vous ne pouvez pas éditer une activité partagée !");
@@ -78,13 +79,13 @@ public final class TkActivityEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id > 0) {
+		if(id.isPresent()) {
 			
 			final Supervisor module = new PxSupervisor(base, req);
 			Activities myActivities = module.activities();
-			Activity act = myActivities.get(id);
+			Activity act = myActivities.get(id.value());
 			
 			if(new RqUser(base, req).notOwn(act)) {
 				throw new IllegalArgumentException("Vous ne pouvez pas éditer une activité partagée !");

@@ -10,6 +10,7 @@ import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqHref;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkPlanDelete extends TkBaseWrap {
@@ -23,7 +24,7 @@ public final class TkPlanDelete extends TkBaseWrap {
 					
 					final Membership module = new DmMembership(base, req);			
 					final Plans plans = module.plans();
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
 
 					Plan item = plans.get(id);
 					String name = item.name();

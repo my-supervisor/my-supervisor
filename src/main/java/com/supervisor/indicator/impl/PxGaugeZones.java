@@ -1,6 +1,7 @@
 package com.supervisor.indicator.impl;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.supervisor.sdk.colors.Color;
@@ -30,7 +31,13 @@ public final class PxGaugeZones extends DomainRecordables<GaugeZone, GaugeZones>
 	@Override
 	public List<GaugeZone> items() throws IOException {
 		List<GaugeZone> items = super.items();
-		items.sort((c1, c2) -> Long.compare(c1.id(), c2.id()));
+		items.sort((c1, c2) -> {
+			try {
+				return Double.compare(c1.min(), c2.min());
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		});
 		
 		return items;           
 	}

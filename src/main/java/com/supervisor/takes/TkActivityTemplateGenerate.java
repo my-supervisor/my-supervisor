@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -25,7 +26,7 @@ public final class TkActivityTemplateGenerate extends TkBaseWrap {
 					
 					ActivityTemplate itemSaved;
 					
-					final Long originId = Long.parseLong(new RqHref.Smart(req).single("activity"));
+					final UUID originId = UUID.fromString(new RqHref.Smart(req).single("activity"));
 					Activity origin = module.activities().get(originId);
 					itemSaved = myItems.add(origin);
 					return new RsForward(

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -34,7 +35,7 @@ public final class TkActivityBaseOnTemplateSave extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					
-					final Long id = Long.parseLong(form.single("id"));
+					final UUID id = UUID.fromString(form.single("id"));
 					String name = form.single("name");
 					final PeriodicityUnit periodicityUnit = PeriodicityUnit.valueOf(form.single("periodicity_unit_id"));
 					final int periodicityNumber = Integer.parseInt(form.single("periodicity_number"));
@@ -50,7 +51,7 @@ public final class TkActivityBaseOnTemplateSave extends TkBaseWrap {
 						String state = getRowValueAt("param_state", form, i);
 						
 						if(state.equals("modified")) {
-							Long modelId = Long.parseLong(getValuesOfRow("param_model_id", form).get(i));
+							UUID modelId = UUID.fromString(getValuesOfRow("param_model_id", form).get(i));
 							String code = getRowValueAt("param_code", form, i);
 							String value = getRowValueAt("param_value", form, i);
 							params.add(new ActivityTemplateParamRequestImpl(modelId, code, value));

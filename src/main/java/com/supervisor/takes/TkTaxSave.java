@@ -12,6 +12,7 @@ import org.takes.rq.RqGreedy;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkTaxSave extends TkBaseWrap {
@@ -25,7 +26,7 @@ public final class TkTaxSave extends TkBaseWrap {
 					final Membership module = new DmMembership(base, req);
 					final Taxes taxes = module.taxes();
 					
-					Long id = Long.parseLong(new RqHref.Smart(req).single("id"));
+					UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					

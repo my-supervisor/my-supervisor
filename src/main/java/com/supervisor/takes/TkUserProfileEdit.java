@@ -4,6 +4,7 @@ import com.supervisor.domain.Currency;
 import com.supervisor.domain.Membership;
 import com.supervisor.domain.User;
 import com.supervisor.domain.impl.DmMembership;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.xe.XeCountry;
 import com.supervisor.xe.XeCurrency;
 import com.supervisor.xe.XeLanguage;
@@ -68,12 +69,12 @@ public final class TkUserProfileEdit extends TkForm {
 	}
 	
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		return XeSource.EMPTY;
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XeUserProfile(dir);
 	}	
 }

@@ -3,9 +3,11 @@ package com.supervisor.takes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -40,7 +42,7 @@ public final class TkDataFieldTableEdit extends TkForm {
 	@Override
 	protected Iterable<XeSource> contentToShow(final Request req, final XeSource itemToShow) throws IOException {
 		
-		Long modelId = Long.parseLong(new RqHref.Smart(req).single("model"));
+		UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		final Supervisor module = new PxSupervisor(base, req);
 		DataSheetModel model = module.dataSheetModels().get(modelId);
 
@@ -56,11 +58,11 @@ public final class TkDataFieldTableEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
-		Long modelId = Long.parseLong(new RqHref.Smart(req).single("model"));
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
+		UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		final Supervisor module = new PxSupervisor(base, req);
 		DataSheetModel model = module.dataSheetModels().get(modelId);
-		final TableDataField item = (TableDataField)model.fields().get(id);
+		final TableDataField item = (TableDataField)model.fields().get(id.value());
 		return new XeChain(
 				new XeTableDataField("item", item),
 				new XeEditableDataField(item.columns())
@@ -68,9 +70,9 @@ public final class TkDataFieldTableEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id > 0) {
+		if(id.isPresent()) {
 		    return new XeChain(
 				new XeDataField(dir),
 				preItemDataToShow(id, req)

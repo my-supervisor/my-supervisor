@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -24,10 +25,10 @@ public final class TkFormularDelete extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 
 					final Smart href = new RqHref.Smart(req);
-					final Long modelId = Long.parseLong(href.single("model"));
+					final UUID modelId = UUID.fromString(href.single("model"));
 					AggregatedModel model = module.aggregatedModels().get(modelId); 
 					
-					final Long id = Long.parseLong(href.single("id"));
+					final UUID id = UUID.fromString(href.single("id"));
 					final FormularDataField item = model.formulars().get(id);
 					final String name = item.name();
 					model.formulars().remove(item);

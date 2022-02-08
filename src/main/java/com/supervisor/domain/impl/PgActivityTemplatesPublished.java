@@ -66,7 +66,7 @@ public final class PgActivityTemplatesPublished extends DomainRecordables<Activi
 		
 		source.isRequired(ActivityTemplatePublished::icon, icon);
 		
-		if(template.designer().id() != base().currentUserId())
+		if(!base().currentUserId().equals(template.designer().id()))
 			throw new IllegalArgumentException("Vous ne pouvez pas publier une activité dont vous n'êtes pas le concepteur !");
 		
 		Record<ActivityTemplatePublished> record = source.entryOf(ActivityTemplatePublished::id, template.id())

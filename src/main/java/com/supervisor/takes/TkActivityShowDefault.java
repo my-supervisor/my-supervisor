@@ -12,6 +12,8 @@ import com.supervisor.domain.Activity;
 import com.supervisor.domain.Supervisor;
 import com.supervisor.domain.impl.PxSupervisor;
 
+import java.util.UUID;
+
 public final class TkActivityShowDefault extends TkBaseWrap {
 
 	public TkActivityShowDefault(Base base) {
@@ -21,7 +23,7 @@ public final class TkActivityShowDefault extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final Activities myActivities = module.activities();
 					Smart params = new RqHref.Smart(req);			
-					final Long id = Long.parseLong(params.single("id", "0"));
+					final UUID id = UUID.fromString(params.single("id"));
 					
 					Activity act = myActivities.get(id);
 					act.setDefaultShown();

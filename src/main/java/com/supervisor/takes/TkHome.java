@@ -7,6 +7,7 @@ import com.supervisor.domain.impl.UserOf;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.RsPage;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.cactoos.iterable.Sticky;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqHref;
@@ -38,12 +39,12 @@ public final class TkHome extends TkBaseWrap {
 					}else {
 						Smart params = new RqHref.Smart(req);
 						
-						final Long id = Long.parseLong(params.single("activity", "0"));
+						final OptUUID id = new OptUUID(params.single("activity", "0"));
 						final Activity act;
 						
-						if(id > 0) {
+						if(id.isPresent()) {
 							// prendre l'activité sélectionné par l'utilisateur
-							act = myActivities.get(id);								
+							act = myActivities.get(id.value());
 						}else {
 							// afficher une activité par défaut
 							Activities ownActivities = myActivities.ownActivities();

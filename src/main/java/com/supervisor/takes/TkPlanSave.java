@@ -8,12 +8,14 @@ import com.supervisor.domain.impl.DmMembership;
 import com.supervisor.domain.impl.PxProfiles;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqGreedy;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkPlanSave extends TkBaseWrap {
@@ -27,7 +29,7 @@ public final class TkPlanSave extends TkBaseWrap {
 					final Membership module = new DmMembership(base, req);
 					final Plans plans = module.plans();
 					
-					Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
+					OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					
@@ -39,12 +41,12 @@ public final class TkPlanSave extends TkBaseWrap {
 					
 					final Plan item;
 					final String msg;
-					if(id > 0) {	
-						item = plans.get(id);			
+					if(id.isPresent()) {
+						item = plans.get(id.value());
 						msg = String.format("Le plan %s a été modifié avec succès !", item.name());
 					}else {
 						final String reference = form.single("reference");
-						final Long profileId = Long.parseLong(form.single("profile_id"));
+						final UUID profileId = UUID.fromString(form.single("profile_id"));
 						final Profile profile = new PxProfiles(base).get(profileId);
 						
 						item = plans.add(reference, profile, price);

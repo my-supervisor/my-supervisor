@@ -7,14 +7,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.UUID;
 
 public final class PgSimpleUpdateStatement extends PgStatementUpdatable {
 
-	public PgSimpleUpdateStatement(final Base base, final String tableName, final Map<String, Object> fieldValues, final Long id) {
+	public PgSimpleUpdateStatement(final Base base, final String tableName, final Map<String, Object> fieldValues, final UUID id) {
 		super(base, statement(tableName, fieldValues), parameters(fieldValues, id, base.currentUserId()));
 	}
 	
-	private static List<Object> parameters(final Map<String, Object> fieldValues, final Long id, final Long userId){
+	private static List<Object> parameters(final Map<String, Object> fieldValues, final UUID id, final UUID userId){
 		List<Object> parameters = new ArrayList<>();
 		parameters.addAll(fieldValues.values());
 		parameters.add(userId);

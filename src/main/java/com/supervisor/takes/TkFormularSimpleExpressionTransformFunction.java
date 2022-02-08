@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -28,13 +29,13 @@ public final class TkFormularSimpleExpressionTransformFunction extends TkBaseWra
 					
 					final FormularFunc func = FormularFunc.valueOf(href.single("func"));
 					
-					final Long modelId = Long.parseLong(href.single("model"));
+					final UUID modelId = UUID.fromString(href.single("model"));
 					AggregatedModel model = module.aggregatedModels().get(modelId); 
 					
-					final Long formularId = Long.parseLong(href.single("formular"));
+					final UUID formularId = UUID.fromString(href.single("formular"));
 					FormularDataField formular = model.formulars().get(formularId); 
 					
-					final Long id = Long.parseLong(href.single("id"));
+					final UUID id = UUID.fromString(href.single("id"));
 					final FormularSimpleExpression item = (FormularSimpleExpression)formular.expressions().get(id);
 					
 					item.update(func);

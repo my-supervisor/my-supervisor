@@ -1,7 +1,9 @@
 package com.supervisor.domain;
 
+import java.util.UUID;
+
 public interface ActivityTemplateParamRequest {
-	Long modelId();
+	UUID modelId();
 	String code();
 	String value();
 }

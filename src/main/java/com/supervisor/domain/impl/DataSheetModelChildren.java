@@ -2,6 +2,7 @@ package com.supervisor.domain.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.utils.ListOfUniqueRecord;
 import com.supervisor.domain.DataModel;
@@ -41,7 +42,7 @@ public final class DataSheetModelChildren implements ExtendedDataSheetModels {
 	}
 
 	@Override
-	public DataSheetModel get(Long id) throws IOException {
+	public DataSheetModel get(UUID id) throws IOException {
 		for (DataSheetModel m : items()) {
 			if(m.id().equals(id)) {
 				return m;

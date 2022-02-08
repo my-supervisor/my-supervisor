@@ -2,6 +2,7 @@ package com.supervisor.copying.cloning;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractIndicatorWriter;
 import com.supervisor.domain.Activity;
@@ -11,11 +12,11 @@ import com.supervisor.indicator.Indicator;
 
 public final class IndicatorCloning extends AbstractIndicatorWriter {
 
-	public IndicatorCloning(Activity targetActivity, Indicator source, Map<Long, DataModel> dataModelMappings) {
+	public IndicatorCloning(Activity targetActivity, Indicator source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetActivity, source, dataModelMappings);
 	}
 
-	public IndicatorCloning(final Indicator source, final Indicator target, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public IndicatorCloning(final Indicator source, final Indicator target, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(source, target, dataModelMappings);
 	}
 

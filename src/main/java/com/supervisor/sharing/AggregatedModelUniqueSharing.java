@@ -1,11 +1,13 @@
 package com.supervisor.sharing;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Record;
 import com.supervisor.domain.Activity;
 import com.supervisor.domain.AggregatedModel;
 import com.supervisor.domain.impl.PxAggregatedModel;
+import com.supervisor.sdk.utils.OptUUID;
 
 public final class AggregatedModelUniqueSharing extends DataSharingBase<AggregatedModel, AggregatedModelShared> implements AggregatedModelSharing {
 
@@ -36,9 +38,9 @@ public final class AggregatedModelUniqueSharing extends DataSharingBase<Aggregat
 	@Override
 	protected Record<AggregatedModel> concreteRecord() throws IOException {
 				
-		Long concreteId = 0L;
+		OptUUID concreteId = new OptUUID("0");
 		if(action == WriterAction.TEMPLATING) {			
-			concreteId = source.id();
+			concreteId = new OptUUID(source.id());
 		} else {
 			for (
 					Record<AggregatedModelShared> rec : 
@@ -47,19 +49,19 @@ public final class AggregatedModelUniqueSharing extends DataSharingBase<Aggregat
 					   	  .where(AggregatedModelShared::activity, targetActivity.id())
 					   	  .items()
 			) {
-				final Long id = rec.valueOf(AggregatedModelShared::id);
+				final UUID id = rec.valueOf(AggregatedModelShared::id);
 				final AggregatedModel concrete = new PxAggregatedModel(source.listOf(AggregatedModel.class).get(id));
 				if(concrete.model().activity().id().equals(concreteActor.id())) {
-					concreteId = id;
+					concreteId = new OptUUID(id);
 					break;
 				}
 			}	
 			
-			if(concreteId == 0L)
+			if(concreteId.isEmpty())
 				throw new IllegalArgumentException(String.format("Concrete AggregatedModel not found (Generating activity %s )!", targetActivity.name()));
 		}
 		
-		return source.listOf(AggregatedModel.class).get(concreteId);
+		return source.listOf(AggregatedModel.class).get(concreteId.value());
 	}
 	
 	@Override
@@ -76,7 +78,7 @@ public final class AggregatedModelUniqueSharing extends DataSharingBase<Aggregat
 					   	  .where(AggregatedModelShared::activity, targetActivity.id())
 					   	  .items()
 			) {
-				final Long id = rec.valueOf(AggregatedModelShared::id);
+				final UUID id = rec.valueOf(AggregatedModelShared::id);
 				final AggregatedModel concrete = new PxAggregatedModel(source.listOf(AggregatedModel.class).get(id));
 				if(concrete.model().activity().id().equals(concreteActor.id())) {
 					return true;

@@ -61,7 +61,7 @@ public final class PgProfileAccessParams extends DomainRecordables<ProfileAccess
 		source.isRequired(ProfileAccessParam::value, value);
 		
 		// vérifier que le paramètre appartient au droit d'accès hérité
-		if(param.access().id() != access.accessInherited().id())
+		if(!param.access().id().equals(access.accessInherited().id()))
 			throw new IllegalArgumentException(String.format("Le paramètre %s n'appartient pas au droit d'accès %s", param.name(), access.name()));
 		
 		ProfileAccessParam pParam;

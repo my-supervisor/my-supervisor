@@ -1,9 +1,11 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqGreedy;
@@ -27,29 +29,29 @@ public final class TkListDataFieldSourceSave extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					
-					final Long modelId = Long.parseLong(form.single("model_id"));
+					final UUID modelId = UUID.fromString(form.single("model_id"));
 					final DataSheetModel model = module.dataSheetModels().get(modelId);
 					
-					final Long fieldId = Long.parseLong(form.single("field_id"));
+					final UUID fieldId = UUID.fromString(form.single("field_id"));
 					final ListDataField field = (ListDataField)model.fields().get(fieldId); 
 					
-					final Long listModelId = Long.parseLong(form.single("list_model_id"));
+					final UUID listModelId = UUID.fromString(form.single("list_model_id"));
 					final DataModel listModel = module.dataModels().get(listModelId);
 					
-					final Long fieldToDisplayId = Long.parseLong(form.single("field_to_display_id"));
+					final UUID fieldToDisplayId = UUID.fromString(form.single("field_to_display_id"));
 					final DataField fieldToDisplay = listModel.fields().get(fieldToDisplayId);
 					
-					final Long orderFieldId = Long.parseLong(form.single("order_field_id"));
+					final UUID orderFieldId = UUID.fromString(form.single("order_field_id"));
 					final DataField orderField = listModel.fields().get(orderFieldId);
 					
-					final Long tableId = Long.parseLong(form.single("table_id", "0"));
-					final Long tableModelId = Long.parseLong(form.single("table_model_id", "0"));
+					final OptUUID tableId = new OptUUID(form.single("table_id", "0"));
+					final OptUUID tableModelId = new OptUUID(form.single("table_model_id", "0"));
 													
 					final ListDataFieldSource itemSaved;
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
-					if(id > 0) {
-						itemSaved = field.sources().get(id); 
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
+					if(id.isPresent()) {
+						itemSaved = field.sources().get(id.value());
 						itemSaved.update(listModel, fieldToDisplay, orderField);	 	
 					} else {			
 						itemSaved = field.sources().add(listModel, fieldToDisplay, orderField);
@@ -57,12 +59,12 @@ public final class TkListDataFieldSourceSave extends TkBaseWrap {
 					
 					final String msg;
 					
-					if(id > 0)
+					if(id.isPresent())
 						msg = "La source de données a été modifiée avec succès !";
 					else
 						msg = "La source de données a été créée avec succès !";
 					
-					if(tableId > 0) {
+					if(tableId.isPresent()) {
 						return new RsForward(
 								new RsFlash(
 					                msg,

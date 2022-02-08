@@ -11,19 +11,18 @@ import java.util.UUID;
 
 public final class PgInsertStatement extends PgStatementUpdatable {
 
-	public PgInsertStatement(final Base base, final String tableName, final Map<String, Object> fieldValues, final UUID guid) {
-		super(base, statement(tableName, fieldValues), parameters(fieldValues, guid, base.currentUserId()));
+	public PgInsertStatement(final Base base, final String tableName, final Map<String, Object> fieldValues) {
+		super(base, statement(tableName, fieldValues), parameters(fieldValues, base.currentUserId()));
 	}
 	
-	private static List<Object> parameters(final Map<String, Object> fieldValues, final UUID guid, final Long userId){
+	private static List<Object> parameters(final Map<String, Object> fieldValues, final UUID userId){
 		List<Object> parameters = new ArrayList<>();
 		parameters.addAll(fieldValues.values());
 		parameters.add(userId);
 		
 		if(!fieldValues.containsKey("owner_id"))
 			parameters.add(userId);
-		
-		parameters.add(guid);
+
 		parameters.add(userId);
 		
 		return parameters;

@@ -2,6 +2,7 @@ package com.supervisor.copying.templating;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractDataModelWriter;
 import com.supervisor.domain.Activity;
@@ -11,15 +12,15 @@ import com.supervisor.domain.DataSheetModel;
 
 public final class DataModelTemplating extends AbstractDataModelWriter {
 
-	public DataModelTemplating(String code, Activity targetActivity, DataModel source, Map<Long, DataModel> dataModelMappings) {
+	public DataModelTemplating(String code, Activity targetActivity, DataModel source, Map<UUID, DataModel> dataModelMappings) {
 		super(code, targetActivity, source, dataModelMappings);
 	}
 	
-	public DataModelTemplating(Activity targetActivity, DataModel source, Map<Long, DataModel> dataModelMappings) {
+	public DataModelTemplating(Activity targetActivity, DataModel source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetActivity, source, dataModelMappings);
 	}
 	
-	public DataModelTemplating(final DataModel source, final DataModel target, final Map<Long, DataModel> dataModelMappings) {
+	public DataModelTemplating(final DataModel source, final DataModel target, final Map<UUID, DataModel> dataModelMappings) {
 		super(source, target, dataModelMappings);
 	}
 

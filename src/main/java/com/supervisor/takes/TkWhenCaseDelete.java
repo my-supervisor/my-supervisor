@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -26,16 +27,16 @@ public final class TkWhenCaseDelete extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 
 					final Smart href = new RqHref.Smart(req);
-					final Long modelId = Long.parseLong(href.single("model"));
+					final UUID modelId = UUID.fromString(href.single("model"));
 					AggregatedModel model = module.aggregatedModels().get(modelId); 
 					
-					final Long formularId = Long.parseLong(href.single("formular"));
+					final UUID formularId = UUID.fromString(href.single("formular"));
 					FormularDataField formular = model.formulars().get(formularId);
 					
-					final Long expressionId = Long.parseLong(href.single("expression"));
+					final UUID expressionId = UUID.fromString(href.single("expression"));
 					FormularCaseExpression expression = (FormularCaseExpression)formular.expressions().get(expressionId);
 					
-					final Long id = Long.parseLong(href.single("id"));		
+					final UUID id = UUID.fromString(href.single("id"));
 					final WhenCase item = expression.cases().get(id);
 					expression.cases().remove(item);
 					

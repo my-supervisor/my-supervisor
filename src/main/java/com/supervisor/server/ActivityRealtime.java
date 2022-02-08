@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.atmosphere.config.service.Get;
@@ -77,23 +78,23 @@ public final class ActivityRealtime {
     
     public final static class ActivityData {
     	
-    	private long id;
+    	private UUID id;
     	private List<IndicatorData> indics;
     	
     	public ActivityData() {
     		
     	}
     	
-    	public ActivityData(long id, List<IndicatorData> indics) {
+    	public ActivityData(UUID id, List<IndicatorData> indics) {
     		this.id = id;
     		this.indics = indics;
     	}
     	
-    	public Long getId() {
+    	public UUID getId() {
             return id;
     	}
 
-        public void setId(long id) {
+        public void setId(UUID id) {
             this.id = id;
         }
         

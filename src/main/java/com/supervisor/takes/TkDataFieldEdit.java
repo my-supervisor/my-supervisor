@@ -3,9 +3,11 @@ package com.supervisor.takes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -38,8 +40,8 @@ public final class TkDataFieldEdit extends TkForm {
 	@Override
 	protected Iterable<XeSource> contentToShow(final Request req, final XeSource itemToShow) throws IOException {
 		
-		Long modelId = Long.parseLong(new RqHref.Smart(req).single("model"));
-		Long tableId = Long.parseLong(new RqHref.Smart(req).single("table", "0"));
+		UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
+		OptUUID tableId = new OptUUID(new RqHref.Smart(req).single("table", "0"));
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		DataSheetModel model = module.dataSheetModels().get(modelId);
@@ -50,8 +52,8 @@ public final class TkDataFieldEdit extends TkForm {
 		content.add(new XeDataFieldStyle());
 		content.add(new XeDataSheetModel("model", model));
 		
-		if(tableId > 0)
-			content.add(new XeTableDataField("table", model.fields().tables().get(tableId)));
+		if(tableId.isPresent())
+			content.add(new XeTableDataField("table", model.fields().tables().get(tableId.value())));
 		
 		content.add(new XeSupervisor(module));
 		content.add(itemToShow);
@@ -60,16 +62,16 @@ public final class TkDataFieldEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
-		Long modelId = Long.parseLong(new RqHref.Smart(req).single("model"));
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
+		UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		final Supervisor module = new PxSupervisor(base, req);
 		final DataSheetModel model = module.dataSheetModels().get(modelId);
-		final SimpleDataField item = (SimpleDataField)model.fields().get(id);
+		final SimpleDataField item = (SimpleDataField)model.fields().get(id.value());
 		return new XeDataField("item", item);
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XeDataField(dir);
 	}	
 }

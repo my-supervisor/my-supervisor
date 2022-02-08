@@ -24,7 +24,7 @@ public final class PxListDataFieldSources extends DomainRecordables<ListDataFiel
 		
 		this.field = field;
 		this.source = source.where(ListDataFieldSource::field, field.id())
-						    .orderBy(ListDataFieldSource::id);
+						    .orderBy(ListDataFieldSource::creationDate);
 	}
 
 	@Override

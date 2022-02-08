@@ -15,6 +15,7 @@ import org.takes.rq.form.RqFormSmart;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkAccessSave extends TkBaseWrap {
@@ -24,7 +25,7 @@ public final class TkAccessSave extends TkBaseWrap {
 				base,
 				req -> {
 					new RqAdminAuth(base, req);
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));			
 					final String name = form.single("name");
@@ -36,7 +37,7 @@ public final class TkAccessSave extends TkBaseWrap {
 					// sauvegarder les paramètres
 					int nbOfParamsToTreat = getValuesOfRow("param_id", form).size();
 					for (int i = 0; i < nbOfParamsToTreat; i++) {
-						Long paramId = getRowLongValueAt("param_id", form, i);
+						UUID paramId = UUID.fromString(getRowValueAt("param_id", form, i));
 						AccessParam param = item.parameters().get(paramId);
 						
 						String paramName = getRowValueAt("param_name", form, i);

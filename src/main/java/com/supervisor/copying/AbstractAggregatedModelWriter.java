@@ -2,6 +2,7 @@ package com.supervisor.copying;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.sdk.utils.BasicCodeGenerator;
 import com.supervisor.sdk.utils.CodeGenerator;
@@ -19,21 +20,21 @@ public abstract class AbstractAggregatedModelWriter implements Writer<Aggregated
 	protected final AggregatedModel source;
 	protected final AggregatedModel target;
 	protected final DataModel targetModel;
-	protected final Map<Long, DataModel> dataModelMappings;
+	protected final Map<UUID, DataModel> dataModelMappings;
 	
-	public AbstractAggregatedModelWriter(final String code, final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AbstractAggregatedModelWriter(final String code, final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		this(code, targetActivity, targetModel, source, AggregatedModel.EMPTY, dataModelMappings);
 	}
 	
-	public AbstractAggregatedModelWriter(final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AbstractAggregatedModelWriter(final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		this(StringUtils.EMPTY, targetActivity, targetModel, source, AggregatedModel.EMPTY, dataModelMappings);
 	}
 	
-	public AbstractAggregatedModelWriter(final AggregatedModel source, final AggregatedModel target, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AbstractAggregatedModelWriter(final AggregatedModel source, final AggregatedModel target, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		this(StringUtils.EMPTY, target.activity(), target.model(), source, target, dataModelMappings);
 	}
 	
-	private AbstractAggregatedModelWriter(final String code, final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final AggregatedModel target, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	private AbstractAggregatedModelWriter(final String code, final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final AggregatedModel target, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		this.code = code;
 		this.targetActivity = targetActivity;
 		this.source = source;

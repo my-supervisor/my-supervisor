@@ -1,6 +1,7 @@
 package com.supervisor.takes;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import com.supervisor.domain.bi.BiPeriod;
 import com.supervisor.domain.bi.impl.BiPeriodOfPeriodicity;
@@ -26,7 +27,7 @@ public final class TkActivityPeriodAtDate extends TkBaseWrap {
 					Smart params = new RqHref.Smart(req);					
 					final LocalDate date = new RqDashboardDate(req).toLocalDate();
 					
-					Long activityId = Long.parseLong(params.single("activity"));
+					UUID activityId = UUID.fromString(params.single("activity"));
 					Activity activity = module.activities().get(activityId);
 					final BiPeriod period = new BiPeriodOfPeriodicity(date, activity.periodicity());
 					

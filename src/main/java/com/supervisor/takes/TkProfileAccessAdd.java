@@ -14,6 +14,7 @@ import org.takes.rq.form.RqFormSmart;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkProfileAccessAdd extends TkBaseWrap {
@@ -24,7 +25,7 @@ public final class TkProfileAccessAdd extends TkBaseWrap {
 				req -> {
 					new RqAdminAuth(base, req);
 					
-					final Long profileId = Long.parseLong(new RqHref.Smart(req).single("profile"));
+					final UUID profileId = UUID.fromString(new RqHref.Smart(req).single("profile"));
 					final Profile profile = new PxAllProfiles(base).get(profileId);
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));			
@@ -36,7 +37,7 @@ public final class TkProfileAccessAdd extends TkBaseWrap {
 						if(!isChecked)
 							continue;
 						
-						Long accessId = getRowLongValueAt("access_id", form, i);
+						UUID accessId = UUID.fromString(getRowValueAt("access_id", form, i));
 						Access access = profile.exceptedAccesses().get(accessId);
 						
 						profile.accesses().add(access);

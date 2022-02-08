@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -21,7 +22,7 @@ public final class TkAggregatedModelDelete extends TkBaseWrap {
 				req -> {
 					final Supervisor module = new PxSupervisor(base, req);
 					final UserAggregatedModels items = module.aggregatedModels();
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
 
 					final AggregatedModel item = items.get(id);
 					if(new RqUser(base, req).notOwn(item)) {

@@ -17,6 +17,7 @@ import org.takes.rq.RqGreedy;
 import org.takes.rq.form.RqFormSmart;
 
 import java.util.TimeZone;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkUserProfileSave extends TkBaseWrap {
@@ -33,9 +34,9 @@ public final class TkUserProfileSave extends TkBaseWrap {
 					final String photo = form.single("photo");
 					final TimeZone timeZone = TimeZone.getTimeZone(form.single("time_zone_id"));
 					final String email = user.address().email();
-					final Language preferredLanguage = module.languages().get(Long.parseLong(form.single("preferred_language_id")));
-					final Currency preferredCurrency = module.currencies().get(Long.parseLong(form.single("preferred_currency_id")));
-					final Country country = module.countries().get(Long.parseLong(form.single("country_id")));		
+					final Language preferredLanguage = module.languages().get(UUID.fromString(form.single("preferred_language_id")));
+					final Currency preferredCurrency = module.currencies().get(UUID.fromString(form.single("preferred_currency_id")));
+					final Country country = module.countries().get(UUID.fromString(form.single("country_id")));
 					final String addressLine1 = form.single("address_line1");
 					final String addressLine2 = form.single("address_line2", StringUtils.EMPTY);
 					final String phone1 = form.single("phone1");

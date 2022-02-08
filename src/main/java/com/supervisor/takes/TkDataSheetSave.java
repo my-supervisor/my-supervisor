@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.commons.lang.StringUtils;
 import org.takes.facets.flash.RsFlash;
@@ -50,7 +52,7 @@ public final class TkDataSheetSave extends TkBaseWrap {
 					final DataSheet itemSaved;
 					final DataSheetModel model;
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));				
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					
 					final LocalDate date;
 					if(StringUtils.isBlank(form.single("DATE", StringUtils.EMPTY))) {
@@ -64,15 +66,15 @@ public final class TkDataSheetSave extends TkBaseWrap {
 					}
 						
 					boolean merged = false;		
-					if(id > 0) {
-						itemSaved = myItems.get(id);		
+					if(id.isPresent()) {
+						itemSaved = myItems.get(id.value());
 						model = itemSaved.model();
 						
 						if(!itemSaved.model().isTable()) {
 							itemSaved.update(date);
 						}						
 					} else {			
-						Long modelId = Long.parseLong(new RqHref.Smart(req).single("model"));
+						UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 						model = module.dataSheetModels().get(modelId);
 						
 						// vérifier qu'il n'existe pas une feuille du même auteur à la même date
@@ -154,10 +156,10 @@ public final class TkDataSheetSave extends TkBaseWrap {
 								
 								row.validate();
 							} else if(state.equals("removed")) {
-								Long rowId = getRowLongValueAt(prefix + "id", form, i);
+								UUID rowId = UUID.fromString(getRowValueAt(prefix + "id", form, i));
 								table.rows().remove(rowId);
 							} else { // modified
-								Long rowId = getRowLongValueAt(prefix + "id", form, i);
+								UUID rowId = UUID.fromString(getRowValueAt(prefix + "id", form, i));
 								TableDataFieldOfSheetRow row = table.rows().get(rowId);
 								for (DataFieldOfSheet cell : row.fields().items()) {
 									if(cell.userScope() == UserScope.SYSTEM)
@@ -189,7 +191,7 @@ public final class TkDataSheetSave extends TkBaseWrap {
 					if(merged) {
 						msg = String.format("Les données de la feuille %s ont été fusionnées avec succès !", itemSaved.reference());
 					} else {
-						if(id > 0)
+						if(id.isPresent())
 							msg = String.format("La feuille %s a été modifiée avec succès !", itemSaved.reference());
 						else
 							msg = String.format("La feuille %s a été créée avec succès !", itemSaved.reference());

@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -27,15 +28,15 @@ public final class TkFormularExtendedToModelExpressionAggregateSave extends TkBa
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));		
 					
 					final AggregateFunc aggregate = AggregateFunc.valueOf(form.single("aggregate_id"));
-					final Long modelId = Long.parseLong(form.single("model_id"));
+					final UUID modelId = UUID.fromString(form.single("model_id"));
 					final AggregatedModel model = module.aggregatedModels().get(modelId); 
 					
-					final Long formularId = Long.parseLong(form.single("formular_id"));
+					final UUID formularId = UUID.fromString(form.single("formular_id"));
 					FormularDataField formular = model.formulars().get(formularId);  
 					
 					final FormularExtendedToModelExpression itemSaved;
 					
-					final Long id = Long.parseLong(form.single("id"));
+					final UUID id = UUID.fromString(form.single("id"));
 					itemSaved = (FormularExtendedToModelExpression)formular.expressions().get(id);
 					
 					itemSaved.update(aggregate); 

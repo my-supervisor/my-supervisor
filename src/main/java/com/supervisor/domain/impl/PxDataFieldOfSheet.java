@@ -2,6 +2,7 @@ package com.supervisor.domain.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
@@ -25,7 +26,7 @@ public final class PxDataFieldOfSheet extends DomainRecordable<DataFieldOfSheet>
 	public PxDataFieldOfSheet(final Record<DataFieldOfSheet> record) throws IOException {
 		super(record);
 		
-		final Long originId = record.valueOf(DataFieldOfSheet::origin);
+		final UUID originId = record.valueOf(DataFieldOfSheet::origin);
 		this.origin = (EditableDataField)TypedDataField.convert(record.of(DataField.class, originId)); 
 	}
 
@@ -62,7 +63,7 @@ public final class PxDataFieldOfSheet extends DomainRecordable<DataFieldOfSheet>
 
 	@Override
 	public DataSheet sheet() throws IOException {
-		Long id = record.valueOf(DataFieldOfSheet::sheet);
+		final UUID id = record.valueOf(DataFieldOfSheet::sheet);
 		return new PxDataSheet(
 			record.of(DataSheet.class, id)
 		);

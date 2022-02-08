@@ -2,6 +2,7 @@ package com.supervisor.domain.impl;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.DomainRecordables;
@@ -41,8 +42,8 @@ public final class PgActivities extends DomainRecordables<Activity, Activities> 
 	
 	private static RecordSet<Activity> viewSource(final User user) throws IOException {
 		
-		Table table = new TableImpl(Activity.class);
-		Long ownerId = user.id();
+		final Table table = new TableImpl(Activity.class);
+		final UUID ownerId = user.id();
 		
 		String viewScript = String.format("(\r\n" + 
 							"	select * from %s \r\n" + 
@@ -63,7 +64,7 @@ public final class PgActivities extends DomainRecordables<Activity, Activities> 
 		
 		return user.base()
 				   .select(Activity.class, viewScript)
-				   .orderBy(Activity::id, OrderDirection.DESC);
+				   .orderBy(Activity::creationDate, OrderDirection.DESC);
 	}
 
 	@Override

@@ -3,9 +3,11 @@ package com.supervisor.takes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.lang.StringUtils;
 import org.takes.Request;
 import org.takes.rq.RqHref;
@@ -50,17 +52,17 @@ public final class TkIndicatorDynamicParamEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		
 		final String source = new RqHref.Smart(req).single("source");
 		final String shortName = new RqHref.Smart(req).single("short_name");
-		final Long indicId = Long.parseLong(new RqHref.Smart(req).single("indic"));
+		final UUID indicId = UUID.fromString(new RqHref.Smart(req).single("indic"));
 		
 		final Supervisor module = new PxSupervisor(base, req);
-		final Long activityId = Long.parseLong(StringUtils.remove(source, "activity"));
+		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
 		Indicator indic = activity.indicators().get(indicId);
-		IndicatorDynamicParam item = indic.dynamicParams().get(id);
+		IndicatorDynamicParam item = indic.dynamicParams().get(id.value());
 				
 		return new XeChain( 
 			new XeAppend("short_name", shortName),
@@ -70,7 +72,7 @@ public final class TkIndicatorDynamicParamEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XeIndicatorDynamicParam(dir);
 	}	
 }

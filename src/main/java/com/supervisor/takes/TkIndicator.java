@@ -16,6 +16,8 @@ import com.supervisor.indicator.Indicators;
 import com.supervisor.xe.XeIndicator;
 import com.supervisor.xe.XeSupervisor;
 
+import java.util.UUID;
+
 public final class TkIndicator extends TkBaseWrap {
 
 	public TkIndicator(final Base base) {
@@ -23,7 +25,7 @@ public final class TkIndicator extends TkBaseWrap {
 				base, 
 				req -> {
 					final Supervisor module = new PxSupervisor(base, req);
-					final Long activityId = Long.parseLong(new RqHref.Smart(req).single("activity"));
+					final UUID activityId = UUID.fromString(new RqHref.Smart(req).single("activity"));
 					final Activity activity = module.activities().get(activityId);
 					Indicators myItems = activity.indicators().where(Indicator::isTemplate, false);
 					

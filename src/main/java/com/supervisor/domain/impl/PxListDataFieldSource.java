@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
@@ -22,7 +23,7 @@ public final class PxListDataFieldSource extends DomainRecordable<ListDataFieldS
 
 	@Override
 	public ListDataField field() throws IOException {
-		final Long fieldId = record.valueOf(ListDataFieldSource::field);
+		final UUID fieldId = record.valueOf(ListDataFieldSource::field);
 		return new PxListDataField(
 					record.of(DataField.class, fieldId)
 			   );
@@ -35,7 +36,7 @@ public final class PxListDataFieldSource extends DomainRecordable<ListDataFieldS
 
 	@Override
 	public DataField fieldToDisplay() throws IOException {
-		final Long fieldId = record.valueOf(ListDataFieldSource::fieldToDisplay);
+		final UUID fieldId = record.valueOf(ListDataFieldSource::fieldToDisplay);
 		return TypedDataField.convert(
 				record.of(DataField.class, fieldId)
 			   );
@@ -43,7 +44,7 @@ public final class PxListDataFieldSource extends DomainRecordable<ListDataFieldS
 
 	@Override
 	public DataField orderField() throws IOException {
-		final Long fieldId = record.valueOf(ListDataFieldSource::orderField);
+		final UUID fieldId = record.valueOf(ListDataFieldSource::orderField);
 		return TypedDataField.convert(
 				record.of(DataField.class, fieldId)
 			   );

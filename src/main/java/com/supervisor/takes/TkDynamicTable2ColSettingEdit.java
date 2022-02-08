@@ -3,11 +3,14 @@ package com.supervisor.takes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.lang.StringUtils;
 import org.takes.Request;
+import org.takes.misc.Opt;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
 import org.takes.rs.xe.XeAppend;
@@ -59,13 +62,13 @@ public final class TkDynamicTable2ColSettingEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		final String source = new RqHref.Smart(req).single("source");
-		final Long activityId = Long.parseLong(StringUtils.remove(source, "activity"));
+		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
-		final DynamicTable2Col indic = (DynamicTable2Col)activity.indicators().get(id);
+		final DynamicTable2Col indic = (DynamicTable2Col)activity.indicators().get(id.value());
 						
 		return new XeChain(
 				new XeDynamicTable2ColSetting("item", indic),
@@ -76,18 +79,18 @@ public final class TkDynamicTable2ColSettingEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		
 		String source = new RqHref.Smart(req).single("source");
-		final Long activityId = Long.parseLong(StringUtils.remove(source, "activity"));
+		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
 			
 		XeSource xeDataRule = XeSource.EMPTY;
 		XeSource xeParam = XeSource.EMPTY;
-		if(id > 0) {
-			final DynamicTable2Col indic = (DynamicTable2Col)activity.indicators().get(id);
+		if(id.isPresent()) {
+			final DynamicTable2Col indic = (DynamicTable2Col)activity.indicators().get(id.value());
 			xeDataRule = new XeDataLink(indic.links());
 			xeParam = new XeIndicatorDynamicParam(indic.dynamicParams());
 		}
@@ -103,13 +106,13 @@ public final class TkDynamicTable2ColSettingEdit extends TkForm {
 	@Override
 	protected XeSource newItemToShow(Request req) throws IOException {
 		
-		Long activityId = Long.parseLong(new RqHref.Smart(req).single("activity", "0"));
-		if(activityId == 0)
+		OptUUID activityId = new OptUUID(new RqHref.Smart(req).single("activity", "0"));
+		if(activityId.isEmpty())
 			throw new IllegalArgumentException("Vous devez spécifier l'activité pour lequel vous créer cet indicateur !");
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		
-		Activity activity = module.activities().get(activityId);
+		Activity activity = module.activities().get(activityId.value());
 		
 		return new XeChain(
 				new XeIndicatorType(module.indicatorTypes().indicatorType(IndicatorType.DYNAMIC_TABLE_2_COL)), 

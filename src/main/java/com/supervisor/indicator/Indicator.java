@@ -128,7 +128,7 @@ public interface Indicator extends com.supervisor.sdk.datasource.Recordable {
 		}
 		
 		@Override
-		public Long ownerId() throws IOException {
+		public UUID ownerId() throws IOException {
 			
 			return null;
 		}
@@ -146,7 +146,7 @@ public interface Indicator extends com.supervisor.sdk.datasource.Recordable {
 		}
 		
 		@Override
-		public Long lastModifierId() throws IOException {
+		public UUID lastModifierId() throws IOException {
 			
 			return null;
 		}
@@ -158,19 +158,13 @@ public interface Indicator extends com.supervisor.sdk.datasource.Recordable {
 		}
 		
 		@Override
-		public Long id() {
+		public UUID id() {
 			
 			return null;
 		}
 		
 		@Override
-		public UUID guid() throws IOException {
-			
-			return null;
-		}
-		
-		@Override
-		public Long creatorId() throws IOException {
+		public UUID creatorId() throws IOException {
 			
 			return null;
 		}

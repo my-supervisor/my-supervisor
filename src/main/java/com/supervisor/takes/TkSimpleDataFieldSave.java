@@ -1,11 +1,13 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.utils.BasicCodeGenerator;
 import com.supervisor.sdk.utils.CodeGenerator;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.lang.StringUtils;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
@@ -35,10 +37,10 @@ public final class TkSimpleDataFieldSave extends TkBaseWrap {
 					final boolean isMandatory = Boolean.parseBoolean(form.single("is_mandatory"));
 					final boolean takeLastValue = Boolean.parseBoolean(form.single("take_last_value"));
 					final boolean mustEditOnce = Boolean.parseBoolean(form.single("must_edit_once"));
-					final Long modelId = Long.parseLong(form.single("model_id"));
+					final UUID modelId = UUID.fromString(form.single("model_id"));
 					
-					final Long tableId = Long.parseLong(form.single("table_id", "0"));
-					final Long tableModelId = Long.parseLong(form.single("table_model_id", "0"));
+					final OptUUID tableId = new OptUUID(form.single("table_id", "0"));
+					final OptUUID tableModelId = new OptUUID(form.single("table_model_id", "0"));
 					
 					final DataFieldType type = DataFieldType.valueOf(form.single("type_id"));
 					final String description = form.single("description");
@@ -46,15 +48,15 @@ public final class TkSimpleDataFieldSave extends TkBaseWrap {
 					DataSheetModel model = module.dataSheetModels().get(modelId);
 					SimpleDataField itemSaved;
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
-					if(id > 0) {
-						itemSaved = model.fields().simples().get(id); 
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
+					if(id.isPresent()) {
+						itemSaved = model.fields().simples().get(id.value());
 						itemSaved.update(itemSaved.code(), name, type, description); 			
 					} else {	
 						final CodeGenerator generator;
-						if(tableId > 0) {							
-							final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId);
-							TableDataField table = (TableDataField)tableModel.fields().get(tableId);
+						if(tableId.isPresent()) {
+							final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.value());
+							TableDataField table = (TableDataField)tableModel.fields().get(tableId.value());
 							
 							generator = new BasicCodeGenerator(
 											table.structure().fields(), 
@@ -80,12 +82,12 @@ public final class TkSimpleDataFieldSave extends TkBaseWrap {
 					
 					final String msg;
 					
-					if(id > 0)
+					if(id.isPresent())
 						msg = String.format("Le champ %s a été modifié avec succès !", itemSaved.name());
 					else
 						msg = String.format("Le champ %s a été créé avec succès !", itemSaved.name());
 					
-					if(tableId > 0) {
+					if(tableId.isPresent()) {
 						return new RsForward(
 								new RsFlash(
 					                msg,

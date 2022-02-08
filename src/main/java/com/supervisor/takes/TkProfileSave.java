@@ -5,8 +5,10 @@ import com.supervisor.domain.Profiles;
 import com.supervisor.domain.impl.PxProfiles;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
+import org.takes.misc.Opt;
 import org.takes.rq.RqGreedy;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -21,7 +23,7 @@ public final class TkProfileSave extends TkBaseWrap {
 				req -> {
 					new RqAdminAuth(base, req);
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));			
 					final String name = form.single("name");
@@ -30,14 +32,14 @@ public final class TkProfileSave extends TkBaseWrap {
 					
 					final Profile item;
 					
-					if(id > 0) {
-						item = profiles.get(id);	
+					if(id.isPresent()) {
+						item = profiles.get(id.value());
 						item.update(item.code(), name);
 						
 						Profile parent = Profile.EMPTY;
-						final Long parentId = Long.parseLong(form.single("parent_id"));
-						if(parentId > 0)
-							parent = profiles.get(parentId);
+						final OptUUID parentId = new OptUUID(form.single("parent_id"));
+						if(parentId.isPresent())
+							parent = profiles.get(parentId.value());
 						
 						item.changeParent(parent);
 						

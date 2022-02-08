@@ -1,11 +1,15 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
+import org.checkerframework.checker.guieffect.qual.UI;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
+import org.takes.misc.Opt;
 import org.takes.rq.RqHref;
 
 import com.supervisor.domain.UserScope;
@@ -20,15 +24,15 @@ public final class TkDataFieldDelete extends TkBaseWrap {
 		super(
 				base, 
 				req -> {
-					Long modelId = Long.parseLong(new RqHref.Smart(req).single("model"));
-					Long tableId = Long.parseLong(new RqHref.Smart(req).single("table", "0"));
-					Long tableModelId = Long.parseLong(new RqHref.Smart(req).single("table_model", "0"));
+					UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
+					OptUUID tableId = new OptUUID(new RqHref.Smart(req).single("table", "0"));
+					OptUUID tableModelId = new OptUUID(new RqHref.Smart(req).single("table_model", "0"));
 					
 					final Supervisor module = new PxSupervisor(base, req);
 					DataSheetModel model = module.dataSheetModels().get(modelId);
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 
-					EditableDataField item = (EditableDataField)model.fields().get(id);
+					EditableDataField item = (EditableDataField)model.fields().get(id.value());
 					
 					if(item.userScope() == UserScope.SYSTEM)
 						throw new IllegalArgumentException("Vous ne pouvez pas supprimer un champ système !");
@@ -36,7 +40,7 @@ public final class TkDataFieldDelete extends TkBaseWrap {
 					String name = item.name();
 					model.fields().remove(item);
 								
-					if(tableId > 0) {
+					if(tableId.isPresent()) {
 						return new RsForward(
 							new RsFlash(
 				                String.format("Le champ %s a été supprimé avec succès !", name),

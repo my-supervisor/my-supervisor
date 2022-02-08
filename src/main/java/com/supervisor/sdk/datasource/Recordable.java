@@ -1,7 +1,6 @@
 package com.supervisor.sdk.datasource;
 
 import com.supervisor.sdk.metadata.Field;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -10,25 +9,22 @@ import java.util.UUID;
 public interface Recordable {
 	
 	@Field(order=0, isKey=true, forceInherit=true)
-	Long id();	
-	
-	@Field(order=1, forceInherit=true)
-	UUID guid() throws IOException;
+	UUID id();
 	
 	@Field(order=101, forceInherit=true)
 	LocalDateTime creationDate() throws IOException;
 	
 	@Field(order=102, forceInherit=true)
-	Long creatorId() throws IOException;
+	UUID creatorId() throws IOException;
 	
 	@Field(order=103, forceInherit=true)
 	LocalDateTime lastModificationDate() throws IOException;
 	
 	@Field(order=104, forceInherit=true)
-	Long lastModifierId() throws IOException;
+	UUID lastModifierId() throws IOException;
 	
 	@Field(order=105, forceInherit=true)
-	Long ownerId() throws IOException;	
+	UUID ownerId() throws IOException;
 	
 	@Field(order=106, forceInherit=true, isMandatory=false)
 	String tag() throws IOException;

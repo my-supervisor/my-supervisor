@@ -21,6 +21,7 @@ import com.supervisor.sdk.datasource.RecordSet;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public final class PxPurchaseOrders extends DomainRecordables<PurchaseOrder, PurchaseOrders> implements PurchaseOrders {
 
@@ -31,11 +32,11 @@ public final class PxPurchaseOrders extends DomainRecordables<PurchaseOrder, Pur
 	@Override
 	public PurchaseOrder add(Person customer, String description) throws IOException {
 		final User user = new UserOf(this);
-		final Long currencyId;
+		final UUID currencyId;
 		if(user.preferredCurrency().code().equals("XOF")) {
 			currencyId = user.preferredCurrency().id();
 		}else {
-			currencyId = 2L;
+			currencyId = Currency.EUR_ID;
 		}
 		
 		final Currencies currencies = new PxCurrencies(source.of(Currency.class));

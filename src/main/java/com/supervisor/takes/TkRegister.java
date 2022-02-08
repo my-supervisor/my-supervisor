@@ -63,7 +63,7 @@ public final class TkRegister extends TkWrap {
 					.request(name, email, password, confirmedPassword, preferredLanguage);
 				final String baseUri = new BaseUri(req).toString();
 				final String key = new String(
-					Base64.getEncoder().encode(request.guid().toString().getBytes()),
+					Base64.getEncoder().encode(request.id().toString().getBytes()),
 					StandardCharsets.UTF_8
 				);
 				final String link = String.format("%s/register/confirm?key=%s", baseUri, key);

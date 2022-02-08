@@ -12,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class DomainRecordables<A1 extends Recordable, D extends DomainSet<A1, D>> implements DomainSet<A1, D> {
 
@@ -29,7 +30,7 @@ public class DomainRecordables<A1 extends Recordable, D extends DomainSet<A1, D>
 		return domainOf(record.id());				
 	}
 	
-	protected A1 domainOf(final Long id) throws IOException {
+	protected A1 domainOf(final UUID id) throws IOException {
 		Constructor<? extends A1> constructor;
 		try {			
 			constructor = clazzImpl.getConstructor(Record.class);
@@ -161,12 +162,12 @@ public class DomainRecordables<A1 extends Recordable, D extends DomainSet<A1, D>
 	}
 
 	@Override
-	public A1 get(Long id) throws IOException {
+	public A1 get(final UUID id) throws IOException {
 		return domainOf(source.get(id));
 	}
 
 	@Override
-	public Optional<A1> getOrDefault(Long id) throws IOException {
+	public Optional<A1> getOrDefault(final UUID id) throws IOException {
 		
 		A1 item = null;
 		
@@ -180,17 +181,17 @@ public class DomainRecordables<A1 extends Recordable, D extends DomainSet<A1, D>
 	}
 
 	@Override
-	public boolean contains(Long id) throws IOException {
+	public boolean contains(final UUID id) throws IOException {
 		return source.contains(id);
 	}
 
 	@Override
-	public boolean contains(A1 item) throws IOException {
+	public boolean contains(final A1 item) throws IOException {
 		return source.contains(item.id()); 
 	}
 
 	@Override
-	public final void remove(Long id) throws IOException {
+	public final void remove(final UUID id) throws IOException {
 		if(contains(id)) {
 			final A1 item = get(id);
 			remove(item);

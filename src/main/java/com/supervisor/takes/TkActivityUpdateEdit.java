@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rs.xe.XeAppend;
 import org.takes.rs.xe.XeChain;
@@ -44,11 +45,11 @@ public final class TkActivityUpdateEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
+	protected XeSource preItemDataToShow(OptUUID id, Request req) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		
-		Activity activity = module.activities().get(id);
+		Activity activity = module.activities().get(id.value());
 		if(activity.isUpToDate())
 			throw new IllegalArgumentException("L'activité est déjà à jour !");
 		

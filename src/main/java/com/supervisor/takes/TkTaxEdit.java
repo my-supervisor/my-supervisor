@@ -3,10 +3,12 @@ package com.supervisor.takes;
 import com.supervisor.billing.Tax;
 import com.supervisor.domain.Membership;
 import com.supervisor.domain.impl.DmMembership;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.xe.XeTax;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
 import org.takes.Request;
+import org.takes.misc.Opt;
 import org.takes.rq.form.RqFormSmart;
 import org.takes.rs.xe.XeChain;
 import org.takes.rs.xe.XeSource;
@@ -40,9 +42,9 @@ public final class TkTaxEdit extends TkForm {
 	}
 	
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		final Membership module = new DmMembership(base, req);
-		final Tax tax = module.taxes().get(id);
+		final Tax tax = module.taxes().get(id.value());
 		
 		XeSource xeTax = new XeTax("item", tax);		
 		return new XeChain(
@@ -51,7 +53,7 @@ public final class TkTaxEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XeTax(dir);
 	}
 }

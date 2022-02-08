@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -11,6 +12,7 @@ import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.time.PeriodicityUnit;
 import com.supervisor.sdk.utils.BasicCodeGenerator;
 import com.supervisor.sdk.utils.CodeGenerator;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.lang.StringUtils;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
@@ -47,7 +49,7 @@ public final class TkDynamicTable2ColSettingSave extends TkBaseWrap {
 					final String unitySymbol = form.single("unity_symbol", "");
 					final SymbolPosition symbolPosition = SymbolPosition.valueOf(form.single("symbol_position", "RIGHT"));
 					final boolean manageEvolutionPercent = Boolean.parseBoolean(form.single("manage_evolution_percent"));		
-					final Long activityId = Long.parseLong(form.single("activity_id"));
+					final UUID activityId = UUID.fromString(form.single("activity_id"));
 					final Activity activity = myActivities.get(activityId);
 					
 					if(new RqUser(base, req).notOwn(activity)) {
@@ -55,10 +57,10 @@ public final class TkDynamicTable2ColSettingSave extends TkBaseWrap {
 					}
 					
 					DynamicTable2Col itemSaved;
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));		
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 
-					if(id > 0) {			
-						itemSaved = (DynamicTable2Col)activity.indicators().get(id);
+					if(id.isPresent()) {
+						itemSaved = (DynamicTable2Col)activity.indicators().get(id.value());
 									
 						if(new RqUser(base, req).notOwn(itemSaved)) {
 							throw new IllegalArgumentException("Vous ne pouvez pas modifier l'indicateur d'une activité partagée !");
@@ -106,7 +108,7 @@ public final class TkDynamicTable2ColSettingSave extends TkBaseWrap {
 					
 					final String msg;
 					
-					if(id > 0)
+					if(id.isPresent())
 						msg = String.format("L'indicateur %s a été modifié avec succès !", itemSaved.code());
 					else
 						msg = String.format("L'indicateur %s a été créé avec succès !", itemSaved.code());

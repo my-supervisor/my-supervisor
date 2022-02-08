@@ -27,17 +27,17 @@ import java.util.UUID;
 
 public class PgRecord<A1 extends Recordable> implements Record<A1> {
 	
-	final Long id;
+	final UUID id;
 	final Map<String, Object> entries;
 	final Class<A1> clazz;
 	final BaseScheme scheme;
 	final Base base;
 	
-	public PgRecord(final Base base, final BaseScheme scheme, final Class<A1> clazz, final Long id) {
+	public PgRecord(final Base base, final BaseScheme scheme, final Class<A1> clazz, final UUID id) {
 		this(base, scheme, clazz, id, new HashMap<String, Object>());
 	}
 	
-	public PgRecord(final Base base, final BaseScheme scheme, final Class<A1> clazz, final Long id, final Map<String, Object> entries) {
+	public PgRecord(final Base base, final BaseScheme scheme, final Class<A1> clazz, final UUID id, final Map<String, Object> entries) {
 		this.id = id;
 		this.entries = entries;
 		this.scheme = scheme;
@@ -46,18 +46,13 @@ public class PgRecord<A1 extends Recordable> implements Record<A1> {
 	}
 	
 	@Override
-	public Long id() {
+	public UUID id() {
 		return id;
 	}
 	
 	@Override
 	public String name() throws IOException {
 		return scheme.nameOf(clazz);
-	}
-
-	@Override
-	public UUID guid() throws IOException {
-		return valueOf("guid");
 	}
 	
 	@Override
@@ -73,12 +68,12 @@ public class PgRecord<A1 extends Recordable> implements Record<A1> {
 	}
 
 	@Override
-	public Long lastModifierId() throws IOException {
+	public UUID lastModifierId() throws IOException {
 		return valueOf("last_modifier_id");
 	}
 
 	@Override
-	public Long ownerId() throws IOException {
+	public UUID ownerId() throws IOException {
 		return valueOf("owner_id");
 	}
 
@@ -137,7 +132,7 @@ public class PgRecord<A1 extends Recordable> implements Record<A1> {
 	}
 
 	@Override
-	public <T1 extends Recordable> Record<T1> of(Class<T1> clazz, Long id) {
+	public <T1 extends Recordable> Record<T1> of(Class<T1> clazz, UUID id) {
 		return new PgRecord<>(base, scheme, clazz, id);
 	}
 
@@ -147,7 +142,7 @@ public class PgRecord<A1 extends Recordable> implements Record<A1> {
 	}
 
 	@Override
-	public Long creatorId() throws IOException {
+	public UUID creatorId() throws IOException {
 		return valueOf("creator_id");
 	}
 
@@ -184,7 +179,7 @@ public class PgRecord<A1 extends Recordable> implements Record<A1> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends Recordable> Record<T> of(MethodReferenceUtils.MethodRefWithoutArg<A1> methodRef) throws IOException {
-		Long newId = valueOf(methodRef);
+		UUID newId = valueOf(methodRef);
 		Method m = MethodReferenceUtils.getReferencedMethod(clazz, methodRef);
 		return of((Class<T>)m.getReturnType(), newId);
 	}

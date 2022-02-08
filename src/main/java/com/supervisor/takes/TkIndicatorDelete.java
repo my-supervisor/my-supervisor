@@ -1,12 +1,15 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.lang.StringUtils;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
+import org.takes.misc.Opt;
 import org.takes.rq.RqHref;
 
 import com.supervisor.domain.Activity;
@@ -25,13 +28,13 @@ public final class TkIndicatorDelete extends TkBaseWrap {
 				req -> {
 					final Supervisor module = new PxSupervisor(base, req);
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));			
-					if(id == 0)
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
+					if(id.isEmpty())
 						throw new IllegalArgumentException("Cet élément n'existe pas !");
 					
-					final Long activityId = Long.parseLong(StringUtils.replace(new RqHref.Smart(req).single("source"), "activity", ""));
+					final UUID activityId = UUID.fromString(StringUtils.replace(new RqHref.Smart(req).single("source"), "activity", ""));
 					final Activity activity = module.activities().get(activityId);
-					Indicator indicator = activity.indicators().get(id);
+					Indicator indicator = activity.indicators().get(id.value());
 
 					if(new RqUser(base, req).notOwn(indicator)) {
 						throw new IllegalArgumentException("Vous ne pouvez pas supprimer l'indicateur d'une activité partagée !");

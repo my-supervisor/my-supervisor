@@ -2,6 +2,7 @@ package com.supervisor.copying;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.domain.DataModel;
 import com.supervisor.domain.FormularDataField;
@@ -12,9 +13,9 @@ public abstract class AbstractFormularExtendedToModelExpressionWriter implements
 	
 	protected final FormularDataField targetFormular;
 	protected final FormularExtendedToModelExpression source;
-	protected final Map<Long, DataModel> dataModelMappings;
+	protected final Map<UUID, DataModel> dataModelMappings;
 	
-	public AbstractFormularExtendedToModelExpressionWriter(final FormularDataField targetFormular, final FormularExtendedToModelExpression source, final Map<Long, DataModel> dataModelMappings) {
+	public AbstractFormularExtendedToModelExpressionWriter(final FormularDataField targetFormular, final FormularExtendedToModelExpression source, final Map<UUID, DataModel> dataModelMappings) {
 		this.targetFormular = targetFormular;
 		this.source = source;
 		this.dataModelMappings = dataModelMappings;

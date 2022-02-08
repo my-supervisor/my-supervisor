@@ -13,6 +13,7 @@ import com.supervisor.sdk.datasource.Table;
 import com.supervisor.sdk.datasource.TableImpl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public final class PgPlans extends DomainRecordables<Plan, Plans> implements Plans {
 
@@ -35,7 +36,7 @@ public final class PgPlans extends DomainRecordables<Plan, Plans> implements Pla
 	}
 	
 	@Override
-	protected Plan domainOf(final Long id) throws IOException {
+	protected Plan domainOf(final UUID id) throws IOException {
 		Product origin = catalog.products().get(id);
 		return new PxPlan(origin);					
 	}

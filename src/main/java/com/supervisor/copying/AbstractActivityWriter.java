@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
 import com.supervisor.domain.User;
 import com.supervisor.domain.UserScope;
 import com.supervisor.domain.impl.OwnerOf;
@@ -40,7 +42,7 @@ public abstract class AbstractActivityWriter implements Writer<Activity> {
 	protected final User user;
 	protected final Activity source;
 	protected final Activity target;
-	protected final Map<Long, DataModel> dataModelMappings = new HashMap<>();
+	protected final Map<UUID, DataModel> dataModelMappings = new HashMap<>();
 	
 	public AbstractActivityWriter(final Activity source, final Activity target) throws IOException {
 		this(new OwnerOf(target), source, target);

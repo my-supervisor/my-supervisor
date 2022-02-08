@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -23,9 +24,9 @@ public final class TkActivityUpdateApply extends TkBaseWrap {
 					final RqHref.Smart href = new RqHref.Smart(req);	
 					final Supervisor module = new PxSupervisor(base, req);
 											
-					final Long templateId = Long.parseLong(href.single("template"));
-					final Long activityId = Long.parseLong(href.single("activity"));
-					final Long releaseId = Long.parseLong(href.single("release"));
+					final UUID templateId = UUID.fromString(href.single("template"));
+					final UUID activityId = UUID.fromString(href.single("activity"));
+					final UUID releaseId = UUID.fromString(href.single("release"));
 						
 					final ActivityTemplate template = module.activityTemplates().get(templateId);
 					final Activity activity = module.activities().get(activityId);

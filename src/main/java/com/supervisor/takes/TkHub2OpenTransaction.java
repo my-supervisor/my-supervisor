@@ -23,6 +23,7 @@ import java.io.DataOutputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public final class TkHub2OpenTransaction extends TkBaseWrap {
 
@@ -34,7 +35,7 @@ public final class TkHub2OpenTransaction extends TkBaseWrap {
 					final Membership module = new DmMembership(base, req);
 					final User user = module.user();
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("request"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("request"));
 					
 					PaymentRequest payRequest = user.paymentRequests().get(id);
 					PaymentMethod method = module.paymentMethods().where(PaymentMethod::tag, "HUB2").first();

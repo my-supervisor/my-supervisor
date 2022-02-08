@@ -2,6 +2,7 @@ package com.supervisor.domain.impl;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordables;
 import com.supervisor.sdk.datasource.Record;
@@ -25,7 +26,7 @@ public final class PxSharing extends DomainRecordables<SharedResource, Sharing> 
 	}
 
 	@Override
-	public SharedResource share(Long resourceId, ResourceType type, User subscriber) throws IOException {
+	public SharedResource share(UUID resourceId, ResourceType type, User subscriber) throws IOException {
 		
 		User follower = new DmUser(
 							source.of(User.class)
@@ -79,7 +80,7 @@ public final class PxSharing extends DomainRecordables<SharedResource, Sharing> 
 	}
 
 	@Override
-	public Optional<SharedResource> resource(Long resourceId, ResourceType type, User subscriber) throws IOException {
+	public Optional<SharedResource> resource(UUID resourceId, ResourceType type, User subscriber) throws IOException {
 		
 		Sharing resourceToSearch =  where(SharedResource::resourceId, resourceId)
 				                   .where(SharedResource::type, type)
@@ -96,7 +97,7 @@ public final class PxSharing extends DomainRecordables<SharedResource, Sharing> 
 	}
 
 	@Override
-	public SharedResource share(Long resourceId, ResourceType type, String email) throws IOException {
+	public SharedResource share(UUID resourceId, ResourceType type, String email) throws IOException {
 		
 		if(StringUtils.isBlank(email))
 			throw new IllegalArgumentException("Vous devez spécifier une adresse email !");

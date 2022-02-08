@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordables;
 import com.supervisor.sdk.datasource.Record;
@@ -134,7 +135,7 @@ public final class PgDataFields extends DomainRecordables<DataField, DataFields>
 	}
 
 	@Override
-	public Long add(String code, String name, DataFieldType type, DataFieldStyle style, String description) throws IOException {
+	public UUID add(String code, String name, DataFieldType type, DataFieldStyle style, String description) throws IOException {
 		
 		if(model.type() == DataModelType.DATA_SHEET_MODEL) {
 			new UserOf(this).profile().validateAccessibility("NEW_DATA_FIELD");

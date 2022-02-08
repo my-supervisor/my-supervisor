@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -29,18 +30,18 @@ public final class TkExpressionArgSave extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));				
 					
-					final Long modelId = Long.parseLong(form.single("model_id"));
+					final UUID modelId = UUID.fromString(form.single("model_id"));
 					AggregatedModel model = module.aggregatedModels().get(modelId); 
 					
-					final Long formularId = Long.parseLong(form.single("formular_id"));
+					final UUID formularId = UUID.fromString(form.single("formular_id"));
 					FormularDataField formular = model.formulars().get(formularId); 
 					
-					final Long expressionId = Long.parseLong(form.single("expression_id"));
+					final UUID expressionId = UUID.fromString(form.single("expression_id"));
 					FormularExpression expression = formular.expressions().get(expressionId); 
 					
 					ExpressionArgType type = ExpressionArgType.valueOf(form.single("type_id"));
 					
-					final Long id = Long.parseLong(form.single("id"));
+					final UUID id = UUID.fromString(form.single("id"));
 					final ExpressionArg item = expression.arguments().get(id);		
 					
 					switch (type) {
@@ -50,22 +51,22 @@ public final class TkExpressionArgSave extends TkBaseWrap {
 							item.update(value, valueType); 
 							break;
 						case DATA_FIELD :
-							final Long fieldId = Long.parseLong(form.single("field_id"));
+							final UUID fieldId = UUID.fromString(form.single("field_id"));
 							EditableDataField field = model.model().fields().editables().get(fieldId);
 							item.update(field); 
 							break;
 						case PARAMETER :
-							final Long paramId = Long.parseLong(form.single("param_id"));
+							final UUID paramId = UUID.fromString(form.single("param_id"));
 							ParamDataField param = model.params().get(paramId);
 							item.update(param); 
 							break;
 						case FORMULAR :
-							final Long targetFormularId = Long.parseLong(form.single("target_formular_id"));
+							final UUID targetFormularId = UUID.fromString(form.single("target_formular_id"));
 							FormularDataField targetFormular = model.formulars().get(targetFormularId);
 							item.update(targetFormular); 
 							break;
 						case EXPRESSION :
-							final Long targetExprId = Long.parseLong(form.single("target_expr_id"));
+							final UUID targetExprId = UUID.fromString(form.single("target_expr_id"));
 							FormularExpression targetExpr = formular.expressions().get(targetExprId);
 							item.update(targetExpr); 
 							break;

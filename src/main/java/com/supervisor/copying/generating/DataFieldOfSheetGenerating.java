@@ -2,6 +2,7 @@ package com.supervisor.copying.generating;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractDataFieldOfSheetWriter;
 import com.supervisor.sharing.DataSheetSharing;
@@ -17,11 +18,11 @@ import com.supervisor.domain.impl.PxTableDataFieldOfSheetRow;
 
 public final class DataFieldOfSheetGenerating extends AbstractDataFieldOfSheetWriter {
 
-	public DataFieldOfSheetGenerating(DataFieldOfSheet source, DataFieldOfSheet target, Map<Long, DataModel> dataModelMappings) throws IOException {
+	public DataFieldOfSheetGenerating(DataFieldOfSheet source, DataFieldOfSheet target, Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(source, target, dataModelMappings);
 	}
 
-	public DataFieldOfSheetGenerating(final DataSheet targetSheet, final DataFieldOfSheet source, final Map<Long, DataModel> dataModelMappings) {
+	public DataFieldOfSheetGenerating(final DataSheet targetSheet, final DataFieldOfSheet source, final Map<UUID, DataModel> dataModelMappings) {
 		super(targetSheet, source, dataModelMappings);
 	}
 

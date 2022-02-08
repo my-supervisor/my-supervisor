@@ -15,6 +15,7 @@ import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqGreedy;
 import org.takes.rq.form.RqFormSmart;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkMobileMoneyPaymentFinalize extends TkBaseWrap {
@@ -29,10 +30,10 @@ public final class TkMobileMoneyPaymentFinalize extends TkBaseWrap {
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					
-					final Long requestId = Long.parseLong(form.single("request_id"));
+					final UUID requestId = UUID.fromString(form.single("request_id"));
 					PaymentRequest paymentRequest = user.paymentRequests().get(requestId);
 					
-					final Long methodId = Long.parseLong(form.single("method_id"));
+					final UUID methodId = UUID.fromString(form.single("method_id"));
 					PaymentMethod method = module.paymentMethods().get(methodId);
 					
 					final MobileMoney mobileMoney = (MobileMoney)method;

@@ -3,9 +3,11 @@ package com.supervisor.takes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -33,7 +35,7 @@ public final class TkActivityTemplateNewDesignerEdit extends TkForm {
 	protected Iterable<XeSource> contentToShow(final Request req, final XeSource itemToShow) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
-		final Long activityId = Long.parseLong(new RqHref.Smart(req).single("activity"));
+		final UUID activityId = UUID.fromString(new RqHref.Smart(req).single("activity"));
 		final ActivityTemplate template = module.activityTemplates().get(activityId);
 		
 		List<XeSource> content = new ArrayList<>();
@@ -45,12 +47,12 @@ public final class TkActivityTemplateNewDesignerEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		return XeSource.EMPTY;
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XeActivityTemplate(dir);
 	}	
 }

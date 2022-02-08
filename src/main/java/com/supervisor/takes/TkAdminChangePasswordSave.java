@@ -11,6 +11,7 @@ import org.takes.rq.RqGreedy;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkAdminChangePasswordSave extends TkBaseWrap {
@@ -22,7 +23,7 @@ public final class TkAdminChangePasswordSave extends TkBaseWrap {
 					new RqAdminAuth(base, req);
 					
 					final Membership module = new DmMembership(base, req);
-					Long userId = Long.parseLong(new RqHref.Smart(req).single("user"));
+					UUID userId = UUID.fromString(new RqHref.Smart(req).single("user"));
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					

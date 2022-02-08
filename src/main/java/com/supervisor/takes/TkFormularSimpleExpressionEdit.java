@@ -3,9 +3,11 @@ package com.supervisor.takes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -44,11 +46,11 @@ public final class TkFormularSimpleExpressionEdit extends TkForm {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 
-		Long modelId = Long.parseLong(new RqHref.Smart(req).single("model")); 
+		UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		AggregatedModel model = module.aggregatedModels()
 									 .get(modelId);
 		
-		Long formularId = Long.parseLong(new RqHref.Smart(req).single("formular"));
+		UUID formularId = UUID.fromString(new RqHref.Smart(req).single("formular"));
 		FormularDataField formular = model.formulars().get(formularId);
 		
 		List<XeSource> content = new ArrayList<>();
@@ -65,17 +67,17 @@ public final class TkFormularSimpleExpressionEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		
-		Long modelId = Long.parseLong(new RqHref.Smart(req).single("model"));
+		UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		AggregatedModel model = module.aggregatedModels().get(modelId); 
 		
-		Long formularId = Long.parseLong(new RqHref.Smart(req).single("formular"));
+		UUID formularId = UUID.fromString(new RqHref.Smart(req).single("formular"));
 		FormularDataField formular = model.formulars().get(formularId);
-		
-		FormularSimpleExpression item = (FormularSimpleExpression)formular.expressions().get(id);
+
+		FormularSimpleExpression item = (FormularSimpleExpression)formular.expressions().get(id.value());
 
 		return new XeChain(
 				new XeFormularSimpleExpression("item", item)
@@ -83,9 +85,9 @@ public final class TkFormularSimpleExpressionEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id == 0)
+		if(id.isEmpty())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

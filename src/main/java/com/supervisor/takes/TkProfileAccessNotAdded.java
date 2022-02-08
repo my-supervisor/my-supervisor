@@ -2,6 +2,7 @@ package com.supervisor.takes;
 
 import com.supervisor.domain.Profile;
 import com.supervisor.domain.impl.PxAllProfiles;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.xe.XeAccess;
 import com.supervisor.xe.XeProfile;
 import com.supervisor.sdk.datasource.Base;
@@ -16,6 +17,7 @@ import org.xembly.Directive;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class TkProfileAccessNotAdded extends TkForm {
 
@@ -42,7 +44,7 @@ public final class TkProfileAccessNotAdded extends TkForm {
 	@Override
 	protected XeSource newItemToShow(Request req) throws IOException {
 
-		Long profileId = Long.parseLong(new RqHref.Smart(req).single("profile"));
+		UUID profileId = UUID.fromString(new RqHref.Smart(req).single("profile"));
 		final Profile item = new PxAllProfiles(base).get(profileId);
 		
 		return new XeChain(
@@ -52,12 +54,12 @@ public final class TkProfileAccessNotAdded extends TkForm {
 	}
 	
 	@Override
-	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
+	protected XeSource preItemDataToShow(OptUUID id, Request req) throws IOException {
 		return XeSource.EMPTY;
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return preItemDataToShow(id, req);
 	}
 }

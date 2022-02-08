@@ -2,6 +2,7 @@ package com.supervisor.copying.templating;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractAggregatedModelWriter;
 import com.supervisor.sharing.AggregatedModelSharing;
@@ -12,15 +13,15 @@ import com.supervisor.domain.DataModel;
 
 public class AggregatedModelTemplating extends AbstractAggregatedModelWriter {
 
-	public AggregatedModelTemplating(final String code, final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AggregatedModelTemplating(final String code, final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(code, targetActivity, targetModel, source, dataModelMappings);
 	}
 	
-	public AggregatedModelTemplating(final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AggregatedModelTemplating(final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(targetActivity, targetModel, source, dataModelMappings);
 	}
 	
-	public AggregatedModelTemplating(AggregatedModel source, AggregatedModel target, Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AggregatedModelTemplating(AggregatedModel source, AggregatedModel target, Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(source, target, dataModelMappings);
 	}
 	

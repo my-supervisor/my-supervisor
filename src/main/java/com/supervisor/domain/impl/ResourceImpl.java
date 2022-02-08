@@ -38,7 +38,7 @@ public final class ResourceImpl implements Resource {
 	}
 	
 	@Override
-	public Long id() {
+	public UUID id() {
 		return record.id();
 	}
 
@@ -53,13 +53,8 @@ public final class ResourceImpl implements Resource {
 	}
 
 	@Override
-	public Long ownerId() throws IOException { 
+	public UUID ownerId() throws IOException {
 		return record.ownerId();
-	}
-
-	@Override
-	public UUID guid() throws IOException {
-		return record.guid();
 	}
 
 	@Override
@@ -68,7 +63,7 @@ public final class ResourceImpl implements Resource {
 	}
 
 	@Override
-	public Long creatorId() throws IOException {
+	public UUID creatorId() throws IOException {
 		return record.creatorId();
 	}
 
@@ -78,7 +73,7 @@ public final class ResourceImpl implements Resource {
 	}
 
 	@Override
-	public Long lastModifierId() throws IOException {
+	public UUID lastModifierId() throws IOException {
 		return record.lastModifierId();
 	}
 

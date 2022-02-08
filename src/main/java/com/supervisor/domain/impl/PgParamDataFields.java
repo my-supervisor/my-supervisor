@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordables;
 import com.supervisor.sdk.datasource.OrderDirection;
@@ -99,7 +100,7 @@ public final class PgParamDataFields extends DomainRecordables<ParamDataField, P
 		
 		new DataFieldValueImpl(type, value).validate();
 		
-		final Long fieldId = new PgDataFields(model).add(code, name, type, DataFieldStyle.PARAMETER, StringUtils.EMPTY);		
+		final UUID fieldId = new PgDataFields(model).add(code, name, type, DataFieldStyle.PARAMETER, StringUtils.EMPTY);
 		
 		Record<ParamDataField> record = source.entryOf(ParamDataField::id, fieldId)	
 											  .entryOf(ParamDataField::value, new DataFieldValueImpl(type, value).cleaned())

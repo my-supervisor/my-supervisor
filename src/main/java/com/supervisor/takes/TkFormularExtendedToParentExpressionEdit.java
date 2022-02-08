@@ -3,9 +3,11 @@ package com.supervisor.takes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -40,11 +42,11 @@ public final class TkFormularExtendedToParentExpressionEdit extends TkForm {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 
-		final Long modelId = Long.parseLong(new RqHref.Smart(req).single("model")); 
+		final UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		final AggregatedModel amodel = module.aggregatedModels()
 									  		.get(modelId);
 		
-		final Long formularId = Long.parseLong(new RqHref.Smart(req).single("formular"));
+		final UUID formularId = UUID.fromString(new RqHref.Smart(req).single("formular"));
 		final FormularDataField formular = amodel.formulars().get(formularId);
 		
 		final List<XeSource> content = new ArrayList<>();
@@ -64,7 +66,7 @@ public final class TkFormularExtendedToParentExpressionEdit extends TkForm {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		
-		final Long modelId = Long.parseLong(new RqHref.Smart(req).single("model")); 
+		final UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		final AggregatedModel amodel = module.aggregatedModels()
 									  		.get(modelId);
 		final DataSheetModel model = amodel.coreModel();
@@ -73,17 +75,17 @@ public final class TkFormularExtendedToParentExpressionEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		
-		final Long modelId = Long.parseLong(new RqHref.Smart(req).single("model"));
+		final UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		final AggregatedModel model = module.aggregatedModels().get(modelId); 
 		
-		final Long formularId = Long.parseLong(new RqHref.Smart(req).single("formular"));
+		final UUID formularId = UUID.fromString(new RqHref.Smart(req).single("formular"));
 		final FormularDataField formular = model.formulars().get(formularId);
 		
-		final FormularExtendedToParentExpression item = (FormularExtendedToParentExpression)formular.expressions().get(id);
+		final FormularExtendedToParentExpression item = (FormularExtendedToParentExpression)formular.expressions().get(id.value());
 
 		return new XeChain(
 			new XeFormularExtendedToParentExpression("item", item),
@@ -92,9 +94,9 @@ public final class TkFormularExtendedToParentExpressionEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id == 0)
+		if(id.isEmpty())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

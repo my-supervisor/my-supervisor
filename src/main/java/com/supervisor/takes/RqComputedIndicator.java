@@ -1,6 +1,7 @@
 package com.supervisor.takes;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import org.takes.Request;
@@ -28,7 +29,7 @@ public final class RqComputedIndicator implements ComputedIndicator {
 	public void calculate() throws IOException {
 		final Supervisor module = new PxSupervisor(base, req);
 		Smart params = new RqHref.Smart(req);
-		final Long activityId = Long.parseLong(params.single("activity"));
+		final UUID activityId = UUID.fromString(params.single("activity"));
 		Activity activity = module.activities().get(activityId);
 		
 		origin.calculate(new RqDashboardDate(req).toLocalDate(), activity);

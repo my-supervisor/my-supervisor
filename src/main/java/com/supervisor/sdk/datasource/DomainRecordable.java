@@ -15,13 +15,8 @@ public class DomainRecordable<A1 extends Recordable> implements Recordable {
 	}
 	
 	@Override
-	public Long id() {
+	public UUID id() {
 		return record.id();
-	}
-
-	@Override
-	public UUID guid() throws IOException {
-		return record.guid();
 	}
 
 	@Override
@@ -35,12 +30,12 @@ public class DomainRecordable<A1 extends Recordable> implements Recordable {
 	}
 
 	@Override
-	public Long lastModifierId() throws IOException {
+	public UUID lastModifierId() throws IOException {
 		return record.lastModifierId();
 	}
 
 	@Override
-	public Long ownerId() throws IOException {
+	public UUID ownerId() throws IOException {
 		return record.ownerId();
 	}
 
@@ -50,7 +45,7 @@ public class DomainRecordable<A1 extends Recordable> implements Recordable {
 	}
 
 	@Override
-	public Long creatorId() throws IOException {
+	public UUID creatorId() throws IOException {
 		return record.creatorId();
 	}
 

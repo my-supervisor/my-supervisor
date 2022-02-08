@@ -3,6 +3,7 @@ package com.supervisor.takes;
 import com.supervisor.billing.PaymentMethod;
 import com.supervisor.domain.Membership;
 import com.supervisor.domain.impl.DmMembership;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.xe.XePaymentMethod;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
@@ -40,9 +41,9 @@ public final class TkPaymentMethodEdit extends TkForm {
 	}
 	
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		final Membership module = new DmMembership(base, req);
-		final PaymentMethod method = module.paymentMethods().get(id);
+		final PaymentMethod method = module.paymentMethods().get(id.value());
 		
 		XeSource xeMethod = new XePaymentMethod("item", method);		
 		return new XeChain(
@@ -51,7 +52,7 @@ public final class TkPaymentMethodEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XePaymentMethod(dir);
 	}
 }

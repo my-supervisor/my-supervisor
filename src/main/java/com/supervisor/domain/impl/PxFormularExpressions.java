@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordables;
 import com.supervisor.sdk.datasource.Record;
@@ -141,7 +142,7 @@ public final class PxFormularExpressions extends DomainRecordables<FormularExpre
 				break;
 			case CASE:
 			    FormularCaseExpression caseItem = (FormularCaseExpression)item;
-			    Long defaultArgId = caseItem.defaultValue().id();
+			    final UUID defaultArgId = caseItem.defaultValue().id();
 			    caseItem.cases().remove();			    
 			    source.of(ExpressionArg.class).remove(defaultArgId); 
 				break;

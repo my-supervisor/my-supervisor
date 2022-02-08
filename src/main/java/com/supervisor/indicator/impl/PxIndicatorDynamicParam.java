@@ -1,6 +1,7 @@
 package com.supervisor.indicator.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
@@ -53,7 +54,7 @@ public final class PxIndicatorDynamicParam extends DomainRecordable<IndicatorDyn
 	@Override
 	public IndicatorTypeDynamicParam origin() throws IOException {
 		
-		Long id = record.valueOf(IndicatorDynamicParam::origin);
+		final UUID id = record.valueOf(IndicatorDynamicParam::origin);
 		Record<IndicatorTypeParam> rec = record.of(IndicatorTypeParam.class, id);
 		
 		return new PxIndicatorTypeDynamicParam(

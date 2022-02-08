@@ -87,7 +87,7 @@ public final class PgRecordSet<A1 extends Recordable> implements RecordSet<A1> {
 		
 		List<Record<A1>> items = new ArrayList<>();
 		for (ResultStatement result : results) {
-			items.add(new PgRecord<A1>(base, scheme, clazz, (Long)result.data().get("id")));
+			items.add(new PgRecord<A1>(base, scheme, clazz, (UUID)result.data().get("id")));
 		}
 		
 		return items;
@@ -121,7 +121,7 @@ public final class PgRecordSet<A1 extends Recordable> implements RecordSet<A1> {
 		Statement statement = new PgSimpleSelectStatement(base, Arrays.asList("id"), table, clause, parameters, ordering.script(), 1L, 1L);
 		List<ResultStatement> results = statement.execute();
 		
-		return new PgRecord<>(base, scheme, clazz, (Long)results.get(0).data().get("id"));
+		return new PgRecord<>(base, scheme, clazz, (UUID)results.get(0).data().get("id"));
 	}
 
 	@Override
@@ -135,7 +135,7 @@ public final class PgRecordSet<A1 extends Recordable> implements RecordSet<A1> {
 		Statement statement = new PgSimpleSelectStatement(base, Arrays.asList("id"), table, clause, parameters, ordering.reverse().script(), 1L, 1L);
 		List<ResultStatement> results = statement.execute();
 		
-		return new PgRecord<>(base, scheme, clazz, (Long)results.get(0).data().get("id"));
+		return new PgRecord<>(base, scheme, clazz, (UUID)results.get(0).data().get("id"));
 	}
 
 	@Override
@@ -707,12 +707,12 @@ public final class PgRecordSet<A1 extends Recordable> implements RecordSet<A1> {
 	}
 
 	@Override
-	public Record<A1> get(Long id) throws IOException {
+	public Record<A1> get(UUID id) throws IOException {
 		return where(A1::id, id).first();
 	}
 
 	@Override
-	public Optional<Record<A1>> getOrDefault(Long id) throws IOException {
+	public Optional<Record<A1>> getOrDefault(UUID id) throws IOException {
 		Record<A1> item = null;
 		
 		try {
@@ -725,7 +725,7 @@ public final class PgRecordSet<A1 extends Recordable> implements RecordSet<A1> {
 	}
 
 	@Override
-	public void remove(Long id) throws IOException {
+	public void remove(UUID id) throws IOException {
 		where(A1::id, id).remove();
 	}
 
@@ -735,7 +735,7 @@ public final class PgRecordSet<A1 extends Recordable> implements RecordSet<A1> {
 	}
 
 	@Override
-	public boolean contains(Long id) throws IOException {
+	public boolean contains(UUID id) throws IOException {
 		return where(A1::id, id).any();
 	}
 
@@ -767,14 +767,14 @@ public final class PgRecordSet<A1 extends Recordable> implements RecordSet<A1> {
 	}
 
 	@Override
-	public Record<A1> addForUser(long uid) throws IOException {
+	public Record<A1> addForUser(UUID uid) throws IOException {
 		entries.put("owner_id", uid);
-		Statement statement = new PgInsertStatement(base, scheme.nameOf(clazz), entries, UUID.randomUUID());
+		Statement statement = new PgInsertStatement(base, scheme.nameOf(clazz), entries);
 		List<ResultStatement> results = statement.execute();
 		
 		entries.clear();
 		
-		return new PgRecord<>(base, scheme, clazz, (Long)results.get(0).data().get("id"));
+		return new PgRecord<>(base, scheme, clazz, (UUID)results.get(0).data().get("id"));
 	}
 
 	@Override

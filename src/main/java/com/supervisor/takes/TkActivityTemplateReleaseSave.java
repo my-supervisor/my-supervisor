@@ -1,9 +1,11 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqGreedy;
@@ -29,23 +31,22 @@ public final class TkActivityTemplateReleaseSave extends TkBaseWrap {
 					final String version = form.single("version");
 					final String notes = form.single("notes");
 						
-					final Long templateId = Long.parseLong(form.single("release_template_id"));
+					final UUID templateId = UUID.fromString(form.single("release_template_id"));
 					final ActivityTemplate template = module.activityTemplates().get(templateId);
-					
+
 					final ActivityTemplateRelease release;
-					final Long id = Long.parseLong(href.single("id", "0"));
-					if(id > 0) {
-						release = template.releases().get(id);
+					final OptUUID id = new OptUUID(href.single("id", "0"));
+					if(id.isPresent()) {
+						release = template.releases().get(id.value());
 						release.update(version, notes); 
 					}else
 					{
-						final Long activityId = Long.parseLong(form.single("release_activity_src_id"));
-						final Activity activity = module.activities().get(activityId);
+						final Activity activity = module.activities().get(UUID.fromString(form.single("release_activity_src_id")));
 						release = template.releases().add(activity, version, notes);
 					}
 							
 					final String msg;
-					if(id > 0)
+					if(id.isEmpty())
 						msg = String.format("La release %s a été modifiée avec succès !", release.version());
 					else
 						msg = String.format("La release %s a été créée avec succès !", release.version());

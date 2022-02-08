@@ -2,6 +2,7 @@ package com.supervisor.takes;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -32,7 +33,7 @@ public final class TkSharingSave extends TkBaseWrap {
 					Smart params = new RqHref.Smart(req);
 					
 					ResourceType type = ResourceType.valueOf(params.single("type"));
-					Long resourceId = Long.parseLong(params.single("resource"));		
+					UUID resourceId = UUID.fromString(params.single("resource"));
 					Resource resource = module.resources().resource(type, resourceId);
 					
 					if(new RqUser(base, req).notOwn(resource)) {

@@ -2,6 +2,7 @@ package com.supervisor.copying;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.domain.AggregatedModel;
 import com.supervisor.domain.DataModel;
@@ -25,9 +26,9 @@ public abstract class AbstractFormularDataFieldWriter implements Writer<Formular
 
 	protected final FormularDataField source;
 	protected final AggregatedModel targetModel;
-	protected final Map<Long, DataModel> dataModelMappings;
+	protected final Map<UUID, DataModel> dataModelMappings;
 	
-	public AbstractFormularDataFieldWriter(final AggregatedModel targetModel, final FormularDataField source, final Map<Long, DataModel> dataModelMappings) {
+	public AbstractFormularDataFieldWriter(final AggregatedModel targetModel, final FormularDataField source, final Map<UUID, DataModel> dataModelMappings) {
 		this.source = source;
 		this.targetModel = targetModel;
 		this.dataModelMappings = dataModelMappings;

@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.DomainRecordable;
@@ -24,7 +25,7 @@ public final class PxSharedResource extends DomainRecordable<SharedResource> imp
 	}
 
 	@Override
-	public Long resourceId() throws IOException {
+	public UUID resourceId() throws IOException {
 		return record.valueOf(SharedResource::resourceId);
 	}
 
