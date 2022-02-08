@@ -16,6 +16,7 @@ import org.takes.rs.RsWithHeader;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public final class TkCinetPayOpenTransaction extends TkBaseWrap {
 
@@ -27,7 +28,7 @@ public final class TkCinetPayOpenTransaction extends TkBaseWrap {
 					final Membership module = new DmMembership(base, req);
 					final User user = module.user();
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("request"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("request"));
 					
 					final PaymentRequest payRequest = user.paymentRequests().get(id);
 					final CreditCard method = (CreditCard)module.paymentMethods().where(PaymentMethod::tag, "CINETPAY").first();

@@ -10,21 +10,15 @@ import java.util.UUID;
 
 public class FkRecordable implements Recordable {
 
-	private final Long id;
+	private final UUID id;
 	
-	public FkRecordable(Long id) {
+	public FkRecordable(UUID id) {
 		this.id = id;
 	}
 	
 	@Override
-	public Long id() {
+	public UUID id() {
 		return id;
-	}
-
-	@Override
-	public UUID guid() throws IOException {
-		
-		return null;
 	}
 
 	@Override
@@ -34,7 +28,7 @@ public class FkRecordable implements Recordable {
 	}
 
 	@Override
-	public Long creatorId() throws IOException {
+	public UUID creatorId() throws IOException {
 		
 		return null;
 	}
@@ -46,13 +40,13 @@ public class FkRecordable implements Recordable {
 	}
 
 	@Override
-	public Long lastModifierId() throws IOException {
+	public UUID lastModifierId() throws IOException {
 		
 		return null;
 	}
 
 	@Override
-	public Long ownerId() throws IOException {
+	public UUID ownerId() throws IOException {
 		
 		return null;
 	}

@@ -2,6 +2,7 @@ package com.supervisor.copying.generating;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.domain.impl.UserOf;
 import com.supervisor.copying.AbstractFormularExtendedToModelExpressionWriter;
@@ -16,7 +17,7 @@ import com.supervisor.domain.impl.PgActivities;
 
 public final class FormularExtendedToModelExpressionGenerating extends AbstractFormularExtendedToModelExpressionWriter {
 
-	public FormularExtendedToModelExpressionGenerating(FormularDataField targetFormular, FormularExtendedToModelExpression source, Map<Long, DataModel> dataModelMappings) {
+	public FormularExtendedToModelExpressionGenerating(FormularDataField targetFormular, FormularExtendedToModelExpression source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetFormular, source, dataModelMappings);
 	}
 

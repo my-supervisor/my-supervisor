@@ -2,6 +2,7 @@ package com.supervisor.copying.cloning;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractDataSheetWriter;
 import com.supervisor.domain.DataFieldOfSheet;
@@ -11,11 +12,11 @@ import com.supervisor.domain.DataSheetModel;
 
 public final class DataSheetCloning extends AbstractDataSheetWriter {
 
-	public DataSheetCloning(final DataSheetModel targetModel, final DataSheet source, final Map<Long, DataModel> dataModelMappings) {
+	public DataSheetCloning(final DataSheetModel targetModel, final DataSheet source, final Map<UUID, DataModel> dataModelMappings) {
 		super(targetModel, source, dataModelMappings);
 	}
 	
-	public DataSheetCloning(DataSheet source, DataSheet target, Map<Long, DataModel> dataModelMappings) throws IOException {
+	public DataSheetCloning(DataSheet source, DataSheet target, Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(source, target, dataModelMappings);
 	}
 

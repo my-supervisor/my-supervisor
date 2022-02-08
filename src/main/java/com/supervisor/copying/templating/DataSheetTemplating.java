@@ -2,6 +2,7 @@ package com.supervisor.copying.templating;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractDataSheetWriter;
 import com.supervisor.sharing.DataSheetSharingImpl;
@@ -12,11 +13,11 @@ import com.supervisor.domain.DataSheetModel;
 
 public final class DataSheetTemplating extends AbstractDataSheetWriter {
 
-	public DataSheetTemplating(final DataSheetModel targetModel, final DataSheet source, final Map<Long, DataModel> dataModelMappings) {
+	public DataSheetTemplating(final DataSheetModel targetModel, final DataSheet source, final Map<UUID, DataModel> dataModelMappings) {
 		super(targetModel, source, dataModelMappings);
 	}
 	
-	public DataSheetTemplating(DataSheet source, DataSheet target, Map<Long, DataModel> dataModelMappings) throws IOException {
+	public DataSheetTemplating(DataSheet source, DataSheet target, Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(source, target, dataModelMappings);
 	}
 	

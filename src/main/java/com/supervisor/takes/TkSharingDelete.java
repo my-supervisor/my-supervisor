@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -23,12 +24,12 @@ public final class TkSharingDelete extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					Smart params = new RqHref.Smart(req);
 					
-					Long id = Long.parseLong(params.single("id"));
+					UUID id = UUID.fromString(params.single("id"));
 									
 					SharedResource resource = module.sharing().get(id);
 					String name = resource.subscriber().name();
 					ResourceType type = resource.type();
-					Long resourceId = resource.resourceId();					
+					UUID resourceId = resource.resourceId();
 					
 					module.sharing().remove(resource);
 								

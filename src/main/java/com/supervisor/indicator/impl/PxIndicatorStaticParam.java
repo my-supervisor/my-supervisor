@@ -2,6 +2,7 @@ package com.supervisor.indicator.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
@@ -57,7 +58,7 @@ public final class PxIndicatorStaticParam extends DomainRecordable<IndicatorStat
 
 	@Override
 	public IndicatorTypeStaticParam origin() throws IOException {
-		Long id = record.valueOf(IndicatorStaticParam::origin);
+		final UUID id = record.valueOf(IndicatorStaticParam::origin);
 		Record<IndicatorTypeParam> rec = record.of(IndicatorTypeParam.class, id);
 		
 		return new PxIndicatorTypeStaticParam(

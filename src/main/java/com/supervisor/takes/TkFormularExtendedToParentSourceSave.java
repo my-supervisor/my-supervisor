@@ -1,9 +1,11 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqGreedy;
@@ -29,32 +31,32 @@ public final class TkFormularExtendedToParentSourceSave extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));		
 					
-					final Long modelId = Long.parseLong(form.single("model_id"));
+					final UUID modelId = UUID.fromString(form.single("model_id"));
 					final AggregatedModel model = module.aggregatedModels().get(modelId); 
 					
-					final Long formularId = Long.parseLong(form.single("formular_id"));
+					final UUID formularId = UUID.fromString(form.single("formular_id"));
 					FormularDataField formular = model.formulars().get(formularId); 
 					
-					final Long referenceId = Long.parseLong(form.single("reference_id"));
+					final UUID referenceId = UUID.fromString(form.single("reference_id"));
 					final ListDataField reference = model.fields().lists().get(referenceId); 
 					
-					final Long exprId = Long.parseLong(form.single("expr_id"));
+					final UUID exprId = UUID.fromString(form.single("expr_id"));
 					final FormularExtendedToParentExpression expr = (FormularExtendedToParentExpression)formular.expressions().get(exprId);
 					
-					final Long fieldId = Long.parseLong(form.single("parent_id"));
+					final UUID fieldId = UUID.fromString(form.single("parent_id"));
 					
 					final DataModel parentModel;
 					final EditableDataField field;
 					final FormularExtendedToParentSource itemSaved;
 					
-					final Long id = Long.parseLong(form.single("id", "0"));
-					if(id > 0) {	
-						itemSaved = expr.sources().get(id);
+					final OptUUID id = new OptUUID(form.single("id", "0"));
+					if(id.isPresent()) {
+						itemSaved = expr.sources().get(id.value());
 						parentModel = itemSaved.listSource().model();
 						field = parentModel.fields().editables().get(fieldId);
 						itemSaved.update(field);
 					} else {
-						final Long parentModelId = Long.parseLong(form.single("parent_model_id"));
+						final UUID parentModelId = UUID.fromString(form.single("parent_model_id"));
 						parentModel = model.coreModel().parents().get(parentModelId); 
 						field = parentModel.fields().editables().get(fieldId);
 						final ListDataFieldSource src = reference.sources().whichBasedOn(parentModel);

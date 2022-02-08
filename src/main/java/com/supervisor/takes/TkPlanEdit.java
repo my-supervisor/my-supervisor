@@ -4,6 +4,7 @@ import com.supervisor.domain.Membership;
 import com.supervisor.domain.Plan;
 import com.supervisor.domain.impl.DmMembership;
 import com.supervisor.domain.impl.PxProfiles;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.xe.XePlan;
 import com.supervisor.xe.XePlanFeature;
 import com.supervisor.xe.XeProfile;
@@ -49,9 +50,9 @@ public final class TkPlanEdit extends TkForm {
 	}
 	
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		final Membership module = new DmMembership(base, req);
-		final Plan plan = module.plans().get(id);
+		final Plan plan = module.plans().get(id.value());
 		
 		XeSource xePlan = new XePlan("item", plan);
 		XeSource xeFeatures = new XePlanFeature(plan.features().items());
@@ -62,7 +63,7 @@ public final class TkPlanEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XePlanFeature(dir);
 	}
 }

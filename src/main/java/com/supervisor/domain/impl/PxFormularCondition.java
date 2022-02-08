@@ -2,6 +2,7 @@ package com.supervisor.domain.impl;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
@@ -19,7 +20,7 @@ public final class PxFormularCondition extends DomainRecordable<FormularConditio
 
 	@Override
 	public ParamDataField param() throws IOException {
-		final Long paramId = record.valueOf(FormularCondition::param);
+		final UUID paramId = record.valueOf(FormularCondition::param);
 		return new PxParamDataField(record.of(DataField.class, paramId));
 	}
 

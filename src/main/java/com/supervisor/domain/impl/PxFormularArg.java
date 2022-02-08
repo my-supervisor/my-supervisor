@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.domain.DataField;
@@ -45,7 +46,7 @@ public final class PxFormularArg extends DomainRecordable<FormularArg> implement
 
 	@Override
 	public FormularDataField field() throws IOException {
-		final Long fieldId = record.valueOf(FormularArg::field);
+		final UUID fieldId = record.valueOf(FormularArg::field);
 		return new PxFormularDataField(record.of(DataField.class, fieldId));
 	}
 

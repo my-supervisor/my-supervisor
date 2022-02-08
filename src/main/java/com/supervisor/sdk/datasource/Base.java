@@ -5,15 +5,16 @@ import org.takes.Request;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
+import java.util.UUID;
 
 public interface Base {
 	WebSocketServer wsServer();
-	long currentUserId();
+	UUID currentUserId();
 	
 	void start(boolean inTransaction) throws IOException;
-	void start(boolean inTransaction, long currentUserId) throws IOException;
+	void start(boolean inTransaction, UUID currentUserId) throws IOException;
 	void start(boolean inTransaction, Request request) throws IOException;
-	void changeUser(long userId) throws IOException;
+	void changeUser(UUID userId) throws IOException;
 	
 	void commit() throws IOException;
 	void rollback() throws IOException;
@@ -25,7 +26,7 @@ public interface Base {
 	
 	<A1 extends Recordable> RecordSet<A1> select(Class<A1> clazz) throws IOException;
 	<A1 extends Recordable> RecordSet<A1> select(Class<A1> clazz, String viewScript) throws IOException;
-	<A1 extends Recordable> Record<A1> select(Class<A1> clazz, Long id) throws IOException;
+	<A1 extends Recordable> Record<A1> select(Class<A1> clazz, UUID id) throws IOException;
 	
 	<A1 extends Recordable> void register(Class<A1> clazz) throws IOException;
 	
@@ -43,7 +44,7 @@ public interface Base {
 		}
 		
 		@Override
-		public <A1 extends Recordable> Record<A1> select(Class<A1> clazz, Long id) throws IOException {
+		public <A1 extends Recordable> Record<A1> select(Class<A1> clazz, UUID id) throws IOException {
 			return null;
 		}
 		
@@ -106,12 +107,12 @@ public interface Base {
 		}
 
 		@Override
-		public long currentUserId() {
-			return 0;
+		public UUID currentUserId() {
+			return null;
 		}
 
 		@Override
-		public void start(boolean inTransaction, long currentUserId) throws IOException {
+		public void start(boolean inTransaction, UUID currentUserId) throws IOException {
 			
 			
 		}
@@ -135,7 +136,7 @@ public interface Base {
 		}
 
 		@Override
-		public void changeUser(long userId) throws IOException {
+		public void changeUser(UUID userId) throws IOException {
 			
 			
 		}

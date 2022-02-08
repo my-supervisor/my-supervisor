@@ -15,6 +15,7 @@ import org.takes.rq.form.RqFormSmart;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkProfileAccessSave extends TkBaseWrap {
@@ -25,10 +26,10 @@ public final class TkProfileAccessSave extends TkBaseWrap {
 				req -> {
 					new RqAdminAuth(base, req);
 					
-					final Long profileId = Long.parseLong(new RqHref.Smart(req).single("profile"));
+					final UUID profileId = UUID.fromString(new RqHref.Smart(req).single("profile"));
 					final Profile profile = new PxAllProfiles(base).get(profileId);
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
 					final ProfileAccess item = profile.accesses().get(id);
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));			
@@ -36,7 +37,7 @@ public final class TkProfileAccessSave extends TkBaseWrap {
 					// sauvegarder les valeurs des paramètres
 					int nbOfParamsToTreat = getValuesOfRow("param_id", form).size();
 					for (int i = 0; i < nbOfParamsToTreat; i++) {
-						Long paramId = getRowLongValueAt("param_id", form, i);
+						UUID paramId = UUID.fromString(getRowValueAt("param_id", form, i));
 						ProfileAccessParam param = item.parameterValues().get(paramId);
 						
 						String paramValue = getRowValueAt("param_value", form, i);

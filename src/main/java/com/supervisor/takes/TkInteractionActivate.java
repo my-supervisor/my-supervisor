@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -27,8 +28,8 @@ public final class TkInteractionActivate extends TkBaseWrap {
 					final Activities myActivities = module.activities();
 					
 					final Smart href = new RqHref.Smart(req);
-					final Long receiverId = Long.parseLong(href.single("receiver"));
-					final Long actorId = Long.parseLong(href.single("actor"));
+					final UUID receiverId = UUID.fromString(href.single("receiver"));
+					final UUID actorId = UUID.fromString(href.single("actor"));
 					final boolean activate = Boolean.parseBoolean(href.single("activate"));
 					
 					final Activity actor = myActivities.get(actorId);

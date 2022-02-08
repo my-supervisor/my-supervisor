@@ -15,6 +15,7 @@ import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqHref;
 
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkPayTestBuy extends TkBaseWrap {
@@ -26,7 +27,7 @@ public final class TkPayTestBuy extends TkBaseWrap {
 					final Membership module = new DmMembership(base, req);
 					final User user = module.user();
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("request"));					
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("request"));
 					final PaymentRequest payRequest = user.paymentRequests().get(id);
 					final PaymentMethod method = module.paymentMethods().where(PaymentMethod::tag, "PAY_TEST").first();
 					

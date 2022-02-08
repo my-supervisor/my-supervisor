@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -27,10 +28,10 @@ public final class TkFormularSimpleExpressionSave extends TkBaseWrap {
 					
 					final FormularFunc func = FormularFunc.valueOf(form.single("func_id"));
 					
-					final Long modelId = Long.parseLong(form.single("model_id"));
+					final UUID modelId = UUID.fromString(form.single("model_id"));
 					AggregatedModel model = module.aggregatedModels().get(modelId); 
 					
-					final Long formularId = Long.parseLong(form.single("formular_id"));
+					final UUID formularId = UUID.fromString(form.single("formular_id"));
 					FormularDataField formular = model.formulars().get(formularId); 
 					
 					final FormularSimpleExpression itemSaved;

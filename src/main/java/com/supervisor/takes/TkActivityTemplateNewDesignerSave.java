@@ -1,6 +1,7 @@
 package com.supervisor.takes;
 
 import java.util.Optional;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -25,7 +26,7 @@ public final class TkActivityTemplateNewDesignerSave extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 						
-					final Long activityId = Long.parseLong(new RqHref.Smart(req).single("activity"));
+					final UUID activityId = UUID.fromString(new RqHref.Smart(req).single("activity"));
 					final ActivityTemplate template = module.activityTemplates().get(activityId);
 					
 					final String email = form.single("email");		

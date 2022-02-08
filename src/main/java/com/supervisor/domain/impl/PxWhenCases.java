@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordables;
 import com.supervisor.sdk.datasource.Record;
@@ -74,9 +75,9 @@ public final class PxWhenCases extends DomainRecordables<WhenCase, WhenCases> im
 	@Override
 	public void remove(WhenCase item) throws IOException{
 		
-		Long leftArgId = item.leftArg().id();
-		Long rightArgId = item.rightArg().id();
-		Long resultId = item.result().id();
+		UUID leftArgId = item.leftArg().id();
+		UUID rightArgId = item.rightArg().id();
+		UUID resultId = item.result().id();
 		super.remove(item);
 		
 		RecordSet<ExpressionArg> argSource = source.of(ExpressionArg.class);

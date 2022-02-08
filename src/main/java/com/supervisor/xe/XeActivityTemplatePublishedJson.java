@@ -39,10 +39,10 @@ public final class XeActivityTemplatePublishedJson implements RsJson.Source {
 			final User user = new UserOf(item);
 			
 			builder.add(Json.createObjectBuilder()
-							.add("id", item.id())
+							.add("id", item.id().toString())
 			                .add("name", item.name())
 			                .add("profile", item.profile().name())
-			                .add("profile_id", item.profile().id())
+			                .add("profile_id", item.profile().id().toString())
 			                .add("description", item.description())
 			                .add("icon", item.icon())
 			                .add("version", item.version())
@@ -55,7 +55,7 @@ public final class XeActivityTemplatePublishedJson implements RsJson.Source {
 			                .add("availability", item.availability().toString())
 			                .add("availabilityId", item.availability().name())     
 			                .add("designer", item.designer().name())
-			                .add("designerId", item.designer().id())
+			                .add("designerId", item.designer().id().toString())
 			                .add("designerPhoto", item.designer().photo())
 			                .add("fromNow", user.prettyTimeOf(item.creationDate()).toString())
 	               );

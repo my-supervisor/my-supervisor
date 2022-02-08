@@ -10,13 +10,13 @@ public final class UserAdmin extends UserWrap {
 
 	public UserAdmin(final Base base) throws IOException {
 		super(
-			new DmUser(base.select(User.class).get(1L))
+			new DmUser(base.select(User.class).get(User.ADMIN_ID))
 		);
 	}
 
 	public UserAdmin(final User currentUser) throws IOException {
 		super(
-			new DmUser(currentUser.listOf(User.class).get(1L))
+			new DmUser(currentUser.listOf(User.class).get(User.ADMIN_ID))
 		);
 	}
 	
@@ -26,7 +26,7 @@ public final class UserAdmin extends UserWrap {
 					entity.base()
 					      .select(
 				    		  User.class, 
-				    		  1L
+				    		  User.ADMIN_ID
 					      )
 				)
 		);

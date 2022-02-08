@@ -2,6 +2,7 @@ package com.supervisor.copying;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.domain.DataFieldOfSheet;
 import com.supervisor.domain.DataModel;
@@ -21,17 +22,17 @@ public abstract class AbstractDataFieldOfSheetWriter implements Writer<DataField
 	protected final DataSheet targetSheet;
 	protected final DataFieldOfSheet source;
 	protected final DataFieldOfSheet target;
-	protected final Map<Long, DataModel> dataModelMappings;
+	protected final Map<UUID, DataModel> dataModelMappings;
 	
-	public AbstractDataFieldOfSheetWriter(final DataSheet targetSheet, final DataFieldOfSheet source, final Map<Long, DataModel> dataModelMappings) {
+	public AbstractDataFieldOfSheetWriter(final DataSheet targetSheet, final DataFieldOfSheet source, final Map<UUID, DataModel> dataModelMappings) {
 		this(targetSheet, source, DataFieldOfSheet.EMPTY, dataModelMappings);
 	}
 	
-	public AbstractDataFieldOfSheetWriter(final DataFieldOfSheet source, final DataFieldOfSheet target, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AbstractDataFieldOfSheetWriter(final DataFieldOfSheet source, final DataFieldOfSheet target, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		this(target.sheet(), source, target, dataModelMappings);
 	}
 	
-	private AbstractDataFieldOfSheetWriter(final DataSheet targetSheet, final DataFieldOfSheet source, final DataFieldOfSheet target, final Map<Long, DataModel> dataModelMappings) {
+	private AbstractDataFieldOfSheetWriter(final DataSheet targetSheet, final DataFieldOfSheet source, final DataFieldOfSheet target, final Map<UUID, DataModel> dataModelMappings) {
 		this.targetSheet = targetSheet;
 		this.source = source;
 		this.target = target;

@@ -41,17 +41,12 @@ public class UserWrap implements User {
 	}
 
 	@Override
-	public UUID guid() throws IOException {
-		return origin.guid();
-	}
-
-	@Override
 	public LocalDateTime creationDate() throws IOException {
 		return origin.creationDate();
 	}
 
 	@Override
-	public Long creatorId() throws IOException {
+	public UUID creatorId() throws IOException {
 		return origin.creatorId();
 	}
 
@@ -61,12 +56,12 @@ public class UserWrap implements User {
 	}
 
 	@Override
-	public Long lastModifierId() throws IOException {
+	public UUID lastModifierId() throws IOException {
 		return origin.lastModifierId();
 	}
 
 	@Override
-	public Long ownerId() throws IOException {
+	public UUID ownerId() throws IOException {
 		return origin.ownerId();
 	}
 
@@ -76,7 +71,7 @@ public class UserWrap implements User {
 	}
 
 	@Override
-	public Long id() {
+	public UUID id() {
 		return origin.id();
 	}
 

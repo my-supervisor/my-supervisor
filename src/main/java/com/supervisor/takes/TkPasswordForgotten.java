@@ -3,6 +3,7 @@ package com.supervisor.takes;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
 import com.supervisor.sdk.takes.XeRecaptcha;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rs.xe.XeSource;
 
@@ -31,7 +32,7 @@ public final class TkPasswordForgotten extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
+	protected XeSource preItemDataToShow(OptUUID id, Request req) throws IOException {
 		return XeSource.EMPTY;
 	}
 }

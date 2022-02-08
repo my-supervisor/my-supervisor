@@ -2,6 +2,7 @@ package com.supervisor.takes;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -9,6 +10,7 @@ import com.supervisor.sdk.datasource.comparators.Comparator;
 import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.utils.BasicCodeGenerator;
 import com.supervisor.sdk.utils.CodeGenerator;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.collections.IteratorUtils;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
@@ -42,15 +44,15 @@ public final class TkAggregatedModelSave extends TkBaseWrap {
 					
 					AggregatedModel itemSaved = null;
 					
-					final Long activityId = Long.parseLong(form.single("activity_id"));
+					final UUID activityId = UUID.fromString(form.single("activity_id"));
 					final Activity activity = module.activities().get(activityId);
 					final AggregatedModels items = activity.aggregatedModels();
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));		
-					if(id > 0) {
-						final Long dateReferenceId = Long.parseLong(form.single("date_reference_id"));
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
+					if(id.isPresent()) {
+						final UUID dateReferenceId = UUID.fromString(form.single("date_reference_id"));
 						
-						itemSaved = items.get(id);	
+						itemSaved = items.get(id.value());
 						final DataField dateReference = itemSaved.fields().get(dateReferenceId);
 						DataFields fields = itemSaved.model().fields();
 						
@@ -73,7 +75,7 @@ public final class TkAggregatedModelSave extends TkBaseWrap {
 							}
 							
 							if(state.equals("modified")) {
-								Long paramId = getRowLongValueAt("param_id", form, i);
+								UUID paramId = UUID.fromString(getRowValueAt("param_id", form, i));
 								ParamDataField param = itemSaved.params()
 										                     .get(paramId);
 								
@@ -87,7 +89,7 @@ public final class TkAggregatedModelSave extends TkBaseWrap {
 							}
 							
 							if(state.equals("removed")) {
-								Long paramId = getRowLongValueAt("param_id", form, i);
+								UUID paramId = UUID.fromString(getRowValueAt("param_id", form, i));
 								itemSaved.params()
 										 .remove(paramId);
 							}
@@ -105,14 +107,14 @@ public final class TkAggregatedModelSave extends TkBaseWrap {
 							}
 							
 							if(state.equals("modified")) {
-								Long filterId = getRowLongValueAt("filter_id", form, i);
+								UUID filterId = UUID.fromString(getRowValueAt("filter_id", form, i));
 								ModelFilter filter = itemSaved.filters().get(filterId);
 								
 								saveConditionsOf(filter, form, (int)index, fields);
 							}
 							
 							if(state.equals("removed")) {
-								Long filterId = getRowLongValueAt("filter_id", form, i);
+								UUID filterId = UUID.fromString(getRowValueAt("filter_id", form, i));
 								itemSaved.filters().remove(filterId);
 							}
 						}
@@ -134,7 +136,7 @@ public final class TkAggregatedModelSave extends TkBaseWrap {
 															name
 														);
 						
-						final Long modelId = Long.parseLong(form.single("model_id"));			
+						final UUID modelId = UUID.fromString(form.single("model_id"));
 						final DataModel model = module.dataModels().get(modelId);
 						itemSaved = items.add(generator.generate(), model);						
 						itemSaved.update(name, model.fields().get("DATE"));  
@@ -200,7 +202,7 @@ public final class TkAggregatedModelSave extends TkBaseWrap {
 				Comparator comparator = Comparator.valueOf(getRowValueAt("cond_comparator_id", form, i));
 				String value = getRowValueAt("cond_value", form, i);
 				
-				Long id = getRowLongValueAt("cond_id", form, i);
+				UUID id = UUID.fromString(getRowValueAt("cond_id", form, i));
 				ModelFilterCondition cond = filter.conditions()
 							                     .get(id);
 				
@@ -214,7 +216,7 @@ public final class TkAggregatedModelSave extends TkBaseWrap {
 			}
 			
 			if(state.equals("removed")) {
-				Long id = getRowLongValueAt("cond_id", form, i);
+				UUID id = UUID.fromString(getRowValueAt("cond_id", form, i));
 				filter.conditions()
 					  .remove(id);
 			}

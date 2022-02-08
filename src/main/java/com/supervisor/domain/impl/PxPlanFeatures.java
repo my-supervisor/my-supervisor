@@ -8,6 +8,7 @@ import com.supervisor.sdk.datasource.Record;
 import com.supervisor.sdk.datasource.RecordSet;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public final class PxPlanFeatures extends DomainRecordables<PlanFeature, PlanFeatures> implements PlanFeatures {
 
@@ -31,7 +32,7 @@ public final class PxPlanFeatures extends DomainRecordables<PlanFeature, PlanFea
 	}
 	
 	@Override
-	protected PlanFeature domainOf(final Long id) throws IOException {
+	protected PlanFeature domainOf(final UUID id) throws IOException {
 		return new PxPlanFeature(source.get(id), plan);					
 	}
 

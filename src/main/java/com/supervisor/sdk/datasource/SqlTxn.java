@@ -1,11 +1,14 @@
 package com.supervisor.sdk.datasource;
 
+import com.supervisor.domain.User;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.sdk.utils.logging.Logger;
 import com.supervisor.sdk.utils.logging.MLogger;
 import org.takes.HttpException;
 import org.takes.Request;
 
 import java.net.HttpURLConnection;
+import java.util.UUID;
 
 public final class SqlTxn implements Txn {
 	
@@ -13,19 +16,19 @@ public final class SqlTxn implements Txn {
 	
 	private final Base base;
 	private final Request request;
-	private final long userId;
+	private final UUID userId;
 	
 	public SqlTxn(final Base base) {
-		this(base, 2L);
+		this(base, User.ANONYMOUS_ID);
 	}
 	
 	public SqlTxn(final Base base, final Request request) {
 		this.base = base;
-		this.userId = 0L;
+		this.userId = new OptUUID("0").value();
 		this.request = request;
 	}
 	
-	public SqlTxn(final Base base, final long userId) {
+	public SqlTxn(final Base base, final UUID userId) {
 		this.base = base;
 		this.userId = userId;
 		this.request = null;

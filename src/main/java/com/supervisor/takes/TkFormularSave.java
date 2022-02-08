@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -7,6 +8,7 @@ import com.supervisor.sdk.datasource.comparators.Comparator;
 import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.utils.BasicCodeGenerator;
 import com.supervisor.sdk.utils.CodeGenerator;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqGreedy;
@@ -28,16 +30,16 @@ public final class TkFormularSave extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));		
 					
-					final Long modelId = Long.parseLong(form.single("model_id"));
+					final UUID modelId = UUID.fromString(form.single("model_id"));
 					final String name = form.single("name");
 					final DataFieldType type = DataFieldType.valueOf(form.single("type_id"));
 					
 					AggregatedModel model = module.aggregatedModels().get(modelId); 
 					final FormularDataField itemSaved;
 					
-					final Long id = Long.parseLong(form.single("id", "0"));
-					if(id > 0) {
-						itemSaved = model.formulars().get(id);	
+					final OptUUID id = new OptUUID(form.single("id", "0"));
+					if(id.isPresent()) {
+						itemSaved = model.formulars().get(id.value());
 						itemSaved.update(name, itemSaved.code(), type);
 						
 						String state = form.single("formular_condition_state", "");

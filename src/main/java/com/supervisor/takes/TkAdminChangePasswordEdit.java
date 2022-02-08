@@ -2,6 +2,7 @@ package com.supervisor.takes;
 
 import com.supervisor.domain.Membership;
 import com.supervisor.domain.impl.DmMembership;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.xe.XeUser;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
@@ -14,6 +15,7 @@ import org.xembly.Directive;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class TkAdminChangePasswordEdit extends TkForm {
 
@@ -32,7 +34,7 @@ public final class TkAdminChangePasswordEdit extends TkForm {
 		new RqAdminAuth(base, req);
 		
 		final Membership module = new DmMembership(base, req);
-		final Long userId = Long.parseLong(new RqHref.Smart(req).single("user"));
+		final UUID userId = UUID.fromString(new RqHref.Smart(req).single("user"));
 		List<XeSource> content = new ArrayList<>();
 		content.add(new XeUser(module.users().get(userId)));
 		content.add(itemToShow);
@@ -46,12 +48,12 @@ public final class TkAdminChangePasswordEdit extends TkForm {
 	}
 	
 	@Override
-	protected XeSource preItemDataToShow(Long id, Request req) throws IOException {
+	protected XeSource preItemDataToShow(OptUUID id, Request req) throws IOException {
 		return XeSource.EMPTY;
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return XeSource.EMPTY;
 	}
 }

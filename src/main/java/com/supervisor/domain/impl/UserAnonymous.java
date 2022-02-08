@@ -10,13 +10,13 @@ public final class UserAnonymous extends UserWrap {
 
 	public UserAnonymous(final Base base) throws IOException {
 		super(
-			new DmUser(base.select(User.class).get(2L))
+			new DmUser(base.select(User.class).get(User.ANONYMOUS_ID))
 		);
 	}
 
 	public UserAnonymous(final User currentUser) throws IOException {
 		super(
-			new DmUser(currentUser.listOf(User.class).get(2L))
+			new DmUser(currentUser.listOf(User.class).get(User.ANONYMOUS_ID))
 		);
 	}
 	
@@ -26,7 +26,7 @@ public final class UserAnonymous extends UserWrap {
 					entity.base()
 					      .select(
 				    		  User.class, 
-				    		  2L
+				    		  User.ANONYMOUS_ID
 					      )
 				)
 		);

@@ -50,7 +50,7 @@ public final class ActivityNotificationImpl implements ActivityNotification {
 							
 							final ActivityData activityData; 
 							
-							if(activityDatas.stream().noneMatch(c -> c.getId() == activity.id())) {
+							if(activityDatas.stream().noneMatch(c -> c.getId().equals(activity.id()))) {
 								activityData = new ActivityData(activity.id(), new ArrayList<>());
 								activityDatas.add(activityData);
 							}else {

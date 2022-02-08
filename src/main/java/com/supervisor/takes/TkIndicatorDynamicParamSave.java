@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -31,13 +32,13 @@ public final class TkIndicatorDynamicParamSave extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 						
-					final Long indicatorId = Long.parseLong(form.single("indicator_id"));		
+					final UUID indicatorId = UUID.fromString(form.single("indicator_id"));
 					final String source = new RqHref.Smart(req).single("source");
-					final Long activityId = Long.parseLong(StringUtils.remove(source, "activity"));
+					final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 					final Activity activity = module.activities().get(activityId);
 					Indicator indicator = activity.indicators().get(indicatorId);		
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
 					IndicatorDynamicParam itemSaved = indicator.dynamicParams().get(id);
 					
 					switch (itemSaved.type()) {

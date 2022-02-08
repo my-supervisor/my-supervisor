@@ -23,7 +23,7 @@ public final class PxModelFilterConditions extends DomainRecordables<ModelFilter
 		
 		this.filter = filter;
 		this.source = source.where(ModelFilterCondition::filter, filter.id())
-				            .orderBy(ModelFilterCondition::id);
+				            .orderBy(ModelFilterCondition::creationDate);
 	}
 	
 	@Override

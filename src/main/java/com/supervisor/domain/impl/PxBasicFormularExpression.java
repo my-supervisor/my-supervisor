@@ -2,6 +2,7 @@ package com.supervisor.domain.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
@@ -22,7 +23,7 @@ public abstract class PxBasicFormularExpression extends DomainRecordable<Formula
 	
 	@Override
 	public FormularDataField formular() throws IOException {
-		final Long formularId = record.valueOf(FormularExpression::formular);
+		final UUID formularId = record.valueOf(FormularExpression::formular);
 		return new PxFormularDataField(record.of(DataField.class, formularId));
 	}
 

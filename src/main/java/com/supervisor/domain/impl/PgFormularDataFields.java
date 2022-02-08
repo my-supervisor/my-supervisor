@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordables;
 import com.supervisor.sdk.datasource.OrderDirection;
@@ -97,7 +98,7 @@ public final class PgFormularDataFields extends DomainRecordables<FormularDataFi
 		if(type == DataFieldType.TABLE)
 			throw new IllegalArgumentException("Formular data cannot be table !");
 		
-		final Long fieldId = new PgDataFields(model).add(code, name, type, DataFieldStyle.FORMULAR, StringUtils.EMPTY);
+		final UUID fieldId = new PgDataFields(model).add(code, name, type, DataFieldStyle.FORMULAR, StringUtils.EMPTY);
 		
 		Record<FormularDataField> record = source.entryOf(FormularDataField::id, fieldId)	
 										         .add();

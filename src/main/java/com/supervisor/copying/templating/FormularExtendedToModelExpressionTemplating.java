@@ -2,6 +2,7 @@ package com.supervisor.copying.templating;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.domain.impl.OwnerOf;
 import com.supervisor.copying.AbstractFormularExtendedToModelExpressionWriter;
@@ -15,7 +16,7 @@ import com.supervisor.domain.FormularExtendedToModelSource;
 
 public final class FormularExtendedToModelExpressionTemplating extends AbstractFormularExtendedToModelExpressionWriter {
 
-	public FormularExtendedToModelExpressionTemplating(FormularDataField targetFormular, FormularExtendedToModelExpression source, final Map<Long, DataModel> dataModelMappings) {
+	public FormularExtendedToModelExpressionTemplating(FormularDataField targetFormular, FormularExtendedToModelExpression source, final Map<UUID, DataModel> dataModelMappings) {
 		super(targetFormular, source, dataModelMappings);
 	}
 

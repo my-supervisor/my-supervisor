@@ -37,7 +37,7 @@ public final class PgTableDataFields extends DomainRecordables<TableDataField, T
 		
 		this.model = model;
 		this.source = source.where(TableDataField::style, DataFieldStyle.STRUCTURE)
-							.orderBy(TableDataField::id);
+							.orderBy(TableDataField::creationDate);
 	}
 	
 	private static String scriptOf(final DataModel model) {

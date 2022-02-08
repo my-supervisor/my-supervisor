@@ -46,6 +46,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.UUID;
 
 public final class DmMembership implements Membership {
 
@@ -56,7 +57,7 @@ public final class DmMembership implements Membership {
 	public DmMembership(final Base base) throws IOException {
 		this(
 			base, 
-			new DmUser(base, 2L)
+			new DmUser(base, User.ANONYMOUS_ID)
 		);
 	}
 	

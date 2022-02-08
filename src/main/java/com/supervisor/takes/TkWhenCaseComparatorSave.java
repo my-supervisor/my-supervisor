@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -28,16 +29,16 @@ public final class TkWhenCaseComparatorSave extends TkBaseWrap {
 					
 					final Comparator comparator = Comparator.valueOf(form.single("comparator_id"));
 					
-					final Long modelId = Long.parseLong(form.single("model_id"));
+					final UUID modelId = UUID.fromString(form.single("model_id"));
 					AggregatedModel model = module.aggregatedModels().get(modelId); 
 					
-					final Long formularId = Long.parseLong(form.single("formular_id"));
+					final UUID formularId = UUID.fromString(form.single("formular_id"));
 					FormularDataField formular = model.formulars().get(formularId); 
 					
-					Long expressionId = Long.parseLong(form.single("expression_id"));
+					UUID expressionId = UUID.fromString(form.single("expression_id"));
 					FormularCaseExpression expression = (FormularCaseExpression)formular.expressions().get(expressionId);
 					
-					final Long id = Long.parseLong(form.single("id"));
+					final UUID id = UUID.fromString(form.single("id"));
 					final WhenCase itemSaved = expression.cases().get(id);
 					itemSaved.updateComparator(comparator);
 					

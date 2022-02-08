@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
@@ -23,13 +24,13 @@ public final class PxFormularExtendedToModelSource extends DomainRecordable<Form
 
 	@Override
 	public DataField reference() throws IOException {
-		final Long fieldId = record.valueOf(FormularExtendedToModelSource::reference);
+		final UUID fieldId = record.valueOf(FormularExtendedToModelSource::reference);
 		return TypedDataField.convert(record.of(DataField.class, fieldId));
 	}
 
 	@Override
 	public EditableDataField modelField() throws IOException {
-		final Long fieldId = record.valueOf(FormularExtendedToModelSource::modelField);
+		final UUID fieldId = record.valueOf(FormularExtendedToModelSource::modelField);
 		return (EditableDataField)TypedDataField.convert(record.of(DataField.class, fieldId));
 	}
 	
@@ -85,7 +86,7 @@ public final class PxFormularExtendedToModelSource extends DomainRecordable<Form
 
 	@Override
 	public DataSheetModel model() throws IOException {
-		final Long modelId = record.valueOf(FormularExtendedToModelSource::model);		
+		final UUID modelId = record.valueOf(FormularExtendedToModelSource::model);
 		return (DataSheetModel)TypedDataModel.convert(record.of(DataModel.class, modelId));
 	}
 
@@ -129,7 +130,7 @@ public final class PxFormularExtendedToModelSource extends DomainRecordable<Form
 
 	@Override
 	public EditableDataField fieldToExtend() throws IOException {
-		final Long fieldId = record.valueOf(FormularExtendedToModelSource::fieldToExtend);
+		final UUID fieldId = record.valueOf(FormularExtendedToModelSource::fieldToExtend);
 		return (EditableDataField)TypedDataField.convert(record.of(DataField.class, fieldId));
 	}
 

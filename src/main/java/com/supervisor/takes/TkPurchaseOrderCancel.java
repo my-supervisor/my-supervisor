@@ -10,6 +10,7 @@ import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqHref;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkPurchaseOrderCancel extends TkBaseWrap {
@@ -21,7 +22,7 @@ public final class TkPurchaseOrderCancel extends TkBaseWrap {
 					
 					final Membership module = new DmMembership(base, req);			
 					final PurchaseOrders orders = module.purchaseOrders();
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
 
 					PurchaseOrder item = orders.get(id);
 					item.cancel();

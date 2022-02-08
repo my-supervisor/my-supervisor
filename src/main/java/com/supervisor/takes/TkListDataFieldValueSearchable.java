@@ -13,6 +13,8 @@ import com.supervisor.domain.bi.BiResult;
 import com.supervisor.domain.impl.PxSupervisor;
 import com.supervisor.xe.XeListDataFieldValueJson;
 
+import java.util.UUID;
+
 public final class TkListDataFieldValueSearchable extends TkBaseWrap {
 
 	public TkListDataFieldValueSearchable(final Base base) {
@@ -22,8 +24,8 @@ public final class TkListDataFieldValueSearchable extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					Smart params = new RqHref.Smart(req);
 		
-					final Long fieldId = Long.parseLong(params.single("field"));
-					final Long modelId = Long.parseLong(params.single("model"));
+					final UUID fieldId = UUID.fromString(params.single("field"));
+					final UUID modelId = UUID.fromString(params.single("model"));
 					final String filter = params.single("filter", "");
 					final Long page = Long.parseLong(params.single("page"));
 					final int itemsPerPage = Integer.parseInt(params.single("itemsPerPage"));

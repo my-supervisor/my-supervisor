@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.time.PeriodicityUnit;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.collections.IteratorUtils;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
@@ -43,12 +45,12 @@ public final class TkActivitySave extends TkBaseWrap {
 					final boolean periodicityCloseInterval = Boolean.parseBoolean(form.single("periodicity_close_interval"));
 					
 					Activity activity;	
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
-					if(id > 0) {
-						if(myActivities.contains(id))
-							activity = myActivities.get(id);
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
+					if(id.isPresent()) {
+						if(myActivities.contains(id.value()))
+							activity = myActivities.get(id.value());
 						else
-							activity = module.activityTemplates().get(id);
+							activity = module.activityTemplates().get(id.value());
 						
 						if(new RqUser(base, req).notOwn(activity)) {
 							throw new IllegalArgumentException("Vous ne pouvez pas modifier une activité partagée !");
@@ -70,8 +72,8 @@ public final class TkActivitySave extends TkBaseWrap {
 						String state = getRowValueAt("param_state", form, i);
 						
 						if(state.equals("added")) {
-							Long modelId = Long.parseLong(getValuesOfRow("param_model_id", form).get(i));
-							Long paramId = Long.parseLong(getValuesOfRow("param_base_param_id", form).get(i));
+							UUID modelId = UUID.fromString(getValuesOfRow("param_model_id", form).get(i));
+							UUID paramId = UUID.fromString(getValuesOfRow("param_base_param_id", form).get(i));
 							ParamDataField param = models.get(modelId).params().get(paramId);
 							
 							String value = getValuesOfRow("param_value", form).get(i);
@@ -79,20 +81,20 @@ public final class TkActivitySave extends TkBaseWrap {
 						}
 						
 						if(state.equals("modified")) {
-							Long paramId = Long.parseLong(getValuesOfRow("param_id", form).get(i));
+							UUID paramId = UUID.fromString(getValuesOfRow("param_id", form).get(i));
 							ActivityParam param = activity.params().get(paramId);
 							String value = getValuesOfRow("param_value", form).get(i);
 							param.update(value);
 						}
 						
 						if(state.equals("removed")) {
-							Long paramId = Long.parseLong(getValuesOfRow("param_id", form).get(i));
+							UUID paramId = UUID.fromString(getValuesOfRow("param_id", form).get(i));
 							activity.params().remove(paramId);
 						}					
 					}
 							
 					final String msg;
-					if(id > 0)
+					if(id.isPresent())
 						msg = String.format("L'activité %s a été modifiée avec succès !", activity.name());
 					else
 						msg = String.format("L'activité %s a été créée avec succès !", activity.name());

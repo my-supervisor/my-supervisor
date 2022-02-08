@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -20,7 +21,7 @@ public final class TkActivityTemplatePublishedDowload extends TkBaseWrap {
 				req -> {
 					final Supervisor module = new PxSupervisor(base, req);
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id"));					
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
 					ActivityTemplatePublished template = module.activityTemplatesPublished().get(id);
 					
 					if(!new RqUser(base, req).profile().isUpperOrEqualTo(template.profile()))

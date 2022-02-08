@@ -2,6 +2,7 @@ package com.supervisor.copying.cloning;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractEditableDataFieldWriter;
 import com.supervisor.domain.DataModel;
@@ -12,7 +13,7 @@ import com.supervisor.domain.ListDataFieldSource;
 
 public class EditableDataFieldCloning extends AbstractEditableDataFieldWriter {
 
-	public EditableDataFieldCloning(DataSheetModel targetModel, EditableDataField source, Map<Long, DataModel> dataModelMappings) {
+	public EditableDataFieldCloning(DataSheetModel targetModel, EditableDataField source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetModel, source, dataModelMappings);
 	}
 

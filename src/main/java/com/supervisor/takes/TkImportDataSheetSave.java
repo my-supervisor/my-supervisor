@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -22,8 +23,8 @@ public final class TkImportDataSheetSave extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					
-					final Long id = Long.parseLong(form.single("id"));
-					final Long sourceId = Long.parseLong(form.single("source_id"));
+					final UUID id = UUID.fromString(form.single("id"));
+					final UUID sourceId = UUID.fromString(form.single("source_id"));
 					
 					final DataSheetModel source = module.dataSheetModels().get(sourceId);
 					final DataSheetModel target = module.dataSheetModels().get(id);

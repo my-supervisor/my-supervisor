@@ -15,13 +15,8 @@ public abstract class RecordableGenerated implements Recordable {
 	}
 	
 	@Override
-	public Long id() {
-		return 0L;
-	}
-
-	@Override
-	public UUID guid() throws IOException {
-		return UUID.randomUUID();
+	public UUID id() {
+		return null;
 	}
 
 	@Override
@@ -30,8 +25,8 @@ public abstract class RecordableGenerated implements Recordable {
 	}
 
 	@Override
-	public Long creatorId() throws IOException {
-		return 0L;
+	public UUID creatorId() throws IOException {
+		return null;
 	}
 
 	@Override
@@ -40,13 +35,13 @@ public abstract class RecordableGenerated implements Recordable {
 	}
 
 	@Override
-	public Long lastModifierId() throws IOException {
-		return 0L;
+	public UUID lastModifierId() throws IOException {
+		return null;
 	}
 
 	@Override
-	public Long ownerId() throws IOException {
-		return 0L;
+	public UUID ownerId() throws IOException {
+		return null;
 	}
 
 	@Override

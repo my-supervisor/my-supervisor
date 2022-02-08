@@ -19,7 +19,7 @@ public final class PxDataLinks extends DomainRecordables<DataLink, DataLinks> im
 		
 		this.indicator = indicator;
 		this.source = source.where(DataLink::indicator, indicator.id())
-						    .orderBy(DataLink::id);
+						    .orderBy(DataLink::creationDate);
 	}
 
 	@Override

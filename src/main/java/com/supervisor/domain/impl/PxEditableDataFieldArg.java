@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.domain.EditableDataFieldArg;
@@ -45,7 +46,7 @@ public final class PxEditableDataFieldArg extends DomainRecordable<EditableDataF
 
 	@Override
 	public EditableDataField field() throws IOException {
-		final Long fieldId = record.valueOf(EditableDataFieldArg::field);
+		final UUID fieldId = record.valueOf(EditableDataFieldArg::field);
 		return (EditableDataField)TypedDataField.convert(record.of(DataField.class, fieldId));
 	}
 

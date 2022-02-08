@@ -2,6 +2,7 @@ package com.supervisor.copying.cloning;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractFormularExtendedToModelExpressionWriter;
 import com.supervisor.domain.DataModel;
@@ -12,7 +13,7 @@ import com.supervisor.domain.FormularExtendedToModelSource;
 
 public final class FormularExtendedToModelExpressionCloning extends AbstractFormularExtendedToModelExpressionWriter {
 
-	public FormularExtendedToModelExpressionCloning(FormularDataField targetFormular, FormularExtendedToModelExpression source, Map<Long, DataModel> dataModelMappings) {
+	public FormularExtendedToModelExpressionCloning(FormularDataField targetFormular, FormularExtendedToModelExpression source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetFormular, source, dataModelMappings);
 	}
 

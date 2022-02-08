@@ -21,7 +21,7 @@ public final class RqUser extends UserWrap {
     
 	/**
      * Ctor.
-     * @param bse Base
+     * @param base Base
      * @param req Request
      * @throws IOException 
      * @throws AuthenticationFailedException 
@@ -35,10 +35,10 @@ public final class RqUser extends UserWrap {
         
 		final Identity identity = new RqAuth(request).identity();
         if (identity.equals(Identity.ANONYMOUS)) {
-        	user = new DmUser(base.select(User.class, 2L));
+        	user = new DmUser(base.select(User.class, User.ANONYMOUS_ID));
         }else {
         	Map<String, String> props = identity.properties();
-        	Users users = new PgUsers(new DmUser(base.select(User.class, 1L)));
+        	Users users = new PgUsers(new DmUser(base.select(User.class, User.ADMIN_ID)));
         	
         	try {
         		user = users.signin(props.get("email"), props.get("password"), true);

@@ -22,7 +22,7 @@ public final class PxMappedDataFields extends DomainRecordables<MappedDataField,
 		
 		this.link = link;
 		this.source = source.where(MappedDataField::link, link.id())
-				            .orderBy(MappedDataField::id, OrderDirection.ASC);
+				            .orderBy(MappedDataField::creationDate, OrderDirection.ASC);
 	}
 	
 	@Override

@@ -30,6 +30,7 @@ import java.time.LocalDateTime;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.UUID;
 
 public final class DmUser extends DomainRecordable<User> implements User {
 
@@ -37,7 +38,7 @@ public final class DmUser extends DomainRecordable<User> implements User {
 	
 	private final Person origin;
 	
-	public DmUser(final Base base, long userId) throws IOException {
+	public DmUser(final Base base, final UUID userId) throws IOException {
 		super(base.select(User.class, userId));
 		this.origin = new DmPerson(base.select(Person.class, userId));
 	}
@@ -91,7 +92,7 @@ public final class DmUser extends DomainRecordable<User> implements User {
 			throw new IOException(e);
 		}
 		
-		return ownerId == record.id();
+		return ownerId.equals(record.id());
 	}
 
 	@Override
@@ -235,12 +236,12 @@ public final class DmUser extends DomainRecordable<User> implements User {
 
 	@Override
 	public boolean isAnonymous() throws IOException {
-		return id().equals(2L);
+		return id().equals(User.ANONYMOUS_ID);
 	}
 
 	@Override
 	public boolean isAdmin() throws IOException {
-		return id().equals(1L);
+		return id().equals(User.ADMIN_ID);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.supervisor.takes;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
@@ -29,7 +30,7 @@ public final class TkPlanSubscriptionOrder extends TkBaseWrap {
 					final User user = new RqUser(base, req);
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					
-					final Long planId = Long.parseLong(form.single("plan_id"));
+					final UUID planId = UUID.fromString(form.single("plan_id"));
 					final int delay = Integer.parseInt(form.single("delay"));		
 							
 					Plan plan = membership.plans().get(planId);

@@ -2,6 +2,7 @@ package com.supervisor.domain.impl;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordables;
 import com.supervisor.sdk.datasource.RecordSet;
@@ -24,7 +25,7 @@ public final class PxSubscription extends DomainRecordables<SharedResource, Subs
 	}
 
 	@Override
-	public Optional<SharedResource> resource(Long resourceId, ResourceType type) throws IOException {
+	public Optional<SharedResource> resource(UUID resourceId, ResourceType type) throws IOException {
 		Subscription resourceToSearch =  where(SharedResource::resourceId, resourceId)
                 				        .where(SharedResource::type, type);
 

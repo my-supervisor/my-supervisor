@@ -89,7 +89,7 @@ public abstract class SetupDataBase implements SetupData {
 													.execute()
 													.isEmpty();
 						if(notExists)
-							new PgInsertStatement(base, domainName, row, UUID.randomUUID()).execute();
+							new PgInsertStatement(base, domainName, row).execute();
 					}	
 				}				
 			}

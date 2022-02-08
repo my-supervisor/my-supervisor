@@ -2,6 +2,7 @@ package com.supervisor.copying.cloning;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractFormularDataFieldWriter;
 import com.supervisor.domain.AggregatedModel;
@@ -13,7 +14,7 @@ import com.supervisor.domain.FormularExtendedToParentExpression;
 
 public final class FormularDataFieldCloning extends AbstractFormularDataFieldWriter {
 
-	public FormularDataFieldCloning(AggregatedModel targetModel, FormularDataField source, Map<Long, DataModel> dataModelMappings) {
+	public FormularDataFieldCloning(AggregatedModel targetModel, FormularDataField source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetModel, source, dataModelMappings);
 	}
 

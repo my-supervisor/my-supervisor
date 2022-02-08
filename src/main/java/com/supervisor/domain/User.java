@@ -24,6 +24,9 @@ import java.util.UUID;
 )
 public interface User extends Person {
 
+	UUID ADMIN_ID = UUID.fromString("8c996d5d-ed4f-4fc2-8bea-4fcd4c9ef625");
+	UUID ANONYMOUS_ID = UUID.fromString("337b67c9-7232-436f-8978-30968b969b33");
+
 	@Field(label="Mot de passe")
 	String password() throws IOException;
 	
@@ -70,7 +73,7 @@ public interface User extends Person {
 		}
 		
 		@Override
-		public Long ownerId() throws IOException {
+		public UUID ownerId() throws IOException {
 			return null;
 		}
 		
@@ -80,7 +83,7 @@ public interface User extends Person {
 		}
 		
 		@Override
-		public Long lastModifierId() throws IOException {
+		public UUID lastModifierId() throws IOException {
 			return null;
 		}
 		
@@ -90,17 +93,12 @@ public interface User extends Person {
 		}
 		
 		@Override
-		public Long id() {
+		public UUID id() {
 			return null;
 		}
 		
 		@Override
-		public UUID guid() throws IOException {
-			return null;
-		}
-		
-		@Override
-		public Long creatorId() throws IOException {
+		public UUID creatorId() throws IOException {
 			return null;
 		}
 		

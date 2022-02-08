@@ -2,6 +2,7 @@ package com.supervisor.copying;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.sdk.time.Periodicity;
 import com.supervisor.domain.Activity;
@@ -21,17 +22,17 @@ public abstract class AbstractIndicatorWriter implements Writer<Indicator> {
 	protected final Activity targetActivity;
 	protected final Indicator source;
 	protected final Indicator target;
-	protected final Map<Long, DataModel> dataModelMappings;
+	protected final Map<UUID, DataModel> dataModelMappings;
 	
-	public AbstractIndicatorWriter(final Activity targetActivity, final Indicator source, final Map<Long, DataModel> dataModelMappings) {
+	public AbstractIndicatorWriter(final Activity targetActivity, final Indicator source, final Map<UUID, DataModel> dataModelMappings) {
 		this(targetActivity, source, Indicator.EMPTY, dataModelMappings);
 	}
 	
-	public AbstractIndicatorWriter(final Indicator source, final Indicator target, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AbstractIndicatorWriter(final Indicator source, final Indicator target, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		this(target.activity(), source, target, dataModelMappings);
 	}
 	
-	private AbstractIndicatorWriter(final Activity targetActivity, final Indicator source, final Indicator target, final Map<Long, DataModel> dataModelMappings) {
+	private AbstractIndicatorWriter(final Activity targetActivity, final Indicator source, final Indicator target, final Map<UUID, DataModel> dataModelMappings) {
 		this.targetActivity = targetActivity;
 		this.source = source;
 		this.target = target;

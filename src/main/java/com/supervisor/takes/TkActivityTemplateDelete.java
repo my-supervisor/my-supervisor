@@ -4,6 +4,7 @@ import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqHref;
@@ -22,11 +23,11 @@ public final class TkActivityTemplateDelete extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final ActivityTemplates myActivities = module.activityTemplates();
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));			
-					if(id == 0)
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
+					if(id.isEmpty())
 						throw new IllegalArgumentException("Cet élément n'existe pas !");
 					
-					ActivityTemplate item = myActivities.get(id);
+					ActivityTemplate item = myActivities.get(id.value());
 					
 					if(new RqUser(base, req).notOwn(item)) {
 						throw new IllegalArgumentException("Vous ne pouvez pas supprimer une activité partagée !");

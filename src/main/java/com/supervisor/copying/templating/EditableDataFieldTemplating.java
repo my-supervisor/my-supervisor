@@ -2,6 +2,7 @@ package com.supervisor.copying.templating;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractEditableDataFieldWriter;
 import com.supervisor.sharing.ListDataFieldSourceSharing;
@@ -17,7 +18,7 @@ import com.supervisor.domain.ListDataFieldSource;
 
 public final class EditableDataFieldTemplating extends AbstractEditableDataFieldWriter {
 
-	public EditableDataFieldTemplating(DataSheetModel targetModel, EditableDataField source, Map<Long, DataModel> dataModelMappings) {
+	public EditableDataFieldTemplating(DataSheetModel targetModel, EditableDataField source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetModel, source, dataModelMappings);
 	}
 

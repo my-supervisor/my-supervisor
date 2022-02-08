@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import javax.json.JsonArray;
@@ -31,7 +32,7 @@ public final class TkActivityOrganize extends TkBaseWrap {
 					
 					final Request gReq = new RqGreedy(req);
 					
-					Long activityId = Long.parseLong(new RqHref.Smart(gReq).single("activity"));		
+					UUID activityId = UUID.fromString(new RqHref.Smart(gReq).single("activity"));
 					Activity activity = myActivities.get(activityId);
 					
 					if(new RqUser(base, req).notOwn(activity)) {
@@ -42,7 +43,7 @@ public final class TkActivityOrganize extends TkBaseWrap {
 					JsonArray locations = rqJson.payload().asJsonArray();
 					for (JsonObject myLoc : locations.getValuesAs(JsonObject.class)) {
 						
-						Long id = myLoc.getJsonNumber("id").longValue();			
+						UUID id = UUID.fromString(myLoc.getJsonString("id").getString());
 						Indicator indicator = activity.indicators().get(id);	
 						
 						final int sizeX = myLoc.getInt("sizeX");

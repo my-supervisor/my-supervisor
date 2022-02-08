@@ -3,6 +3,7 @@ package com.supervisor.copying.templating;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractIndicatorWriter;
 import com.supervisor.sharing.AggregatedModelUniqueSharing;
@@ -19,11 +20,11 @@ import com.supervisor.indicator.IndicatorTemplate;
 
 public final class IndicatorTemplating extends AbstractIndicatorWriter {
 
-	public IndicatorTemplating(Activity targetActivity, Indicator source, Map<Long, DataModel> dataModelMappings) {
+	public IndicatorTemplating(Activity targetActivity, Indicator source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetActivity, source, dataModelMappings);
 	}
 
-	public IndicatorTemplating(final Indicator source, final Indicator target, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public IndicatorTemplating(final Indicator source, final Indicator target, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(source, target, dataModelMappings);
 	}
 	

@@ -2,6 +2,7 @@ package com.supervisor.copying;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.domain.Activity;
 import com.supervisor.domain.DataModel;
@@ -13,17 +14,17 @@ public abstract class AbstractDataSheetModelWriter implements Writer<DataSheetMo
 	protected final Activity targetActivity;
 	protected final DataSheetModel source;
 	protected final DataSheetModel target;
-	protected final Map<Long, DataModel> dataModelMappings;
+	protected final Map<UUID, DataModel> dataModelMappings;
 	
-	public AbstractDataSheetModelWriter(final Activity targetActivity, final DataSheetModel source, final Map<Long, DataModel> dataModelMappings) {
+	public AbstractDataSheetModelWriter(final Activity targetActivity, final DataSheetModel source, final Map<UUID, DataModel> dataModelMappings) {
 		this(targetActivity, source, DataSheetModel.EMPTY, dataModelMappings);
 	}
 	
-	public AbstractDataSheetModelWriter(final DataSheetModel source, final DataSheetModel target, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AbstractDataSheetModelWriter(final DataSheetModel source, final DataSheetModel target, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		this(target.activity(), source, target, dataModelMappings);
 	}
 	
-	private AbstractDataSheetModelWriter(final Activity targetActivity, final DataSheetModel source, final DataSheetModel target, final Map<Long, DataModel> dataModelMappings) {
+	private AbstractDataSheetModelWriter(final Activity targetActivity, final DataSheetModel source, final DataSheetModel target, final Map<UUID, DataModel> dataModelMappings) {
 		this.targetActivity = targetActivity;
 		this.source = source;
 		this.target = target;

@@ -3,6 +3,7 @@ package com.supervisor.domain.impl;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.RecordSet;
@@ -31,7 +32,7 @@ public final class ResourcesImpl implements Resources {
 	}
 
 	@Override
-	public Optional<Resource> resourceIfPresent(ResourceType type, Long id) throws IOException {
+	public Optional<Resource> resourceIfPresent(ResourceType type, UUID id) throws IOException {
 		
 		Resource resource = null;
 		
@@ -69,7 +70,7 @@ public final class ResourcesImpl implements Resources {
 	}
 
 	@Override
-	public Resource resource(ResourceType type, Long id) throws IOException {
+	public Resource resource(ResourceType type, UUID id) throws IOException {
 		Optional<Resource> res = resourceIfPresent(type, id);
 		if(!res.isPresent())
 			throw new IllegalArgumentException("La resource demandée n'existe pas !");

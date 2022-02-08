@@ -1,9 +1,11 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqHref;
@@ -21,10 +23,10 @@ public final class TkListDataFieldSourceDelete extends TkBaseWrap {
 				req -> {
 					final Supervisor module = new PxSupervisor(base, req);
 					
-					final Long modelId = Long.parseLong(new RqHref.Smart(req).single("model"));
-					final Long fieldId = Long.parseLong(new RqHref.Smart(req).single("field"));
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id"));
-					final Long tableId = Long.parseLong(new RqHref.Smart(req).single("table", "0"));
+					final UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
+					final UUID fieldId = UUID.fromString(new RqHref.Smart(req).single("field"));
+					final UUID id = UUID.fromString(new RqHref.Smart(req).single("id"));
+					final OptUUID tableId = new OptUUID(new RqHref.Smart(req).single("table", "0"));
 					
 					final DataSheetModel model = module.dataSheetModels().get(modelId);
 					final ListDataField field = (ListDataField)model.fields().get(fieldId); 
@@ -34,7 +36,7 @@ public final class TkListDataFieldSourceDelete extends TkBaseWrap {
 					
 					final String msg = "La source de données a été supprimée avec succès !";
 
-					if(tableId > 0) {
+					if(tableId.isPresent()) {
 						return new RsForward(
 								new RsFlash(
 					                msg,

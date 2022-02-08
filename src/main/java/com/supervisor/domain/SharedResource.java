@@ -1,6 +1,7 @@
 package com.supervisor.domain;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
@@ -14,7 +15,7 @@ public interface SharedResource extends com.supervisor.sdk.datasource.Recordable
 	String name() throws IOException;
 	
 	@Field(label="ID de la ressource")
-	Long resourceId() throws IOException;
+	UUID resourceId() throws IOException;
 	
 	@Field(label="Type")
 	ResourceType type() throws IOException;

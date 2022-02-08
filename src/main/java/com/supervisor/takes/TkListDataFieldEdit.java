@@ -3,9 +3,11 @@ package com.supervisor.takes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -42,9 +44,9 @@ public final class TkListDataFieldEdit extends TkForm {
 	@Override
 	protected Iterable<XeSource> contentToShow(final Request req, final XeSource itemToShow) throws IOException {
 		
-		Long modelId = Long.parseLong(new RqHref.Smart(req).single(MODEL));
-		Long tableModelId = Long.parseLong(new RqHref.Smart(req).single("table_model", "0"));
-		Long tableId = Long.parseLong(new RqHref.Smart(req).single("table", "0"));
+		UUID modelId = UUID.fromString(new RqHref.Smart(req).single(MODEL));
+		OptUUID tableModelId = new OptUUID(new RqHref.Smart(req).single("table_model", "0"));
+		OptUUID tableId = new OptUUID(new RqHref.Smart(req).single("table", "0"));
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		final DataSheetModel model = module.dataSheetModels().get(modelId);
@@ -54,9 +56,9 @@ public final class TkListDataFieldEdit extends TkForm {
 		content.add(new XeOrderDirection());
 		content.add(new XeDataSheetModel(MODEL, model));
 		
-		if(tableId > 0) {
-			final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId);
-			content.add(new XeDataField("table", tableModel.fields().get(tableId)));
+		if(tableId.isPresent()) {
+			final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.value());
+			content.add(new XeDataField("table", tableModel.fields().get(tableId.value())));
 			content.add(new XeAppend("table_model_id", tableModelId.toString()));
 		}			
 		
@@ -67,12 +69,12 @@ public final class TkListDataFieldEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		
-		final Long modelId = Long.parseLong(new RqHref.Smart(req).single(MODEL));
+		final UUID modelId = UUID.fromString(new RqHref.Smart(req).single(MODEL));
 		final Supervisor module = new PxSupervisor(base, req);
 		final DataSheetModel model = module.dataSheetModels().get(modelId);
-		final ListDataField item = (ListDataField)model.fields().get(id);
+		final ListDataField item = (ListDataField)model.fields().get(id.value());
 		
 		return new XeChain(
 			new XeListDataField("item", item), 
@@ -81,7 +83,7 @@ public final class TkListDataFieldEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XeListDataField(dir);
 	}	
 }

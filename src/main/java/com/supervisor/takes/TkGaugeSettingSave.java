@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.colors.Color;
@@ -13,6 +14,7 @@ import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.time.PeriodicityUnit;
 import com.supervisor.sdk.utils.BasicCodeGenerator;
 import com.supervisor.sdk.utils.CodeGenerator;
+import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.commons.lang.StringUtils;
 import org.takes.facets.flash.RsFlash;
@@ -53,7 +55,7 @@ public final class TkGaugeSettingSave extends TkBaseWrap {
 					final SymbolPosition symbolPosition = SymbolPosition.valueOf(form.single("symbol_position", "RIGHT"));
 					final GaugeType gaugeType = GaugeType.valueOf(form.single("gauge_type_id"));		
 					
-					final Long activityId = Long.parseLong(form.single("activity_id"));
+					final UUID activityId = UUID.fromString(form.single("activity_id"));
 					final Activity activity = myActivities.get(activityId);
 					
 					if(new RqUser(base, req).notOwn(activity)) {
@@ -62,9 +64,9 @@ public final class TkGaugeSettingSave extends TkBaseWrap {
 					
 					Gauge itemSaved;
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
-					if(id > 0) {			
-						itemSaved = (Gauge)activity.indicators().get(id);
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
+					if(id.isPresent()) {
+						itemSaved = (Gauge)activity.indicators().get(id.value());
 									
 						final String periodicityState = form.single("periodicity_state", "removed");
 						if(periodicityState.equals("added")) {
@@ -106,7 +108,7 @@ public final class TkGaugeSettingSave extends TkBaseWrap {
 						
 						if(editState.equals("modified")) {
 							
-							Long zoneId = Long.parseLong(getValuesOfRow("zone_id", form).get(i));
+							UUID zoneId = UUID.fromString(getValuesOfRow("zone_id", form).get(i));
 							Color color = Color.valueOf(getValuesOfRow("zone_color_id", form).get(i));
 							Double zoneMin = Double.parseDouble(getValuesOfRow("zone_min", form).get(i));
 							Double zoneMax = Double.parseDouble(getValuesOfRow("zone_max", form).get(i));
@@ -117,7 +119,7 @@ public final class TkGaugeSettingSave extends TkBaseWrap {
 						}
 						
 						if(editState.equals("removed")) {
-							Long zoneId = Long.parseLong(getValuesOfRow("zone_id", form).get(i));
+							UUID zoneId = UUID.fromString(getValuesOfRow("zone_id", form).get(i));
 							
 							itemSaved.zones()
 							         .remove(zoneId);
@@ -138,7 +140,7 @@ public final class TkGaugeSettingSave extends TkBaseWrap {
 					
 					final String msg;
 					
-					if(id > 0)
+					if(id.isPresent())
 						msg = String.format("L'indicateur %s a été modifié avec succès !", itemSaved.code());
 					else
 						msg = String.format("L'indicateur %s a été créé avec succès !", itemSaved.code());

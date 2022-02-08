@@ -2,6 +2,7 @@ package com.supervisor.copying.generating;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.domain.impl.UserOf;
 import com.supervisor.copying.AbstractIndicatorWriter;
@@ -18,11 +19,11 @@ import com.supervisor.indicator.Indicator;
 
 public final class IndicatorGenerating extends AbstractIndicatorWriter {
 
-	public IndicatorGenerating(Activity targetActivity, Indicator source, Map<Long, DataModel> dataModelMappings) {
+	public IndicatorGenerating(Activity targetActivity, Indicator source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetActivity, source, dataModelMappings);
 	}
 
-	public IndicatorGenerating(final Indicator source, final Indicator target, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public IndicatorGenerating(final Indicator source, final Indicator target, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(source, target, dataModelMappings);
 	}
 

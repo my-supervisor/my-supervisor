@@ -18,6 +18,7 @@ import org.takes.rq.RqHref;
 import org.takes.rs.RsJson;
 
 import javax.json.JsonObject;
+import java.util.UUID;
 
 public final class TkBeginMobileTransaction extends TkBaseWrap {
 
@@ -36,8 +37,8 @@ public final class TkBeginMobileTransaction extends TkBaseWrap {
 						JsonObject remplacement = rqJson.payload().asJsonObject();
 						final String number = remplacement.getString("number");
 						
-						Long methodId = Long.parseLong(new RqHref.Smart(gReq).single("method"));
-						Long paymentRequestId = Long.parseLong(new RqHref.Smart(gReq).single("request"));
+						UUID methodId = UUID.fromString(new RqHref.Smart(gReq).single("method"));
+						UUID paymentRequestId = UUID.fromString(new RqHref.Smart(gReq).single("request"));
 						PaymentMethod method = module.paymentMethods().get(methodId);
 						PaymentRequest paymentRequest = user.paymentRequests().get(paymentRequestId);
 						

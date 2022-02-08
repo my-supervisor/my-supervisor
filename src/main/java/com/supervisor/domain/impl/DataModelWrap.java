@@ -23,13 +23,8 @@ public class DataModelWrap implements DataModel {
 	}
 	
 	@Override
-	public Long id() {
+	public UUID id() {
 		return origin.id();
-	}
-
-	@Override
-	public UUID guid() throws IOException {
-		return origin.guid();
 	}
 
 	@Override
@@ -38,7 +33,7 @@ public class DataModelWrap implements DataModel {
 	}
 
 	@Override
-	public Long creatorId() throws IOException {
+	public UUID creatorId() throws IOException {
 		return origin.creatorId();
 	}
 
@@ -48,12 +43,12 @@ public class DataModelWrap implements DataModel {
 	}
 
 	@Override
-	public Long lastModifierId() throws IOException {
+	public UUID lastModifierId() throws IOException {
 		return origin.lastModifierId();
 	}
 
 	@Override
-	public Long ownerId() throws IOException {
+	public UUID ownerId() throws IOException {
 		return origin.ownerId();
 	}
 

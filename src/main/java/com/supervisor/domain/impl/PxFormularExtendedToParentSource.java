@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.DomainRecordable;
 import com.supervisor.sdk.datasource.Record;
@@ -24,7 +25,7 @@ public final class PxFormularExtendedToParentSource extends DomainRecordable<For
 
 	@Override
 	public EditableDataField field() throws IOException {
-		final Long fieldId = record.valueOf(FormularExtendedToParentSource::field);
+		final UUID fieldId = record.valueOf(FormularExtendedToParentSource::field);
 		return (EditableDataField)TypedDataField.convert(record.of(DataField.class, fieldId));
 	}
 

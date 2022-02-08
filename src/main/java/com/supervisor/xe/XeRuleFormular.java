@@ -3,6 +3,7 @@ package com.supervisor.xe;
 import java.io.IOException;
 import java.util.List;
 
+import com.supervisor.sdk.utils.OptUUID;
 import org.cactoos.iterable.Joined;
 import org.cactoos.iterable.Mapped;
 import org.takes.rs.xe.XeSource;
@@ -86,7 +87,7 @@ public final class XeRuleFormular extends XeWrap {
 	                    .add("param_id", condition.param().id())
 	                    .add("param_code", condition.param().code())
 	                    .add("comparator_id", condition.comparator().name())
-	                    .add("state", condition.id() == 0 ? "removed" : "added")
+	                    .add("state", condition.id() == null ? "removed" : "added")
 	                    .add("value", condition.value())
 	                    .add("default_value", condition.defaultValue())         
                 )                

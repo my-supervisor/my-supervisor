@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -25,13 +26,13 @@ public final class TkFormularExtendedToParentExpressionSave extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));		
 					
-					final Long modelId = Long.parseLong(form.single("model_id"));
+					final UUID modelId = UUID.fromString(form.single("model_id"));
 					final AggregatedModel model = module.aggregatedModels().get(modelId); 
 					
-					final Long formularId = Long.parseLong(form.single("formular_id"));
+					final UUID formularId = UUID.fromString(form.single("formular_id"));
 					FormularDataField formular = model.formulars().get(formularId); 
 					
-					final Long referenceId = Long.parseLong(form.single("reference_id"));
+					final UUID referenceId = UUID.fromString(form.single("reference_id"));
 					final ListDataField reference = model.fields().lists().get(referenceId); 
 					
 					final FormularExtendedToParentExpression itemSaved;

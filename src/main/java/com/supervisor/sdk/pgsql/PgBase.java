@@ -1,5 +1,6 @@
 package com.supervisor.sdk.pgsql;
 
+import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.datasource.BaseScheme;
 import com.supervisor.sdk.datasource.BaseStatementQueryable;
@@ -28,6 +29,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public final class PgBase implements Base {
 	
@@ -38,7 +40,7 @@ public final class PgBase implements Base {
 	private final BaseScheme scheme;
 	private final WebSocketServer wsServer;
 	private static final ThreadLocal<Connection> connectionContext = new ThreadLocal<>();
-	private static final ThreadLocal<Long> userIdContext = new ThreadLocal<>();
+	private static final ThreadLocal<UUID> userIdContext = new ThreadLocal<>();
 	private static final ThreadLocal<Boolean> inTransactionContext = new ThreadLocal<>();
 
 	public PgBase(final DataSource source, final WebSocketServer wsServer) {
@@ -51,21 +53,21 @@ public final class PgBase implements Base {
 	@Override
 	public void start(boolean inTransaction, Request request) throws IOException {
 		
-		final long userId;
+		final UUID userId;
         
 		final Identity identity = new RqAuth(request).identity();
         if (identity.equals(Identity.ANONYMOUS)) {
-        	userId = 2L;
+        	userId = User.ANONYMOUS_ID;
         }else {
         	Map<String, String> props = identity.properties();
-        	userId = Long.parseLong(props.get("id"));      	
+        	userId = UUID.fromString(props.get("id"));
         }
 
         start(inTransaction, userId);
 	}
 	
 	@Override
-	public void start(boolean inTransaction, long currentUserId) throws IOException {
+	public void start(boolean inTransaction, UUID currentUserId) throws IOException {
 		
 		changeUser(currentUserId);
 		inTransactionContext.set(inTransaction);	
@@ -165,7 +167,7 @@ public final class PgBase implements Base {
 	}
 
 	@Override
-	public <A1 extends Recordable> Record<A1> select(Class<A1> clazz, Long id) throws IOException {
+	public <A1 extends Recordable> Record<A1> select(Class<A1> clazz, UUID id) throws IOException {
 		return new PgRecord<>(this, scheme, clazz, id);
 	}
 
@@ -231,7 +233,7 @@ public final class PgBase implements Base {
 	}
 
 	@Override
-	public long currentUserId() {
+	public UUID currentUserId() {
 		if(userIdContext.get() == null)
 			throw new IllegalArgumentException("Current user Id must be started before get it !");
 		
@@ -248,11 +250,11 @@ public final class PgBase implements Base {
 
 	@Override
 	public void start(boolean inTransaction) throws IOException {
-		start(inTransaction, 2L);
+		start(inTransaction, User.ANONYMOUS_ID);
 	}
 
 	@Override
-	public void changeUser(long userId) throws IOException {
+	public void changeUser(UUID userId) throws IOException {
 		userIdContext.set(userId);
 	}
 }

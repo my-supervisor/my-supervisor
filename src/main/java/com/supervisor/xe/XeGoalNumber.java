@@ -20,7 +20,7 @@ public final class XeGoalNumber implements RsJson.Source {
 	@Override
 	public JsonStructure toJson() throws IOException {
 		return Json.createObjectBuilder()
-				.add("id", origin.id())
+				.add("id", origin.id().toString())
                 .add("code", origin.code())
                 .add("name", origin.name())
                 .add("type", origin.type().toString())
@@ -36,7 +36,7 @@ public final class XeGoalNumber implements RsJson.Source {
 				.add("numberInPercent", origin.numberInPercent())
 				.add("unitySymbol", origin.unitySymbol())
 				.add("symbolPosition", origin.symbolPosition().name())
-				.add("activity_id", origin.activity().id())
+				.add("activity_id", origin.activity().id().toString())
                 .add("activity", origin.activity().name())
                 .add("sizeX", origin.sizeX())
                 .add("sizeY", origin.sizeY())

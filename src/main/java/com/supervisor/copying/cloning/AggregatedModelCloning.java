@@ -2,6 +2,7 @@ package com.supervisor.copying.cloning;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.copying.AbstractAggregatedModelWriter;
 import com.supervisor.domain.Activity;
@@ -10,15 +11,15 @@ import com.supervisor.domain.DataModel;
 
 public class AggregatedModelCloning extends AbstractAggregatedModelWriter {
 
-	public AggregatedModelCloning(final String code, final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AggregatedModelCloning(final String code, final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(code, targetActivity, targetModel, source, dataModelMappings);
 	}
 	
-	public AggregatedModelCloning(final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AggregatedModelCloning(final Activity targetActivity, final DataModel targetModel, final AggregatedModel source, final Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(targetActivity, targetModel, source, dataModelMappings);
 	}
 	
-	public AggregatedModelCloning(AggregatedModel source, AggregatedModel target, Map<Long, DataModel> dataModelMappings) throws IOException {
+	public AggregatedModelCloning(AggregatedModel source, AggregatedModel target, Map<UUID, DataModel> dataModelMappings) throws IOException {
 		super(source, target, dataModelMappings);
 	}
 	

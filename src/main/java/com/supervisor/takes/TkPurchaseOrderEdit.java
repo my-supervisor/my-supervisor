@@ -3,6 +3,7 @@ package com.supervisor.takes;
 import com.supervisor.billing.PurchaseOrder;
 import com.supervisor.domain.Membership;
 import com.supervisor.domain.impl.DmMembership;
+import com.supervisor.sdk.utils.OptUUID;
 import com.supervisor.xe.XeMembership;
 import com.supervisor.xe.XeOrderLine;
 import com.supervisor.xe.XeOrderTax;
@@ -49,11 +50,11 @@ public final class TkPurchaseOrderEdit extends TkForm {
 	}
 	
 	@Override
-	protected XeSource preItemDataToShow(final Long id, final Request req) throws IOException {
+	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		
 		final Membership module = new DmMembership(base, req);
 		
-		PurchaseOrder item = module.purchaseOrders().get(id);
+		PurchaseOrder item = module.purchaseOrders().get(id.value());
 		return new XeChain(
 				new XePurchaseOrder("item", item),
 				new XeOrderLine(item.lines()),
@@ -62,7 +63,7 @@ public final class TkPurchaseOrderEdit extends TkForm {
 	}
 
 	@Override
-	protected XeSource postItemDataToShow(Long id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
+	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		return new XeDirectives(dir);
 	}	
 }

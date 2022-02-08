@@ -1,11 +1,13 @@
 package com.supervisor.sharing;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Record;
 import com.supervisor.domain.Activity;
 import com.supervisor.domain.ListDataFieldSource;
 import com.supervisor.domain.impl.PxListDataFieldSource;
+import com.supervisor.sdk.utils.OptUUID;
 
 public final class ListDataFieldSourceUniqueSharing extends DataSharingBase<ListDataFieldSource, ListDataFieldSourceShared> implements ListDataFieldSourceSharing {
 
@@ -37,9 +39,9 @@ public final class ListDataFieldSourceUniqueSharing extends DataSharingBase<List
 	protected Record<ListDataFieldSource> concreteRecord() throws IOException {
 		
 		
-		Long concreteId = 0L;
+		OptUUID concreteId = new OptUUID("0");
 		if(action == WriterAction.TEMPLATING) {			
-			concreteId = source.id();
+			concreteId = new OptUUID(source.id());
 		} else {
 			for (
 					Record<ListDataFieldSourceShared> rec : 
@@ -48,19 +50,19 @@ public final class ListDataFieldSourceUniqueSharing extends DataSharingBase<List
 					   	  .where(ListDataFieldSourceShared::activity, targetActivity.id())
 					   	  .items()
 			) {
-				final Long id = rec.valueOf(ListDataFieldSourceShared::id);
+				final UUID id = rec.valueOf(ListDataFieldSourceShared::id);
 				final ListDataFieldSource concrete = new PxListDataFieldSource(source.listOf(ListDataFieldSource.class).get(id));
 				if(concrete.model().activity().id().equals(concreteListSourceModelActivity.id())) {
-					concreteId = id;
+					concreteId = new OptUUID(id);
 					break;
 				}
 			}	
 			
-			if(concreteId == 0L)
+			if(concreteId.isEmpty())
 				throw new IllegalArgumentException(String.format("Concrete ListDataFieldSource not found (Generating activity %s )!", targetActivity.name()));
 		}
 		
-		return source.listOf(ListDataFieldSource.class).get(concreteId);
+		return source.listOf(ListDataFieldSource.class).get(concreteId.value());
 	}
 	
 	@Override
@@ -76,7 +78,7 @@ public final class ListDataFieldSourceUniqueSharing extends DataSharingBase<List
 					   	  .where(ListDataFieldSourceShared::activity, targetActivity.id())
 					   	  .items()
 			) {
-				final Long id = rec.valueOf(ListDataFieldSourceShared::id);
+				final UUID id = rec.valueOf(ListDataFieldSourceShared::id);
 				final ListDataFieldSource concrete = new PxListDataFieldSource(source.listOf(ListDataFieldSource.class).get(id));
 				if(concrete.model().activity().id().equals(concreteListSourceModelActivity.id())) {
 					return true;

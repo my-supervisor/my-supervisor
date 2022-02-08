@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.datasource.OrderDirection;
@@ -65,17 +66,17 @@ public final class NoDataFieldDependencies implements DataFieldDependencies {
 	}
 
 	@Override
-	public DataField get(Long id) throws IOException {
+	public DataField get(final UUID id) throws IOException {
 		throw new UnsupportedOperationException("PgNoDependencies#get");
 	}
 
 	@Override
-	public Optional<DataField> getOrDefault(Long id) throws IOException {
+	public Optional<DataField> getOrDefault(final UUID id) throws IOException {
 		throw new UnsupportedOperationException("PgNoDependencies#getOrDefault");
 	}
 
 	@Override
-	public boolean contains(Long id) throws IOException {
+	public boolean contains(final UUID id) throws IOException {
 		return false;
 	}
 
@@ -105,7 +106,7 @@ public final class NoDataFieldDependencies implements DataFieldDependencies {
 	}
 
 	@Override
-	public void remove(Long id) throws IOException {
+	public void remove(final UUID id) throws IOException {
 		throw new UnsupportedOperationException("PgNoDependencies#remove");
 	}
 

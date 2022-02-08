@@ -3,6 +3,7 @@ package com.supervisor.takes;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.RsPage;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.cactoos.iterable.Sticky;
 import org.takes.rq.RqHref;
 import org.takes.rs.xe.XeAppend;
@@ -23,12 +24,12 @@ public final class TkIndicatorType extends TkBaseWrap {
 				req -> {
 					final Supervisor module = new PxSupervisor(base, req);
 					
-					Long activityId = Long.parseLong(new RqHref.Smart(req).single("activity", "0"));
-					if(activityId == 0)
+					OptUUID activityId = new OptUUID(new RqHref.Smart(req).single("activity", "0"));
+					if(activityId.isEmpty())
 						throw new IllegalArgumentException("Vous devez spécifier l'activité pour lequel vous créer cet indicateur !");
 					
 					Activity activity = module.activities()
-							                  .get(activityId);
+							                  .get(activityId.value());
 					
 					XeSource xeActivity = new XeActivity(activity);
 					XeSource xeSupervisor = new XeSupervisor(module);

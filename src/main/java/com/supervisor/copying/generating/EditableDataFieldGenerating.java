@@ -2,6 +2,7 @@ package com.supervisor.copying.generating;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.domain.impl.UserOf;
 import com.supervisor.copying.AbstractEditableDataFieldWriter;
@@ -19,7 +20,7 @@ import com.supervisor.domain.impl.PgActivities;
 
 public final class EditableDataFieldGenerating extends AbstractEditableDataFieldWriter {
 	
-	public EditableDataFieldGenerating(DataSheetModel targetModel, EditableDataField source, Map<Long, DataModel> dataModelMappings) {
+	public EditableDataFieldGenerating(DataSheetModel targetModel, EditableDataField source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetModel, source, dataModelMappings);
 	}
 

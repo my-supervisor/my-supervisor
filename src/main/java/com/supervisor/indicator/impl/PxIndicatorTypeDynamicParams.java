@@ -26,7 +26,7 @@ public final class PxIndicatorTypeDynamicParams extends DomainRecordables<Indica
 		this.indicatorType = indicatorType;
 		this.source = source.where(IndicatorTypeDynamicParam::indicatorType, indicatorType.id())
 						    .where(IndicatorTypeDynamicParam::category, IndicatorTypeParamCategory.DYNAMIC)
-						    .orderBy(IndicatorTypeDynamicParam::id); 
+						    .orderBy(IndicatorTypeDynamicParam::creationDate);
 	}
 	
 	@Override

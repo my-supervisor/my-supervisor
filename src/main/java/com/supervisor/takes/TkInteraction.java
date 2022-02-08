@@ -15,6 +15,8 @@ import com.supervisor.xe.XeActivity;
 import com.supervisor.xe.XeInteraction;
 import com.supervisor.xe.XeSupervisor;
 
+import java.util.UUID;
+
 public final class TkInteraction extends TkBaseWrap {
 
 	public TkInteraction(final Base base) {
@@ -26,7 +28,7 @@ public final class TkInteraction extends TkBaseWrap {
 					
 					final Supervisor module = new PxSupervisor(base, req);
 					
-					final Long activityId = Long.parseLong(new RqHref.Smart(req).single("activity"));
+					final UUID activityId = UUID.fromString(new RqHref.Smart(req).single("activity"));
 					final Activities activities = module.activities();
 					final Activity activity = activities.get(activityId);
 					

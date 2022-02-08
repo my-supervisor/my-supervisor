@@ -1,5 +1,6 @@
 package com.minlessika.sdk.tests.utils;
 
+import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.Recordable;
 import com.supervisor.sdk.utils.ListOfUniqueRecord;
 import org.hamcrest.MatcherAssert;
@@ -16,15 +17,15 @@ public final class ListOfUniqueRecordTest {
 	public void addTest() throws IOException {
 		
 		List<Recordable> records = new ListOfUniqueRecord<>();
-		records.add(new FkRecordable(1L));
-		records.add(new FkRecordable(1L));
+		records.add(new FkRecordable(User.ADMIN_ID));
+		records.add(new FkRecordable(User.ADMIN_ID));
 		
 		MatcherAssert.assertThat(
 				records.size(), 
-				Matchers.equalTo(1)
+				Matchers.equalTo(User.ADMIN_ID)
 		);
 		
-		records.add(0, new FkRecordable(1L));
+		records.add(0, new FkRecordable(User.ADMIN_ID));
 		MatcherAssert.assertThat(
 				records.size(), 
 				Matchers.equalTo(1)
@@ -35,11 +36,11 @@ public final class ListOfUniqueRecordTest {
 	public void addAllTest() throws IOException {
 		
 		List<Recordable> subRecords = new ArrayList<>();
-		subRecords.add(new FkRecordable(1L));
-		subRecords.add(new FkRecordable(2L));
+		subRecords.add(new FkRecordable(User.ADMIN_ID));
+		subRecords.add(new FkRecordable(User.ANONYMOUS_ID));
 		
 		List<Recordable> records = new ListOfUniqueRecord<>();
-		records.add(new FkRecordable(1L));
+		records.add(new FkRecordable(User.ADMIN_ID));
 		records.addAll(subRecords);
 		
 		MatcherAssert.assertThat(

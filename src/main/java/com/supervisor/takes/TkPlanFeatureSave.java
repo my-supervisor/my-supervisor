@@ -7,12 +7,14 @@ import com.supervisor.domain.Plans;
 import com.supervisor.domain.impl.DmMembership;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
 import org.takes.rq.RqGreedy;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 public final class TkPlanFeatureSave extends TkBaseWrap {
@@ -28,10 +30,10 @@ public final class TkPlanFeatureSave extends TkBaseWrap {
 					
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					
-					Long planId = Long.parseLong(form.single("plan_id"));
+					UUID planId = UUID.fromString(form.single("plan_id"));
 					final PlanFeatures features = plans.get(planId).features();
 					
-					Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));		
+					OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					
 					final String name = form.single("name");
 					final String description = form.single("description");
@@ -41,8 +43,8 @@ public final class TkPlanFeatureSave extends TkBaseWrap {
 					
 					final PlanFeature item;
 					final String msg;
-					if(id > 0) {	
-						item = features.get(id);			
+					if(id.isPresent()) {
+						item = features.get(id.value());
 						msg = String.format("La fonctionnalité %s a été modifiée avec succès !", item.name());
 					}else {
 						item = features.add(name);

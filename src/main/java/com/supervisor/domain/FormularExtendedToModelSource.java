@@ -68,13 +68,7 @@ public interface FormularExtendedToModelSource extends com.supervisor.sdk.dataso
 	final FormularExtendedToModelSource EMPTY = new FormularExtendedToModelSource() {
 
 		@Override
-		public Long id() {
-			
-			return null;
-		}
-
-		@Override
-		public UUID guid() throws IOException {
+		public UUID id() {
 			
 			return null;
 		}
@@ -86,8 +80,8 @@ public interface FormularExtendedToModelSource extends com.supervisor.sdk.dataso
 		}
 
 		@Override
-		public Long creatorId() throws IOException {
-			
+		public UUID creatorId() throws IOException {
+
 			return null;
 		}
 
@@ -98,13 +92,13 @@ public interface FormularExtendedToModelSource extends com.supervisor.sdk.dataso
 		}
 
 		@Override
-		public Long lastModifierId() throws IOException {
+		public UUID lastModifierId() throws IOException {
 			
 			return null;
 		}
 
 		@Override
-		public Long ownerId() throws IOException {
+		public UUID ownerId() throws IOException {
 			
 			return null;
 		}

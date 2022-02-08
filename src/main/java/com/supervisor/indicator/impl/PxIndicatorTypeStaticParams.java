@@ -26,7 +26,7 @@ public final class PxIndicatorTypeStaticParams extends DomainRecordables<Indicat
 		this.indicatorType = indicatorType;
 		this.source = source.where(IndicatorTypeStaticParam::indicatorType, indicatorType.id())
 				            .where(IndicatorTypeStaticParam::category, IndicatorTypeParamCategory.STATIC)
-				            .orderBy(IndicatorTypeStaticParam::id);
+				            .orderBy(IndicatorTypeStaticParam::creationDate);
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ package com.supervisor.copying.templating;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.domain.impl.OwnerOf;
 import com.supervisor.copying.AbstractFormularDataFieldWriter;
@@ -16,7 +17,7 @@ import com.supervisor.domain.FormularExtendedToParentExpression;
 
 public final class FormularDataFieldTemplating extends AbstractFormularDataFieldWriter {
 
-	public FormularDataFieldTemplating(AggregatedModel targetModel, FormularDataField source, Map<Long, DataModel> dataModelMappings) {
+	public FormularDataFieldTemplating(AggregatedModel targetModel, FormularDataField source, Map<UUID, DataModel> dataModelMappings) {
 		super(targetModel, source, dataModelMappings);
 	}
 

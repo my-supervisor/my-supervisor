@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
@@ -26,18 +27,18 @@ public final class TkFormularExtendedToModelSourceActivate extends TkBaseWrap {
 					final Smart href = new RqHref.Smart(req);
 					
 					
-					final Long modelId = Long.parseLong(href.single("model"));
+					final UUID modelId = UUID.fromString(href.single("model"));
 					final AggregatedModel model = module.aggregatedModels().get(modelId); 
 					
-					final Long formularId = Long.parseLong(href.single("formular"));
+					final UUID formularId = UUID.fromString(href.single("formular"));
 					FormularDataField formular = model.formulars().get(formularId); 
 					
-					final Long exprId = Long.parseLong(href.single("expr"));
+					final UUID exprId = UUID.fromString(href.single("expr"));
 					final FormularExtendedToModelExpression expr = (FormularExtendedToModelExpression)formular.expressions().get(exprId);
 					
 					final boolean active = Boolean.parseBoolean(href.single("active"));										
 					
-					final Long id = Long.parseLong(href.single("id"));
+					final UUID id = UUID.fromString(href.single("id"));
 					final FormularExtendedToModelSource item = expr.sources().get(id);
 					item.activate(active); 
 	

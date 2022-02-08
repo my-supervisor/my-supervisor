@@ -3,6 +3,7 @@ package com.supervisor.domain.impl;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.Record;
@@ -115,7 +116,7 @@ public final class PxActivityTemplate extends ActivityWrap implements ActivityTe
 	@Override
 	public void changeDesigner(User newDesigner) throws IOException {
 		
-		final Long ownerId = newDesigner.id();
+		final UUID ownerId = newDesigner.id();
 		
 		if(ownerId.equals(designer().id()))
 			throw new IllegalArgumentException("Vous devez sélectionner un utilisateur différent du concepteur actuel !");

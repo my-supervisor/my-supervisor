@@ -1,5 +1,6 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import javax.json.JsonArray;
@@ -31,8 +32,8 @@ public final class TkFormularExpressionOrganize extends TkBaseWrap {
 					
 					final Request gReq = new RqGreedy(req);
 					
-					Long modelId = Long.parseLong(new RqHref.Smart(gReq).single("model"));
-					Long formularId = Long.parseLong(new RqHref.Smart(gReq).single("formular"));		
+					UUID modelId = UUID.fromString(new RqHref.Smart(gReq).single("model"));
+					UUID formularId = UUID.fromString(new RqHref.Smart(gReq).single("formular"));
 					AggregatedModel model = module.aggregatedModels().get(modelId);
 					FormularDataField formular = model.formulars().get(formularId);
 						
@@ -40,7 +41,7 @@ public final class TkFormularExpressionOrganize extends TkBaseWrap {
 					JsonArray locations = rqJson.payload().asJsonArray();
 					for (JsonObject myLoc : locations.getValuesAs(JsonObject.class)) {
 						
-						Long id = myLoc.getJsonNumber("id").longValue();			
+						UUID id = UUID.fromString(myLoc.getJsonString("id").getString());
 						FormularExpression expr = formular.expressions().get(id);	
 						
 						final int no = myLoc.getInt("no");

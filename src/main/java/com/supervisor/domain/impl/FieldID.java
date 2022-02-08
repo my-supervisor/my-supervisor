@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.datasource.RecordSet;
 import com.supervisor.sdk.datasource.Recordable;
@@ -16,12 +17,7 @@ import com.supervisor.domain.DataModel;
 public final class FieldID implements DataField {
 	
 	@Override
-	public Long id() {
-		return -2L;
-	}
-
-	@Override
-	public UUID guid() throws IOException {
+	public UUID id() {
 		return UUID.randomUUID();
 	}
 
@@ -31,8 +27,8 @@ public final class FieldID implements DataField {
 	}
 
 	@Override
-	public Long creatorId() throws IOException {
-		return 1L;
+	public UUID creatorId() throws IOException {
+		return User.ADMIN_ID;
 	}
 
 	@Override
@@ -41,13 +37,13 @@ public final class FieldID implements DataField {
 	}
 
 	@Override
-	public Long lastModifierId() throws IOException {
-		return 1L;
+	public UUID lastModifierId() throws IOException {
+		return User.ADMIN_ID;
 	}
 
 	@Override
-	public Long ownerId() throws IOException {
-		return 1L;
+	public UUID ownerId() throws IOException {
+		return User.ADMIN_ID;
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
+
 import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.DomainRecordables;
 import com.supervisor.sdk.datasource.RecordSet;
@@ -35,7 +37,7 @@ public final class PgDataSheets extends DomainRecordables<DataSheet, DataSheets>
 		
 		Table table = new TableImpl(DataSheet.class);
 		Table tableModel = new TableImpl(DataSheetModel.class);
-		Long ownerId = user.id();
+		final UUID ownerId = user.id();
 		
 		String viewScript = String.format(
 					            "(\r\n" +

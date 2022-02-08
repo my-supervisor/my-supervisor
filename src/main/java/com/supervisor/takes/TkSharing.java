@@ -19,6 +19,8 @@ import com.supervisor.xe.XeResource;
 import com.supervisor.xe.XeSharedResource;
 import com.supervisor.xe.XeSupervisor;
 
+import java.util.UUID;
+
 public final class TkSharing extends TkBaseWrap {
 
 	public TkSharing(final Base base) {
@@ -31,7 +33,7 @@ public final class TkSharing extends TkBaseWrap {
 					Smart params = new RqHref.Smart(req);
 					
 					ResourceType type = ResourceType.valueOf(params.single("type"));
-					Long resourceId = Long.parseLong(params.single("resource"));					
+					UUID resourceId = UUID.fromString(params.single("resource"));
 					Resource resource = module.resources().resource(type, resourceId);
 					
 					if(new RqUser(base, req).notOwn(resource)) {

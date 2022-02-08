@@ -2,14 +2,16 @@ package com.supervisor.indicator.impl;
 
 import com.supervisor.domain.ActivityTemplateParamRequest;
 
+import java.util.UUID;
+
 public final class ActivityTemplateParamRequestImpl implements ActivityTemplateParamRequest {
 
-	private final Long modelId;
+	private final UUID modelId;
 	private final String code;
 	private final String value;
 
 	public ActivityTemplateParamRequestImpl(
-			final Long modelId,
+			final UUID modelId,
 			final String code,
 			final String value
 	) {
@@ -19,7 +21,7 @@ public final class ActivityTemplateParamRequestImpl implements ActivityTemplateP
 	}
 	
 	@Override
-	public Long modelId() {
+	public UUID modelId() {
 		return modelId;
 	}
 	

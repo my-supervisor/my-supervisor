@@ -1,6 +1,7 @@
 package com.supervisor.domain.impl;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.supervisor.domain.User;
 import com.supervisor.sdk.datasource.DomainRecordables;
@@ -35,7 +36,7 @@ public final class PgUserAggregatedModels extends DomainRecordables<AggregatedMo
 	private static RecordSet<AggregatedModel> viewSource(final User user) throws IOException {
 		
 		Table tableModel = new TableImpl(AggregatedModel.class);
-		Long ownerId = user.id();
+		final UUID ownerId = user.id();
 		
 		String viewScript = String.format(
 								"(\r\n" + 

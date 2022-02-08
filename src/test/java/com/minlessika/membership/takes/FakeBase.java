@@ -11,6 +11,7 @@ import org.takes.Request;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Fake base.
@@ -24,8 +25,8 @@ final class FakeBase implements Base {
     }
 
     @Override
-    public long currentUserId() {
-        return 0;
+    public UUID currentUserId() {
+        return null;
     }
 
     @Override
@@ -34,7 +35,7 @@ final class FakeBase implements Base {
     }
 
     @Override
-    public void start(boolean inTransaction, long currentUserId) throws IOException {
+    public void start(boolean inTransaction, UUID currentUserId) throws IOException {
 
     }
 
@@ -44,7 +45,7 @@ final class FakeBase implements Base {
     }
 
     @Override
-    public void changeUser(long userId) throws IOException {
+    public void changeUser(UUID userId) throws IOException {
 
     }
 
@@ -84,7 +85,7 @@ final class FakeBase implements Base {
     }
 
     @Override
-    public <A1 extends Recordable> Record<A1> select(Class<A1> clazz, Long id) throws IOException {
+    public <A1 extends Recordable> Record<A1> select(Class<A1> clazz, UUID id) throws IOException {
         return null;
     }
 

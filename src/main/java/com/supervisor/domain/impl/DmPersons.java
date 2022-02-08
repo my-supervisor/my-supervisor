@@ -13,6 +13,7 @@ import com.supervisor.sdk.datasource.Record;
 import com.supervisor.sdk.datasource.RecordSet;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public final class DmPersons extends DomainRecordables<Person, Persons> implements Persons {
 
@@ -44,10 +45,10 @@ public final class DmPersons extends DomainRecordables<Person, Persons> implemen
 						      		  .entryOf(Person::isCompany, false)
 						      		  .entryOf(Person::photo, defaultPhoto)
 						      		  .entryOf(Person::timeZoneId, user.timeZoneId())
-						      		  .entryOf(Person::preferredLanguage, 1) // English
+						      		  .entryOf(Person::preferredLanguage, UUID.fromString("602667bc-8014-4a02-be12-164a8e1c29cb")) // English
 						      		  .entryOf(Person::address, address.id())
 						      		  .entryOf(Person::billingAddress, billingAddress.id())
-						      		  .entryOf(Person::preferredCurrency, 2) // Euro
+						      		  .entryOf(Person::preferredCurrency, UUID.fromString("75932d0b-f391-4def-a2e0-854e45376f07")) // Euro
 						      		  .add();
 		
 		return domainOf(record);

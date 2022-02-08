@@ -2,6 +2,7 @@ package com.supervisor.copying;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import com.supervisor.domain.DataField;
 import com.supervisor.domain.DataFields;
@@ -17,9 +18,9 @@ public abstract class AbstractEditableDataFieldWriter implements Writer<Editable
 
 	protected final EditableDataField source;
 	protected final DataSheetModel targetModel;
-	protected final Map<Long, DataModel> dataModelMappings;
+	protected final Map<UUID, DataModel> dataModelMappings;
 	
-	public AbstractEditableDataFieldWriter(final DataSheetModel targetModel, final EditableDataField source, final Map<Long, DataModel> dataModelMappings) {
+	public AbstractEditableDataFieldWriter(final DataSheetModel targetModel, final EditableDataField source, final Map<UUID, DataModel> dataModelMappings) {
 		this.source = source;
 		this.targetModel = targetModel;
 		this.dataModelMappings = dataModelMappings;

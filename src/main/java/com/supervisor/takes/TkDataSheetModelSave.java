@@ -1,14 +1,17 @@
 package com.supervisor.takes;
 
+import java.util.UUID;
 import java.util.logging.Level;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.utils.BasicCodeGenerator;
 import com.supervisor.sdk.utils.CodeGenerator;
+import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Response;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
+import org.takes.misc.Opt;
 import org.takes.rq.RqGreedy;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -30,17 +33,17 @@ public final class TkDataSheetModelSave extends TkBaseWrap {
 					final String name = form.single("name");
 					final boolean canMergeAtSameDate = Boolean.parseBoolean(form.single("can_merge_at_same_date"));
 					final String description = form.single("description");
-					final Long activityId = Long.parseLong(form.single("activity_id"));
+					final UUID activityId = UUID.fromString(form.single("activity_id"));
 					
 					final Activity activity = module.activities().get(activityId);
 					
 					DataSheetModel itemSaved;
 					
-					final Long id = Long.parseLong(new RqHref.Smart(req).single("id", "0"));
+					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					Response response;
 					
-					if(id > 0) {
-						itemSaved = activity.forms().get(id);
+					if(id.isPresent()) {
+						itemSaved = activity.forms().get(id.value());
 						
 						if(new RqUser(base, req).notOwn(itemSaved)) {
 							throw new IllegalArgumentException("Vous ne pouvez pas modifier un modèle partagé !");
