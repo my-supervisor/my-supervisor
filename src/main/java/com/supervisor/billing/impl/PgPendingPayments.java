@@ -38,7 +38,7 @@ public final class PgPendingPayments extends DomainRecordables<PaymentRequest, P
 										"	select src.* \r\n" + 
 				                        "   from %s as src \r\n" + 
 										"	left join %s as target on target.id = src.order_id \r\n" + 
-										"   where target.customer_id=%s and src.status = 'PENDING'" + 
+										"   where target.customer_id='%s'::uuid and src.status = 'PENDING'" +
 										") as %s",
 							table.name(),
 							new TableImpl(Order.class).name(),

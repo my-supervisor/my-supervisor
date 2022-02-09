@@ -23,6 +23,8 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
 import org.apache.commons.lang.StringUtils;
 import org.takes.Request;
 import org.takes.facets.auth.Identity;
@@ -69,7 +71,7 @@ public final class XeMIdentity extends XeWrap {
 		if(identity == Identity.ANONYMOUS) {
 			result = XeSource.EMPTY;
 		} else {
-			final Long id = Long.parseLong(identity.properties().get("id"));
+			final UUID id = UUID.fromString(identity.properties().get("id"));
 			final List<ResultStatement> results = base.query(
 				String.join(
 					System.lineSeparator(),

@@ -43,13 +43,13 @@ public final class PgDataSheets extends DomainRecordables<DataSheet, DataSheets>
 					            "(\r\n" +
 								"	select sheet.* from (\r\n" + 
 								"		select * from %s \r\n" + 
-								"		where owner_id = %s\r\n" + 
+								"		where owner_id = '%s'::uuid\r\n" +
 								"		UNION ALL\r\n" + 
 								"		select sheet.* \r\n" + 
 								"		from %s sheet\r\n" + 
 								"		left join %s as model on model.id = sheet.model_id\r\n" + 
 								"		left join %s res on res.resource_id = model.id\r\n" + 
-								"		where res.type = 'DATA_SHEET_MODEL' and res.subscriber_id = %s and sheet.creator_id = %s\r\n" + 
+								"		where res.type = 'DATA_SHEET_MODEL' and res.subscriber_id = '%s'::uuid and sheet.creator_id = '%s'::uuid\r\n" +
 								"	) as sheet \r\n" +
 								"   left join %s as model on model.id = sheet.model_id \r\n" +
 								"   where model.is_template = false \r\n" +

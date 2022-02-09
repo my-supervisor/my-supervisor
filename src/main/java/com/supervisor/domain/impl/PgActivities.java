@@ -47,12 +47,12 @@ public final class PgActivities extends DomainRecordables<Activity, Activities> 
 		
 		String viewScript = String.format("(\r\n" + 
 							"	select * from %s \r\n" + 
-							"	where owner_id = %s \r\n" + 
+							"	where owner_id = '%s'::uuid \r\n" +
 							"	UNION ALL\r\n" + 
 							"	select act.* \r\n" + 
 							"	from %s act\r\n" + 
 							"	left join %s res on res.resource_id = act.id\r\n" + 
-							"	where res.type = 'ACTIVITY' and res.subscriber_id = %s\r\n" + 
+							"	where res.type = 'ACTIVITY' and res.subscriber_id = '%s'::uuid\r\n" +
 							") as %s",
 							table.name(),
 							ownerId,

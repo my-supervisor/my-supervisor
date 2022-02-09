@@ -61,25 +61,25 @@ public final class PgFormularDependencies extends DomainRecordables<DataField, D
 							    "       from %s data_arg \r\n " + 
 							    "       left join %s arg on arg.id = data_arg.id \r\n" + 
 							    "       left join %s expr on expr.id = arg.expression_id \r\n" +
-							    "       where expr.formular_id = %s \r\n" +
+							    "       where expr.formular_id = '%s'::uuid \r\n" +
 							    "   ) \r\n" + 
 							    "   or src.id in (\r\n" +
 							    "		select model_field_id \r\n" + 
 							    "       from %s source \r\n " + 
 							    "       left join %s expr on expr.id = source.expr_id \r\n" +
-							    "       where expr.formular_id = %s \r\n" +
+							    "       where expr.formular_id = '%s'::uid \r\n" +
 							    "   ) \r\n" + 
 							    "   or src.id in (\r\n" +
 							    "		select reference_id \r\n" + 
 							    "       from %s source \r\n " + 
 							    "       left join %s expr on expr.id = source.expr_id \r\n" +
-							    "       where expr.formular_id = %s \r\n" +
+							    "       where expr.formular_id = '%s'::uuid \r\n" +
 							    "   ) \r\n" + 
 							    "   or src.id in (\r\n" +
 							    "		select field_to_extend_id \r\n" + 
 							    "       from %s source \r\n " + 
 							    "       left join %s expr on expr.id = source.expr_id \r\n" +
-							    "       where expr.formular_id = %s \r\n" +
+							    "       where expr.formular_id = '%s'::uuid \r\n" +
 							    "   ) \r\n" + 
 								") as %s \r\n",
 								table.name(),

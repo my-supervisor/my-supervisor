@@ -37,7 +37,7 @@ public final class PgActivityTemplates extends DomainRecordables<ActivityTemplat
 											"	select DISTINCT ON (src.id) src.* \r\n" + 
 					                        "   from %s as src \r\n" + 
 											"	left join %s as target on target.template_id = src.id \r\n" +
-											"   where (src.owner_id=%s or target.user_id=%s) and src.is_template=true" + 
+											"   where (src.owner_id='%s'::uuid or target.user_id='%s'::uuid) and src.is_template=true" +
 										  ") as %s",
 										table.name(),
 										new TableImpl(ActivityTemplateSubscription.class).name(),										

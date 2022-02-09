@@ -61,13 +61,13 @@ public final class PgDataSheetModels extends DomainRecordables<DataSheetModel, D
 								"	select src.*, core.interacting, core.code, core.type, core.active, core.activity_id, core.name, core.description, core.is_template \r\n" + 
 								"   from %s src \r\n"+ 
 								"   left join %s core on core.id = src.id \r\n" + 
-								"	where core.owner_id = %s \r\n" + 
+								"	where core.owner_id = '%s'::uuid \r\n" +
 								"	UNION ALL \r\n" + 
 								"	select model.*, core.interacting, core.code, core.type, core.active, core.activity_id, core.name, core.description, core.is_template \r\n" + 
 								"	from %s model \r\n" + 
 								"   left join %s core on core.id = model.id \r\n" +
 								"	left join %s res on res.resource_id = model.id \r\n" + 
-								"	where res.type = 'DATA_SHEET_MODEL' and res.subscriber_id = %s\r\n" + 
+								"	where res.type = 'DATA_SHEET_MODEL' and res.subscriber_id = '%s'::uuid\r\n" +
 								") as %s",
 								tableModel.name(),
 								tableCoreModel.name(),

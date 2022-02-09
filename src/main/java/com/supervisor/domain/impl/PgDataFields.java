@@ -47,7 +47,7 @@ public final class PgDataFields extends DomainRecordables<DataField, DataFields>
 		return String.format(
 					"select src.* \r\n" + 
 					"from %s as src \r\n" + 
-					"where src.model_id = %s",
+					"where src.model_id = '%s'::uuid",
 					table.name(),									
 					model.id()
 			   );

@@ -45,7 +45,7 @@ public final class PgUserAggregatedModels extends DomainRecordables<AggregatedMo
 								"   left join %s model on model.id = am.model_id \r\n" +
 								"   left join %s dmodel on dmodel.id = model.id \r\n" + 
 								"   left join %s core on core.id = am.id \r\n" +
-								"	where am.owner_id = %s\r\n" + 
+								"	where am.owner_id = '%s'::uuid\r\n" +
 								") as %s",
 								tableModel.name(),
 								new TableImpl(DataSheetModel.class).name(),

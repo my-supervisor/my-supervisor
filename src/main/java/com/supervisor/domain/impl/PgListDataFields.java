@@ -41,7 +41,7 @@ public final class PgListDataFields extends DomainRecordables<ListDataField, Lis
 					"select src.*, target.code, target.model_id, target.name, target.description, target.type, target.style \r\n" + 
 		            "from %s as src \r\n" + 
 		            "left join %s as target on target.id = src.id \r\n" +
-					"where target.model_id = %s", 
+					"where target.model_id = '%s'::uuid",
 					table.name(),
 					new TableImpl(DataField.class).name(),										
 					model.id()
