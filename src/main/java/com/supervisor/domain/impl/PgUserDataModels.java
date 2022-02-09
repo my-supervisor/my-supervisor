@@ -43,7 +43,7 @@ public final class PgUserDataModels extends DomainRecordables<DataModel, UserDat
 								"(\r\n" + 
 								"	select src.* \r\n" + 
 								"   from %s src \r\n"+ 
-								"	where src.owner_id = %s \r\n" +
+								"	where src.owner_id = '%s'::uuid \r\n" +
 								") as %s",
 								table.name(),
 								user.id(),

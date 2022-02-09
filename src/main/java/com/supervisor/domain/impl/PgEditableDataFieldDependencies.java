@@ -58,12 +58,12 @@ public final class PgEditableDataFieldDependencies extends DomainRecordables<Dat
 						    "   where src.id in (\r\n" +
 						    "		select field_to_display_id \r\n" + 
 						    "       from %s list_source \r\n " + 
-						    "       where list_source.field_id = %s \r\n" +
+						    "       where list_source.field_id = '%s'::uuid \r\n" +
 						    "   ) \r\n" + 
 						    "   or src.id in (\r\n" +
 						    "		select order_field_id \r\n" + 
 						    "       from %s list_source \r\n " + 
-						    "       where list_source.field_id = %s \r\n" +
+						    "       where list_source.field_id = '%s'::uuid \r\n" +
 						    "   ) \r\n" + 
 							") as %s \r\n",
 							table.name(),
@@ -78,7 +78,7 @@ public final class PgEditableDataFieldDependencies extends DomainRecordables<Dat
 							"(\r\n" + 
 						    "	select src.* \r\n" + 
 		                    "   from %s as src \r\n" + 
-						    "   where src.id = -1 \r\n" +
+						    "   where src.id IS NULL \r\n" +
 							") as %s \r\n",
 							table.name(),
 							table.name()

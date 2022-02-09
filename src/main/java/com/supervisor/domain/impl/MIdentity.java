@@ -24,7 +24,7 @@ public final class MIdentity implements Identity {
 		props.putAll(properties);
 		
 		this.origin = new Simple(
-						String.format("urn:minlessika:%d", user.id()),
+						String.format("urn:minlessika:%s", user.id()),
 						props
 					  );
 	}

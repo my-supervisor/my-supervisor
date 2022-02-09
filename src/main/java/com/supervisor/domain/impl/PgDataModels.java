@@ -57,7 +57,7 @@ public final class PgDataModels extends DomainRecordables<DataModel, DataModels>
 								"(\r\n" + 
 								"	select src.* \r\n" + 
 								"   from %s src \r\n"+
-								"   where src.activity_id=%s \r\n"+ 
+								"   where src.activity_id='%s'::uuid \r\n"+
 								") as %s",
 								tableModel.name(),
 								activity.id(),
@@ -68,7 +68,7 @@ public final class PgDataModels extends DomainRecordables<DataModel, DataModels>
 								"(\r\n" + 
 								"	select src.* \r\n" + 
 								"   from %s src \r\n"+
-								"   where src.owner_id=%s \r\n"+ 
+								"   where src.owner_id='%s'::uuid \r\n"+
 								") as %s",
 								tableModel.name(),
 								user.id(),
