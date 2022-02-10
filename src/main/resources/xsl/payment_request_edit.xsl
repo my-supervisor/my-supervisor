@@ -168,7 +168,7 @@ SOFTWARE.
 				        $.ajax({
 				            // URL vers une page du serveur du partenaire
 				            // Les autre informations importantes seront inséré dans cette page
-				            url: '/hub2/transaction/open?request=]]><xsl:value-of select="item/id"/><![CDATA[',
+				            url: '/hub2/transaction/open?request=']]><xsl:value-of select="item/id"/><![CDATA['',
 				            type: 'POST',
 				            dataType: 'json'
 				        })

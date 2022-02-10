@@ -317,13 +317,13 @@ SOFTWARE.
 				                   				rows:[
 				                   					<xsl:for-each select="../../rows/row"><xsl:if test="table_id=$table_id">
 				                   					    	{
-					                   							'id': <xsl:value-of select="id"/>,
-					                   							'table_id': <xsl:value-of select="table_id"/>,
+					                   							'id': '<xsl:value-of select="id"/>',
+					                   							'table_id': '<xsl:value-of select="table_id"/>',
 					                   							'table_code': "<xsl:value-of select="table_code"/>",
 					                   							'fields': [
 					                   								<xsl:for-each select="cell">
 					                   									{
-					                   										'id': <xsl:value-of select="id"/>,
+					                   										'id': '<xsl:value-of select="id"/>',
 					                   										'code': "<xsl:value-of select="code"/>",					                   										
 					                   										'value': "<xsl:value-of select="value"/>",
 					                   										'inputName': "row_<xsl:value-of select="../table_code"/>_<xsl:value-of select="code"/>",
@@ -357,9 +357,9 @@ SOFTWARE.
 								
 				var listModels = []]><xsl:for-each select="list_data_field_sources/list_data_field_source">                             	                     
 		                       	{	
-		                       		'id': <xsl:value-of select="list_model_id"/>, 
+		                       		'id': '<xsl:value-of select="list_model_id"/>',
 		                       		'name': "<xsl:value-of select="list_model"/>",
-		                       		'fieldId': <xsl:value-of select="field_id"/>
+		                       		'fieldId': '<xsl:value-of select="field_id"/>'
 		                       	},
 		                   </xsl:for-each><![CDATA[];
 		                    

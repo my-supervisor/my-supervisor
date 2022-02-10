@@ -78,8 +78,8 @@ SOFTWARE.
 			app.controller("AppCtrl", ["$scope", "$http", function ($scope, $http) {
 				   var vm = this;
 				   					
-				   var requestId = ]]><xsl:value-of select="request/id"/><![CDATA[;
-				   var methodId = ]]><xsl:value-of select="method/id"/><![CDATA[;
+				   var requestId = ']]><xsl:value-of select="request/id"/><![CDATA[';
+				   var methodId = ']]><xsl:value-of select="method/id"/><![CDATA[';
 				   	 
 				   vm.beginTransaction = function(number){
 				   							   		

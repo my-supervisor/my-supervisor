@@ -82,7 +82,7 @@ SOFTWARE.
 					            	}
 					            	
 					            	scope.$on(scope.code, function(event, args) {
-										var url = '/indicator/goal-number?id=' + scope.id + '&activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[;
+										var url = '/indicator/goal-number?id=' + scope.id + '&activity=' + ']]><xsl:value-of select="activity_selected/id"/><![CDATA[';
 											
 										if(args.date){										    
 											url = url + "&date=" + args.date.toISOString().substring(0, 10);

@@ -226,7 +226,7 @@ SOFTWARE.
 				   }
 				   
 				   vm.models = []]><xsl:for-each select="data_models/data_model">                             	                     
-	                       	{	'id': <xsl:value-of select="id"/>, 
+	                       	{	'id': '<xsl:value-of select="id"/>',
 	                       		'name': "<xsl:value-of select="name"/>",
 	                       		'viewName': "<xsl:value-of select="viewName"/>"
 	                       	},
@@ -236,11 +236,11 @@ SOFTWARE.
 	                vm.paramsOfModel = [];
 	                
 	                vm.dataFields = []]><xsl:for-each select="datafields"><xsl:for-each select="datafield">                             	                     
-			                       	{	'id': <xsl:value-of select="id"/>, 
+			                       	{	'id': '<xsl:value-of select="id"/>',
 			                       		'name': "<xsl:value-of select="name"/>",
 			                       		'type': "<xsl:value-of select="type"/>",
 			                       		'typeId': "<xsl:value-of select="type_id"/>",
-			                       		'modelId': <xsl:value-of select="model_id"/>
+			                       		'modelId': '<xsl:value-of select="model_id"/>'
 			                       	},
 			                    </xsl:for-each></xsl:for-each><![CDATA[];		              		                
 		                   
@@ -322,11 +322,11 @@ SOFTWARE.
 			                   	</xsl:for-each><![CDATA[];
 			                   
 				   		vm.mappings = []]><xsl:for-each select="mapped_data_fields/mapped_data_field">                             	                     
-			                       	{	'id': <xsl:value-of select="id"/>, 
-			                       		'paramId': <xsl:value-of select="param_id"/>,
+			                       	{	'id': '<xsl:value-of select="id"/>',
+			                       		'paramId': '<xsl:value-of select="param_id"/>',
 			                       		'param': "<xsl:value-of select="param"/>",
 			                       		'fieldToUse': "<xsl:value-of select="field_to_use"/>",
-			                       		'fieldToUseId': <xsl:value-of select="field_to_use_id"/>,
+			                       		'fieldToUseId': '<xsl:value-of select="field_to_use_id"/>',
 			                       		'operator': "<xsl:value-of select="operator"/>",
 			                       		'operatorId': "<xsl:value-of select="operator_id"/>",
 			                       		'type': "<xsl:value-of select="type"/>",
@@ -335,7 +335,7 @@ SOFTWARE.
 			                   	</xsl:for-each><![CDATA[];
 			            
 			            vm.linkParams = []]><xsl:for-each select="data_link_params/data_link_param">                             	                     
-			                       	{	'id': <xsl:value-of select="id"/>, 
+			                       	{	'id': '<xsl:value-of select="id"/>',
 			                       		'name': "<xsl:value-of select="name"/>",
 			                       		'type': "<xsl:value-of select="type"/>",
 			                       		'typeId': "<xsl:value-of select="typeId"/>",
@@ -350,8 +350,8 @@ SOFTWARE.
 			                   	</xsl:for-each><![CDATA[];
 			                   
 			            vm.params = []]><xsl:for-each select="rule_params/rule_param">                             	                     
-			                       	{	'id': <xsl:value-of select="id"/>, 
-			                       		'modelId': <xsl:value-of select="rule_id"/>,
+			                       	{	'id': '<xsl:value-of select="id"/>',
+			                       		'modelId': '<xsl:value-of select="rule_id"/>',
 			                       		'name': "<xsl:value-of select="name"/>",
 			                       		'typeId': "<xsl:value-of select="typeId"/>",
 			                       		'type': "<xsl:value-of select="type"/>",
@@ -366,8 +366,8 @@ SOFTWARE.
 			                   	</xsl:for-each><![CDATA[];
 			            ]]><xsl:choose><xsl:when test="item and item/id">
 			            		vm.item = {
-		                   			'id': <xsl:value-of select="item/id"/>,
-		                   			'modelId': <xsl:value-of select="item/model_id"/>,
+		                   			'id': '<xsl:value-of select="item/id"/>',
+		                   			'modelId': '<xsl:value-of select="item/model_id"/>',
 		                   			'name': "<xsl:value-of select="item/name"/>"
 		                   		}		                   	  
 	

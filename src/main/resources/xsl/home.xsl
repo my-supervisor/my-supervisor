@@ -305,7 +305,7 @@ SOFTWARE.
 						               		vm.dateAnalysis = config.date;						               								               	
 						               }
 						               
-						               var url = '/activity/period?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[;
+						               var url = '/activity/period?activity=' + ']]><xsl:value-of select="activity_selected/id"/><![CDATA[';
 						               if(vm.dateAnalysis)
 						               		url += "&date=" + vm.dateAnalysis.toISODate();
 						               		
@@ -330,7 +330,7 @@ SOFTWARE.
 							}
 							
 							function goToPreviousDate(){
-								var url = '/activity/period/previous?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[;
+								var url = '/activity/period/previous?activity=' + ']]><xsl:value-of select="activity_selected/id"/><![CDATA[';
 						               if(vm.dateAnalysis)
 						               		url += "&date=" + vm.dateAnalysis.toISODate();
 						               		
@@ -351,7 +351,7 @@ SOFTWARE.
 							}
 							
 							function goToNextDate(){
-								var url = '/activity/period/next?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[;
+								var url = '/activity/period/next?activity=' + ']]><xsl:value-of select="activity_selected/id"/><![CDATA[';
 						               if(vm.dateAnalysis)
 						               		url += "&date=" + vm.dateAnalysis.toISODate();
 						               		
@@ -372,7 +372,7 @@ SOFTWARE.
 							}
 							
 							function goToRealTime(){
-								var url = '/activity/period?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[;
+								var url = '/activity/period?activity=' + ']]><xsl:value-of select="activity_selected/id"/><![CDATA[';
 						               		
 				               vm.periodSeeking = true;
 				               $http.get(url, null)
@@ -412,7 +412,7 @@ SOFTWARE.
 							    	locations.push(loc);
 							    });
 							    
-							    $http.post('/activity/organize?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[, locations)
+							    $http.post('/activity/organize?activity=' + ']]><xsl:value-of select="activity_selected/id"/><![CDATA[', locations)
 							         .then(
 								         function(success){
 								         	vm.inOrganizeMode = false;
@@ -456,7 +456,7 @@ SOFTWARE.
 						        maxReconnectOnClose: 5,
 						        attachHeadersAsQueryString: true,
 						        headers: {
-						        	activity:]]><xsl:value-of select="activity_selected/id"/><![CDATA[
+						        	activity:']]><xsl:value-of select="activity_selected/id"/><![CDATA['
 						        }
 						    };
 						    
@@ -584,10 +584,10 @@ SOFTWARE.
 							this.$onInit = function(){
 								vm.dateAnalysisName = "Aujourd'hui";
 								var indicators = []]><xsl:for-each select="indicators/indicator">                             	                     
-				                       	{	'id': <xsl:value-of select="id"/>, 
+				                       	{	'id': '<xsl:value-of select="id"/>',
 				                       		'name': "<xsl:value-of select="name"/>",
 				                       		'type': "<xsl:value-of select="type"/>",
-				                       		'typeId': <xsl:value-of select="type_id"/>,
+				                       		'typeId': '<xsl:value-of select="type_id"/>',
 				                       		'code': "<xsl:value-of select="code"/>",
 				                       		'shortName': "<xsl:value-of select="short_name"/>",
 				                       		'sizeX': <xsl:value-of select="sizeX"/>,
@@ -606,7 +606,7 @@ SOFTWARE.
 								subSocket = socket.subscribe(request);
 								
 								vm.periodSeeking = true;
-								$http.get('/activity/period?activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[, null)
+								$http.get('/activity/period?activity=' + ']]><xsl:value-of select="activity_selected/id"/><![CDATA[', null)
 							         .then(
 								         function(success){
 								         	vm.period = success.data;

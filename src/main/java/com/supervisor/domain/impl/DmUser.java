@@ -82,11 +82,11 @@ public final class DmUser extends DomainRecordable<User> implements User {
 	@Override
 	public boolean own(Object item) throws IOException {
 		Method m;
-		Long ownerId;
+		UUID ownerId;
 		
 		try {
 			m = item.getClass().getMethod("ownerId");
-			ownerId = (Long)m.invoke(item);
+			ownerId = (UUID)m.invoke(item);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			logger.error(e);
 			throw new IOException(e);
