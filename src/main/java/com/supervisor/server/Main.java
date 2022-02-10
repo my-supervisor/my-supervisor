@@ -43,6 +43,15 @@ public final class Main {
 	 * We start all things here.
 	 * @param args Arguments.
 	 * @throws Exception If fails
+	 * @todo #59:30min Generate code for JOOQ.
+	 *  We need first set up JOOQ in the project to generate objects based
+	 *  on tables of database. see theses links:
+	 *   - https://www.jooq.org/doc/3.16/manual/getting-started/tutorials/jooq-in-7-steps/jooq-in-7-steps-step3/.
+	 *   - https://www.jooq.org/doc/3.16/manual/getting-started/tutorials/jooq-in-7-steps/jooq-in-7-steps-step4/
+	 * @todo #59:30min Apply JOOQ approach.
+	 *  We want to replace progressively current approach by JOOQ one. For that,
+	 *  We should pass from business Object to other one. See this link :
+	 *   - https://www.jooq.org/doc/3.16/manual/getting-started/tutorials/jooq-in-7-steps/jooq-in-7-steps-step5/
 	 */
     public static void main(final String... args) throws Exception {
 		final Map<String, String> map = new ConsoleArgs("--", args).asMap();

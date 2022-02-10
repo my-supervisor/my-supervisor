@@ -216,6 +216,21 @@ SOFTWARE.
       <version>5.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.jooq</groupId>
+      <artifactId>jooq</artifactId>
+      <version>3.16.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jooq</groupId>
+      <artifactId>jooq-meta</artifactId>
+      <version>3.16.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jooq</groupId>
+      <artifactId>jooq-codegen</artifactId>
+      <version>3.16.4</version>
+    </dependency>
   </dependencies>
   <profiles>
     <profile>
