@@ -47,7 +47,7 @@ public final class TkProfileAccessEdit extends TkForm {
 
 		final UUID profileId = UUID.fromString(new RqHref.Smart(req).single("profile"));
 		final Profile profile = new PxAllProfiles(base).get(profileId);
-		final ProfileAccess item = profile.accesses().get(id.value());
+		final ProfileAccess item = profile.accesses().get(id.get());
 		
 		return new XeChain(
 				new XeProfileAccess("item", item), 

@@ -37,7 +37,7 @@ public final class TkActivityTemplateReleaseSave extends TkBaseWrap {
 					final ActivityTemplateRelease release;
 					final OptUUID id = new OptUUID(href.single("id", "0"));
 					if(id.isPresent()) {
-						release = template.releases().get(id.value());
+						release = template.releases().get(id.get());
 						release.update(version, notes); 
 					}else
 					{
@@ -46,7 +46,7 @@ public final class TkActivityTemplateReleaseSave extends TkBaseWrap {
 					}
 							
 					final String msg;
-					if(id.isEmpty())
+					if(id.isPresent())
 						msg = String.format("La release %s a été modifiée avec succès !", release.version());
 					else
 						msg = String.format("La release %s a été créée avec succès !", release.version());

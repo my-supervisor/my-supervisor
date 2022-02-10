@@ -119,7 +119,7 @@ public final class TkFormularExtendedToParentSourceEdit extends TkForm {
 		
 		final UUID exprId = UUID.fromString(new RqHref.Smart(req).single("expr"));
 		final FormularExtendedToParentExpression expr = (FormularExtendedToParentExpression)formular.expressions().get(exprId);
-		final FormularExtendedToParentSource item = expr.sources().get(id.value());
+		final FormularExtendedToParentSource item = expr.sources().get(id.get());
 		
 		return new XeChain(
 			new XeFormularExtendedToParentSource("item", item)
@@ -129,7 +129,7 @@ public final class TkFormularExtendedToParentSourceEdit extends TkForm {
 	@Override
 	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id.isEmpty())
+		if(!id.isPresent())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

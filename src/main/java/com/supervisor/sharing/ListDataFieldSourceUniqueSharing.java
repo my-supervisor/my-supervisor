@@ -58,11 +58,11 @@ public final class ListDataFieldSourceUniqueSharing extends DataSharingBase<List
 				}
 			}	
 			
-			if(concreteId.isEmpty())
+			if(!concreteId.isPresent())
 				throw new IllegalArgumentException(String.format("Concrete ListDataFieldSource not found (Generating activity %s )!", targetActivity.name()));
 		}
 		
-		return source.listOf(ListDataFieldSource.class).get(concreteId.value());
+		return source.listOf(ListDataFieldSource.class).get(concreteId.get());
 	}
 	
 	@Override

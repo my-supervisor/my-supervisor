@@ -83,7 +83,7 @@ public final class TkAggregatedModelEdit extends TkForm {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		final UserAggregatedModels items = module.aggregatedModels();
-		final AggregatedModel item = items.get(id.value());
+		final AggregatedModel item = items.get(id.get());
 
 		return new XeChain(
 			new XeAggregatedModel("item", item),
@@ -107,7 +107,7 @@ public final class TkAggregatedModelEdit extends TkForm {
 
 	@Override
 	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
-		if(id.isEmpty())
+		if(!id.isPresent())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

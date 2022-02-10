@@ -70,7 +70,7 @@ public final class TkGaugeSettingEdit extends TkForm {
 		String source = new RqHref.Smart(req).single("source");
 		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
-		final Gauge indic = (Gauge)activity.indicators().get(id.value());
+		final Gauge indic = (Gauge)activity.indicators().get(id.get());
 		
 		return new XeChain(
 				new XeGaugeSetting("item", indic),
@@ -94,7 +94,7 @@ public final class TkGaugeSettingEdit extends TkForm {
 	    XeSource xeGaugeZone = XeSource.EMPTY;
 	    XeSource xeParam = XeSource.EMPTY;
 		if(id.isPresent()) {
-			final Gauge indic = (Gauge)activity.indicators().get(id.value());
+			final Gauge indic = (Gauge)activity.indicators().get(id.get());
 			xeDataRule = new XeDataLink(indic.links());
 			xeGaugeZone = new XeGaugeZone(indic.zones());
 			xeParam = new XeIndicatorDynamicParam(indic.dynamicParams());
@@ -113,12 +113,12 @@ public final class TkGaugeSettingEdit extends TkForm {
 	protected XeSource newItemToShow(Request req) throws IOException {
 		
 		OptUUID activityId = new OptUUID(new RqHref.Smart(req).single("activity", "0"));
-		if(activityId.isEmpty())
+		if(!activityId.isPresent())
 			throw new IllegalArgumentException("Vous devez spécifier l'activité pour lequel vous créer cet indicateur !");
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		
-		Activity activity = module.activities().get(activityId.value());
+		Activity activity = module.activities().get(activityId.get());
 		
 		return new XeChain(
 				new XeIndicatorType(module.indicatorTypes().indicatorType(IndicatorType.GAUGE)), 

@@ -52,7 +52,7 @@ public final class TkPlanEdit extends TkForm {
 	@Override
 	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		final Membership module = new DmMembership(base, req);
-		final Plan plan = module.plans().get(id.value());
+		final Plan plan = module.plans().get(id.get());
 		
 		XeSource xePlan = new XePlan("item", plan);
 		XeSource xeFeatures = new XePlanFeature(plan.features().items());

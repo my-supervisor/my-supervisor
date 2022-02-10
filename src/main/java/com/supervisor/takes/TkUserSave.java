@@ -56,7 +56,7 @@ public final class TkUserSave extends TkBaseWrap {
 					final String ADMIN = "admin";
 					
 					if(id.isPresent()) {
-						item = module.users().get(id.value());
+						item = module.users().get(id.get());
 						
 						msg = String.format("L'utilisateur %s a été modifié avec succès !", item.name());
 					} else {

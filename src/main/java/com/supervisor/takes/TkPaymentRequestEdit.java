@@ -56,7 +56,7 @@ public final class TkPaymentRequestEdit extends TkForm {
 		final Membership module = new DmMembership(base, req);
 		final User user = module.user();
 		
-		PaymentRequest item = user.paymentRequests().get(id.value());
+		PaymentRequest item = user.paymentRequests().get(id.get());
 		return new XeChain(
 				new XePaymentRequest("item", item),
 				new XePaymentMethod(

@@ -53,7 +53,7 @@ public final class TkDataFieldEdit extends TkForm {
 		content.add(new XeDataSheetModel("model", model));
 		
 		if(tableId.isPresent())
-			content.add(new XeTableDataField("table", model.fields().tables().get(tableId.value())));
+			content.add(new XeTableDataField("table", model.fields().tables().get(tableId.get())));
 		
 		content.add(new XeSupervisor(module));
 		content.add(itemToShow);
@@ -66,7 +66,7 @@ public final class TkDataFieldEdit extends TkForm {
 		UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		final Supervisor module = new PxSupervisor(base, req);
 		final DataSheetModel model = module.dataSheetModels().get(modelId);
-		final SimpleDataField item = (SimpleDataField)model.fields().get(id.value());
+		final SimpleDataField item = (SimpleDataField)model.fields().get(id.get());
 		return new XeDataField("item", item);
 	}
 

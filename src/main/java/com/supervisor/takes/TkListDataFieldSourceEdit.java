@@ -72,8 +72,8 @@ public final class TkListDataFieldSourceEdit extends TkForm {
 		content.add(new XeDataSheetModel(MODEL, model));
 		
 		if(tableId.isPresent()) {
-			final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.value());
-			final TableDataField table = (TableDataField)tableModel.fields().get(tableId.value());
+			final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.get());
+			final TableDataField table = (TableDataField)tableModel.fields().get(tableId.get());
 			content.add(new XeDataField("table", table));
 		}			
 		
@@ -97,7 +97,7 @@ public final class TkListDataFieldSourceEdit extends TkForm {
 		final Supervisor module = new PxSupervisor(base, req);
 		final DataSheetModel model = module.dataSheetModels().get(modelId);
 		final ListDataField list = (ListDataField)model.fields().get(fieldId);
-		final ListDataFieldSource item = list.sources().get(id.value());
+		final ListDataFieldSource item = list.sources().get(id.get());
 		return new XeListDataFieldSource("item", item);
 	}
 

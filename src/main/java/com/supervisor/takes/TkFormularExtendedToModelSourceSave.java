@@ -59,7 +59,7 @@ public final class TkFormularExtendedToModelSourceSave extends TkBaseWrap {
 					
 					final OptUUID id = new OptUUID(form.single("id", "0"));
 					if(id.isPresent()) {
-						itemSaved = expr.sources().get(id.value());
+						itemSaved = expr.sources().get(id.get());
 						itemSaved.update(modelField, comparator, reference, fieldToExtend);
 					} else {
 						itemSaved = expr.sources().add(modelToExtend, modelField, comparator, reference, fieldToExtend);

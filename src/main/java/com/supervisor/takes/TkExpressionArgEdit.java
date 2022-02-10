@@ -101,7 +101,7 @@ public final class TkExpressionArgEdit extends TkForm {
 		UUID expressionId = UUID.fromString(href.single("expression"));
 				
 		FormularExpression expression = formular.expressions().get(expressionId);
-		final ExpressionArg item = expression.arguments().get(id.value());
+		final ExpressionArg item = expression.arguments().get(id.get());
 		
 		String typeId = href.single("type");
 		

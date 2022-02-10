@@ -111,7 +111,7 @@ public final class TkDataSheetEdit extends TkForm {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		DataSheets myItems = module.dataSheets();
-		DataSheet item = myItems.get(id.value());
+		DataSheet item = myItems.get(id.get());
 				
 		XeSource xeRows = XeSource.EMPTY;
 		XeSource xeColumns = XeSource.EMPTY;
@@ -153,7 +153,7 @@ public final class TkDataSheetEdit extends TkForm {
 	@Override
 	protected XeSource postItemDataToShow(final OptUUID id, final Request req, final RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id.isEmpty()) {
+		if(!id.isPresent()) {
 			return newItemToShow(req);
 		}else {
 			return preItemDataToShow(id, req);

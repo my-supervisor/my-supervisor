@@ -57,7 +57,7 @@ public final class TkDataSheetModelEdit extends TkForm {
 	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		final Supervisor module = new PxSupervisor(base, req);
 		DataSheetModels myItems = module.dataSheetModels(); 
-		DataSheetModel item = myItems.get(id.value());
+		DataSheetModel item = myItems.get(id.get());
 		return new XeChain(
 				new XeEditableDataField(item.fields().editables()),
 				new XeDataSheetModel("item", item)				
@@ -71,7 +71,7 @@ public final class TkDataSheetModelEdit extends TkForm {
 		if(id.isPresent()) {
 			final Supervisor module = new PxSupervisor(base, req);
 			DataSheetModels myItems = module.dataSheetModels(); 
-			DataSheetModel item = myItems.get(id.value());
+			DataSheetModel item = myItems.get(id.get());
 			
 			xeSource = new XeChain(
 							new XeEditableDataField(item.fields().editables()),

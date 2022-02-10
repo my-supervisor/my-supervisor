@@ -67,7 +67,7 @@ public final class TkDataSheetSave extends TkBaseWrap {
 						
 					boolean merged = false;		
 					if(id.isPresent()) {
-						itemSaved = myItems.get(id.value());
+						itemSaved = myItems.get(id.get());
 						model = itemSaved.model();
 						
 						if(!itemSaved.model().isTable()) {

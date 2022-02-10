@@ -10,7 +10,6 @@ import com.supervisor.xe.XePlanFeature;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
 import org.takes.Request;
-import org.takes.misc.Opt;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
 import org.takes.rs.xe.XeChain;
@@ -60,7 +59,7 @@ public final class TkPlanFeatureEdit extends TkForm {
 		final Membership module = new DmMembership(base, req);
 		final UUID planId = UUID.fromString(new RqHref.Smart(req).single("plan"));
 		final Plan plan = module.plans().get(planId);
-		final PlanFeature item = plan.features().get(id.value());
+		final PlanFeature item = plan.features().get(id.get());
 		
 		XeSource xePlanFeature = new XePlanFeature("item", item);
 		return new XeChain(

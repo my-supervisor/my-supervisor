@@ -9,7 +9,6 @@ import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
 import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Request;
-import org.takes.misc.Opt;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
 import org.takes.rs.xe.XeAppend;
@@ -55,8 +54,8 @@ public final class TkSimpleDataFieldEdit extends TkForm {
 		content.add(new XeDataSheetModel(MODEL, model));
 		
 		if(tableId.isPresent()) {
-			final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.value());
-			content.add(new XeDataField("table", tableModel.fields().get(tableId.value())));
+			final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.get());
+			content.add(new XeDataField("table", tableModel.fields().get(tableId.get())));
 			content.add(new XeAppend("table_model_id", tableModelId.toString()));
 		}	
 		
@@ -71,7 +70,7 @@ public final class TkSimpleDataFieldEdit extends TkForm {
 		UUID modelId = UUID.fromString(new RqHref.Smart(req).single(MODEL));
 		final Supervisor module = new PxSupervisor(base, req);
 		DataSheetModel model = module.dataSheetModels().get(modelId);
-		SimpleDataField item = model.fields().simples().get(id.value());
+		SimpleDataField item = model.fields().simples().get(id.get());
 		return new XeSimpleDataField("item", item);
 	}
 

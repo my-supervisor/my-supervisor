@@ -7,7 +7,6 @@ import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
-import org.takes.misc.Opt;
 import org.takes.rq.RqHref;
 
 import com.supervisor.domain.DataSheet;
@@ -26,7 +25,7 @@ public final class TkDataSheetDelete extends TkBaseWrap {
 					DataSheets myDataSheets = module.dataSheets();
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 
-					DataSheet item = myDataSheets.get(id.value());
+					DataSheet item = myDataSheets.get(id.get());
 					if(new RqUser(base, req).notOwn(item)) {
 						throw new IllegalArgumentException("Vous ne pouvez pas supprimer la feuille d'un modèle partagé !");
 					}

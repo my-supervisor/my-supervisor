@@ -57,11 +57,11 @@ public final class AggregatedModelUniqueSharing extends DataSharingBase<Aggregat
 				}
 			}	
 			
-			if(concreteId.isEmpty())
+			if(!concreteId.isPresent())
 				throw new IllegalArgumentException(String.format("Concrete AggregatedModel not found (Generating activity %s )!", targetActivity.name()));
 		}
 		
-		return source.listOf(AggregatedModel.class).get(concreteId.value());
+		return source.listOf(AggregatedModel.class).get(concreteId.get());
 	}
 	
 	@Override

@@ -77,7 +77,7 @@ public final class TkFormularExtendedToModelExpressionAggregateEdit extends TkFo
 		final UUID formularId = UUID.fromString(new RqHref.Smart(req).single("formular"));
 		final FormularDataField formular = model.formulars().get(formularId);
 		
-		final FormularExtendedToModelExpression item = (FormularExtendedToModelExpression)formular.expressions().get(id.value());
+		final FormularExtendedToModelExpression item = (FormularExtendedToModelExpression)formular.expressions().get(id.get());
 
 		return new XeChain(
 			new XeFormularExtendedToModelExpression("item", item)

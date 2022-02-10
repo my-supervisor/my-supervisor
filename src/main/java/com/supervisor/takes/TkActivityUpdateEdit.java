@@ -49,7 +49,7 @@ public final class TkActivityUpdateEdit extends TkForm {
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		
-		Activity activity = module.activities().get(id.value());
+		Activity activity = module.activities().get(id.get());
 		if(activity.isUpToDate())
 			throw new IllegalArgumentException("L'activité est déjà à jour !");
 		

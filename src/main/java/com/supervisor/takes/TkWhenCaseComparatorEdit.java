@@ -80,7 +80,7 @@ public final class TkWhenCaseComparatorEdit extends TkForm {
 		UUID expressionId = UUID.fromString(new RqHref.Smart(req).single("expression"));
 		FormularCaseExpression expression = (FormularCaseExpression)formular.expressions().get(expressionId);
 
-		WhenCase item = expression.cases().get(id.value());
+		WhenCase item = expression.cases().get(id.get());
 		
 		return new XeChain(
 				new XeWhenCase("item", item)
@@ -90,7 +90,7 @@ public final class TkWhenCaseComparatorEdit extends TkForm {
 	@Override
 	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id.isEmpty())
+		if(!id.isPresent())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

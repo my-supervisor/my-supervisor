@@ -71,7 +71,7 @@ public final class TkFormularEdit extends TkForm {
 		final Supervisor module = new PxSupervisor(base, req);
 		UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		AggregatedModel model = module.aggregatedModels().get(modelId); 
-		FormularDataField item = model.formulars().get(id.value());
+		FormularDataField item = model.formulars().get(id.get());
 
 		return new XeChain(
 				new XeAggregatedModel(model),
@@ -82,7 +82,7 @@ public final class TkFormularEdit extends TkForm {
 
 	@Override
 	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
-		if(id.isEmpty())
+		if(!id.isPresent())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

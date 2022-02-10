@@ -46,7 +46,7 @@ public final class TkFormularExtendedToChildExpressionSave extends TkBaseWrap {
 					
 					final OptUUID id = new OptUUID(form.single("id", "0"));
 					if(id.isPresent()) {
-						itemSaved = (FormularExtendedToChildExpression)formular.expressions().get(id.value());
+						itemSaved = (FormularExtendedToChildExpression)formular.expressions().get(id.get());
 					} else {
 						itemSaved = formular.expressions().addChildExtension();
 					}

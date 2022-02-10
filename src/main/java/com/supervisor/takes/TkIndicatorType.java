@@ -25,11 +25,11 @@ public final class TkIndicatorType extends TkBaseWrap {
 					final Supervisor module = new PxSupervisor(base, req);
 					
 					OptUUID activityId = new OptUUID(new RqHref.Smart(req).single("activity", "0"));
-					if(activityId.isEmpty())
+					if(!activityId.isPresent())
 						throw new IllegalArgumentException("Vous devez spécifier l'activité pour lequel vous créer cet indicateur !");
 					
 					Activity activity = module.activities()
-							                  .get(activityId.value());
+							                  .get(activityId.get());
 					
 					XeSource xeActivity = new XeActivity(activity);
 					XeSource xeSupervisor = new XeSupervisor(module);

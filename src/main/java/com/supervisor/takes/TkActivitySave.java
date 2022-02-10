@@ -47,10 +47,10 @@ public final class TkActivitySave extends TkBaseWrap {
 					Activity activity;	
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					if(id.isPresent()) {
-						if(myActivities.contains(id.value()))
-							activity = myActivities.get(id.value());
+						if(myActivities.contains(id.get()))
+							activity = myActivities.get(id.get());
 						else
-							activity = module.activityTemplates().get(id.value());
+							activity = module.activityTemplates().get(id.get());
 						
 						if(new RqUser(base, req).notOwn(activity)) {
 							throw new IllegalArgumentException("Vous ne pouvez pas modifier une activité partagée !");

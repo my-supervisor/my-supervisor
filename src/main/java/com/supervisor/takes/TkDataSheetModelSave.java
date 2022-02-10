@@ -11,7 +11,6 @@ import com.supervisor.sdk.utils.OptUUID;
 import org.takes.Response;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
-import org.takes.misc.Opt;
 import org.takes.rq.RqGreedy;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -43,7 +42,7 @@ public final class TkDataSheetModelSave extends TkBaseWrap {
 					Response response;
 					
 					if(id.isPresent()) {
-						itemSaved = activity.forms().get(id.value());
+						itemSaved = activity.forms().get(id.get());
 						
 						if(new RqUser(base, req).notOwn(itemSaved)) {
 							throw new IllegalArgumentException("Vous ne pouvez pas modifier un modèle partagé !");

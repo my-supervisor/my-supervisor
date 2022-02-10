@@ -8,7 +8,6 @@ import com.supervisor.xe.XeTax;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
 import org.takes.Request;
-import org.takes.misc.Opt;
 import org.takes.rq.form.RqFormSmart;
 import org.takes.rs.xe.XeChain;
 import org.takes.rs.xe.XeSource;
@@ -44,7 +43,7 @@ public final class TkTaxEdit extends TkForm {
 	@Override
 	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		final Membership module = new DmMembership(base, req);
-		final Tax tax = module.taxes().get(id.value());
+		final Tax tax = module.taxes().get(id.get());
 		
 		XeSource xeTax = new XeTax("item", tax);		
 		return new XeChain(

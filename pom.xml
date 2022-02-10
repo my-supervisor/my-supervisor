@@ -210,6 +210,12 @@ SOFTWARE.
       <artifactId>liquibase-core</artifactId>
       <version>3.2.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.8.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <profiles>
     <profile>

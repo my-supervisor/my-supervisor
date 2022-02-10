@@ -85,7 +85,7 @@ public final class TkFormularExtendedToParentExpressionEdit extends TkForm {
 		final UUID formularId = UUID.fromString(new RqHref.Smart(req).single("formular"));
 		final FormularDataField formular = model.formulars().get(formularId);
 		
-		final FormularExtendedToParentExpression item = (FormularExtendedToParentExpression)formular.expressions().get(id.value());
+		final FormularExtendedToParentExpression item = (FormularExtendedToParentExpression)formular.expressions().get(id.get());
 
 		return new XeChain(
 			new XeFormularExtendedToParentExpression("item", item),
@@ -96,7 +96,7 @@ public final class TkFormularExtendedToParentExpressionEdit extends TkForm {
 	@Override
 	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id.isEmpty())
+		if(!id.isPresent())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

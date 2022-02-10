@@ -14,22 +14,15 @@ public final class OptUUID {
         this.value = value;
     }
 
-    public boolean isEmpty() {
-        return value.equals("") || value.equals("0");
-    }
-
     public boolean isPresent() {
-        return ! value.isEmpty();
+        return ! (value.equals("") || value.equals("0"));
     }
 
-    public UUID value() {
-        final UUID guid;
-        if (this.isEmpty()) {
-            guid = UUID.fromString("00000000-0000-0000-0000-000000000000");
-        } else {
-            guid = UUID.fromString(this.value);
+    public UUID get() {
+        if (!this.isPresent()) {
+            throw new IllegalArgumentException("UUID is not present !");
         }
-        return guid;
+        return UUID.fromString(this.value);
     }
 
     @Override

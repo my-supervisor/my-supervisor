@@ -39,7 +39,7 @@ public final class TkFormularSave extends TkBaseWrap {
 					
 					final OptUUID id = new OptUUID(form.single("id", "0"));
 					if(id.isPresent()) {
-						itemSaved = model.formulars().get(id.value());
+						itemSaved = model.formulars().get(id.get());
 						itemSaved.update(name, itemSaved.code(), type);
 						
 						String state = form.single("formular_condition_state", "");

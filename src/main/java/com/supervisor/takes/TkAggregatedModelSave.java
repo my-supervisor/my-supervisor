@@ -52,7 +52,7 @@ public final class TkAggregatedModelSave extends TkBaseWrap {
 					if(id.isPresent()) {
 						final UUID dateReferenceId = UUID.fromString(form.single("date_reference_id"));
 						
-						itemSaved = items.get(id.value());
+						itemSaved = items.get(id.get());
 						final DataField dateReference = itemSaved.fields().get(dateReferenceId);
 						DataFields fields = itemSaved.model().fields();
 						
