@@ -46,9 +46,6 @@ public final class Main {
 	 * @todo #58:30min Generate primary key when inserting in database.
 	 *  We changed primary keys type from bigint to uuid. Keys were generated
 	 *  before. So, we need to generate also uuid.
-	 * @todo #58:30min Fix bug when editing a new form.
-	 *  We got an error saying that id's value is present but this value is
-	 *  `00000000-0000-0000-0000-000000000000`.
 	 */
     public static void main(final String... args) throws Exception {
 		final Map<String, String> map = new ConsoleArgs("--", args).asMap();
