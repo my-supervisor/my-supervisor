@@ -6,10 +6,8 @@ import java.util.logging.Level;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.utils.OptUUID;
-import org.checkerframework.checker.guieffect.qual.UI;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
-import org.takes.misc.Opt;
 import org.takes.rq.RqHref;
 
 import com.supervisor.domain.UserScope;
@@ -32,7 +30,7 @@ public final class TkDataFieldDelete extends TkBaseWrap {
 					DataSheetModel model = module.dataSheetModels().get(modelId);
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 
-					EditableDataField item = (EditableDataField)model.fields().get(id.value());
+					EditableDataField item = (EditableDataField)model.fields().get(id.get());
 					
 					if(item.userScope() == UserScope.SYSTEM)
 						throw new IllegalArgumentException("Vous ne pouvez pas supprimer un champ système !");

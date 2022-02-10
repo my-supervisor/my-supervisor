@@ -44,7 +44,7 @@ public final class TkHome extends TkBaseWrap {
 						
 						if(id.isPresent()) {
 							// prendre l'activité sélectionné par l'utilisateur
-							act = myActivities.get(id.value());
+							act = myActivities.get(id.get());
 						}else {
 							// afficher une activité par défaut
 							Activities ownActivities = myActivities.ownActivities();

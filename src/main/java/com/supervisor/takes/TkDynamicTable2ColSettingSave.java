@@ -60,7 +60,7 @@ public final class TkDynamicTable2ColSettingSave extends TkBaseWrap {
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 
 					if(id.isPresent()) {
-						itemSaved = (DynamicTable2Col)activity.indicators().get(id.value());
+						itemSaved = (DynamicTable2Col)activity.indicators().get(id.get());
 									
 						if(new RqUser(base, req).notOwn(itemSaved)) {
 							throw new IllegalArgumentException("Vous ne pouvez pas modifier l'indicateur d'une activité partagée !");

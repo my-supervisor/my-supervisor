@@ -16,7 +16,6 @@ import com.supervisor.sdk.utils.OptUUID;
 import org.apache.commons.lang.StringUtils;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
-import org.takes.misc.Opt;
 import org.takes.rq.RqGreedy;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -59,7 +58,7 @@ public final class TkNumberOrientedSettingSave extends TkBaseWrap {
 
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					if(id.isPresent()) {
-						itemSaved = (NumberOriented)activity.indicators().get(id.value());
+						itemSaved = (NumberOriented)activity.indicators().get(id.get());
 									
 						final String periodicityState = form.single("periodicity_state", "removed");
 						if(periodicityState.equals("added")) {

@@ -55,7 +55,7 @@ public final class TkActivityTemplatePublishedEdit extends TkForm {
 	@Override
 	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		final Supervisor module = new PxSupervisor(base, req);
-		final ActivityTemplatePublished item = module.activityTemplatesPublished().get(id.value());
+		final ActivityTemplatePublished item = module.activityTemplatesPublished().get(id.get());
 		
 		return new XeActivityTemplatePublished("item", item);
 	}

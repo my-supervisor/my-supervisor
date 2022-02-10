@@ -54,7 +54,7 @@ public final class TkPurchaseOrderEdit extends TkForm {
 		
 		final Membership module = new DmMembership(base, req);
 		
-		PurchaseOrder item = module.purchaseOrders().get(id.value());
+		PurchaseOrder item = module.purchaseOrders().get(id.get());
 		return new XeChain(
 				new XePurchaseOrder("item", item),
 				new XeOrderLine(item.lines()),

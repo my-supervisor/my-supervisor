@@ -40,7 +40,7 @@ public final class TkDataFieldTableSave extends TkBaseWrap {
 					
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					if(id.isPresent()) {
-						itemSaved = model.fields().tables().get(id.value());
+						itemSaved = model.fields().tables().get(id.get());
 						itemSaved.update(itemSaved.code(), name, description);		
 						itemSaved.makeMandatory(true);
 						itemSaved.order(order);

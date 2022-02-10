@@ -68,7 +68,7 @@ public final class TkChartCamembertSettingEdit extends TkForm {
 		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
 		
-		final ChartCamembert indic = (ChartCamembert)activity.indicators().get(id.value());
+		final ChartCamembert indic = (ChartCamembert)activity.indicators().get(id.get());
 				
 		return new XeChain(
 				new XeChartCamembertSetting("item", indic),
@@ -90,7 +90,7 @@ public final class TkChartCamembertSettingEdit extends TkForm {
 		XeSource xeDataRule = XeSource.EMPTY;
 		XeSource xeParam = XeSource.EMPTY;
 		if(id.isPresent()) {
-			final ChartCamembert indic = (ChartCamembert)activity.indicators().get(id.value());
+			final ChartCamembert indic = (ChartCamembert)activity.indicators().get(id.get());
 			xeDataRule = new XeDataLink(indic.links());
 			xeParam = new XeIndicatorDynamicParam(indic.dynamicParams());
 		}
@@ -107,12 +107,12 @@ public final class TkChartCamembertSettingEdit extends TkForm {
 	protected XeSource newItemToShow(Request req) throws IOException {
 		
 		OptUUID activityId = new OptUUID(new RqHref.Smart(req).single("activity", "0"));
-		if(activityId.isEmpty())
+		if(!activityId.isPresent())
 			throw new IllegalArgumentException("Vous devez spécifier l'activité pour lequel vous créer cet indicateur !");
 		
 		final Supervisor module = new PxSupervisor(base, req);
 		
-		Activity activity = module.activities().get(activityId.value());
+		Activity activity = module.activities().get(activityId.get());
 		
 		return new XeChain(
 				new XeIndicatorType(module.indicatorTypes().indicatorType(IndicatorType.CHART_CAMEMBERT)), 

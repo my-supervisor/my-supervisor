@@ -62,7 +62,7 @@ public final class TkIndicatorDynamicParamEdit extends TkForm {
 		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
 		Indicator indic = activity.indicators().get(indicId);
-		IndicatorDynamicParam item = indic.dynamicParams().get(id.value());
+		IndicatorDynamicParam item = indic.dynamicParams().get(id.get());
 				
 		return new XeChain( 
 			new XeAppend("short_name", shortName),

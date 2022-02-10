@@ -43,7 +43,7 @@ public final class TkPaymentMethodEdit extends TkForm {
 	@Override
 	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		final Membership module = new DmMembership(base, req);
-		final PaymentMethod method = module.paymentMethods().get(id.value());
+		final PaymentMethod method = module.paymentMethods().get(id.get());
 		
 		XeSource xeMethod = new XePaymentMethod("item", method);		
 		return new XeChain(

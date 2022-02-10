@@ -66,7 +66,7 @@ public final class TkNumberOrientedSettingEdit extends TkForm {
 		final String source = new RqHref.Smart(req).single("source");
 		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
-		final NumberOriented indic = (NumberOriented)activity.indicators().get(id.value());
+		final NumberOriented indic = (NumberOriented)activity.indicators().get(id.get());
 		
 		return new XeChain(
 				new XeNumberOrientedSetting("item", indic),
@@ -88,7 +88,7 @@ public final class TkNumberOrientedSettingEdit extends TkForm {
 		XeSource xeDataRule = XeSource.EMPTY;
 		XeSource xeParam = XeSource.EMPTY;
 		if(id.isPresent()) {
-			final NumberOriented indic = (NumberOriented)activity.indicators().get(id.value());
+			final NumberOriented indic = (NumberOriented)activity.indicators().get(id.get());
 			xeDataRule = new XeDataLink(indic.links());
 			xeParam = new XeIndicatorDynamicParam(indic.dynamicParams());
 		}
@@ -105,11 +105,11 @@ public final class TkNumberOrientedSettingEdit extends TkForm {
 	protected XeSource newItemToShow(Request req) throws IOException {
 		
 		OptUUID activityId = new OptUUID(new RqHref.Smart(req).single("activity", "0"));
-		if(activityId.isEmpty())
+		if(!activityId.isPresent())
 			throw new IllegalArgumentException("Vous devez spécifier l'activité pour lequel vous créer cet indicateur !");
 		
 		final Supervisor module = new PxSupervisor(base, req);		
-		Activity activity = module.activities().get(activityId.value());
+		Activity activity = module.activities().get(activityId.get());
 		
 		return new XeChain(
 				new XeIndicatorType(module.indicatorTypes().indicatorType(IndicatorType.NUMBER_ORIENTED)), 

@@ -17,7 +17,6 @@ import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
 import org.takes.Request;
 import org.takes.rq.form.RqFormSmart;
-import org.takes.rs.xe.XeChain;
 import org.takes.rs.xe.XeSource;
 import org.xembly.Directive;
 
@@ -70,7 +69,7 @@ public final class TkUserEdit extends TkForm {
 	@Override
 	protected XeSource preItemDataToShow(final OptUUID id, final Request req) throws IOException {
 		final Membership module = new DmMembership(base, req);
-		final User user = module.users().get(id.value());
+		final User user = module.users().get(id.get());
 		
 		return new XeUserProfile("item", user);
 	}

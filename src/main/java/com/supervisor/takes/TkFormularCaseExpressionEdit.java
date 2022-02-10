@@ -78,7 +78,7 @@ public final class TkFormularCaseExpressionEdit extends TkForm {
 		UUID formularId = UUID.fromString(new RqHref.Smart(req).single("formular"));
 		FormularDataField formular = model.formulars().get(formularId);
 		
-		FormularCaseExpression item = (FormularCaseExpression)formular.expressions().get(id.value());
+		FormularCaseExpression item = (FormularCaseExpression)formular.expressions().get(id.get());
 
 		return new XeChain(
 				new XeFormularCaseExpression("item", item),
@@ -89,7 +89,7 @@ public final class TkFormularCaseExpressionEdit extends TkForm {
 	@Override
 	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id.isEmpty())
+		if(!id.isPresent())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

@@ -42,7 +42,7 @@ public final class TkPlanSave extends TkBaseWrap {
 					final Plan item;
 					final String msg;
 					if(id.isPresent()) {
-						item = plans.get(id.value());
+						item = plans.get(id.get());
 						msg = String.format("Le plan %s a été modifié avec succès !", item.name());
 					}else {
 						final String reference = form.single("reference");

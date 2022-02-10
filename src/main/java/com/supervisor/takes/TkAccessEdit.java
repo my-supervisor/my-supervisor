@@ -11,7 +11,6 @@ import com.supervisor.xe.XeMembership;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.takes.TkForm;
 import org.takes.Request;
-import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
 import org.takes.rs.xe.XeChain;
 import org.takes.rs.xe.XeSource;
@@ -49,7 +48,7 @@ public final class TkAccessEdit extends TkForm {
 	@Override
 	protected XeSource preItemDataToShow(OptUUID id, Request req) throws IOException {
 		
-		final Access item = new PxAccesses(base).get(id.value());
+		final Access item = new PxAccesses(base).get(id.get());
 		return new XeChain(
 				new XeAccess("item", item), 
 				new XeAccessParam(item.parameters())

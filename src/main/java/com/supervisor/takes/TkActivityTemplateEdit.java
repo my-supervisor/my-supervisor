@@ -60,7 +60,7 @@ public final class TkActivityTemplateEdit extends TkForm {
 		final Supervisor module = new PxSupervisor(base, req);
 		
 		ActivityTemplates myActivities = module.activityTemplates();
-		ActivityTemplate act = myActivities.get(id.value());
+		ActivityTemplate act = myActivities.get(id.get());
 		
 		if(new RqUser(base, req).notOwn(act)) {
 			throw new IllegalArgumentException("Vous ne pouvez pas éditer une activité partagée !");
@@ -87,7 +87,7 @@ public final class TkActivityTemplateEdit extends TkForm {
 			
 			final Supervisor module = new PxSupervisor(base, req);
 			ActivityTemplates myActivities = module.activityTemplates();
-			ActivityTemplate act = myActivities.get(id.value());
+			ActivityTemplate act = myActivities.get(id.get());
 			
 			if(new RqUser(base, req).notOwn(act)) {
 				throw new IllegalArgumentException("Vous ne pouvez pas éditer une activité partagée !");

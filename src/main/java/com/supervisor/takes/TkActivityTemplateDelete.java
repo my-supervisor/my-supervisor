@@ -24,10 +24,10 @@ public final class TkActivityTemplateDelete extends TkBaseWrap {
 					final ActivityTemplates myActivities = module.activityTemplates();
 					
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
-					if(id.isEmpty())
+					if(!id.isPresent())
 						throw new IllegalArgumentException("Cet élément n'existe pas !");
 					
-					ActivityTemplate item = myActivities.get(id.value());
+					ActivityTemplate item = myActivities.get(id.get());
 					
 					if(new RqUser(base, req).notOwn(item)) {
 						throw new IllegalArgumentException("Vous ne pouvez pas supprimer une activité partagée !");

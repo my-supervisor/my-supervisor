@@ -8,7 +8,6 @@ import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
-import org.takes.misc.Opt;
 import org.takes.rq.RqGreedy;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -33,13 +32,13 @@ public final class TkProfileSave extends TkBaseWrap {
 					final Profile item;
 					
 					if(id.isPresent()) {
-						item = profiles.get(id.value());
+						item = profiles.get(id.get());
 						item.update(item.code(), name);
 						
 						Profile parent = Profile.EMPTY;
 						final OptUUID parentId = new OptUUID(form.single("parent_id"));
 						if(parentId.isPresent())
-							parent = profiles.get(parentId.value());
+							parent = profiles.get(parentId.get());
 						
 						item.changeParent(parent);
 						

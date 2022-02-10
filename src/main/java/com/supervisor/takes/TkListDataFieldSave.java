@@ -11,7 +11,6 @@ import com.supervisor.sdk.utils.CodeGenerator;
 import com.supervisor.sdk.utils.OptUUID;
 import org.takes.facets.flash.RsFlash;
 import org.takes.facets.forward.RsForward;
-import org.takes.misc.Opt;
 import org.takes.rq.RqGreedy;
 import org.takes.rq.RqHref;
 import org.takes.rq.form.RqFormSmart;
@@ -54,13 +53,13 @@ public final class TkListDataFieldSave extends TkBaseWrap {
 					
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					if(id.isPresent()) {
-						itemSaved = model.fields().lists().get(id.value());
+						itemSaved = model.fields().lists().get(id.get());
 						itemSaved.update(itemSaved.code(), name, type, description);			
 					} else {						
 						final CodeGenerator generator;
 						if(tableId.isPresent()) {
-							final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.value());
-							TableDataField table = (TableDataField)tableModel.fields().get(tableId.value());
+							final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.get());
+							TableDataField table = (TableDataField)tableModel.fields().get(tableId.get());
 							
 							generator = new BasicCodeGenerator(
 											table.structure().fields(), 

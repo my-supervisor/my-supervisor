@@ -66,7 +66,7 @@ public final class TkActivityTemplateReleaseEdit extends TkForm {
 		UUID templateId = UUID.fromString(new RqHref.Smart(req).single("template"));
 		ActivityTemplate template = templates.get(templateId);
 		
-		ActivityTemplateRelease release = template.releases().get(id.value());
+		ActivityTemplateRelease release = template.releases().get(id.get());
 		
 		return new XeChain(
 				new XeActivityTemplateRelease("item", release)
@@ -76,7 +76,7 @@ public final class TkActivityTemplateReleaseEdit extends TkForm {
 	@Override
 	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
 		
-		if(id.isEmpty()) {
+		if(!id.isPresent()) {
 			final RqHref.Smart href = new RqHref.Smart(req);
 			
 			return new XeChain(

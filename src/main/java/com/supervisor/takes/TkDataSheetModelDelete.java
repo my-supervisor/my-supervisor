@@ -24,7 +24,7 @@ public final class TkDataSheetModelDelete extends TkBaseWrap {
 					DataSheetModels myDataFields = module.dataSheetModels();
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 
-					DataSheetModel item = myDataFields.get(id.value());
+					DataSheetModel item = myDataFields.get(id.get());
 					if(new RqUser(base, req).notOwn(item)) {
 						throw new IllegalArgumentException("Vous ne pouvez pas supprimer un modèle partagé !");
 					}

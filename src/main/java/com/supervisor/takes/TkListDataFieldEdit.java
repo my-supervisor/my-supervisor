@@ -57,8 +57,8 @@ public final class TkListDataFieldEdit extends TkForm {
 		content.add(new XeDataSheetModel(MODEL, model));
 		
 		if(tableId.isPresent()) {
-			final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.value());
-			content.add(new XeDataField("table", tableModel.fields().get(tableId.value())));
+			final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.get());
+			content.add(new XeDataField("table", tableModel.fields().get(tableId.get())));
 			content.add(new XeAppend("table_model_id", tableModelId.toString()));
 		}			
 		
@@ -74,7 +74,7 @@ public final class TkListDataFieldEdit extends TkForm {
 		final UUID modelId = UUID.fromString(new RqHref.Smart(req).single(MODEL));
 		final Supervisor module = new PxSupervisor(base, req);
 		final DataSheetModel model = module.dataSheetModels().get(modelId);
-		final ListDataField item = (ListDataField)model.fields().get(id.value());
+		final ListDataField item = (ListDataField)model.fields().get(id.get());
 		
 		return new XeChain(
 			new XeListDataField("item", item), 

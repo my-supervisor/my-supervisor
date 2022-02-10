@@ -56,7 +56,7 @@ public final class TkDataLinkSave extends TkBaseWrap {
 					String name = form.single("name");
 					
 					if(id.isPresent()) {
-						itemSaved = indic.links().get(id.value());
+						itemSaved = indic.links().get(id.get());
 						itemSaved.update(name); 
 					} else {
 						final UUID modelId = UUID.fromString(form.single("model_id"));

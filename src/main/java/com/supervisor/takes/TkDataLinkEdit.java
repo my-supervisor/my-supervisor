@@ -116,7 +116,7 @@ public final class TkDataLinkEdit extends TkForm {
 		final UUID activityId = UUID.fromString(StringUtils.remove(source, "activity"));
 		final Activity activity = module.activities().get(activityId);
 		Indicator indic = activity.indicators().get(indicId);		
-		DataLink item = indic.links().get(id.value());
+		DataLink item = indic.links().get(id.get());
 		DataModel model = item.model();
 		
 		return new XeChain(
@@ -131,7 +131,7 @@ public final class TkDataLinkEdit extends TkForm {
 
 	@Override
 	protected XeSource postItemDataToShow(OptUUID id, Request req, RqFormSmart form, final Iterable<Directive> dir) throws IOException {
-		if(id.isEmpty())
+		if(!id.isPresent())
 			return newItemToShow(req);
 		else
 			return preItemDataToShow(id, req);

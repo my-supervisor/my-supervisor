@@ -54,12 +54,12 @@ public final class TkDataFieldSave extends TkBaseWrap {
 					
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					if(id.isPresent()) {
-						itemSaved = model.fields().simples().get(id.value());
+						itemSaved = model.fields().simples().get(id.get());
 						itemSaved.update(itemSaved.code(), name, type, style, description);			
 					} else {			
 						final String code = form.single("code");
 						if(tableId.isPresent()) {
-							TableDataField table = (TableDataField)model.fields().get(tableId.value());
+							TableDataField table = (TableDataField)model.fields().get(tableId.get());
 							
 							itemSaved = table.structure().fields().simples().add(code, name, type, isMandatory, defaultValue, description);
 						} else {

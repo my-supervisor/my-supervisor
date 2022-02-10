@@ -44,7 +44,7 @@ public final class TkPlanFeatureSave extends TkBaseWrap {
 					final PlanFeature item;
 					final String msg;
 					if(id.isPresent()) {
-						item = features.get(id.value());
+						item = features.get(id.get());
 						msg = String.format("La fonctionnalité %s a été modifiée avec succès !", item.name());
 					}else {
 						item = features.add(name);

@@ -66,7 +66,7 @@ public final class TkGaugeSettingSave extends TkBaseWrap {
 					
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					if(id.isPresent()) {
-						itemSaved = (Gauge)activity.indicators().get(id.value());
+						itemSaved = (Gauge)activity.indicators().get(id.get());
 									
 						final String periodicityState = form.single("periodicity_state", "removed");
 						if(periodicityState.equals("added")) {

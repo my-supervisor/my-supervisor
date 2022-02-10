@@ -50,13 +50,13 @@ public final class TkSimpleDataFieldSave extends TkBaseWrap {
 					
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					if(id.isPresent()) {
-						itemSaved = model.fields().simples().get(id.value());
+						itemSaved = model.fields().simples().get(id.get());
 						itemSaved.update(itemSaved.code(), name, type, description); 			
 					} else {	
 						final CodeGenerator generator;
 						if(tableId.isPresent()) {
-							final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.value());
-							TableDataField table = (TableDataField)tableModel.fields().get(tableId.value());
+							final DataSheetModel tableModel = module.dataSheetModels().get(tableModelId.get());
+							TableDataField table = (TableDataField)tableModel.fields().get(tableId.get());
 							
 							generator = new BasicCodeGenerator(
 											table.structure().fields(), 

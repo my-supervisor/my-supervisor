@@ -43,7 +43,7 @@ public final class TkActivityTemplatePublishedSave extends TkBaseWrap {
 
 					final OptUUID id = new OptUUID(new RqHref.Smart(req).single("id", "0"));
 					if(id.isPresent()) {
-						itemSaved = module.activityTemplatesPublished().get(id.value());
+						itemSaved = module.activityTemplatesPublished().get(id.get());
 					}else
 					{			
 						itemSaved = module.activityTemplatesPublished().publish(template, icon);

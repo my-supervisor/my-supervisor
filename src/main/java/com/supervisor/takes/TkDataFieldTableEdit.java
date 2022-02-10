@@ -62,7 +62,7 @@ public final class TkDataFieldTableEdit extends TkForm {
 		UUID modelId = UUID.fromString(new RqHref.Smart(req).single("model"));
 		final Supervisor module = new PxSupervisor(base, req);
 		DataSheetModel model = module.dataSheetModels().get(modelId);
-		final TableDataField item = (TableDataField)model.fields().get(id.value());
+		final TableDataField item = (TableDataField)model.fields().get(id.get());
 		return new XeChain(
 				new XeTableDataField("item", item),
 				new XeEditableDataField(item.columns())
