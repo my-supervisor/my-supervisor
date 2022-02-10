@@ -349,7 +349,6 @@ SOFTWARE.
         id uuid PRIMARY KEY,
         name character varying NOT NULL,
         periodicity_id uuid NOT NULL,
-        app_owner_id uuid NOT NULL,
         description character varying NOT NULL,
         default_shown boolean NOT NULL,
         version character varying NOT NULL,
@@ -1250,6 +1249,12 @@ SOFTWARE.
         ADD CONSTRAINT supervisor_when_case_result_id_fkey FOREIGN KEY (result_id) REFERENCES public.supervisor_expression_arg(id) ON DELETE CASCADE;
       ALTER TABLE ONLY public.supervisor_when_case
         ADD CONSTRAINT supervisor_when_case_right_arg_id_fkey FOREIGN KEY (right_arg_id) REFERENCES public.supervisor_expression_arg(id) ON DELETE CASCADE;
+      ALTER TABLE ONLY public.recordable
+        ADD CONSTRAINT recordable_owner_id_fkey FOREIGN KEY (owner_id) REFERENCES public.membership_user(id) ON DELETE CASCADE;
+      ALTER TABLE ONLY public.recordable
+        ADD CONSTRAINT recordable_creator_id_fkey FOREIGN KEY (creator_id) REFERENCES public.membership_user(id) ON DELETE CASCADE;
+      ALTER TABLE ONLY public.recordable
+        ADD CONSTRAINT recordable_last_modifier_id_fkey FOREIGN KEY (last_modifier_id) REFERENCES public.membership_user(id) ON DELETE CASCADE;
     </sql>
   </changeSet>
 </databaseChangeLog>

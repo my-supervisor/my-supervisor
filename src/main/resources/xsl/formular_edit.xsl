@@ -236,13 +236,13 @@ SOFTWARE.
 	                   </xsl:for-each><![CDATA[];
 	                    
 	                vm.dataFields = []]><xsl:for-each select="datafields"><xsl:for-each select="datafield">                             	                     
-			                       	{	'id': <xsl:value-of select="id"/>, 
+			                       	{	'id': '<xsl:value-of select="id"/>',
 			                       	    'code': "<xsl:value-of select="code"/>",
 			                       		'name': "<xsl:value-of select="name"/>",
 			                       		'viewName': "<xsl:value-of select="viewName"/>",
 			                       		'type': "<xsl:value-of select="type"/>",
 			                       		'typeId': "<xsl:value-of select="type_id"/>",
-			                       		'modelId': <xsl:value-of select="model_id"/>
+			                       		'modelId': '<xsl:value-of select="model_id"/>'
 			                       	},
 			                    </xsl:for-each></xsl:for-each><![CDATA[];		              		                			                   
 				  
@@ -283,7 +283,7 @@ SOFTWARE.
 						    	orders.push(data);
 						    }
 						    
-						    $http.post('/collect/aggregated-model/formular/expression/organize?formular=' + ]]><xsl:value-of select="item/id"/><![CDATA[ + '&model=' + ]]><xsl:value-of select="item/rule_id"/><![CDATA[, orders)
+						    $http.post('/collect/aggregated-model/formular/expression/organize?formular=' + ']]><xsl:value-of select="item/id"/><![CDATA[' + '&model=' + ']]><xsl:value-of select="item/rule_id"/><![CDATA[', orders)
 						         .then(
 							         function(success){
 							         	vm.ordering = false;
@@ -302,28 +302,28 @@ SOFTWARE.
 				   this.$onInit = function(){
 			                   	   
 						]]><xsl:if test="not(item) or not(item/id)">
-		                   		vm.item = { rule_id: <xsl:value-of select="aggregated_model/id"/>, expressions: [], condition: {} };
+		                   		vm.item = { rule_id: '<xsl:value-of select="aggregated_model/id"/>', expressions: [], condition: {} };
 		                   </xsl:if><xsl:if test="item and item/id">
 		                   
-		                        vm.item = {	'id': <xsl:value-of select="item/id"/>, 
+		                        vm.item = {	'id': '<xsl:value-of select="item/id"/>',
 		                       		'rule_id': "<xsl:value-of select="item/rule_id"/>",
 		                       		'code': "<xsl:value-of select="item/code"/>",
 		                       		'name': "<xsl:value-of select="item/name"/>",
 		                       		'type': "<xsl:value-of select="item/type"/>",
 		                       		'expressions': [
 		                       			<xsl:for-each select="item/expressions/expression">                             	                     
-					                       	{	'id': <xsl:value-of select="id"/>, 
+					                       	{	'id': '<xsl:value-of select="id"/>',
 					                       		'name': "<xsl:value-of select="name"/>",
 					                       		'text': "<xsl:value-of select="text"/>",
-					                       		'formularId': <xsl:value-of select="formular_id"/>,
+					                       		'formularId': '<xsl:value-of select="formular_id"/>',
 					                       		'type': "<xsl:value-of select="type"/>",
 					                       		'typeId': "<xsl:value-of select="type_id"/>"
 					                       	},
 					                    </xsl:for-each>
 					                ],
 				                    'condition': {	
-				                    		'id': <xsl:value-of select="item/condition/id"/>, 
-				                       		'paramId': <xsl:value-of select="item/condition/param_id"/>,
+				                    		'id': '<xsl:value-of select="item/condition/id"/>',
+				                       		'paramId': '<xsl:value-of select="item/condition/param_id"/>',
 				                       		'code': "<xsl:value-of select="item/condition/param_code"/>",
 				                       		'comparatorId': "<xsl:value-of select="item/condition/comparator_id"/>",
 				                       		'value': "<xsl:value-of select="item/condition/value"/>",
@@ -334,7 +334,7 @@ SOFTWARE.
 		                       	
 		                       	vm.params = [
 	                   				<xsl:for-each select="rule_params/rule_param">                             	                     
-				                       	{	'id': <xsl:value-of select="id"/>, 
+				                       	{	'id': '<xsl:value-of select="id"/>',
 				                       		'name': "<xsl:value-of select="name"/>",
 				                       		'code': "<xsl:value-of select="code"/>",
 				                       		<xsl:choose><xsl:when test="typeId = 'NUMBER'">

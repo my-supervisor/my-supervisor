@@ -43,9 +43,6 @@ public final class Main {
 	 * We start all things here.
 	 * @param args Arguments.
 	 * @throws Exception If fails
-	 * @todo #58:30min Generate primary key when inserting in database.
-	 *  We changed primary keys type from bigint to uuid. Keys were generated
-	 *  before. So, we need to generate also uuid.
 	 */
     public static void main(final String... args) throws Exception {
 		final Map<String, String> map = new ConsoleArgs("--", args).asMap();

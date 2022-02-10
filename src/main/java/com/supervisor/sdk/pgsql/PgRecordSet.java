@@ -769,6 +769,9 @@ public final class PgRecordSet<A1 extends Recordable> implements RecordSet<A1> {
 	@Override
 	public Record<A1> addForUser(UUID uid) throws IOException {
 		entries.put("owner_id", uid);
+		if (!entries.containsKey("id")) {
+			entries.put("id", UUID.randomUUID());
+		}
 		Statement statement = new PgInsertStatement(base, scheme.nameOf(clazz), entries);
 		List<ResultStatement> results = statement.execute();
 		

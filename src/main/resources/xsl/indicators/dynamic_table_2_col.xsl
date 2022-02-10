@@ -81,7 +81,7 @@ SOFTWARE.
 						        	    						        	    	
 						            	scope.$on(scope.code, function(event, args) {
 						            	
-											var url = '/indicator/dynamic-table-2-col?id=' + scope.id + '&activity=' + ]]><xsl:value-of select="activity_selected/id"/><![CDATA[;
+											var url = '/indicator/dynamic-table-2-col?id=' + scope.id + '&activity=' + ']]><xsl:value-of select="activity_selected/id"/><![CDATA[';
 											
 											if(args.date){										    
 												url = url + "&date=" + args.date.toISOString().substring(0, 10);

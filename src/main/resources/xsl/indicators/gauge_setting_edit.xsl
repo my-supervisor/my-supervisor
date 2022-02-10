@@ -19,7 +19,7 @@ SOFTWARE.
   <xsl:output method="html" cdata-section-elements="script style" include-content-type="no" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
   <xsl:strip-space elements="*"/>
   <xsl:include href="/xsl/layout.xsl"/>
-  <xsl:include href="/xsla_usage_rule.xsl"/>
+  <xsl:include href="/xsl/indicators/data_usage_rule.xsl"/>
   <xsl:template match="page" mode="head">
     <title>
       <xsl:text>Supervisor - Minlessika - Configurer un gauge</xsl:text>

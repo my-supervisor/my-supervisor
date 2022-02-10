@@ -314,7 +314,7 @@ SOFTWARE.
 				   this.$onInit = function(){					   			
 			            
 			            vm.activityParams = []]><xsl:for-each select="activity_params/activity_param">                             	                     
-			                       	{	'id': <xsl:value-of select="id"/>, 
+			                       	{	'id': '<xsl:value-of select="id"/>',
 			                       		'name': "<xsl:value-of select="name"/>",
 			                       		'type': "<xsl:value-of select="type"/>",
 			                       		'typeId': "<xsl:value-of select="typeId"/>",
@@ -329,7 +329,7 @@ SOFTWARE.
 			                   	</xsl:for-each><![CDATA[];
 			                   
 			            vm.params = []]><xsl:for-each select="rule_params/rule_param">                             	                     
-			                       	{	'id': <xsl:value-of select="id"/>, 
+			                       	{	'id': '<xsl:value-of select="id"/>',
 			                       		'modelId': <xsl:value-of select="rule_id"/>,
 			                       		'name': "<xsl:value-of select="name"/>",
 			                       		'typeId': "<xsl:value-of select="typeId"/>",

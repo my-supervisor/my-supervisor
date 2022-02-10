@@ -383,7 +383,7 @@ SOFTWARE.
 		                   </xsl:for-each><![CDATA[];
 
 					   vm.models = []]><xsl:for-each select="data_models/data_model">                             	                     
-		                       	{	'id': <xsl:value-of select="id"/>, 
+		                       	{	'id': '<xsl:value-of select="id"/>',
 		                       		'name': "<xsl:value-of select="viewName"/>",
 		                       		'activityId': <xsl:value-of select="activity_id"/>
 		                       	},
@@ -398,7 +398,7 @@ SOFTWARE.
 		                vm.dataFieldsOfModel = [];
 		                
 		                vm.dataFields = []]><xsl:for-each select="datafields"><xsl:for-each select="datafield">                             	                     
-				                       	{	'id': <xsl:value-of select="id"/>, 
+				                       	{	'id': '<xsl:value-of select="id"/>',
 				                       	    'code': "<xsl:value-of select="code"/>",
 				                       		'name': "<xsl:value-of select="name"/>",
 				                       		'viewName': "<xsl:value-of select="viewName"/>",
@@ -532,7 +532,7 @@ SOFTWARE.
 					   this.$onInit = function(){
 					   				
 					   		vm.fields = []]><xsl:for-each select="datafields/datafield">                             	                     
-				                       	{	'id': <xsl:value-of select="id"/>, 
+				                       	{	'id': '<xsl:value-of select="id"/>',
 				                       		'code': "<xsl:value-of select="code"/>",
 				                       		'name': "<xsl:value-of select="name"/>",
 				                       		'type': "<xsl:value-of select="type"/>",
@@ -542,7 +542,7 @@ SOFTWARE.
 				                   	   
 							]]><xsl:if test="not(item) or not(item/id)"><![CDATA[
 			                   		vm.activities = []]><xsl:for-each select="user_activities/activity">                             	                     
-								                       	{	'id': <xsl:value-of select="id"/>, 
+								                       	{	'id': '<xsl:value-of select="id"/>',
 								                       		'name': "<xsl:value-of select="name"/>"
 								                       	},
 								                   </xsl:for-each><![CDATA[];
@@ -559,24 +559,24 @@ SOFTWARE.
 			                   		}
 			                   		]]></xsl:if><xsl:if test="item and item/id">
 			                   		vm.item = {
-			                   			'id': <xsl:value-of select="item/id"/>,
-			                   			'modelId': <xsl:value-of select="item/model_id"/>,
+			                   			'id': '<xsl:value-of select="item/id"/>',
+			                   			'modelId': '<xsl:value-of select="item/model_id"/>',
 			                   			'activity': "<xsl:value-of select="item/activity"/>",
-			                   			'activityId': <xsl:value-of select="item/activity_id"/>,
+			                   			'activityId': '<xsl:value-of select="item/activity_id"/>',
 			                   			'modelActivity': "<xsl:value-of select="item/model_activity"/>",
-			                   			'modelActivityId': <xsl:value-of select="item/model_activity_id"/>,
+			                   			'modelActivityId': '<xsl:value-of select="item/model_activity_id"/>',
 			                   			'filters': [
 			                   				<xsl:for-each select="rule_filters/rule_filter">                             	                     
 						                       	{	
-						                       		'id': <xsl:value-of select="id"/>, 
+						                       		'id': '<xsl:value-of select="id"/>',
 						                       		'rule_id': "<xsl:value-of select="rule_id"/>",
-						                       		'modelId': <xsl:value-of select="model_id"/>,
+						                       		'modelId': '<xsl:value-of select="model_id"/>',
 						                       		'model': "<xsl:value-of select="model"/>",
 						                       		'conditions': [
 						                       			<xsl:for-each select="conditions/condition">                             	                     
 									                       	{	
-									                       		'id': <xsl:value-of select="id"/>, 
-									                       		'filterId': <xsl:value-of select="filter_id"/>,
+									                       		'id': '<xsl:value-of select="id"/>',
+									                       		'filterId': '<xsl:value-of select="filter_id"/>',
 									                       		'field': "<xsl:value-of select="field"/>",
 									                       		'fieldCode': "<xsl:value-of select="field_code"/>",
 									                       		'comparatorId': "<xsl:value-of select="comparator_id"/>",									                       		
@@ -590,20 +590,20 @@ SOFTWARE.
 			                   			],
 			                   			'formulars': [
 			                   				<xsl:for-each select="rule_formulars/rule_formular">                             	                     
-						                       	{	'id': <xsl:value-of select="id"/>, 
+						                       	{	'id': '<xsl:value-of select="id"/>',
 						                       		'rule_id': "<xsl:value-of select="rule_id"/>",
 						                       		'code': "<xsl:value-of select="code"/>",
 						                       		'name': "<xsl:value-of select="name"/>",
 						                       		'type': "<xsl:value-of select="type"/>",
 						                       		'typeId': "<xsl:value-of select="type_id"/>",
-						                       		'modelId': <xsl:value-of select="model_id"/>,
+						                       		'modelId': '<xsl:value-of select="model_id"/>',
 						                       		'model': "<xsl:value-of select="model"/>"
 						                       	},
 						                   	</xsl:for-each>
 			                   			],
 			                   			'params': [
 			                   				<xsl:for-each select="rule_params/rule_param">                             	                     
-						                       	{	'id': <xsl:value-of select="id"/>, 
+						                       	{	'id': '<xsl:value-of select="id"/>',
 						                       		'name': "<xsl:value-of select="name"/>",
 						                       		'code': "<xsl:value-of select="code"/>",
 						                       		<xsl:choose><xsl:when test="typeId = 'NUMBER'">
@@ -615,7 +615,7 @@ SOFTWARE.
 						                       			</xsl:otherwise></xsl:choose>						                       		
 						                       		'typeId': '<xsl:value-of select="typeId"/>',
 						                       		'type': "<xsl:value-of select="type"/>",
-						                       		'modelId': <xsl:value-of select="model_id"/>,
+						                       		'modelId': '<xsl:value-of select="model_id"/>',
 						                       		'model': "<xsl:value-of select="model"/>"
 						                       	},
 						                   	</xsl:for-each>
