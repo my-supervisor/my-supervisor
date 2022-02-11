@@ -143,11 +143,11 @@ public final class FkMySupervisor extends FkWrap {
 					),
 					new FkRegex(
 						"/contacts",
-						new TkAnonymous(new TkContact())
+						new TkAnonymous(new TkContact(recaptcha))
 					),
 					new FkRegex(
 						"/contacts/send",
-						new TkAnonymous(new TkSendContact(base))
+						new TkAnonymous(new TkSendContact(base, recaptcha))
 					),
 					new FkRegex("/registration",
 						new TkAnonymous(new TkRegistration(recaptcha))

@@ -16,30 +16,31 @@
  */
 package com.supervisor.takes;
 
+import com.supervisor.sdk.secure.Recaptcha;
+import com.supervisor.sdk.takes.XeRecaptcha;
 import com.supervisor.sdk.translation.I18n;
-import java.io.IOException;
-import org.takes.Request;
-import org.takes.Response;
-import org.takes.Take;
 import org.takes.rs.xe.XeAppend;
 import org.takes.rs.xe.XeChain;
+import org.takes.tk.TkWrap;
 
 /**
  * Take that shows contact form to an anonymous user.
  *
  * @since 1.0
  */
-public final class TkContact implements Take {
+public final class TkContact extends TkWrap {
 
-	@Override
-	public Response act(final Request req) throws IOException {
-		return new RsAnonymousPage(
-			I18n.localizeXslt("/xsl/contacts/page.xsl"),
-			req,
-			new XeChain(
-				new XeAppend("menu", "contact"),
-				new XeAppend("lang", I18n.locale().getLanguage())
+    public TkContact(final Recaptcha recaptcha) {
+		super(
+			req -> new RsAnonymousPage(
+				I18n.localizeXslt("/xsl/contacts/page.xsl"),
+				req,
+				new XeChain(
+					new XeAppend("menu", "contact"),
+					new XeAppend("lang", I18n.locale().getLanguage()),
+					new XeRecaptcha(recaptcha)
+				)
 			)
 		);
-	}
+    }
 }
