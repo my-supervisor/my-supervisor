@@ -221,18 +221,58 @@ SOFTWARE.
       <artifactId>jooq</artifactId>
       <version>3.16.4</version>
     </dependency>
-    <dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jooq-meta</artifactId>
-      <version>3.16.4</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jooq-codegen</artifactId>
-      <version>3.16.4</version>
-    </dependency>
   </dependencies>
   <profiles>
+    <profile>
+      <!--JOOQ generates the DB model classes for us-->
+      <id>jooqGen</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-codegen-maven</artifactId>
+            <version>3.16.3</version>
+            <executions>
+              <execution>
+                <id>jooq-codegen</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-meta</artifactId>
+                <version>3.16.4</version>
+              </dependency>
+            </dependencies>
+            <configuration>
+              <!-- JDBC connection parameters -->
+              <jdbc>
+                <driver>org.postgresql.Driver</driver>
+                <url>${db.url}</url>
+                <user>${db.user}</user>
+                <password>${db.password}</password>
+              </jdbc>
+              <!-- Generator parameters -->
+              <generator>
+                <database>
+                  <includes>.*</includes>
+                  <excludes></excludes>
+                  <inputSchema>public</inputSchema>
+                </database>
+                <target>
+                  <packageName>com.supervisor.generated.jooq</packageName>
+                  <directory>src/main/java</directory>
+                </target>
+              </generator>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>hit-refresh</id>
       <build>
