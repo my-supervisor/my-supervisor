@@ -22,7 +22,6 @@ import com.supervisor.domain.RegistrationRequest;
 import com.supervisor.domain.impl.DmMembership;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.mailing.InternetWarningMailing;
-import com.supervisor.sdk.secure.GRecaptcha;
 import com.supervisor.sdk.secure.Recaptcha;
 import com.supervisor.sdk.takes.BaseUri;
 import com.supervisor.sdk.translation.I18n;
@@ -44,16 +43,16 @@ public final class TkRegister extends TkWrap {
 
 	/**
 	 * Ctor.
-	 * @param base Data source
-	 */
-	public TkRegister(Base base) {
+     * @param base Data source
+     * @param recaptcha Recaptcha
+     */
+	public TkRegister(Base base, Recaptcha recaptcha) {
 		super(
 			req -> {
 				final Membership module = new DmMembership(base);
 				final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 				final String gRecaptchaResponse = form.single("g-recaptcha-response", "");
-				// Recaptcha recaptcha = new GRecaptcha(base.appInfo());
-				// recaptcha.validate(gRecaptchaResponse);
+				recaptcha.validate(gRecaptchaResponse);
 				final String name = form.single("name");
 				final String email = form.single("email");
 				final String password = form.single("password");

@@ -150,10 +150,10 @@ public final class FkMySupervisor extends FkWrap {
 						new TkAnonymous(new TkSendContact(base))
 					),
 					new FkRegex("/registration",
-						new TkAnonymous(new TkRegistration())
+						new TkAnonymous(new TkRegistration(recaptcha))
 					),
 					new FkRegex("/register",
-						new TkAnonymous(new TkRegister(base))
+						new TkAnonymous(new TkRegister(base, recaptcha))
 					),
 					new FkRegex("/login",
 						new TkAnonymous(new TkLogin(recaptcha))
