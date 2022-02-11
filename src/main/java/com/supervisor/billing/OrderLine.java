@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="billing_order_line", 
+	name="order_line",
 	label="Ligne d'un ordre"
 )
 public interface OrderLine extends Recordable {

@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-		name="supervisor_number_oriented_setting", 
+		name="number_oriented_setting",
 		label="Configuration d'un chiffre orienté",
 		comodel=Indicator.class
 )

@@ -36,7 +36,7 @@ public final class PgSimpleUpdateStatement extends PgStatementUpdatable {
 				settings += String.format(", %s=?", entry.getKey());
 		}
 		
-		return String.format("UPDATE %s SET %s, last_modification_date=now(), last_modifier_id=? WHERE id=?", tableName, settings);		
+		return String.format("UPDATE %s SET %s, last_modification_date=now(), last_modifier_id=? WHERE id=?", tableName, settings);
 	}
 
 }

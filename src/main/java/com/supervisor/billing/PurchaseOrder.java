@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Recordable;
 import java.io.IOException;
 
 @Recordable(
-		name="billing_purchase_order", 
+		name="purchase_order",
 		label="Bon de commande",
 		comodel=Order.class
 )

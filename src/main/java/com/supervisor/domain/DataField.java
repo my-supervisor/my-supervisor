@@ -10,7 +10,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_data_field", 
+		name="data_field",
 		label="Champ de données"
 )
 public interface DataField extends com.supervisor.sdk.datasource.Recordable {

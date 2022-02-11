@@ -12,7 +12,7 @@ import com.supervisor.domain.DataFieldType;
 import com.supervisor.domain.bi.AggregateFunc;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_indicator_dynamic_param", 
+		name="indicator_dynamic_param",
 		label="Paramètre dynamique d'indicateur",
 		inheritFields=false
 )

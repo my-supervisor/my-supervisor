@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="billing_subscription_contract", 
+	name="subscription_contract",
 	label="Contrat d'abonnement"
 )
 public interface SubscriptionContract extends Recordable {

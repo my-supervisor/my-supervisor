@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="billing_order_tax", 
+		name="order_tax",
 		label="Taxe d'un ordre"		
 )
 public interface OrderTax extends Recordable {

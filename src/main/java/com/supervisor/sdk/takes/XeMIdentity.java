@@ -77,8 +77,8 @@ public final class XeMIdentity extends XeWrap {
 					System.lineSeparator(),
 					"select",
 					"pers.photo, pers.name, addr.email, pers.is_company",
-					"from base_person as pers",
-					"left join base_address as addr on addr.id = pers.address_id",
+					"from person as pers",
+					"left join address as addr on addr.id = pers.address_id",
 					"where pers.id=?"
 				),
 				Arrays.asList(id)
@@ -89,8 +89,8 @@ public final class XeMIdentity extends XeWrap {
 					System.lineSeparator(),
 					"select",
 					"prof.id as profile_id, prof.name as profile, prof.code as profile_tag",
-					"from membership_user as app_user",
-					"left join membership_profile as prof on prof.id = app_user.profile_id",
+					"from \"user\" as app_user",
+					"left join profile as prof on prof.id = app_user.profile_id",
 					"where app_user.id=?"
 				),
 				Arrays.asList(id)

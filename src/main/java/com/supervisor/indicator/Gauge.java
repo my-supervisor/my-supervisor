@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-		name="supervisor_gauge_setting", 
+		name="gauge_setting",
 		label="Configuration d'un Jauge",
 		comodel=Indicator.class
 )

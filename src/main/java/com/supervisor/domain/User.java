@@ -18,7 +18,7 @@ import java.util.TimeZone;
 import java.util.UUID;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="membership_user", 
+		name="\"user\"",
 		label="Utilisateur",
 		comodel=Person.class
 )

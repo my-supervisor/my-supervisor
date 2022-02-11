@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="base_comment", 
+		name="comment",
 		label="Commentaires"
 )
 public interface Comment extends Recordable {

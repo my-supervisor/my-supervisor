@@ -21,7 +21,7 @@ import com.supervisor.domain.DataModel;
 import com.supervisor.domain.MappedDataField;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_indicator_general_setting",
+		name="indicator_general_setting",
 		label="Configuration d'un indicateur"
 )
 public interface Indicator extends com.supervisor.sdk.datasource.Recordable {

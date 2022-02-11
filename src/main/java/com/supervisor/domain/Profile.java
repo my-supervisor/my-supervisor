@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="membership_profile", 
+	name="profile",
 	label="Profil"
 )
 public interface Profile extends Recordable {

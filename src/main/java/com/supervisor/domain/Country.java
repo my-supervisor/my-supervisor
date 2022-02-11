@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="base_country", 
+		name="country",
 		label="Pays"
 )
 public interface Country extends Recordable {

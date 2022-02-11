@@ -12,7 +12,7 @@ import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.sharing.Sharable;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_data_sheet", 
+		name="data_sheet",
 		label="Feuille de données"
 )
 public interface DataSheet extends com.supervisor.sdk.datasource.Recordable, Sharable {

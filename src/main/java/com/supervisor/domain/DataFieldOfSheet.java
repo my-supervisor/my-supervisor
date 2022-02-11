@@ -10,7 +10,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_data_field_of_sheet", 
+	name="data_field_of_sheet",
 	label="Data field of sheet",
 	inheritFields=false
 )

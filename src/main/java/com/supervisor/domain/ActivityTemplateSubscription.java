@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_activity_template_subscription",
+		name="activity_template_subscription",
 		label="Abonnement à un modèle d'activité"
 )
 public interface ActivityTemplateSubscription extends com.supervisor.sdk.datasource.Recordable {

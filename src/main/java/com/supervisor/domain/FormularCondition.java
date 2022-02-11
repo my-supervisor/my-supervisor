@@ -13,7 +13,7 @@ import com.supervisor.sdk.metadata.Relation;
 import org.apache.commons.lang.StringUtils;
 
 @Recordable(
-		name="supervisor_formular_condition", 
+		name="formular_condition",
 		label="Condition d'une formule",
 		comodel=FormularDataField.class		
 )

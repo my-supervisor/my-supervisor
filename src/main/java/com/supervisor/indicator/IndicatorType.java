@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.supervisor.sdk.metadata.Field;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_indicator_type",
+		name="indicator_type",
 		label="Type d'un indicateur"
 )
 public interface IndicatorType extends com.supervisor.sdk.datasource.Recordable {

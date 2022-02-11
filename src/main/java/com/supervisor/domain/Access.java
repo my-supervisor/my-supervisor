@@ -5,7 +5,7 @@ import com.supervisor.sdk.metadata.Field;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="membership_access", 
+		name="access",
 		label="Droit d'accès"
 )
 public interface Access extends Recordable {

@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-	name="supervisor_value_expression_arg", 
+	name="value_expression_arg",
 	label="Argument valeur d'une expression",
 	comodel=ExpressionArg.class
 )

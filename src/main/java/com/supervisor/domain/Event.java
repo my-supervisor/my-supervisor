@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Field;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="base_event", 
+	name="event",
 	label="Event"
 )
 public interface Event extends Recordable {

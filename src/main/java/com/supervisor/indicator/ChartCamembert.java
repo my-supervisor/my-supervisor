@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-		name="supervisor_chart_camembert_setting", 
+		name="chart_camembert_setting",
 		label="Configuration d'un camembert",
 		comodel=Indicator.class
 )

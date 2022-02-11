@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="base_address", 
+		name="address",
 		label="Address"
 )
 public interface Address extends Recordable {

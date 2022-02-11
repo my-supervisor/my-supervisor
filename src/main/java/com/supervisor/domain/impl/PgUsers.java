@@ -50,7 +50,7 @@ public final class PgUsers extends DomainRecordables<User, Users> implements Use
 		
 		String viewScript = String.format("(\r\n" + 
 										"	select tuser.*, pers.name, pers.is_company, pers.photo, addr.email, addr.country_id \r\n" + 
-										"	from %s as tuser\r\n" + 
+										"	from %s as tuser\r\n" +
 										"	left join %s as pers on pers.id = tuser.id \r\n" + 
 										"   left join %s as addr on addr.id = pers.address_id \r\n" + 
 										") as %s",

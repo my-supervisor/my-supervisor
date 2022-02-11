@@ -10,7 +10,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_expression_arg", 
+	name="expression_arg",
 	label="Argument d'une expression"
 )
 public interface ExpressionArg extends com.supervisor.sdk.datasource.Recordable {

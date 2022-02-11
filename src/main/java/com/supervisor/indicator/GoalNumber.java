@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-		name="supervisor_goal_number_setting", 
+		name="goal_number_setting",
 		label="Configuration d'un chiffre objectif",
 		comodel=Indicator.class
 )

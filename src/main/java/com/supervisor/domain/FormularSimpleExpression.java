@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-	name="supervisor_formular_simple_expression", 
+	name="formular_simple_expression",
 	label="Expression simple d'une formule",
 	comodel=FormularExpression.class
 )

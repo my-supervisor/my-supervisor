@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_activity_template_like",
+	name="activity_template_like",
 	label="J'aime d'un modèle d'activité"
 )
 public interface ActivityTemplateLike extends com.supervisor.sdk.datasource.Recordable {

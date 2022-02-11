@@ -10,7 +10,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="base_person", 
+		name="person",
 		label="Person"
 )
 public interface Person extends Recordable {

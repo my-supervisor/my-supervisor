@@ -12,7 +12,7 @@ import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.interaction.Interactable;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_formular_extended_to_model_source", 
+	name="formular_extended_to_model_source",
 	label="Formular extended to model source"
 )
 public interface FormularExtendedToModelSource extends com.supervisor.sdk.datasource.Recordable, Interactable {

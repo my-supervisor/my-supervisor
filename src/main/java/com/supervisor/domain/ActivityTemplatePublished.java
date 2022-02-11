@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-		name="supervisor_activity_template_published",
+		name="activity_template_published",
 		label="Model d'activité publié",	
 		comodel=ActivityTemplate.class
 	)
