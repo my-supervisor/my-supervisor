@@ -162,16 +162,16 @@ public final class FkMySupervisor extends FkWrap {
 						new TkAnonymous(new TkSignin(base, recaptcha))
 					),
 					new FkRegex("/password/forgotten",
-						new TkAnonymous(new TkPasswordForgotten(base))
+						new TkAnonymous(new TkPasswordForgotten(base, recaptcha))
 					),
 					new FkRegex("/password/reset/request",
-						new TkAnonymous(new TkRequestPasswordResetting(base))
+						new TkAnonymous(new TkRequestPasswordResetting(base, recaptcha))
 					),
 					new FkRegex("/password/reset",
-						new TkAnonymous(new TkResetPassword(base))
+						new TkAnonymous(new TkResetPassword(base, recaptcha))
 					),
 					new FkRegex("/password/reset/change",
-						new TkAnonymous(new TkPasswordForgottenChanged(base))
+						new TkAnonymous(new TkPasswordForgottenChanged(base, recaptcha))
 					),
 					new FkRegex("/register/confirm",
 						new TkAnonymous(new TkConfirmRegistering(base))

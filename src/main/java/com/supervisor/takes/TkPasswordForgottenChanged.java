@@ -5,6 +5,7 @@ import com.supervisor.domain.User;
 import com.supervisor.domain.impl.DmMembership;
 import com.supervisor.sdk.codecs.MCodec;
 import com.supervisor.sdk.datasource.Base;
+import com.supervisor.sdk.secure.Recaptcha;
 import com.supervisor.sdk.takes.TkForm;
 import com.supervisor.sdk.takes.XeRecaptcha;
 import com.supervisor.sdk.translation.I18n;
@@ -27,8 +28,11 @@ import java.util.Optional;
 
 public final class TkPasswordForgottenChanged extends TkForm {
 
-	public TkPasswordForgottenChanged(final Base base) {
+	private final Recaptcha recaptcha;
+
+	public TkPasswordForgottenChanged(final Base base, final Recaptcha recaptcha) {
 		super(base);
+		this.recaptcha = recaptcha;
 	}
 
 	@Override
@@ -44,7 +48,7 @@ public final class TkPasswordForgottenChanged extends TkForm {
 		
 		content.add(itemToShow);
 		content.add(new XeAppend("key", key));
-		// content.add(new XeRecaptcha(base.appInfo()));
+		content.add(new XeRecaptcha(recaptcha));
 		
 		return content;
 	}

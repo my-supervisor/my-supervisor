@@ -6,7 +6,6 @@ import com.supervisor.domain.impl.DmMembership;
 import com.supervisor.sdk.codecs.MCodec;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.mailing.InternetSafeMailing;
-import com.supervisor.sdk.secure.GRecaptcha;
 import com.supervisor.sdk.secure.Recaptcha;
 import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.translation.I18n;
@@ -25,7 +24,7 @@ import java.util.logging.Level;
 
 public final class TkResetPassword extends TkBaseWrap {
 
-	public TkResetPassword(Base base) {
+	public TkResetPassword(Base base, final Recaptcha recaptcha) {
 		super(
 				base,
 				req -> {
@@ -34,11 +33,8 @@ public final class TkResetPassword extends TkBaseWrap {
 					final String key = new RqHref.Smart(req).single("key");
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 					
-					final String gRecaptchaResponse = form.single("g-recaptcha-response", ""); 
-					System.out.println("gRecaptchaResponse=" + gRecaptchaResponse);
-					
-					// Recaptcha recaptcha = new GRecaptcha(base.appInfo());
-					// recaptcha.validate(gRecaptchaResponse);
+					final String gRecaptchaResponse = form.single("g-recaptcha-response", "");
+					recaptcha.validate(gRecaptchaResponse);
 					
 					final String password = form.single("password");
 					final String confirmedPassword = form.single("password_confirmed");
