@@ -43,9 +43,6 @@ public final class Main {
 	 * We start all things here.
 	 * @param args Arguments.
 	 * @throws Exception If fails
-	 * @todo #59:30min Generate code for JOOQ.
-	 *  We need first set up JOOQ in the project to generate objects based
-	 *  on tables of database. See theses links on https://www.jooq.org.
 	 * @todo #59:30min Apply JOOQ approach.
 	 *  We want to replace progressively current approach by JOOQ one. For that,
 	 *  We should pass from business Object to other one. See some links on https://www.jooq.org.
