@@ -19,7 +19,6 @@ package com.supervisor.takes;
 import com.supervisor.domain.impl.UserAdmin;
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.mailing.InternetWarningMailing;
-import com.supervisor.sdk.secure.GRecaptcha;
 import com.supervisor.sdk.secure.Recaptcha;
 import com.supervisor.sdk.translation.I18n;
 import org.takes.facets.flash.RsFlash;
@@ -38,15 +37,15 @@ public final class TkSendContact extends TkWrap {
 
 	/**
 	 * Ctor.
-	 * @param base Data source
-	 */
-	public TkSendContact(final Base base) {
+     * @param base Data source
+     * @param recaptcha Recaptcha
+     */
+	public TkSendContact(final Base base, Recaptcha recaptcha) {
 		super(
 			req -> {
 				final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 				final String gRecaptchaResponse = form.single("g-recaptcha-response", "");
-				// final Recaptcha recaptcha = new GRecaptcha(base.appInfo());
-				// recaptcha.validate(gRecaptchaResponse);
+				recaptcha.validate(gRecaptchaResponse);
 				final String name = form.single("name");
 				final String email = form.single("email");
 				final String message = form.single("message");
