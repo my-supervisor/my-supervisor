@@ -260,7 +260,7 @@ SOFTWARE.
               <generator>
                 <database>
                   <includes>.*</includes>
-                  <excludes></excludes>
+                  <excludes/>
                   <inputSchema>public</inputSchema>
                 </database>
                 <target>
