@@ -24,7 +24,12 @@ public final class GRecaptcha implements Recaptcha {
 		this.siteKey = siteKey;
 		this.secretKey = secretKey;
 	}
-	
+
+	@Override
+	public boolean isActive() {
+		return this.isActive;
+	}
+
 	@Override
 	public String siteKey() {
 		return siteKey;
