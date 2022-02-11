@@ -7,7 +7,6 @@ import com.supervisor.domain.impl.DmMembership;
 import com.supervisor.domain.impl.MIdentity;
 import com.supervisor.sdk.codecs.MCodec;
 import com.supervisor.sdk.datasource.Base;
-import com.supervisor.sdk.secure.GRecaptcha;
 import com.supervisor.sdk.secure.Recaptcha;
 import com.supervisor.sdk.takes.TkBaseWrap;
 import com.supervisor.sdk.translation.I18n;
@@ -23,7 +22,7 @@ import java.util.logging.Level;
 
 public final class TkSignin extends TkBaseWrap {
 
-	public TkSignin(Base base) {
+	public TkSignin(Base base, Recaptcha recaptcha) {
 		super(
 				base,
 				req -> {
@@ -33,9 +32,7 @@ public final class TkSignin extends TkBaseWrap {
 					final RqFormSmart form = new RqFormSmart(new RqGreedy(req));
 
 					final String gRecaptchaResponse = form.single("g-recaptcha-response", "");
-					
-					//final Recaptcha recaptcha = new GRecaptcha(base.appInfo());
-					// recaptcha.validate(gRecaptchaResponse);
+					recaptcha.validate(gRecaptchaResponse);
 					
 					final String email = form.single("email");
 					final String password = form.single("password");
