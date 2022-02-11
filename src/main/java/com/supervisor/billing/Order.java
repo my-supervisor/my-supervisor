@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="billing_order", 
+	name="\"order\"",
 	label="Ordre"
 )
 public interface Order extends Recordable {

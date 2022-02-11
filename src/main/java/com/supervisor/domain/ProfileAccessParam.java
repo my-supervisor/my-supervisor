@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @Recordable(
-		name="membership_profile_access_param", 
+		name="profile_access_param",
 		label="Paramètre du droit d'accès d'un profil",
 		inheritFields = false
 )

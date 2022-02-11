@@ -12,7 +12,7 @@ import com.supervisor.sharing.Sharable;
 import com.supervisor.indicator.Indicators;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_data_sheet_model", 
+	name="data_sheet_model",
 	label="Data sheet model",
 	comodel=DataModel.class
 )

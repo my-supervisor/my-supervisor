@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_gauge_zone", 
+		name="gauge_zone",
 		label="Zone d'un Jauge"
 )
 public interface GaugeZone extends com.supervisor.sdk.datasource.Recordable {

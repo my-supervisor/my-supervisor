@@ -12,7 +12,7 @@ import com.supervisor.indicator.Indicators;
 import com.supervisor.interaction.Interactable;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_data_model", 
+		name="data_model",
 		label="Modèle de données"
 )
 public interface DataModel extends com.supervisor.sdk.datasource.Recordable, Interactable {

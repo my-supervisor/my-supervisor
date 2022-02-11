@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-		name="supervisor_indicator_dynamic_string_param", 
+		name="indicator_dynamic_string_param",
 		label="Paramètre dynamique d'indicateur de type nombre",
 		comodel=IndicatorDynamicParam.class
 )

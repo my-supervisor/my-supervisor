@@ -16,7 +16,7 @@ import com.supervisor.sharing.Sharable;
 import com.supervisor.indicator.Indicators;
 
 @Recordable(
-	name="supervisor_aggregated_model", 
+	name="aggregated_model",
 	label="Modèle agrégé",
 	comodel=DataModel.class
 )

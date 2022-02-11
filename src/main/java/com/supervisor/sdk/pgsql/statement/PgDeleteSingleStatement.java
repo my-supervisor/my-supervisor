@@ -11,7 +11,7 @@ public final class PgDeleteSingleStatement extends PgStatementUpdatable {
 	}
 	
 	private static String statement(final String tableName) {		
-		return String.format("DELETE FROM %s WHERE id=?", tableName);		
+		return String.format("DELETE FROM %s WHERE id=?", tableName);
 	}
 
 }

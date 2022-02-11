@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.indicator.IndicatorDynamicParam;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_mapped_data_field", 
+	name="mapped_data_field",
 	label="Mapping d'une liaison de données"
 )
 public interface MappedDataField extends com.supervisor.sdk.datasource.Recordable {

@@ -11,7 +11,7 @@ import com.supervisor.sdk.time.Periodicity;
 import com.supervisor.sdk.time.PeriodicityUnit;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_periodicity", 
+		name="periodicity",
 		label="Périodicité"
 )
 public interface BasePeriodicity extends Periodicity, com.supervisor.sdk.datasource.Recordable {

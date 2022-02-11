@@ -10,7 +10,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_param_data_field", 
+	name="param_data_field",
 	label="Champ de données paramètre",
 	comodel=DataField.class
 )

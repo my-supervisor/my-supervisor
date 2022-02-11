@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Recordable;
 import java.io.IOException;
 
 @Recordable(
-	name="billing_software_engineering_service", 
+	name="software_engineering_service",
 	label="Software engineering service",
 	comodel=Product.class
 )

@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-	name="supervisor_editable_data_field", 
+	name="editable_data_field",
 	label="Champ de données éditable",
 	comodel=DataField.class
 )

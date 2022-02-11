@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_shared_resource", 
+		name="shared_resource",
 		label="Ressource partagée"
 )
 public interface SharedResource extends com.supervisor.sdk.datasource.Recordable {

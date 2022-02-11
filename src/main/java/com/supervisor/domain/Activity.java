@@ -15,7 +15,7 @@ import com.supervisor.indicator.Indicators;
 import com.supervisor.interaction.Interactions;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_activity", 
+	name="activity",
 	label="Activité"
 )
 public interface Activity extends com.supervisor.sdk.datasource.Recordable {

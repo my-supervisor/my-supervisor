@@ -14,9 +14,9 @@ public final class PgDeleteManyStatement extends PgStatementUpdatable {
 	private static String statement(final String tableName, final String clause) {		
 		
 		if(StringUtils.isBlank(clause))	
-			return String.format("DELETE FROM %s", tableName);	
+			return String.format("DELETE FROM %s", tableName);
 		else
-			return String.format("DELETE FROM %s WHERE %s", tableName, clause);	
+			return String.format("DELETE FROM %s WHERE %s", tableName, clause);
 	}
 
 }

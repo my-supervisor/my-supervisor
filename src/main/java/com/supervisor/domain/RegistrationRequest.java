@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="membership_registration_request", 
+	name="registration_request",
 	label="Requête d'inscription"
 )
 public interface RegistrationRequest extends Recordable {

@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_model_filter_condition", 
+	name="model_filter_condition",
 	label="Condition d'un filtre de modèle"
 )
 public interface ModelFilterCondition extends com.supervisor.sdk.datasource.Recordable {

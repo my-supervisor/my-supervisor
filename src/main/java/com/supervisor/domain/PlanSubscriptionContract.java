@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="membership_plan_subscription_contract", 
+		name="plan_subscription_contract",
 		label="Contrat d'abonnement d'un plan",
 		comodel=SubscriptionContract.class
 )

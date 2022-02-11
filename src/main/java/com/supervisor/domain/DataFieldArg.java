@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-	name="supervisor_data_field_expression_arg", 
+	name="data_field_expression_arg",
 	label="Argument champ de données d'une expression",
 	comodel=ExpressionArg.class
 )

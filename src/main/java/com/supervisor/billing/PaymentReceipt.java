@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="billing_payment_receipt", 
+	name="payment_receipt",
 	label="Bill"
 )
 public interface PaymentReceipt extends Recordable {

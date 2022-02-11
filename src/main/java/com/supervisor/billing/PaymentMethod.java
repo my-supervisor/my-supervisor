@@ -8,7 +8,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="billing_payment_method", 
+		name="payment_method",
 		label="Mode de paiement"
 )
 public interface PaymentMethod extends Recordable {

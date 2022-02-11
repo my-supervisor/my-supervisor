@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-		name="supervisor_data_link_param", 
+		name="data_link_param",
 		label="Paramètre d'une liaison de données",
 		comodel=ParamDataField.class
 )

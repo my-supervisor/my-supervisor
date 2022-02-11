@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-		name="supervisor_activity_param", 
+		name="activity_param",
 		label="Paramètre d'une activité",
 		comodel=ParamDataField.class
 )

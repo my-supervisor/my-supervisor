@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="base_currency", 
+	name="currency",
 	label="Devise"
 )
 public interface Currency extends Recordable {

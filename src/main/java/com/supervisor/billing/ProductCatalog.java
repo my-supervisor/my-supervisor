@@ -8,7 +8,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="billing_product_catalog", 
+	name="product_catalog",
 	label="Catalogue de produits"
 )
 public interface ProductCatalog extends Recordable {

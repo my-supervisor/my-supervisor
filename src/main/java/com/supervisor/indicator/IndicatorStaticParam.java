@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-		name="supervisor_indicator_static_param", 
+		name="indicator_static_param",
 		label="Paramètre statique d'indicateur",
 		inheritFields=false
 )

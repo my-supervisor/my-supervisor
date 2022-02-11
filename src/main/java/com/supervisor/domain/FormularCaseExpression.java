@@ -5,7 +5,7 @@ import com.supervisor.sdk.metadata.Recordable;
 import java.io.IOException;
 
 @Recordable(
-	name="supervisor_formular_case_expression", 
+	name="formular_case_expression",
 	label="Expression condition multiple d'une formule",
 	comodel=FormularExpression.class
 )

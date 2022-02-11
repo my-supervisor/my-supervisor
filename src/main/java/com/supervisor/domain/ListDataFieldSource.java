@@ -12,7 +12,7 @@ import com.supervisor.sharing.Sharable;
 import com.supervisor.interaction.Interactable;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_list_data_field_source", 
+	name="list_data_field_source",
 	label="List data field source"
 )
 public interface ListDataFieldSource extends com.supervisor.sdk.datasource.Recordable, Sharable, Interactable {

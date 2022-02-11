@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="base_sequence", 
+	name="sequence",
 	label="Séquence"
 )
 public interface Sequence extends Recordable {

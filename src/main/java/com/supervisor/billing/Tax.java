@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Field;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="billing_tax", 
+	name="tax",
 	label="Taxe"
 )
 public interface Tax extends Recordable {

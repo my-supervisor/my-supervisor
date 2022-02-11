@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="base_planned_task", 
+	name="planned_task",
 	label="Planned task"
 )
 public interface PlannedTask extends Recordable {

@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_formular_expression", 
+	name="formular_expression",
 	label="Expression d'une formule"
 )
 public interface FormularExpression extends com.supervisor.sdk.datasource.Recordable {

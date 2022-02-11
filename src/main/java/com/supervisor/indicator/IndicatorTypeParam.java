@@ -11,7 +11,7 @@ import com.supervisor.sdk.metadata.Relation;
 import com.supervisor.domain.DataFieldType;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="supervisor_indicator_type_param", 
+		name="indicator_type_param",
 		label="Paramètre d'un type d'indicateur"
 )
 public interface IndicatorTypeParam extends com.supervisor.sdk.datasource.Recordable {

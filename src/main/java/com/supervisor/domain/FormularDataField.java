@@ -11,7 +11,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_formular_data_field", 
+	name="formular_data_field",
 	label="Champ de données formule",
 	comodel=DataField.class
 )

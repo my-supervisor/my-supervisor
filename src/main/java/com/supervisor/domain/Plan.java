@@ -8,7 +8,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @Recordable(
-	name="membership_plan", 
+	name="plan",
 	label="Mode de tarification",
 	comodel=Product.class
 )

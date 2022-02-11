@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="billing_invoice", 
+		name="invoice",
 		label="Facture",
 		comodel=Order.class
 )

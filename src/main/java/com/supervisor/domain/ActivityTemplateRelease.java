@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_activity_template_release", 
+	name="activity_template_release",
 	label="Release d'un modèle d'activité"
 )
 public interface ActivityTemplateRelease extends com.supervisor.sdk.datasource.Recordable {

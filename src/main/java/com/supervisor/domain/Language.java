@@ -6,7 +6,7 @@ import com.supervisor.sdk.metadata.Field;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="base_language", 
+		name="language",
 		label="Langue"
 )
 public interface Language extends Recordable {

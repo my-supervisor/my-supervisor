@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Relation;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="supervisor_when_case", 
+	name="when_case",
 	label="Etape d'une condition multiple"
 )
 public interface WhenCase extends com.supervisor.sdk.datasource.Recordable {

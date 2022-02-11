@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-	name="membership_plan_feature", 
+	name="plan_feature",
 	label="Fonctionnalité d'un mode tarifaire"
 )
 public interface PlanFeature extends Recordable {

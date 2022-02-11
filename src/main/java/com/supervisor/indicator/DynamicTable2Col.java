@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Field;
 import com.supervisor.sdk.metadata.Recordable;
 
 @Recordable(
-		name="supervisor_dynamic_table_2_col", 
+		name="dynamic_table_2_col",
 		label="Configuration d'un tableau dynamique à 2 colonnes",
 		comodel=Indicator.class
 )

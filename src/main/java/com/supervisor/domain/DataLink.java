@@ -16,7 +16,7 @@ import com.supervisor.indicator.Indicator;
 import com.supervisor.interaction.Interactable;
 
 @Recordable(
-		name="supervisor_data_link", 
+		name="data_link",
 		label="Liaison de données"
 )
 public interface DataLink extends com.supervisor.sdk.datasource.Recordable, Sharable, Interactable {

@@ -7,7 +7,7 @@ import com.supervisor.sdk.metadata.Relation;
 import java.io.IOException;
 
 @com.supervisor.sdk.metadata.Recordable(
-		name="membership_access_param", 
+		name="access_param",
 		label="Paramètre de droit d'accès"
 )
 public interface AccessParam extends Recordable {
