@@ -32,12 +32,12 @@ public final class GRecaptcha implements Recaptcha {
 
 	@Override
 	public String siteKey() {
-		return siteKey;
+		return StringUtils.isBlank(siteKey) ? StringUtils.EMPTY : siteKey;
 	}
 
 	@Override
 	public String secretKey() {
-		return secretKey;
+		return StringUtils.isBlank(secretKey) ? StringUtils.EMPTY : secretKey;
 	}
 
 	@Override
