@@ -16,6 +16,7 @@
  */
 package com.supervisor.server;
 
+import com.supervisor.sdk.secure.Recaptcha;
 import com.supervisor.takes.TkAccess;
 import com.supervisor.takes.TkAccessEdit;
 import com.supervisor.takes.TkAccessSave;
@@ -129,9 +130,10 @@ public final class FkMySupervisor extends FkWrap {
 	 * Ctor.
 	 *
 	 * @param base Data source
+	 * @param recaptcha Recaptcha
 	 */
 	@SuppressWarnings("unchecked")
-	public FkMySupervisor(final Base base) {
+	public FkMySupervisor(final Base base, Recaptcha recaptcha) {
 		super(
 			new FkModuleMimes(
 				new FkChain(
@@ -154,10 +156,10 @@ public final class FkMySupervisor extends FkWrap {
 						new TkAnonymous(new TkRegister(base))
 					),
 					new FkRegex("/login",
-						new TkAnonymous(new TkLogin())
+						new TkAnonymous(new TkLogin(recaptcha))
 					),
 					new FkRegex("/signin",
-						new TkAnonymous(new TkSignin(base))
+						new TkAnonymous(new TkSignin(base, recaptcha))
 					),
 					new FkRegex("/password/forgotten",
 						new TkAnonymous(new TkPasswordForgotten(base))

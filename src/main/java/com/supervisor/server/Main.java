@@ -18,6 +18,8 @@ package com.supervisor.server;
 
 import com.supervisor.sdk.datasource.Base;
 import com.supervisor.sdk.pgsql.PgBase;
+import com.supervisor.sdk.secure.GRecaptcha;
+import com.supervisor.sdk.secure.Recaptcha;
 import com.supervisor.sdk.websockets.WebSocketNettosphere;
 import com.supervisor.sdk.websockets.WebSocketServer;
 import com.minlessika.db.BasicDatabase;
@@ -80,13 +82,18 @@ public final class Main {
 			source,
 			wss
 		);
+		final Recaptcha recaptcha = new GRecaptcha(
+			Boolean.parseBoolean(map.get("recaptcha-active")),
+			map.get("recaptcha-site-key"),
+			map.get("recaptcha-secret-key")
+		);
         new FtCli(
 			new TkApp(
 				new FkRegex(
 					".+",
 					new TkMySupervisor(
 						base,
-						new TkFork(new FkMySupervisor(base))
+						new TkFork(new FkMySupervisor(base, recaptcha))
 					)
 				)
 			),
