@@ -1,6 +1,6 @@
 package com.supervisor.sdk.websockets;
 
-import com.supervisor.sdk.takes.Args;
+import com.minlessika.utils.ConsoleArgs;
 import com.supervisor.sdk.takes.BaseUri;
 import org.atmosphere.config.service.ManagedService;
 import org.atmosphere.cpr.AtmosphereResource;
@@ -8,9 +8,7 @@ import org.atmosphere.cpr.Broadcaster;
 import org.atmosphere.nettosphere.Config.Builder;
 import org.atmosphere.nettosphere.Nettosphere;
 import org.takes.Request;
-
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -24,11 +22,7 @@ public final class WebSocketNettosphere implements WebSocketServer {
 	private final List<Class<?>> resources;
 	
 	public WebSocketNettosphere(final List<Class<?>> resources, final String ...args) {
-		this(Arrays.asList(args), resources);
-	}
-	
-	public WebSocketNettosphere(final Iterable<String> args, final List<Class<?>> resources) {
-		this.map = new Args(args).asMap();
+		this.map = new ConsoleArgs("--", args).asMap();
 		this.resources = resources;
 	}
 	
