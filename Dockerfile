@@ -18,7 +18,7 @@ ENV DB_NAME="db_my_supervisor" \
     DB_PORT=5432 \
     DB_USER="my_supervisor" \
     DB_PASSWORD="admin" \
-    DB_HOST="172.17.0.1"
+    DB_HOST="127.0.0.1"
 
 EXPOSE 8080 8081
 
