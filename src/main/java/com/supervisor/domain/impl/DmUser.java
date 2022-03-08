@@ -55,28 +55,24 @@ public final class DmUser extends DomainRecordable<User> implements User {
 	}
 
 	@Override
-	public void changePassword(String currentPwd, String newPwd, String newConfirmedPwd) throws IOException {	
-		
-		EncryptedWord encryptedPassword = new EncryptedWordImpl(password(), salt(), true);
-		
-		// Vérifier que l'actuel mot de passe est exact.
+	public void changePassword(
+		final String currentPwd,
+		final String newPwd,
+		final String newConfirmedPwd) throws IOException {
+		final EncryptedWord encryptedPassword = new EncryptedWordImpl(password(), salt(), true);
 		record.mustCheckThisCondition(
-				encryptedPassword.verify(currentPwd, true),  
-				"L'ancien mot de passe ne correspond pas au mot de passe spécifié !"
+			encryptedPassword.verify(currentPwd, false),
+			"L'ancien mot de passe ne correspond pas au mot de passe spécifié !"
 		);
-		
-		record.isRequired(User::password, newPwd);	
-		
+		record.isRequired(User::password, newPwd);
 		record.mustCheckThisCondition(
-				newPwd.equals(newConfirmedPwd), 
-				"Le nouveau mot de passe n'est pas confirmé !"
+			newPwd.equals(newConfirmedPwd),
+			"Le nouveau mot de passe n'est pas confirmé !"
 		);
-		
-		EncryptedWord securedPassword = new EncryptedWordImpl(newPwd);
-		
+		final EncryptedWord securedPassword = new EncryptedWordImpl(newPwd);
 		record.entryOf(User::password, securedPassword.value())
-			  .entryOf(User::salt, securedPassword.salt())
-		      .update();
+		    .entryOf(User::salt, securedPassword.salt())
+		    .update();
 	}
 
 	@Override
