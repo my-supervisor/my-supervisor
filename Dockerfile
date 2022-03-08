@@ -18,7 +18,11 @@ ENV DB_NAME="db_my_supervisor" \
     DB_PORT=5432 \
     DB_USER="my_supervisor" \
     DB_PASSWORD="admin" \
-    DB_HOST="127.0.0.1"
+    DB_HOST="pg_my_supervisor" \
+    RECAPTCHA_ACTIVE="" \
+    RECAPTCHA_SITE_KEY="" \
+    RECAPTCHA_SECRET_KEY="" \
+    NB_THREADS="5"
 
 EXPOSE 8080 8081
 
